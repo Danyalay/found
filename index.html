@@ -1544,6 +1544,42 @@ body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0p
   .poses,.gs-opts{grid-template-columns:repeat(5,minmax(0,1fr))}
   .n-themes{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
+
+/* QA round 5 */
+@media (max-width:600px){label.trow[for="bigDay"]{flex-wrap:wrap}label.trow[for="bigDay"] input{width:100%}}
+
+/* QA round 6 */
+.tile-dark .t-call{color:#a1a1a6}
+.qtitle small,.ps-tabs button:not([aria-selected="true"]){color:color-mix(in srgb,var(--ink) 74%,transparent)}
+:root[data-theme="dark"] .mb-do b{color:#7CC0FF}
+:root[data-theme="dark"] .cardcount{background:#0071E3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mb-do b{color:#7CC0FF}:root:not([data-theme="light"]) .cardcount{background:#0071E3}}
+@media (orientation:landscape) and (max-height:500px){
+  /* games: question on the left, answers on the right */
+  .gs-hud{padding-top:calc(6px + env(safe-area-inset-top,0px));padding-bottom:4px}
+  .gs-stage{max-width:none;padding:8px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start;gap:10px 16px}
+  .gs-stage>.gs-next,.gs-stage>.gs-end,.gs-stage>.gs-chat,.gs-stage>.gs-row{grid-column:1/-1}
+  .gs-stage>.gs-slots{grid-column:2;grid-row:1/span 3}.gs-stage>.gs-card:has(+.gs-slots){grid-column:1}.gs-stage>.gs-slots~.gs-chips{grid-column:1;grid-row:2}.gs-stage>.gs-slots~.gs-next{grid-column:1;grid-row:3}
+  .gs-card{padding:12px 14px;gap:6px}
+  .gs-q{font-size:19px}
+  .gs-img{max-height:36vh;width:auto;max-width:100%}
+  .gs-poses{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gs-slots li{min-height:30px;padding:4px 10px;font-size:14px}
+  .gs-chips button{padding:8px 12px;font-size:14px}
+  .gs-next{padding:10px 22px}
+  /* bedtime: smaller heading, the moon steps aside, more themes per row */
+  .night-stage{padding-top:calc(14px + env(safe-area-inset-top,0px));padding-bottom:12px}
+  .nscene{width:min(100%,820px);gap:8px}
+  .n-h{font-size:26px}
+  .n-moon{width:64px;height:64px}
+  .n-themes{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .n-theme{padding:8px 10px;font-size:14px;grid-template-columns:30px 1fr}
+  .n-btn{margin-top:4px;padding:10px 22px;min-width:180px}
+  /* prayer studio: short hero so the lines are on screen */
+  .ps-hero{height:46svh}
+  .ps-body{padding-top:12px}
+  .ps-line{padding:10px 14px}
+}
 /* apple scroll reveal: fade + rise, staggered */
 .rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(0,0,.5,1),transform 1s cubic-bezier(0,0,.5,1);transition-delay:calc(var(--d,0) * 90ms)}
 .rv.in{opacity:1;transform:none}
@@ -1610,7 +1646,7 @@ body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0p
         <div class="pl-row" id="plRow"></div>
         <div class="homeweek" id="homeWeek"></div>
         <form class="pl-add" id="plAdd" hidden>
-          <input id="plName" maxlength="18" autocomplete="off" placeholder="Child's first name" aria-label="Child's first name">
+          <input id="plName" maxlength="24" autocomplete="off" placeholder="Child's first name" aria-label="Child's first name">
           <button class="btn btn-go" type="submit">Add</button>
         </form>
       </div>
@@ -1727,7 +1763,7 @@ body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0p
     <h3 class="pp-h">Games</h3>
     <div class="pgrid big">
       <button type="button" class="ptile review" data-practice="review"><img src="assets/g/star.webp" alt=""><b>Review game</b><small id="revSub">A quick quiz from your lessons.</small><i class="go">Play &rsaquo;</i></button>
-      <button type="button" class="ptile" data-practice="steps"><img src="assets/g/door.webp" alt=""><b>Confession practice</b><small>Put the six steps in order and role-play the whole script.</small><i class="go">Play &rsaquo;</i></button>
+      <button type="button" class="ptile" data-practice="steps"><img src="assets/g/door.webp" alt=""><b>Reconciliation practice</b><small>Put the six parts in order and role-play the whole script.</small><i class="go">Play &rsaquo;</i></button>
       <button type="button" class="ptile" data-practice="massPose"><img src="assets/g/ic_kneel.webp" alt=""><b>Stand, sit, or kneel?</b><small>Know what to do at each part of Mass.</small><i class="go">Play &rsaquo;</i></button>
       <button type="button" class="ptile" data-practice="massSay"><img src="assets/g/ic_bells.webp" alt=""><b>What do we say?</b><small>Learn your answers at Mass.</small><i class="go">Play &rsaquo;</i></button>
     </div>
@@ -1790,7 +1826,7 @@ body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0p
           <button type="button" id="pvB" aria-pressed="false">Version B</button>
         </div>
         <p id="pvText"></p>
-        <p class="ref">Version A is the prayer printed in the workbook, and Lesson 9 teaches it line by line. Version B is the newest official translation from the Order of Penance, required in U.S. parishes since April 2023. Any sincere act of contrition is valid, even in a child's own words. Ask your parish's faith formation office which one your child should memorize.</p>
+        <p class="ref">Version A is the prayer printed in the workbook, and Lesson 9 teaches it line by line. Version B comes from the new English translation of the Order of Penance, used in U.S. parishes since April 2023; the traditional prayer is still fine. Any sincere act of contrition is valid, even in a child's own words. Ask your parish's faith formation office which one your child should memorize.</p>
       </div>
     </div>
 
@@ -1799,7 +1835,7 @@ body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0p
       <div class="tips">
         <div><span class="tn">1</span><b>Call it a celebration.</b><p>Confession is not getting in trouble. Plan a family treat afterward, as a party and not as a prize.</p></div>
         <div><span class="tn">2</span><b>Role-play, then swap.</b><p>Practice the script at home and let your child play the priest too. Kids lose their fear when they know every line.</p></div>
-        <div><span class="tn">3</span><b>Praise the effort.</b><p>Say "You remembered all six steps!" rather than "You're so smart." Effort praise builds staying power.</p></div>
+        <div><span class="tn">3</span><b>Praise the effort.</b><p>Say “You remembered all six parts!” rather than “You're so smart.” Effort praise builds staying power.</p></div>
       </div>
     </div>
 
@@ -1890,6 +1926,7 @@ const ART = {
   stole: () => `<div class="sc"><img class="ph kb" src="assets/img/confession.jpg" alt="" draggable="false"></div>`,
   lock: () => `<div class="sc">${img("lock", "float", "left:50%;top:50%;width:52%;translate:-62% -50%")}${img("zip", "", "right:8%;bottom:6%;width:28%")}</div>`,
   hug: () => `<div class="sc"><img class="ph kb" src="assets/img/prodigal.jpg" alt="" draggable="false"></div>`,
+  prodigal: () => `<div class="sc"><img class="ph kb" src="assets/img/prodigal_away.jpg" alt="A young man walks away down a country road while his father watches from the gate" draggable="false"></div>`,
   heart: () => `<div class="sc">${img("heartmend", "beat", "left:50%;top:50%;width:62%;translate:-50% -50%")}</div>`,
   heartsp: () => `<div class="sc">${img("heartsp", "beat", "left:50%;top:50%;width:60%;translate:-50% -50%")}${img("pray", "", "right:4%;bottom:4%;width:26%")}</div>`,
   rays: () => `<div class="sc"><img class="ph kb" src="assets/img/mercy.jpg" alt="" draggable="false"></div>`,
@@ -1956,7 +1993,7 @@ const SAINTS = [
    lived: "About 1345 to 1393", home: "Bohemia (today the Czech Republic)", feast: "May 16", patron: "Confessors and bridges",
    fact: "A statue of him stands on the Charles Bridge in Prague, near the river where he died." },
  { name: "St. Padre Pio", lv: "1887–1968", hm: "Italy", fun: "His real name was Francesco.", pic: "saint_pio", c1: "#7A4B2A", c2: "#E8C9A0", sym: "pray", power: "Heart reader",
-   lived: "1887 to 1968", home: "Pietrelcina and San Giovanni Rotondo, Italy", feast: "September 23", patron: "Teenagers and civil defense volunteers",
+   lived: "1887 to 1968", home: "Pietrelcina and San Giovanni Rotondo, Italy", feast: "September 23", patron: "Civil defense volunteers",
    fact: "His real name was Francesco. St. John Paul II made him a saint in 2002." },
  { name: "St. John Paul II", lv: "1920–2005", hm: "Poland, then Rome", fun: "He loved skiing and hiking!", pic: "saint7", c1: "#B8892A", c2: "#FFE7A0", sym: "church", power: "Joy bringer",
    p: { skin: "l", hair: "white", style: "sides", outfit: "papal", hat: "zucchetto", held: "ferula" },
@@ -2067,7 +2104,7 @@ function markSeen() { const n = SAINTS.filter((_, i) => isCollected(i)).length; 
 
 /* ---------- content ---------- */
 const QUESTS = [
- { title:"The Good Shepherd", lesson:"Lesson 1", icon:"staff", bg:"#DCEFFF",
+ { id:"recon-01", title:"The Good Shepherd", lesson:"Lesson 1", icon:"staff", bg:"#DCEFFF",
   covers:"Everyone needs forgiveness (1 John 1:8), God is holy and all-powerful, the Holy Trinity and each Person's role, St. Augustine on the beach, the Good Shepherd (John 10:11, 14–15), Jesus died for our sins, Jesus feeds us in the Eucharist, Psalm 23, the Sign of the Cross, Act of Contrition part 1",
   saint:{name:"St. Damien of Molokai", story:"Father Damien served very sick people on the island of Molokai. No other priest could come there, so he had no one to hear his confession. One day a ship brought a priest friend, but the captain would not let anyone on or off. So Damien rowed his little boat close and shouted his confession across the water! He knew God's forgiveness is worth it."},
   mission:["Make a prayer corner","Set up a small table with a cross and a candle. Light it at the start of every lesson and pray together. Practice the Sign of the Cross before meals, read Psalm 23 at bedtime, and start practicing part 1 of the Act of Contrition."],
@@ -2089,7 +2126,7 @@ const QUESTS = [
    {t:"pray",i:0,tag:"Memory prayer: part 1 of the Act of Contrition"},
    {t:"saint"},{t:"done"}]},
 
- { title:"The Ten Commandments", lesson:"Lesson 2", icon:"tablets", bg:"#FFF1C9",
+ { id:"recon-02", title:"The Ten Commandments", lesson:"Lesson 2", icon:"tablets", bg:"#FFF1C9",
   covers:"God gave Moses the Ten Commandments (Exodus 20, Deuteronomy 5), all ten in order with a question for each, Jesus' two great commandments (Matthew 22:37–39), Matthew 5:17, the envelope activity, CCC 2059, Act of Contrition parts 1–2",
   saint:{name:"St. Dominic Savio", story:"When Dominic was 12, he knew he wanted to be a priest more than anything, and he loved the sacraments. At his school, he helped other boys turn away from sin. Once he saw two boys fighting, so he held up a crucifix between them. They realized what they were doing, made up, and went to confession. Dominic went to confession every week with his teacher, St. John Bosco."},
   mission:["Mail a love letter","Fold a paper envelope. On the front write Jesus' two great commandments: love God, and love your neighbor. Put the Ten Commandments inside, because the two great commandments wrap around all ten. Keep practicing parts 1 and 2 of the Act of Contrition."],
@@ -2110,10 +2147,10 @@ const QUESTS = [
    {t:"prayall",upto:2},
    {t:"saint"},{t:"done"}]},
 
- { title:"Free Will and Sin", lesson:"Lesson 3", icon:"candle", bg:"#FFE2E8",
+ { id:"recon-03", title:"Free Will and Sin", lesson:"Lesson 3", icon:"candle", bg:"#FFE2E8",
   covers:"Made in God's image with a soul, free will, the definition of sin, Matthew 25:40, original sin, accident vs. sin, the candle demonstration, venial and mortal sin and the three conditions, the devil and hell, Act of Contrition parts 1–3",
   saint:{name:"St. Maria Goretti", story:"Maria loved Jesus and went to confession as often as she could. An older boy, Alessandro, tried to make her sin. When she said no, he hurt her badly. Maria forgave him before she died. Years later, in prison, Alessandro saw Maria offering him flowers. He asked for a priest, made a good confession, and spent his life doing penance."},
-  mission:["The candle lesson","Have your child write their name on a paper “scroll.” Light several candles, close the shades, and turn off the lights. Name a wrong choice and blow out one candle for each. When it's dark, ask: can you still see your scroll? Sin makes it hard to see God's way, and harder to say no next time. Then talk about how Reconciliation brings the light back. Keep practicing parts 1 to 3 of the Act of Contrition."],
+  mission:["The candle lesson","Have your child write their name on a paper “scroll.” With a grown-up right there, light several candles, close the shades, and turn off the lights. Name a wrong choice and blow out one candle for each. When it's dark, ask: can you still see your scroll? Sin makes it hard to see God's way, and harder to say no next time. Then talk about how Reconciliation brings the light back. Keep practicing parts 1 to 3 of the Act of Contrition."],
   remember:[{q:"How many commandments did God give Moses?",opts:[["Ten",1],["Three",0],["A hundred",0]]},{q:"Jesus' two great commandments are: love God and…",opts:[["Love your neighbor as yourself",1],["Love candy",0],["Win every game",0]]}],
   scenes:[
    {t:"story",art:"brain",text:"God made you in His image. You have a mind to think, imagine, and reason. You have feelings. You have a free will to choose good or bad. And you have a soul that lives forever! That makes people different from animals."},
@@ -2133,7 +2170,7 @@ const QUESTS = [
    {t:"prayall",upto:3},
    {t:"saint"},{t:"done"}]},
 
- { title:"Sacraments, the Bible, and Prayer", lesson:"Lesson 4", icon:"stones", bg:"#E2F7E8",
+ { id:"recon-04", title:"Sacraments, the Bible, and Prayer", lesson:"Lesson 4", icon:"stones", bg:"#E2F7E8",
   covers:"What a sacrament is and what sacraments do, the seven sacraments (with a recall game for the stepping-stones sheet), Baptism (Acts 2:38), receiving Reconciliation and Eucharist again and again, a clean heart before First Communion, the Bible (2 Timothy 3:16), prayer and the Psalms, the ways God helps us, Act of Contrition parts 1–4, Review of Lessons 1–4 (all ten questions)",
   saint:{name:"St. Ignatius of Loyola", story:"Ignatius was a proud soldier until a cannonball hurt his leg. While he got better, he read about Jesus and the saints. He turned away from pride and money to follow Christ. He went to confession and promised to do penance and serve God. Later he became a priest and started the Jesuits."},
   mission:["Baptism treasure hunt","Get out your child's baptism photos, gown, and candle. Tell them the story of that day: they became a child of God. Then talk about why we wash our hands before a special dinner. Keep practicing parts 1 to 4 of the Act of Contrition."],
@@ -2164,8 +2201,8 @@ const QUESTS = [
    {t:"quiz",tag:"Review: Lessons 1–4",q:"This year we are preparing for which two sacraments?",opts:[["Reconciliation and Holy Eucharist",1],["Confirmation and Marriage",0],["Baptism and Holy Orders",0]]},
    {t:"saint"},{t:"done"}]},
 
- { title:"Examination of Conscience", lesson:"Lesson 5", icon:"glass", bg:"#EDE6FF",
-  covers:"Reconcile means come together again, only a priest can forgive sins in Jesus' name, the six parts of the sacrament, individual confession is the ordinary way, conscience, Step 1: examination of conscience with the Holy Spirit, the nightly journal, the whole Act of Contrition",
+ { id:"recon-05", title:"Examination of Conscience", lesson:"Lesson 5", icon:"glass", bg:"#EDE6FF",
+  covers:"Reconcile means come together again, only God forgives sins, through the priest acting in Jesus' name, the six parts of the sacrament, individual confession is the ordinary way, conscience, Step 1: examination of conscience with the Holy Spirit, the nightly journal, the whole Act of Contrition",
   saint:{name:"St. Augustine", story:"Augustine was very smart, but he made many wrong choices. His mother, St. Monica, prayed for him every day. One day he felt God calling him to read Romans 13, where St. Paul says to stop doing wrong and live like Jesus. Augustine was sorry for his sins. St. Ambrose baptized him, and he began a new life. He became a priest, a bishop, and a great teacher about God."},
   mission:["Start the nightly journal","Each night, write two things your child did that pleased God and two things they're sorry for. Tell them that you sin and stumble too, and that God always forgives when we ask. Practice the whole Act of Contrition, parts 1 to 5."],
   remember:[{q:"How many sacraments are there?",opts:[["Seven",1],["Three",0],["Ten",0]]},{q:"Baptism washes away…",opts:[["Original sin and all sins",1],["Only dirt",0]]}],
@@ -2183,10 +2220,10 @@ const QUESTS = [
    {t:"prayall",upto:5},
    {t:"saint"},{t:"done"}]},
 
- { title:"Welcome", lesson:"Lesson 6", icon:"door", bg:"#DCEFFF",
+ { id:"recon-06", title:"Welcome", lesson:"Lesson 6", icon:"door", bg:"#DCEFFF",
   covers:"Step 2: the welcome, why we tell sins to a priest, the stole, screen or face to face, the priest may read Scripture, “Bless me, Father…”, telling how long since your last confession, Isaiah 1:18, the burden of sin experiment, visiting the confessional, Act of Contrition memory drill",
   saint:{name:"St. Dominic", story:"An old story says that one day St. Dominic found the devil sneaking around the monastery. The devil bragged about tempting the monks to oversleep, overeat, and gossip. But when Dominic asked about the chapter house, where the monks examined their consciences and made their confessions, the devil screamed: “I hate that spot, for I lose there whatever I have gained elsewhere! It is there they are told of their faults, correct one another in charity, do penance, and are absolved of their sins.”"},
-  mission:["Visit the confessional","After Mass this week, show your child the confessional. Let them sit in the chair or kneel at the screen. Take them along next time you go to confession. Try the burden-of-sin bag: a zip bag of sand tied to the wrist or ankle for two hours. Then ask: Was it heavy or tiring? Did you get used to it? Did anyone notice? Were you embarrassed, or did you want to hide it? Did you want to take it off?"],
+  mission:["Visit the confessional","After Mass this week, show your child the confessional. Let them sit in the chair or kneel at the screen. Take them along next time you go to confession. Try the burden-of-sin bag: a zip bag of sand tied loosely to the wrist or ankle for an hour or two (take it off if it bothers them). Then ask: Was it heavy or tiring? Did you get used to it? Did anyone notice? Were you embarrassed, or did you want to hide it? Did you want to take it off?"],
   remember:[{q:"What is Step 1 of Reconciliation?",opts:[["Examination of Conscience",1],["Absolution",0],["Penance",0]]},{q:"Your conscience helps you know…",opts:[["Right from wrong",1],["What's for dinner",0]]}],
   scenes:[
    {t:"story",art:"stole",text:"Step 2: Welcome. Why do we tell our sins to a priest? Because Jesus told us to! He gave His very first priests the power to forgive sins. Telling the priest is just like telling Jesus Himself.",ref:"John 20:23"},
@@ -2200,7 +2237,7 @@ const QUESTS = [
    {t:"recall",level:1},
    {t:"saint"},{t:"done"}]},
 
- { title:"Confession", lesson:"Lesson 7", icon:"lock", bg:"#E9E2FF",
+ { id:"recon-07", title:"Confession", lesson:"Lesson 7", icon:"lock", bg:"#E9E2FF",
   covers:"Step 3: confession, St. Clement of Rome, the five names of the sacrament (CCC 1423–1424), accident vs. sin, writing sins on paper, the priest won't be angry, the seal of confession, “Please forgive me for all of these sins…”, Act of Contrition memory drill, Review of Lessons 5–7",
   saint:{name:"St. John Nepomucene", story:"An old story tells about Father John, a priest in Prague. The queen went to him for confession. The king wanted to know what she had said, but Father John said no, even when the king threatened him. He was thrown into the river and died rather than tell. People call him the martyr of the confessional."},
   mission:["Practice the parts","Make the Sign of the Cross together. Ask: what will you say first? What happens next? (Tell your sins: only sins, not accidents.) What do you say when you've told them all? If it helps, let your child write their sins on a paper to bring along."],
@@ -2219,7 +2256,7 @@ const QUESTS = [
    {t:"quiz",tag:"Review: Lessons 5–7",q:"Before you confess, you say: “___, Father, for I have sinned. This is my first confession.”",opts:[["Bless me",1],["Hello",0],["Excuse me",0]]},
    {t:"saint"},{t:"done"}]},
 
- { title:"Penance", lesson:"Lesson 8", icon:"heartmend", bg:"#FFE6D8",
+ { id:"recon-08", title:"Penance", lesson:"Lesson 8", icon:"heartmend", bg:"#FFE6D8",
   covers:"Review of the six parts, Step 4: penance, the priest's advice, do your penance right away, Lucy's story and its discussion questions (making things right with others), Act of Contrition memory drill",
   saint:{name:"St. Padre Pio", story:"Francesco grew up in a loving Catholic family in Italy. At 15 he joined the Capuchin friars and took the name Pio. At 23 he became a priest, so people called him Padre Pio: “Padre” means father. He was often sick, and he had wounds like Jesus' wounds on the cross, called the stigmata. He heard confessions for hours every day. People said God gave him a special gift: he knew when someone was leaving a sin out. Thousands came to make a good confession. Some who doubted him ended up confessing too!"},
   mission:["Talk about Lucy","Read Lucy's story again together. Ask: how did going to confession change how Lucy felt? What will she do if she finds someone else's toy again? Why did Father tell her to ask Mike to forgive her, even though God had already forgiven her?"],
@@ -2236,7 +2273,7 @@ const QUESTS = [
    {t:"recall",level:3},
    {t:"saint"},{t:"done"}]},
 
- { title:"The Act of Contrition", lesson:"Lesson 9", icon:"hands", bg:"#FFF1C9",
+ { id:"recon-09", title:"The Act of Contrition", lesson:"Lesson 9", icon:"hands", bg:"#FFF1C9",
   covers:"Step 5: the Act of Contrition, its three parts, Version A line by line with the workbook's simple meanings, hard words explained, the word-search words, putting the prayer in order, saying it from memory, using your own words, Version B and its word-search words",
   saint:{name:"St. John Paul II", story:"As a young priest, Karol Wojtyła visited the church of St. John Vianney in Ars, France. He wanted to be a “prisoner of the confessional” like him, always ready to hear confessions. Even as Pope, he heard confessions in St. Peter's Basilica on Good Friday, and he went to confession often himself. Even a pope needs Jesus' forgiveness. He was made a saint on April 27, 2014."},
   mission:["Say it every night","Practice the Act of Contrition every night with the hand motions. Knowing it by heart is one less worry on the big day. Ask your parish whether they use Version A or Version B."],
@@ -2254,7 +2291,7 @@ const QUESTS = [
    {t:"pick",prompt:"Version B words: tap every word that is in Version B.",items:[["God",1],["sorry",1],["repent",1],["wrong",1],["good",1],["offended",1],["grace",1],["penance",1],["Jesus",1],["mercy",1],["recess",0],["dinosaur",0],["vacation",0]],done:"You found all ten Version B words!"},
    {t:"saint"},{t:"done"}]},
 
- { title:"Absolution", lesson:"Lesson 10", icon:"heart", bg:"#FFE2E8",
+ { id:"recon-10", title:"Absolution", lesson:"Lesson 10", icon:"heart", bg:"#FFE2E8",
   covers:"Step 6: absolution, only God forgives and the priest acts in Jesus' place, the power passed down to bishops and priests (John 20:21–23), the full prayer of absolution, the Sign of the Cross at the last line, thank the priest and do your penance, the paper-clip (chain) activity, Act of Contrition from memory, Review of Lessons 8–10",
   saint:{name:"St. Faustina", story:"When Helen was 7, she heard God calling her. She became Sister Faustina, known for her kind heart. On February 22, 1931, Jesus appeared to her and asked her to paint the image she saw: Jesus with His hand raised in blessing and red and pale rays shining from His heart. It shows Jesus as He appeared to His disciples on Easter night, the very night He gave them the power to forgive sins (John 20:19–23). His raised hand is like the priest's hand when he gives absolution. She was made a saint on April 30, 2000."},
   mission:["The paper-clip trick","Keep practicing the Act of Contrition every night. Then fold a paper strip with your child's name into an S and clip two paper clips across the folds. The clips are like sins that knot us up. Pull the ends quickly: the clips jump off and link together. That's absolution: God grabs our sins and sets us free!"],
@@ -2271,10 +2308,10 @@ const QUESTS = [
    {t:"quiz",tag:"Review: Lessons 8–10",q:"A penance can be…",opts:[["A prayer, a kind action, or both",1],["Only a prayer",0],["A punishment",0]]},
    {t:"quiz",tag:"Review: Lessons 8–10",q:"We say the Act of Contrition…",opts:[["Because we are filled with sorrow and hate sin",1],["So the priest will like us",0],["To tell the priest we're done",0]]},
    {t:"quiz",tag:"Review: Lessons 8–10",q:"When you receive ___, God forgives your sins.",opts:[["absolution",1],["penance",0],["Communion",0]]},
-   {t:"match",tag:"Review: Lessons 8–10",prompt:"Match each part to its meaning.",pairs:[["Examination of conscience","To think, with sorrow, of all the sins we have committed"],["Greeting","When the priest welcomes you"],["Confession","To tell the priest your sins"],["Penance","A prayer or action that shows we are sorry"],["Act of Contrition","A prayer asking God's forgiveness"],["Absolution","God forgives your sins"]]},
+   {t:"match",tag:"Review: Lessons 8–10",prompt:"Match each part to its meaning.",pairs:[["Examination of Conscience","To think, with sorrow, of all the sins we have committed"],["Welcome","When the priest welcomes you"],["Confession","To tell the priest your sins"],["Penance","A prayer or action that shows we are sorry"],["Act of Contrition","A prayer asking God's forgiveness"],["Absolution","God forgives your sins"]]},
    {t:"saint"},{t:"done"}]},
 
- { title:"Reconciliation in the Early Church", lesson:"Lesson 11", icon:"church", bg:"#DFF3F1",
+ { id:"recon-11", title:"Reconciliation in the Early Church", lesson:"Lesson 11", icon:"church", bg:"#DFF3F1",
   covers:"How and why Jesus began the sacrament: Mark 2:7, Matthew 16:19 (bind and loose), Matthew 18:18, John 20:22–23, 2 Corinthians 5:18, Psalm 51:3–4, coming back to God and the Church community",
   saint:{name:"St. John Vianney", story:"John Vianney was not a good student, but he studied hard and became a priest at 29. He lived simply and prayed for hours before Jesus in the Eucharist. So many people came to him that he heard confessions up to 16 hours a day! The devil tried to tempt him to stop him from helping people, but he kept going. He is the patron saint of parish priests."},
   mission:["Look it up together","Find these in a Bible together: Mark 2:7, Matthew 16:19, Matthew 18:18, John 20:22–23, and 2 Corinthians 5:18. Pray Psalm 51:3–4 together at bedtime."],
@@ -2290,8 +2327,8 @@ const QUESTS = [
    {t:"recall",level:3},
    {t:"saint"},{t:"done"}]},
 
- { title:"Father Tim's Teaching on Reconciliation", lesson:"Lesson 12", icon:"book", bg:"#FFF3C7",
-  covers:"Bringing all the steps together, the Father Tim audio (parents), common questions, the whole confession role-play, the six steps in order",
+ { id:"recon-12", title:"Father Tim's Teaching on Reconciliation", lesson:"Lesson 12", icon:"book", bg:"#FFF3C7",
+  covers:"Bringing all the steps together, the Father Tim audio (parents), common questions, the whole confession role-play, the six parts in order",
   saint:{name:"St. Francis de Sales", story:"Francis de Sales was born in a castle, and his father wanted him to be important. Instead, he became a priest who loved preaching and hearing confessions. He went to dangerous places to bring people back to the Church, became the bishop of Geneva, and wrote books about becoming holy that people still read 400 years later. He taught people to have great sorrow for their sins and make a good confession every week."},
   mission:["Listen to Father Tim","Sit down together and listen to “Questions and Answers About Reconciliation With Father Tim” using the QR code in the workbook (Lesson 12). Then answer any questions your child has."],
   remember:[{q:"Who did Jesus give the power to forgive sins?",opts:[["His apostles, and priests today",1],["Anyone",0]]}],
@@ -2301,12 +2338,12 @@ const QUESTS = [
    {t:"quiz",tag:"Questions kids often ask",q:"What if I forget the words?",opts:[["The priest will help me",1],["I'll get in trouble",0]]},
    {t:"quiz",tag:"Questions kids often ask",q:"Will the priest be mad at me?",opts:[["No. He's there in Jesus' place, and he's happy I came.",1],["Yes, very mad",0]]},
    {t:"quiz",tag:"Questions kids often ask",q:"Will the priest tell anyone?",opts:[["Never. That's the Seal of Confession.",1],["Only my parents",0]]},
-   {t:"order",tag:"The six steps",prompt:"Put the six steps in order. Tap the first one!"},
+   {t:"order",tag:"The six parts",prompt:"Put the six parts in order. Tap the first one!"},
    {t:"script"},
    {t:"recall",level:3},
    {t:"saint"},{t:"done"}]},
 
- { title:"My “Sacrament of Reconciliation” Workbook", lesson:"Lesson 13", icon:"star", bg:"#FFE3EA",
+ { id:"recon-13", title:"My “Sacrament of Reconciliation” Workbook", lesson:"Lesson 13", icon:"star", bg:"#FFE3EA",
   covers:"The child's workbook pages with every fill-in (God and me and others, free, the priest and I, sorry, Jesus, forgiveness, brothers and sisters, forgives, friendship, why and how, Father), the ten steps of the celebration, the Prodigal Son, Final Review",
   saint:{name:"Blessed Christina", story:"Christina lived in Italy about 500 years ago. She became an Augustinian sister and lived a quiet, hidden life. She noticed people's troubles and sufferings, and she prayed and offered penances for them. Jesus worked miracles through her. When we offer penances for others, Jesus can work through us too!"},
   mission:["Plan the party","Go through the workbook pages together and fill in the blanks. Then plan a family celebration for after First Reconciliation: it's a time to celebrate!"],
@@ -2323,7 +2360,7 @@ const QUESTS = [
    {t:"quiz",tag:"My workbook",q:"He brings all of us together again in peace and ___.",opts:[["friendship",1],["homework",0],["silence",0]]},
    {t:"quiz",tag:"My workbook",q:"Before, I find a quiet time to think and pray. I think about times I was selfish and not like Jesus, and ask God to help me understand ___ I acted that way…",opts:[["why",1],["when",0],["where",0]]},
    {t:"quiz",tag:"My workbook",q:"…and ___ I can be better.",opts:[["how",1],["when",0],["if",0]]},
-   {t:"story",art:"away",text:"Jesus told a story about a son who ran away and wasted everything his father gave him.",ref:"Luke 15:11–32"},
+   {t:"story",art:"prodigal",text:"Jesus told a story about a son who ran away and wasted everything his father gave him.",ref:"Luke 15:11–32"},
    {t:"story",art:"hug",text:"When the son came home to say sorry, his father RAN to him and hugged him. The priest who welcomes you is like that loving father."},
    {t:"quiz",tag:"My workbook",q:"The priest is like the loving father in the story. We even call him “___.”",opts:[["Father",1],["Coach",0],["Captain",0]]},
    {t:"script"},
@@ -2351,32 +2388,32 @@ const PRAYERS = {
   ourfather: { name: "Our Father", parts: [
     { text: "Our Father, who art in heaven, hallowed be thy name;", gap: "heaven", opts: ["heaven", "home", "school"], g: "Point up to heaven", mean: "God, you are our loving Father in heaven. Your name is holy, and we want everyone to treat it as holy." },
     { text: "thy kingdom come, thy will be done on earth as it is in heaven.", gap: "earth", opts: ["earth", "time", "land"], g: "Sweep your arms wide, like the whole world", mean: "Let your love fill the whole world. Help everyone do what you want, here just like in heaven." },
-    { text: "Give us this day our daily bread,", gap: "bread", opts: ["bread", "toys", "cake"], g: "Hold your hands open, ready to receive", mean: "Please give us what we need today: food, love, and Jesus himself." },
+    { text: "Give us this day our daily bread,", gap: "bread", opts: ["bread", "toys", "cake"], g: "Hold your hands open, ready to receive", mean: "Please give us what we need today: food, love, and Jesus Himself." },
     { text: "and forgive us our trespasses, as we forgive those who trespass against us;", gap: "forgive", opts: ["forgive", "forget", "find"], g: "Hands on your heart", mean: "Forgive us when we do wrong, and help us forgive others too." },
     { text: "and lead us not into temptation, but deliver us from evil. Amen.", gap: "evil", opts: ["evil", "rain", "school"], g: "Fold your hands", mean: "Keep us away from wanting to do wrong, and protect us from everything bad." },
   ] },
   hailmary: { name: "Hail Mary", parts: [
-    { text: "Hail Mary, full of grace, the Lord is with thee.", gap: "grace", opts: ["grace", "flowers", "toys"], g: "Wave hello, like the angel did", mean: "Hello, Mary! God filled you with his love, and he is always with you. (These are the angel Gabriel's words.)" },
+    { text: "Hail Mary, full of grace, the Lord is with thee.", gap: "grace", opts: ["grace", "flowers", "toys"], g: "Wave hello, like the angel did", mean: "Hello, Mary! God filled you with His love, and He is always with you. (These are the angel Gabriel's words.)" },
     { text: "Blessed art thou among women, and blessed is the fruit of thy womb, Jesus.", gap: "Jesus", opts: ["Jesus", "Peter", "Joseph"], g: "Rock a baby in your arms", mean: "God chose you in a special way, and your baby Jesus is blessed most of all. (These are Elizabeth's words.)" },
     { text: "Holy Mary, Mother of God, pray for us sinners,", gap: "Mother", opts: ["Mother", "friend", "sister"], g: "Fold your hands", mean: "Holy Mary, you are Jesus' mom, and Jesus is God, so you are the Mother of God! Please pray for us, because we all need God's help." },
     { text: "now and at the hour of our death. Amen.", gap: "now", opts: ["now", "never", "later"], g: "Point to yourself, then up to heaven", mean: "Pray for us today and always, all the way until we go home to heaven." },
   ] },
   glorybe: { name: "Glory Be", parts: [
     { text: "Glory be to the Father, and to the Son, and to the Holy Spirit,", gap: "Spirit", opts: ["Spirit", "Sun", "Star"], g: "Bow your head", mean: "We praise God: the Father, the Son, and the Holy Spirit. One God in three Persons." },
-    { text: "as it was in the beginning, is now, and ever shall be, world without end. Amen.", gap: "end", opts: ["end", "bread", "friends"], g: "Lift your arms up high", mean: "God has always been great, he is great right now, and he will be great forever and ever." },
+    { text: "as it was in the beginning, is now, and ever shall be, world without end. Amen.", gap: "end", opts: ["end", "bread", "friends"], g: "Lift your arms up high", mean: "God has always been great, He is great right now, and He will be great forever and ever." },
   ] },
 };
 const setOf = s => PRAYERS[(s && s.set) || "contrition"];
 // the Mass, part by part: what it means, what a child does, and what we say (US practice)
 const POSE = { stand: { label: "Stand", icon: "stand" }, sit: { label: "Sit", icon: "sit" }, kneel: { label: "Kneel", icon: "kneel" }, genuflect: { label: "Genuflect", icon: "kneel" } };
 const MASS = [
-  { g: "Before Mass", name: "Holy water", img: "font", pose: "genuflect", means: "The holy water reminds us of our Baptism, when we joined God's family.", doo: "Dip your fingers in the holy water and make the Sign of the Cross. Before you go into the pew, bend your right knee to the floor toward the tabernacle, where Jesus is." },
+  { g: "Before Mass", name: "Holy water", img: "mass_font", pose: "genuflect", means: "The holy water reminds us of our Baptism, when we joined God's family.", doo: "Dip your fingers in the holy water and make the Sign of the Cross. Before you go into the pew, bend your right knee to the floor toward the tabernacle, where Jesus is." },
   { g: "We gather", name: "Entrance", img: "mass_entrance", pose: "stand", means: "Jesus' family comes together. The priest, servers and readers walk in behind the cross.", doo: "Stand up and sing along with everyone." },
   { g: "We gather", name: "Greeting", img: "mass_church", pose: "stand", means: "We start the way we start every prayer, in the name of the Father, and of the Son, and of the Holy Spirit.", doo: "Make the Sign of the Cross with the priest.", say: ["The Lord be with you.", "And with your spirit."] },
   { g: "We gather", name: "Lord, have mercy", icon: "heartmend", pose: "stand", means: "We tell God we're sorry for our sins and ask for His mercy, so our hearts are ready.", doo: "Think of something you're sorry for, and pray along.", say: ["Lord, have mercy.", "Lord, have mercy."] },
   { g: "We gather", name: "Glory to God", img: "pray_glorybe", pose: "stand", means: "On Sundays (except in Advent and Lent) we sing a joyful song praising God, like the angels at Christmas.", doo: "Sing along: “Glory to God in the highest!”" },
   { g: "The Word of God", name: "Readings", img: "mass_readings", pose: "sit", means: "God speaks to us through the Bible. On Sundays we usually hear a reading from the Old Testament, sing a psalm, and hear a reading from the apostles' letters.", doo: "Sit quietly and listen. God has something to tell you!", say: ["The word of the Lord.", "Thanks be to God."], who: "The reader says" },
-  { g: "The Word of God", name: "Gospel", img: "mass_gospel", pose: "stand", means: "We hear the words and life of Jesus Himself. That's why we stand up for it.", doo: "Stand and sing Alleluia (in Lent we sing a different song). When the Gospel starts, trace a small cross on your forehead, lips and heart: Jesus, be in my mind, on my lips, and in my heart.", say: ["The Gospel of the Lord.", "Praise to you, Lord Jesus Christ."] },
+  { g: "The Word of God", name: "Gospel", img: "mass_gospel", pose: "stand", means: "We hear the words and life of Jesus Himself. That's why we stand up for it.", doo: "Stand and sing Alleluia (in Lent we sing a different song). When Father says “A reading from the holy Gospel…”, answer “Glory to you, O Lord” and trace a small cross on your forehead, lips and heart: Jesus, be in my mind, on my lips, and in my heart.", say: ["The Gospel of the Lord.", "Praise to you, Lord Jesus Christ."] },
   { g: "The Word of God", name: "Homily", img: "mass_church", pose: "sit", means: "The priest helps us understand the readings and how to live them this week.", doo: "Sit and listen. Try to remember one thing to tell your family after Mass." },
   { g: "The Word of God", name: "We believe", img: "shamrock", pose: "stand", means: "Together we say the Creed, everything we believe as Catholics, starting with “I believe in one God.”", doo: "Stand and pray along. Everyone bows at the words about Jesus becoming man." },
   { g: "The Word of God", name: "Prayers for everyone", icon: "pray", pose: "stand", means: "We pray for the Church, the world, people who are sick, and people who have died.", doo: "After each prayer, answer together.", say: ["Let us pray to the Lord.", "Lord, hear our prayer."], who: "The reader says" },
@@ -2417,6 +2454,39 @@ if (!PL) {
   }
   store.set("players", PL);
 }
+/* ---------- saved progress must survive every future version ----------
+   Rules for every change from here on (new courses, new or reordered lessons, redesigns):
+   1. Never rename or delete a saved key. Add new keys instead; a new course saves under p.<child>.<course>.<key>.
+   2. Every lesson keeps its permanent id (recon-01 ...). If the lesson list ever changes order, progress is moved by id.
+   3. A change to the save format is a new numbered step in SAVE_STEPS. A full copy of the old saves is kept first. */
+const QUEST_IDS = QUESTS.map(q => q.id);
+const SAVE_VERSION = 3;
+const SAVE_STEPS = {
+  3: () => {}, // 3: lesson ids are recorded (nothing moves)
+};
+function remapQuests(pid, was) {
+  if (!Array.isArray(was) || was.join() === QUEST_IDS.join()) return;
+  const to = i => QUEST_IDS.indexOf(was[i]), key = k => `p.${pid}.${k}`;
+  ["done", "cards"].forEach(k => { const v = store.get(key(k), null); if (Array.isArray(v)) store.set(key(k), v.map(to).filter(i => i >= 0)); });
+  const st = store.get(key("stars"), null); if (st) { const o = {}; Object.keys(st).forEach(i => { const j = to(+i); if (j >= 0) o[j] = st[i]; }); store.set(key("stars"), o); }
+  const pos = store.get(key("pos"), null); if (pos) store.set(key("pos"), to(pos.q) >= 0 ? { q: to(pos.q), si: 0 } : null);
+  const ms = store.get(key("missed"), null); if (Array.isArray(ms)) store.set(key("missed"), ms.map(x => { const [q, ...r] = String(x).split("|"); const j = to(+q); return j >= 0 ? [j, ...r].join("|") : null; }).filter(Boolean));
+  const mt = store.get(key("mtoday"), null); if (mt && mt.q != null) { mt.q = Math.max(0, to(mt.q)); store.set(key("mtoday"), mt); }
+}
+(function upgradeSaves() {
+  const from = store.get("schema", 2);
+  if (from < SAVE_VERSION) {
+    // keep a full copy of the saves exactly as they were, then upgrade one step at a time
+    try { const snap = {}; for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.startsWith("found.") && !k.startsWith("found.safety.")) snap[k] = localStorage.getItem(k); } localStorage.setItem(`found.safety.${from}`, JSON.stringify(snap)); } catch (e) {}
+    for (let v = from + 1; v <= SAVE_VERSION; v++) { try { if (SAVE_STEPS[v]) SAVE_STEPS[v](); } catch (e) {} }
+    store.set("schema", SAVE_VERSION);
+  }
+  const was = store.get("questIds", null);
+  if (was) PL.forEach(pl => remapQuests(pl.id, was));
+  store.set("questIds", QUEST_IDS);
+})();
+// every key saved for one child, including ones future versions add
+const childKeys = id => { const pre = `found.p.${id}.`, out = []; try { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.startsWith(pre)) out.push(k.slice(pre.length)); } } catch (e) {} return out; };
 const pget = (k, d) => S.pid ? store.get(`p.${S.pid}.${k}`, d) : d;
 const pset = (k, v) => { if (S.pid) store.set(`p.${S.pid}.${k}`, v); };
 const pdrop = (id, keys) => keys.forEach(k => { try { localStorage.removeItem(`found.p.${id}.${k}`); } catch (e) {} });
@@ -2506,14 +2576,14 @@ function activityDone(key) {
 // one small mission a day: a lesson about once a week (the parish pace), Mass games on the weekend, and on the other days a prayer, a game or a quiet heart check
 const MISSIONS = {
   lesson: { t: () => { const m = pget("mtoday", {}), q = Math.min(m.q ?? current(), QUESTS.length - 1); return `Lesson ${q + 1}: ${QUESTS[q].title}`; }, d: "It's lesson day! About 15 minutes.", src: () => A("quests") },
-  review: { t: () => "Review game", d: "Win back the tricky questions.", src: () => A("stars") },
+  review: { t: () => "Review game", get d() { return pget("missed", []).length ? "Win back the tricky questions." : "A quick quiz from your lessons."; }, src: () => A("stars") },
   ourfather: { t: () => "Pray the Our Father", d: "Say it with the motions, then from memory.", src: () => "assets/img/pray_ourfather.jpg" },
   hailmary: { t: () => "Pray the Hail Mary", d: "Say it with the motions, then from memory.", src: () => "assets/img/pray_hailmary.jpg" },
   glorybe: { t: () => "Pray the Glory Be", d: "A short prayer of praise. Can you say it by heart?", src: () => "assets/img/pray_glorybe.jpg" },
   prayer: { t: () => "Practice the Act of Contrition", d: "The prayer you'll say in confession.", src: () => "assets/img/confession.jpg" },
   massPose: { t: () => "Stand, sit, or kneel?", d: () => new Date().getDay() === 0 ? "It's Sunday! Know when to stand, sit and kneel." : "Get ready for Mass this weekend.", src: () => "assets/g/ic_kneel.webp" },
   massSay: { t: () => "What do we say at Mass?", d: () => new Date().getDay() === 0 ? "It's Sunday! Know your answers at Mass today." : "Learn your answers before Sunday.", src: () => "assets/img/mass_church.jpg" },
-  steps: { t: () => "Confession practice", d: "Put the steps in order and play the whole script.", src: () => A("door") },
+  steps: { t: () => "Reconciliation practice", d: "Put the six parts in order and play the whole script.", src: () => A("door") },
   bedtime: { t: () => "Bedtime Heart Check", d: "Three quiet minutes with Jesus before sleep.", src: () => A("moon2") },
 };
 function todayMission() {
@@ -2702,7 +2772,7 @@ function renderSide() {
   if (S.bigDay) {
     const d = Math.round((new Date(S.bigDay + "T12:00:00") - new Date(new Date().toDateString() + " 12:00:00")) / 864e5);
     cd.hidden = false;
-    cd.innerHTML = `${img("calendar")}<div><b>${d > 1 ? d + " days" : d === 1 ? "1 day" : d === 0 ? "Today!" : "You did it!"}</b><span>${d > 0 ? "until First Reconciliation" : d === 0 ? "is your First Reconciliation" : "First Reconciliation is done"}</span></div>`;
+    cd.innerHTML = `${img("calendar")}<div><b>${d > 1 ? d + " days" : d === 1 ? "1 day" : d === 0 ? "Today is the day!" : "You did it!"}</b><span>${d > 0 ? "until First Reconciliation" : d === 0 ? "Your First Reconciliation is today" : "First Reconciliation is done"}</span></div>`;
   } else cd.hidden = true;
   $("#mapTitle").textContent = `${whose(1)} path home.`;
 }
@@ -2957,7 +3027,7 @@ R.script = el => {
   const add = () => {
     const [who, txt] = L[k];
     const d = document.createElement("div"); d.className = "line " + (who === "me" ? "me" : who === "note" ? "note" : "");
-    d.innerHTML = who === "note" ? `<div class="bub">${esc(txt)}</div>` : `<span class="who" style="background:${who === "me" ? "#FF5C7A" : "#7B5CE0"}">${who === "me" ? (named() ? esc(Array.from(named())[0].toUpperCase()) : "Me") : "Fr"}</span><div class="bub">${esc(txt)}</div>`;
+    d.innerHTML = who === "note" ? `<div class="bub">${esc(txt)}</div>` : `<span class="who" style="background:${who === "me" ? "#FF5C7A" : "#7B5CE0"}">${who === "me" ? (named() ? esc(firstChar(named()).toUpperCase()) : "Me") : "Fr"}</span><div class="bub">${esc(txt)}</div>`;
     sl.appendChild(d); d.scrollIntoView({ behavior: "smooth", block: "nearest" });
     sfx.tap(); k++;
     if (k >= L.length) { btn.hidden = true; sfx.win(); burstAt(sl, 60, true); setReady(true, "You know the whole thing!"); }
@@ -2989,7 +3059,7 @@ R.backpack = el => {
 R.order = (el, sc = {}) => {
   const STEPS = sc.steps || (sc.prayer ? setOf(sc).parts.map(p => p.text.replace(/ Amen\.$/, "")) : STEPS6);
   const sh = shuffle(STEPS.map((s, i) => [s, i]));
-  el.innerHTML = `<span class="tag">${esc(sc.tag || "Challenge")}</span><p class="say sm">${esc(sc.prompt || "Put the six steps in order. Tap the first one!")}</p><div class="slots${sc.prayer ? " one" : ""}">${STEPS.map((_, i) => `<div class="slot">${i + 1}</div>`).join("")}</div><div class="chips${sc.prayer ? " col" : ""}">${sh.map(([s, i]) => `<button class="chip" type="button" data-i="${i}">${s}</button>`).join("")}</div>`;
+  el.innerHTML = `<span class="tag">${esc(sc.tag || "Challenge")}</span><p class="say sm">${esc(sc.prompt || "Put the six parts in order. Tap the first one!")}</p><div class="slots${sc.prayer ? " one" : ""}">${STEPS.map((_, i) => `<div class="slot">${i + 1}</div>`).join("")}</div><div class="chips${sc.prayer ? " col" : ""}">${sh.map(([s, i]) => `<button class="chip" type="button" data-i="${i}">${s}</button>`).join("")}</div>`;
   let k = 0; const slots = el.querySelectorAll(".slot");
   setReady(false, "Which step comes first?");
   el.querySelectorAll(".chip").forEach(c => c.onclick = () => {
@@ -3263,7 +3333,7 @@ const prayerWalk = (set, intro, art, ref) => {
     { t: "recall", set, level: 1 }, { t: "recall", set, level: 2, final: 1 }, { t: "prayall", set }, { t: "done", practice: 1 }];
 };
 const PRACTICE = {
-  ourfather: { title: "Our Father", bg: "#FFE9C9", learn: "ourfather", scenes: () => prayerWalk("ourfather", "Jesus himself taught us this prayer, when his friends asked: “Lord, teach us to pray.” It's also called the Lord's Prayer, and we pray it at every Mass.", "pray_ourfather", "Matthew 6:9–13") },
+  ourfather: { title: "Our Father", bg: "#FFE9C9", learn: "ourfather", scenes: () => prayerWalk("ourfather", "Jesus Himself taught us this prayer, when His friends asked: “Lord, teach us to pray.” It's also called the Lord's Prayer, and we pray it at every Mass.", "pray_ourfather", "Matthew 6:9–13") },
   hailmary: { title: "Hail Mary", bg: "#DCEBFF", learn: "hailmary", scenes: () => prayerWalk("hailmary", "The first words are the angel Gabriel's, when he told Mary she would be Jesus' mother. The next are from her cousin Elizabeth. Then we ask Mary to pray for us.", "pray_hailmary", "Luke 1:28, 42") },
   glorybe: { title: "Glory Be", bg: "#FFF3C4", learn: "glorybe", scenes: () => prayerWalk("glorybe", "A short prayer of praise to the Holy Trinity: the Father, the Son, and the Holy Spirit. It's perfect anytime: in the morning, at bedtime, or whenever you feel thankful.", "pray_glorybe") },
   mass: { title: "Come to Mass", bg: "#E6E1FF", scenes: massWalk },
@@ -3271,7 +3341,7 @@ const PRACTICE = {
   massSay: { title: "What do we say?", bg: "#FFE3EA", scenes: () => [...shuffle(massSay()), { t: "done", practice: 1 }] },
 
   prayer: { title: "Act of Contrition", bg: "#FFF1C9", learn: "contrition", scenes: [{ t: "pray", i: 0, mean: 1 }, { t: "pray", i: 1, mean: 1 }, { t: "pray", i: 2, mean: 1 }, { t: "pray", i: 3, mean: 1 }, { t: "pray", i: 4, mean: 1 }, { t: "recall", level: 2 }, { t: "prayall" }, { t: "done", practice: 1 }] },
-  steps: { title: "Confession practice", bg: "#DCEFFF", scenes: [{ t: "order" }, { t: "script" }, { t: "done", practice: 1 }] },
+  steps: { title: "Reconciliation practice", bg: "#DCEFFF", scenes: [{ t: "order" }, { t: "script" }, { t: "done", practice: 1 }] },
   review: { title: "Review game", bg: "#FFF1C9", scenes: () => reviewScenes() },
   bedtime: { title: "Bedtime Heart Check", bg: "#EDE6FF", scenes: [{ t: "magnify" }, { t: "journal" }, { t: "story", art: "heartsp", text: "Now pray: Jesus, I'm sorry for the wrong things I did today. Thank you for loving me. Help me do better tomorrow. Amen." }, { t: "done", practice: 1 }] },
 };
@@ -3285,13 +3355,13 @@ const NIGHT = [
   { k: "kind", icon: "sparkles", name: "Kind words", qs: ["Did I use kind words today?", "Did I notice someone who was sad?", "Did I smile at someone or say hello?", "Was I gentle with people and animals?", "Did I make fun of anyone?", "What is one kind thing I can do tomorrow?"] },
   { k: "share", icon: "gift", name: "Sharing", qs: ["Did I share my things today?", "Did I take something that wasn't mine?", "Was I jealous of someone else's things?", "Did I take turns without grumbling?", "Did I give something to help someone?", "Was I happy with what I have?"] },
   { k: "obey", icon: "staff", name: "Listening and obeying", qs: ["Did I obey my parents and teachers today?", "Did I do what I was asked without whining?", "Did I follow the rules, even when nobody was watching?", "Did I talk back or roll my eyes?", "Did I listen to the little voice that tells me what's right?", "Did I follow Jesus, my Good Shepherd, today?"] },
-  { k: "feelings", icon: "cloud", name: "Big feelings", qs: ["Did I get angry today? What did I do with my anger?", "Did I hit, yell, or slam things?", "Did I stop and take a breath when I was upset?", "Did I hurt someone when I was grumpy?", "Is something worrying me that I can give to Jesus?", "Did I say sorry after I calmed down?"] },
+  { k: "feelings", icon: "cloud", name: "Big feelings", qs: ["When I felt angry today, what did I do?", "Did I hit, yell, or slam things?", "Did I stop and take a breath when I was upset?", "Did I hurt someone when I was grumpy?", "Is something worrying me that I can give to Jesus?", "Did I say sorry after I calmed down?"] },
   { k: "god", icon: "pray", name: "God and prayer", qs: ["Did I talk to God today?", "Did I say God's name with love and respect?", "Did I thank God for something good?", "Did I pay attention at prayer time?", "Did I think about Jesus today?", "What would I like to ask Jesus for tonight?"] },
   { k: "thanks", icon: "sun", name: "A thankful heart", qs: ["What made me happy today?", "Who was kind to me today?", "Did I say thank you to the people who helped me?", "What beautiful thing that God made did I see today?", "Did I grumble or complain a lot?", "What am I most thankful for tonight?"] },
   { k: "help", icon: "flower", name: "Helping hands", qs: ["Did I help someone today?", "Did I clean up my own things?", "Did I do my chores without being asked twice?", "Did I help someone who was sad or hurt?", "Did I say yes when someone needed me?", "How can I help my family tomorrow?"] },
   { k: "forgive", icon: "heartmend", name: "Forgiving", qs: ["Is there someone I need to forgive?", "Did I stay mad at someone for a long time?", "Did I ask someone to forgive me?", "Was I patient with someone who made a mistake?", "Did I remember that Jesus always forgives me?", "Who can I pray for, even if they were unkind?"] },
   { k: "play", icon: "trophy", name: "Games and screens", qs: ["Did I share games and screen time fairly?", "Did I stop when a grown-up said it was time?", "Did I watch and play only good things?", "Was I a good sport when I lost?", "Did I spend time playing with my family?", "Did I choose people over screens today?"] },
-  { k: "brave", icon: "fire", name: "Being brave", qs: ["Was I brave today?", "Did I do the right thing, even when others didn't?", "Did I try something new or hard?", "Did I ask for help when I needed it?", "Did I trust that Jesus is with me?", "What makes me afraid that I can tell Jesus about?"] },
+  { k: "brave", icon: "fire", name: "Being brave", qs: ["When did I try to be brave today?", "Did I do the right thing, even when others didn't?", "Did I try something new or hard?", "Did I ask for help when I needed it?", "Did I trust that Jesus is with me?", "What makes me afraid that I can tell Jesus about?"] },
   { k: "others", icon: "dove", name: "People who need help", qs: ["Did I pray for someone who is sick?", "Did I think about people who don't have enough?", "Was I kind to someone older or younger than me?", "Did I take care of God's creation, like animals and plants?", "Did I welcome someone new?", "Who can I pray for tonight?"] },
 ];
 const nightPrayer = k => PRAYERS[k].parts.map(p => p.text).join(" ");
@@ -3364,7 +3434,7 @@ addEventListener("keydown", e => { if (!$("#night").hidden && e.key === "Escape"
 
 /* ---------- the prayer studio: learn a prayer, practice it, then say it by heart ---------- */
 const STUDIO = {
-  ourfather: { set: "ourfather", pic: "pray_ourfather", intro: "Jesus Himself taught us this prayer, when his friends asked: “Lord, teach us to pray.” We pray it at every Mass.", ref: "Matthew 6:9–13" },
+  ourfather: { set: "ourfather", pic: "pray_ourfather", intro: "Jesus Himself taught us this prayer, when His friends asked: “Lord, teach us to pray.” We pray it at every Mass.", ref: "Matthew 6:9–13" },
   hailmary: { set: "hailmary", pic: "pray_hailmary", intro: "The first words are the angel Gabriel's, when he told Mary she would be Jesus' mother. Then come her cousin Elizabeth's words, and then we ask Mary to pray for us.", ref: "Luke 1:28, 42" },
   glorybe: { set: "glorybe", pic: "pray_glorybe", intro: "A short prayer of praise to the Holy Trinity: the Father, the Son, and the Holy Spirit. Perfect any time of day.", ref: "" },
   prayer: { set: "contrition", pic: "confession", intro: "The prayer we say in confession to tell God we're sorry and want to do better.", ref: "Version A, from the workbook" },
@@ -3431,7 +3501,7 @@ function openGame(k) {
   if (k === "massPose") { title = "Stand, sit, or kneel?"; rounds = shuffle(MASS.map((m, j) => j).filter(j => MASS[j].pose !== "genuflect")).slice(0, 8).map(j => ({ t: "pose", k: j })); }
   if (k === "massSay") { title = "What do we say?"; rounds = shuffle(massSay()).map(q => ({ ...q, t: "quiz" })); }
   if (k === "review") { title = "Review game"; rounds = reviewScenes().filter(x => x.t === "quiz"); if (!rounds.length) { sfx.no(); toast("Finish a lesson first, then come back to play!"); return; } }
-  if (k === "steps") { title = "Confession practice"; rounds = [{ t: "order" }, { t: "script" }]; }
+  if (k === "steps") { title = "Reconciliation practice"; rounds = [{ t: "order" }, { t: "script" }]; }
   GM = { k, rounds, i: 0, score: 0, right: 0, total: 0, combo: 0 };
   $("#gsTitle").textContent = title; $("#gsScore b").textContent = "0";
   $("#gshell").hidden = false; document.body.style.overflow = "hidden"; sfx.whoosh(); gRound();
@@ -3470,7 +3540,7 @@ function gRound() {
   }
   if (r.t === "order") {
     let k = 0;
-    st.innerHTML = `<div class="gs-card"><p class="gs-q">Put the six parts of confession in order.</p><small id="gsTip">Tap the one that comes first.</small></div><ol class="gs-slots">${STEPS6.map(() => `<li></li>`).join("")}</ol><div class="gs-chips">${shuffle(STEPS6.map((x, i) => [x, i])).map(([x, i]) => `<button type="button" data-i="${i}">${esc(x)}</button>`).join("")}</div>${nextBtn()}`;
+    st.innerHTML = `<div class="gs-card"><p class="gs-q">Put the six parts of Reconciliation in order.</p><small id="gsTip">Tap the one that comes first.</small></div><ol class="gs-slots">${STEPS6.map(() => `<li></li>`).join("")}</ol><div class="gs-chips">${shuffle(STEPS6.map((x, i) => [x, i])).map(([x, i]) => `<button type="button" data-i="${i}">${esc(x)}</button>`).join("")}</div>${nextBtn()}`;
     let missed = false;
     st.querySelectorAll(".gs-chips button").forEach(c => c.onclick = () => {
       const ok = +c.dataset.i === k; gPoints(ok, !missed);
@@ -3561,8 +3631,9 @@ function heroIntro() {
 }
 $("#stars").innerHTML = Array.from({ length: 40 }, (_, i) => `<b style="left:${(i * 37) % 100}%;top:${(i * 53) % 70}%;animation-delay:${(i % 7) * .3}s"></b>`).join("");
 /* ---------- who's playing ---------- */
+const firstChar = t => { t = String(t || "").trim(); try { if (Intl.Segmenter) return [...new Intl.Segmenter().segment(t)][0]?.segment || ""; } catch (e) {} return Array.from(t)[0] || ""; };
 const AVC = ["#1F6FC4", "#C2532B", "#25804B", "#6A55D6", "#C23F5B", "#8F6A00"];
-const avatar = (pl, k) => `<span class="av" style="--c:${AVC[k % AVC.length]}" aria-hidden="true">${esc((Array.from(pl.name)[0] || "?").toUpperCase())}</span>`;
+const avatar = (pl, k) => `<span class="av" style="--c:${AVC[k % AVC.length]}" aria-hidden="true">${esc((firstChar(pl.name) || "?").toUpperCase())}</span>`;
 const savePlayers = () => store.set("players", PL);
 function refreshPlayer() {
   renderPlayers(); renderSide(); renderAlbum(); if (doneEl) refreshMap(true); if (typeof renderLearned === "function") renderLearned(); renderGame();
@@ -3576,7 +3647,7 @@ function renderPlayers() {
   $("#plRow").querySelectorAll(".pl[data-id]").forEach(b => b.onclick = () => { sfx.select(); switchPlayer(b.dataset.id); });
   const nb = $("#plNew"); if (nb) nb.onclick = () => { sfx.tap(); renderPlayers.adding = true; renderPlayers(); $("#plName").focus(); };
   const wb = $("#whoBtn"); wb.hidden = !S.pid;
-  if (S.pid) { $("#whoAv").outerHTML = avatar(PL[k], k).replace('class="av"', 'class="av" id="whoAv"'); $("#whoNm").textContent = S.name; }
+  if (S.pid) { $("#whoAv").outerHTML = avatar(PL[k], k).replace('class="av"', 'class="av" id="whoAv"'); $("#whoNm").textContent = S.name; $("#whoBtn").setAttribute("aria-label", `Who's playing: ${S.name}`); }
   $("#whoMenu").innerHTML = PL.map((pl, j) => `<button type="button" role="menuitemradio" aria-checked="${pl.id === S.pid}" data-id="${pl.id}">${avatar(pl, j)}<span>${esc(pl.name)}</span></button>`).join("")
     + `<hr><button type="button" role="menuitem" data-act="add"><span class="av plus">+</span><span>Add a child</span></button><button type="button" role="menuitem" data-act="manage"><span class="av plus">⋯</span><span>Manage players</span></button>`;
   $("#plSettings").innerHTML = PL.length ? PL.map((pl, j) => `<div class="trow pl-set" data-id="${pl.id}">${avatar(pl, j)}<span class="pn">${esc(pl.name)}${pl.id === S.pid ? ' <i>Playing now</i>' : ""}</span><button class="tbtn" type="button" data-act="ren">Rename</button><button class="tbtn danger" type="button" data-act="del">Remove</button></div>`).join("")
@@ -3591,8 +3662,8 @@ const keepData = () => { try { navigator.storage && navigator.storage.persist &&
 const b64u = t => btoa(unescape(encodeURIComponent(t))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 const unb64u = t => decodeURIComponent(escape(atob(t.replace(/-/g, "+").replace(/_/g, "/"))));
 function backupLink() {
-  const d = { v: 1, players: PL, active: S.pid, p: {} };
-  PL.forEach(pl => { const o = d.p[pl.id] = {}; PKEYS.forEach(k => { const v = store.get(`p.${pl.id}.${k}`, null); if (v != null) o[k] = k === "days" ? v.slice(-60) : v; }); });
+  const d = { v: 2, save: SAVE_VERSION, ids: QUEST_IDS, players: PL, active: S.pid, p: {} };
+  PL.forEach(pl => { const o = d.p[pl.id] = {}; childKeys(pl.id).forEach(k => { const v = store.get(`p.${pl.id}.${k}`, null); if (v != null) o[k] = k === "days" && Array.isArray(v) ? v.slice(-60) : v; }); });
   return `${location.origin}${location.pathname}#restore=${b64u(JSON.stringify(d))}`;
 }
 async function shareBackup() {
@@ -3616,15 +3687,16 @@ function offerRestore() {
   box.querySelector("#rsYes").onclick = () => {
     d.players.forEach(pl => {
       if (!pl || !pl.id || !pl.name) return;
-      const at = PL.findIndex(x => x.id === pl.id); at < 0 ? PL.push({ id: String(pl.id), name: String(pl.name).slice(0, 18) }) : (PL[at].name = String(pl.name).slice(0, 18));
-      const o = (d.p || {})[pl.id] || {}; PKEYS.forEach(k => { if (o[k] != null) store.set(`p.${pl.id}.${k}`, o[k]); });
+      const at = PL.findIndex(x => x.id === pl.id); at < 0 ? PL.push({ id: String(pl.id), name: String(pl.name).slice(0, 24) }) : (PL[at].name = String(pl.name).slice(0, 24));
+      const o = (d.p || {})[pl.id] || {}; Object.keys(o).forEach(k => { if (/^[\w.-]+$/.test(k) && o[k] != null) store.set(`p.${pl.id}.${k}`, o[k]); });
+      remapQuests(String(pl.id), Array.isArray(d.ids) ? d.ids : QUEST_IDS);
     });
     savePlayers(); keepData(); loadPlayer(PL.some(x => x.id === d.active) ? d.active : PL[0].id); refreshPlayer();
     box.remove(); sfx.win(); burst(innerWidth / 2, innerHeight * .4, 120, true); toast(`Welcome back, ${names}!`);
   };
 }
 function addPlayer(name) {
-  name = Array.from(name.trim()).slice(0, 18).join("");
+  name = Array.from(name.trim()).slice(0, 24).join("");
   if (!name) { toast("Type a name first"); $("#plName")?.focus(); return false; }
   if (PL.some(p => p.name.toLowerCase() === name.toLowerCase())) { toast(`${name} is already here. Tap their name to play.`); return false; }
   const pl = { id: "p" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), name };
@@ -3662,15 +3734,15 @@ $("#plSettings").addEventListener("click", e => {
   const row = b.closest("[data-id]"), id = row && row.dataset.id, pl = PL.find(x => x.id === id);
   if (b.dataset.act === "add") { goView("home"); renderPlayers.adding = true; renderPlayers(); setTimeout(() => $("#plName").focus(), 80); return; }
   if (b.dataset.act === "ren") {
-    const sp = row.querySelector(".pn"); sp.innerHTML = `<input class="ren" maxlength="18" value="${esc(pl.name)}" aria-label="New name">`;
+    const sp = row.querySelector(".pn"); sp.innerHTML = `<input class="ren" maxlength="24" value="${esc(pl.name)}" aria-label="New name">`;
     const inp = sp.querySelector("input"); inp.focus(); inp.select();
-    const save = () => { const v = inp.value.trim(); if (v) { pl.name = v.slice(0, 18); savePlayers(); if (id === S.pid) S.name = pl.name; } refreshPlayer(); };
+    const save = () => { const v = inp.value.trim(); if (v) { pl.name = v.slice(0, 24); savePlayers(); if (id === S.pid) S.name = pl.name; } refreshPlayer(); };
     inp.onkeydown = ev => { if (ev.key === "Enter") save(); if (ev.key === "Escape") renderPlayers(); };
     inp.onblur = save; return;
   }
   if (b.dataset.act === "del") {
     if (!b.dataset.sure) { b.dataset.sure = 1; b.textContent = `Tap again to remove ${pl.name}`; setTimeout(() => { if (b.isConnected) { b.textContent = "Remove"; delete b.dataset.sure; } }, 4000); return; }
-    pdrop(id, PKEYS);
+    pdrop(id, childKeys(id));
     PL = PL.filter(x => x.id !== id); savePlayers();
     if (id === S.pid) loadPlayer(PL[0] && PL[0].id);
     refreshPlayer(); toast(`${pl.name} was removed`);
@@ -3688,7 +3760,7 @@ $("#unlockAll").onclick = () => { if (!S.pid) { askPlayer(); return; } S.unlocke
 $("#resetAll").onclick = e => {
   const b = e.currentTarget;
   if (!S.pid) return;
-  if (b.dataset.sure) { pdrop(S.pid, PKEYS.filter(k => k !== "bigDay")); loadPlayer(S.pid); refreshPlayer(); renderGame(); b.textContent = "Start over"; delete b.dataset.sure; toast(`${S.name}'s progress is cleared`); }
+  if (b.dataset.sure) { pdrop(S.pid, childKeys(S.pid).filter(k => k !== "bigDay")); loadPlayer(S.pid); refreshPlayer(); renderGame(); b.textContent = "Start over"; delete b.dataset.sure; toast(`${S.name}'s progress is cleared`); }
   else { b.dataset.sure = 1; b.textContent = "Tap again to clear progress"; setTimeout(() => { b.textContent = "Start over"; delete b.dataset.sure; }, 4000); }
 };
 $("#themeBtn").onclick = () => { const r = document.documentElement, dark = r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; r.dataset.theme = dark ? "light" : "dark"; try { localStorage.setItem("found.theme", r.dataset.theme); } catch (e) {} sfx.toggle(); };
@@ -3712,11 +3784,11 @@ $("#cardView .cv-card").addEventListener("click", e => { if (e.target.closest(".
 addEventListener("keydown", e => { if ($("#cardView").hidden) return; if (e.key === "Escape") { if (!$("#cvSheet").hidden) { $("#cvSheetClose").click(); return; } closeCard(); } if (e.key === "ArrowLeft") $("#cvPrev").click(); if (e.key === "ArrowRight") $("#cvNext").click(); if (e.key === " " || e.key === "Enter") { e.preventDefault(); $("#cvFlip").click(); } });
 document.querySelectorAll("[data-practice]").forEach(b => b.onclick = () => { sfx.tap(); openPractice(b.dataset.practice); });
 /* ---------- videos: play while on screen, pause when scrolled away (saves battery, keeps scrolling smooth) ---------- */
-const VIDS = ["mass_church", "mass_entrance", "mass_readings", "mass_gospel", "mass_gifts", "mass_altar", "mass_peace", "mass_blessing", "mass_sent", "mass_kneel", "mass_font", "mass_ourfather", "mass_creed"];
+const VIDS = ["mass_church", "mass_entrance", "mass_readings", "mass_gospel", "mass_gifts", "mass_altar", "mass_peace", "mass_blessing", "mass_sent", "mass_kneel", "mass_font", "mass_ourfather", "mass_creed", "mass_sanctus"];
 const autoIO = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => { const v = e.target; if (e.isIntersecting) { if (v.preload !== "auto") { v.preload = "auto"; v.load(); } v.play().catch(() => {}); } else v.pause(); }), { threshold: .2 }) : null;
 function autoVideos(root = document) { if (reduce) return; root.querySelectorAll("video[data-auto]").forEach(v => { if (v.dataset.on) return; v.dataset.on = 1; v.muted = true; autoIO ? autoIO.observe(v) : v.play().catch(() => {}); }); }
 // the Mass as a scroll story: each chapter keeps a video pinned while its parts scroll past, and the video follows the part you're reading
-const MASS_MEDIA = ["mass_font", "mass_entrance", "mass_church", "mass_kneel", "mass_church", "mass_readings", "mass_gospel", "mass_church", "mass_creed", "mass_kneel", "mass_gifts", "mass_altar", "mass_altar", "mass_altar", "mass_ourfather", "mass_peace", "mass_altar", "mass_blessing", "mass_kneel", "mass_sent"];
+const MASS_MEDIA = ["mass_font", "mass_entrance", "mass_church", "mass_kneel", "mass_church", "mass_readings", "mass_gospel", "mass_church", "mass_creed", "mass_kneel", "mass_gifts", "mass_sanctus", "mass_altar", "mass_altar", "mass_ourfather", "mass_peace", "mass_altar", "mass_blessing", "mass_kneel", "mass_sent"];
 const MASS_CH = { "Before Mass": "We come into God's house and remember our Baptism.", "We gather": "Jesus' family comes together and gets our hearts ready.", "The Word of God": "God speaks to us through the Bible.", "Jesus in the Eucharist": "The bread and wine become Jesus.", "Communion": "Jesus comes to us, and we share His peace.", "We go out": "We take Jesus' love home with us." };
 (() => {
   const groups = [...new Set(MASS.map(m => m.g))];
