@@ -1460,9 +1460,9 @@ a.ptile{text-decoration:none;color:inherit}
 .tabnums{top:33%;height:42%;font-size:clamp(14px,3vw,22px)}
 .tabpic{width:min(100%,520px,calc(38vh * 4 / 3))}
 .tabcol{position:absolute;top:33%;height:42%;width:20%;translate:-50% 0;display:flex;flex-direction:column;justify-content:space-between;align-items:center}
-.tn{font-family:var(--round);font-weight:900;font-size:clamp(15px,3.6vw,26px);line-height:1;color:rgba(110,98,86,.8);text-shadow:0 1.5px 0 rgba(255,255,255,.8),0 -1px 1px rgba(0,0,0,.22);padding:2px 10px;border-radius:999px;transition:color .3s,background .3s,box-shadow .3s,transform .3s}
-.tn.done{color:#8a6400;background:rgba(255,224,138,.55)}
-.tn.now{color:#3b2a00;background:#FFD66B;box-shadow:0 0 16px rgba(255,200,61,.9);transform:scale(1.12);text-shadow:none}
+.tabn{font-family:var(--round);font-weight:900;font-size:clamp(15px,3.6vw,26px);line-height:1;color:rgba(110,98,86,.8);text-shadow:0 1.5px 0 rgba(255,255,255,.8),0 -1px 1px rgba(0,0,0,.22);padding:2px 10px;border-radius:999px;transition:color .3s,background .3s,box-shadow .3s,transform .3s}
+.tabn.done{color:#8a6400;background:rgba(255,224,138,.55)}
+.tabn.now{color:#3b2a00;background:#FFD66B;box-shadow:0 0 16px rgba(255,200,61,.9);transform:scale(1.12);text-shadow:none}
 .cbox .cl{margin:6px 0 0;font-size:13px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft)}
 .cnav{display:flex;align-items:center;justify-content:space-between;gap:12px;width:min(100%,520px)}
 .cnav #cCount{font-weight:800;color:var(--ink-soft)}
@@ -1580,6 +1580,13 @@ body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0p
   .ps-body{padding-top:12px}
   .ps-line{padding:10px 14px}
 }
+
+/* tablet numerals scale with the picture, so they always stay on the stone */
+.tabpic,.sc:has(.tabnums){container-type:inline-size}
+.tabcol{top:25.5%;height:51%}
+.tabn{font-size:min(26px,6cqw);padding:.4cqw 2.4cqw}
+.tabnums{top:25.5%;height:51%;justify-content:space-between}
+.tabnums b{font-size:min(24px,5.8cqw);line-height:1}
 /* apple scroll reveal: fade + rise, staggered */
 .rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(0,0,.5,1),transform 1s cubic-bezier(0,0,.5,1);transition-delay:calc(var(--d,0) * 90ms)}
 .rv.in{opacity:1;transform:none}
@@ -3173,14 +3180,14 @@ const CMDS = [
 const gIcon = g => /head no/i.test(g) ? "noentry" : /heart/i.test(g) ? "heart" : /heaven/i.test(g) ? "cloud" : /arms (wide|up)|whole world/i.test(g) ? "sun" : /angel|wave/i.test(g) ? "dove" : /baby/i.test(g) ? "star" : /fist/i.test(g) ? "fire" : "pray";
 const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
 R.cmds = el => {
-  const nums = side => [0, 1, 2, 3, 4].map(k => side * 5 + k).map(i => `<b class="tn" data-i="${i}">${ROMAN[i]}</b>`).join("");
+  const nums = side => [0, 1, 2, 3, 4].map(k => side * 5 + k).map(i => `<b class="tabn" data-i="${i}">${ROMAN[i]}</b>`).join("");
   el.innerHTML = `<div class="tabpic review"><img class="ph" src="assets/img/tablets.jpg" alt="Two stone tablets on a hill" draggable="false"><div class="tabcol" style="left:38.6%">${nums(0)}</div><div class="tabcol" style="left:62.8%">${nums(1)}</div></div>
   <div class="cnav"><button type="button" class="chip" id="cPrev">&lsaquo; Previous</button><span id="cCount"></span><button type="button" class="chip big" id="cNext">Next commandment &rsaquo;</button></div>
   <div class="cbox" id="cb" aria-live="polite"></div>`;
   const cb = el.querySelector("#cb"); let i = 0, top = 0;
   const show = (dir) => {
     const c = CMDS[i];
-    el.querySelectorAll(".tn").forEach(t => { const k = +t.dataset.i; t.classList.toggle("now", k === i); t.classList.toggle("done", k <= top && k !== i); });
+    el.querySelectorAll(".tabn").forEach(t => { const k = +t.dataset.i; t.classList.toggle("now", k === i); t.classList.toggle("done", k <= top && k !== i); });
     cb.innerHTML = `<b class="cn">${i + 1}${["st", "nd", "rd"][i] || "th"} Commandment</b><p class="cw">${esc(c[0])}</p><p><b>What it means:</b> ${esc(c[1])}</p><p class="cq"><b>Ask yourself:</b> ${esc(c[2])}</p>
       <p class="cl">${i < 3 ? "About loving God" : "About loving others"}</p>`;
     el.querySelector("#cCount").textContent = `${i + 1} of 10`;
