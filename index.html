@@ -1486,6 +1486,24 @@ a.ptile{text-decoration:none;color:inherit}
 .inked.inkpeek .ink{opacity:.12}
 .ink-hint{position:absolute;left:50%;bottom:-22px;translate:-50% 0;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap;pointer-events:none}
 .inked.inkpeek .ink-hint{opacity:0}
+
+/* QA round 2 */
+.tile-night .btn.btn-go{background-color:#FFC85C!important;background-image:linear-gradient(180deg,#FFE6A6,#FFC85C)!important;color:#2A1E00}
+.tabnums b{animation-delay:calc(.2s + var(--k) * .12s)}
+.tabnums+.tabnums b{animation-delay:calc(.8s + var(--k) * .12s)}
+.qmore{position:relative;z-index:3;align-self:center;margin:-50px 0 8px;min-height:40px;padding:0 18px;border-radius:999px;background:var(--ink);color:var(--card);font-weight:800;font-size:15px;box-shadow:0 6px 18px rgba(0,0,0,.18);animation:bob 1.6s ease-in-out infinite}
+.qmore[hidden]{display:none}
+@keyframes bob{50%{transform:translateY(4px)}}
+.stage.more{-webkit-mask-image:linear-gradient(#000 calc(100% - 70px),transparent);mask-image:linear-gradient(#000 calc(100% - 70px),transparent)}
+body:has(#quest:not([hidden])) .toast{top:auto;bottom:calc(150px + env(safe-area-inset-bottom,0px))}
+.wd{padding:0 2px;margin:0 -2px}
+.tc-series{text-shadow:0 1px 3px rgba(0,0,0,.6),0 0 1px rgba(0,0,0,.7)}
+@media (max-width:600px){.cv-count{margin:56px 0 -6px}}
+@media (max-height:900px) and (max-width:600px){.gs-slots{gap:6px}.gs-slots li{min-height:38px;padding:6px 12px;font-size:15px}.gs-slots li::before{width:22px;height:22px;font-size:12px}.gs-chips button{padding:10px 14px;font-size:15px}}
+:root[data-theme="dark"] .badge.got small{color:#FFD66B}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .badge.got small{color:#FFD66B}}
+:root[data-theme="dark"] .badge.got{background:color-mix(in srgb,#FFD66B 16%,#161617)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .badge.got{background:color-mix(in srgb,#FFD66B 16%,#161617)}}
 /* apple scroll reveal: fade + rise, staggered */
 .rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(0,0,.5,1),transform 1s cubic-bezier(0,0,.5,1);transition-delay:calc(var(--d,0) * 90ms)}
 .rv.in{opacity:1;transform:none}
@@ -1770,6 +1788,7 @@ a.ptile{text-decoration:none;color:inherit}
   </div>
   <div class="dots" id="qDots"></div>
   <div class="stage" id="stage"></div>
+  <button type="button" class="qmore" id="qMore" hidden>More below <span aria-hidden="true">&darr;</span></button>
   <div class="qfoot">
     <button class="btn btn-soft" id="qBack" type="button">Back</button>
     <div class="hint" id="hint" aria-live="polite"></div>
@@ -1902,7 +1921,7 @@ const SAINTS = [
  { name: "St. John Paul II", lv: "1920–2005", hm: "Poland, then Rome", fun: "He loved skiing and hiking!", pic: "saint7", c1: "#B8892A", c2: "#FFE7A0", sym: "church", power: "Joy bringer",
    p: { skin: "l", hair: "white", style: "sides", outfit: "papal", hat: "zucchetto", held: "ferula" },
    lived: "1920 to 2005", home: "Wadowice, Poland, then Rome", feast: "October 22", patron: "World Youth Day and families",
-   fact: "He loved skiing, hiking, and acting in plays, and he started World Youth Day for kids and teens." },
+   fact: "He loved skiing, hiking, and acting in plays, and he started World Youth Day for young people from all over the world." },
  { name: "St. Faustina", lv: "1905–1938", hm: "Poland", fun: "She shared Jesus' message of mercy.", pic: "saint8", c1: "#B4233F", c2: "#9FD3FF", sym: "heartsp", power: "Mercy messenger",
    p: { skin: "l", outfit: "habit", rays: 1, held: "pray" },
    lived: "1905 to 1938", home: "Born in Glogowiec, then lived in Krakow, Poland", feast: "October 5", patron: "Mercy (Divine Mercy)",
@@ -2315,10 +2334,10 @@ const MASS = [
   { g: "Before Mass", name: "Holy water", img: "font", pose: "genuflect", means: "The holy water reminds us of our Baptism, when we joined God's family.", doo: "Dip your fingers in the holy water and make the Sign of the Cross. Before you go into the pew, bend your right knee to the floor toward the tabernacle, where Jesus is." },
   { g: "We gather", name: "Entrance", img: "mass_entrance", pose: "stand", means: "Jesus' family comes together. The priest, servers and readers walk in behind the cross.", doo: "Stand up and sing along with everyone." },
   { g: "We gather", name: "Greeting", img: "mass_church", pose: "stand", means: "We start the way we start every prayer, in the name of the Father, and of the Son, and of the Holy Spirit.", doo: "Make the Sign of the Cross with the priest.", say: ["The Lord be with you.", "And with your spirit."] },
-  { g: "We gather", name: "Lord, have mercy", icon: "heartmend", pose: "stand", means: "We tell God we're sorry for our sins and ask for his mercy, so our hearts are ready.", doo: "Think of something you're sorry for, and pray along.", say: ["Lord, have mercy.", "Lord, have mercy."] },
+  { g: "We gather", name: "Lord, have mercy", icon: "heartmend", pose: "stand", means: "We tell God we're sorry for our sins and ask for His mercy, so our hearts are ready.", doo: "Think of something you're sorry for, and pray along.", say: ["Lord, have mercy.", "Lord, have mercy."] },
   { g: "We gather", name: "Glory to God", img: "pray_glorybe", pose: "stand", means: "On Sundays (except in Advent and Lent) we sing a joyful song praising God, like the angels at Christmas.", doo: "Sing along: “Glory to God in the highest!”" },
   { g: "The Word of God", name: "Readings", img: "mass_readings", pose: "sit", means: "God speaks to us through the Bible. On Sundays we usually hear a reading from the Old Testament, sing a psalm, and hear a reading from the apostles' letters.", doo: "Sit quietly and listen. God has something to tell you!", say: ["The word of the Lord.", "Thanks be to God."], who: "The reader says" },
-  { g: "The Word of God", name: "Gospel", img: "mass_gospel", pose: "stand", means: "We hear the words and life of Jesus himself. That's why we stand up for it.", doo: "Stand and sing Alleluia (in Lent we sing a different song). When the Gospel starts, trace a small cross on your forehead, lips and heart: Jesus, be in my mind, on my lips, and in my heart.", say: ["The Gospel of the Lord.", "Praise to you, Lord Jesus Christ."] },
+  { g: "The Word of God", name: "Gospel", img: "mass_gospel", pose: "stand", means: "We hear the words and life of Jesus Himself. That's why we stand up for it.", doo: "Stand and sing Alleluia (in Lent we sing a different song). When the Gospel starts, trace a small cross on your forehead, lips and heart: Jesus, be in my mind, on my lips, and in my heart.", say: ["The Gospel of the Lord.", "Praise to you, Lord Jesus Christ."] },
   { g: "The Word of God", name: "Homily", img: "mass_church", pose: "sit", means: "The priest helps us understand the readings and how to live them this week.", doo: "Sit and listen. Try to remember one thing to tell your family after Mass." },
   { g: "The Word of God", name: "We believe", img: "shamrock", pose: "stand", means: "Together we say the Creed, everything we believe as Catholics, starting with “I believe in one God.”", doo: "Stand and pray along. Everyone bows at the words about Jesus becoming man." },
   { g: "The Word of God", name: "Prayers for everyone", icon: "pray", pose: "stand", means: "We pray for the Church, the world, people who are sick, and people who have died.", doo: "After each prayer, answer together.", say: ["Let us pray to the Lord.", "Lord, hear our prayer."], who: "The reader says" },
@@ -2329,8 +2348,8 @@ const MASS = [
   { g: "Communion", name: "Our Father", img: "pray_ourfather", pose: "stand", means: "We pray the prayer Jesus taught us, together as one family.", doo: "Stand and pray the Our Father with everyone." },
   { g: "Communion", name: "Sign of Peace", img: "mass_peace", pose: "stand", means: "We share Jesus' peace with the people around us.", doo: "Shake hands with the people near you and smile.", say: ["Peace be with you.", "Peace be with you."], who: "Your neighbor says" },
   { g: "Communion", name: "Lamb of God", img: "shepherd_carry", pose: "stand", means: "We sing to Jesus, the Lamb of God who takes away our sins and gives us peace. Then the priest holds up the Host and we tell Jesus we need Him.", doo: "Stand and sing. When the song ends, kneel and answer with everyone.", say: ["Behold the Lamb of God, behold him who takes away the sins of the world. Blessed are those called to the supper of the Lamb.", "Lord, I am not worthy that you should enter under my roof, but only say the word and my soul shall be healed."] },
-  { g: "Communion", name: "Holy Communion", img: "mass_blessing", pose: "stand", means: "Jesus comes to us in Holy Communion. After your First Communion, you'll receive him too!", doo: "Walk up with your family. Before your First Communion, cross your arms over your chest. The priest may bless you, or you can quietly pray: “Jesus, come into my heart.” After your First Communion, you'll bow your head before you receive Jesus.", say: ["The Body of Christ.", "Amen."] },
-  { g: "Communion", name: "Quiet thank you", img: "mass_kneel", pose: "kneel", means: "Jesus is very close to us now. It's a special time to talk to him.", doo: "Kneel or sit quietly. Thank Jesus, and tell him what's on your heart." },
+  { g: "Communion", name: "Holy Communion", img: "mass_blessing", pose: "stand", means: "Jesus comes to us in Holy Communion. After your First Communion, you'll receive Him too!", doo: "Walk up with your family. Before your First Communion, cross your arms over your chest. The priest may bless you, or you can quietly pray: “Jesus, come into my heart.” After your First Communion, you'll bow your head before you receive Jesus.", say: ["The Body of Christ.", "Amen."] },
+  { g: "Communion", name: "Quiet thank you", img: "mass_kneel", pose: "kneel", means: "Jesus is very close to us now. It's a special time to talk to Him.", doo: "Kneel or sit quietly. Thank Jesus, and tell Him what's on your heart." },
   { g: "We go out", name: "Go in peace", img: "mass_sent", pose: "stand", means: "The priest blesses us and sends us out to love and serve God all week.", doo: "Make the Sign of the Cross for the blessing. Bend your knee toward the tabernacle on your way out.", say: ["Go in peace.", "Thanks be to God."] },
 ];
 const MASS_ORDER = ["We gather and are greeted", "We listen to God's Word", "The gifts are brought up", "The bread and wine become Jesus", "Holy Communion", "Go in peace!"];
@@ -2660,7 +2679,7 @@ function openQuest(i) {
   scenes = [...(Q.remember || []).map((r, k) => ({ t: "quiz", tag: "Remember?", q: r.q, opts: r.opts, yes: "You remembered!" })), ...Q.scenes];
   const pos = pget("pos", null);
   si = pos && pos.q === i && pos.si > 0 && pos.si < scenes.length - 1 ? pos.si : 0;
-  if (si) setTimeout(() => toast("Welcome back! Picking up where you left off."), 500);
+  if (si) setTimeout(() => toast("Welcome back! Let's keep going."), 500);
   $("#qTitle").innerHTML = `<small>${Q.lesson} of ${QUESTS.length} · ${esc(S.name)}</small>${esc(Q.title)}`;
   $("#quest").style.setProperty("--qbg", `color-mix(in srgb, ${Q.bg} 55%, var(--sky))`); $("#quest").style.setProperty("--qtint", Q.bg);
   $("#qDots").innerHTML = scenes.map(() => "<i></i>").join("");
@@ -2676,6 +2695,11 @@ function fitScene(el) {
   el.style.marginTop = Math.max(0, Math.round(Math.min(free / 2, Math.min(96, stage.clientHeight * .09)))) + "px";
 }
 addEventListener("resize", () => fitScene(stage.querySelector(".scene")));
+// is part of this screen still below the fold?
+const moreBelow = () => stage.scrollHeight - stage.scrollTop - stage.clientHeight > 24;
+function updMore() { const m = moreBelow(); $("#qMore").hidden = !m; stage.classList.toggle("more", m); }
+stage.addEventListener("scroll", updMore, { passive: true });
+$("#qMore").onclick = () => { sfx.tap(); stage.scrollBy({ top: stage.clientHeight * .75, behavior: reduce ? "auto" : "smooth" }); };
 function setReady(v, msg, good = v) {
   ready = v; nextBtn.disabled = !v; nextBtn.classList.toggle("ready", v);
   if (msg !== undefined) { hint.textContent = msg; hint.className = "hint" + (good ? " good" : ""); }
@@ -2693,9 +2717,11 @@ function show(back) {
   (R[sc.t] || R.story)(el, sc);
   fitScene(el);
   if (G) G.from(el.children, { y: 14, scale: .97, duration: .55, ease: "back.out(1.6)", stagger: .06, clearProps: "transform,scale" });
+  updMore(); setTimeout(updMore, 700);
 }
 nextBtn.onclick = () => {
   if (!ready) return; sfx.tap();
+  if (moreBelow()) { stage.scrollBy({ top: stage.clientHeight * .75, behavior: reduce ? "auto" : "smooth" }); return; }
   if (scenes[si].t === "done") return finishQuest();
   if (si < scenes.length - 1) { si++; show(false); }
 };
@@ -2882,7 +2908,7 @@ R.script = el => {
     sl.appendChild(d); d.scrollIntoView({ behavior: "smooth", block: "nearest" });
     sfx.tap(); k++;
     if (k >= L.length) { btn.hidden = true; sfx.win(); burstAt(sl, 60, true); setReady(true, "You know the whole thing!"); }
-    else { btn.textContent = L[k][0] === "me" ? "I said my line" : "Next line"; setReady(false, ""); }
+    else { btn.textContent = who === "me" ? "I said my line" : "Next line"; setReady(false, ""); }
   };
   btn.onclick = add;
 };
@@ -2952,7 +2978,7 @@ function inkUncover(el) {
 R.pray = (el, s) => {
   const PS = setOf(s), P = PS.parts[s.i];
   const words = P.text.split(" ");
-  el.innerHTML = `<span class="tag">${esc(s.tag || `${PS.name}, part ${s.i + 1} of ${PS.parts.length}`)}</span><span class="gesture">${img("pray", "", "width:30px;height:30px")}${esc(P.g)}</span>
+  el.innerHTML = `<span class="tag">${esc(s.tag || `${PS.name}, part ${s.i + 1} of ${PS.parts.length}`)}</span><span class="gesture">${img(gIcon(P.g), "", "width:30px;height:30px")}${esc(P.g)}</span>
   <p class="pline" id="pl">${words.map((w, k) => `<span class="wd" data-k="${k}">${esc(w)}</span>`).join(" ")}</p>${s.mean ? `<p class="mean"><b>What it means:</b> ${esc(P.mean)}</p>` : ""}
   <button class="chip big" type="button" id="said">I said it out loud</button><div id="fill" hidden style="display:grid;gap:14px;justify-items:center"></div>`;
   setReady(false, "Say it with the motion");
@@ -2993,6 +3019,8 @@ const CMDS = [
   ["You shall not bear false witness against your neighbor.", "Tell the truth.", "Have I lied, or blamed someone else for what I did? Do TV shows or movies make lying seem okay?"],
   ["You shall not covet your neighbor's wife.", "Husbands and wives love only each other. Keep your heart and thoughts pure.", "Do I keep my thoughts kind and pure?"],
   ["You shall not covet your neighbor's goods.", "Be happy with what you have.", "Am I jealous of my friends' things?"]];
+// a picture for each prayer motion
+const gIcon = g => /head no/i.test(g) ? "noentry" : /heart/i.test(g) ? "heart" : /heaven/i.test(g) ? "cloud" : /arms (wide|up)|whole world/i.test(g) ? "sun" : /angel|wave/i.test(g) ? "dove" : /baby/i.test(g) ? "star" : /fist/i.test(g) ? "check" : "pray";
 const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
 R.cmds = el => {
   const nums = side => [0, 1, 2, 3, 4].map(k => side * 5 + k).map(i => `<b class="tn" data-i="${i}">${ROMAN[i]}</b>`).join("");
@@ -3093,7 +3121,7 @@ R.saint = el => {
   fitPack();
   const pv = document.createElement("video"); pv.className = "pf"; pv.src = "assets/vid/pack_open.mp4"; pv.muted = true; pv.playsInline = true; pv.preload = "auto";
   pv.setAttribute("playsinline", ""); pv.setAttribute("aria-hidden", "true"); el.querySelector("#pack").appendChild(pv);
-  setReady(false, "Open your card pack!");
+  setReady(false, "Open your card pack!"); el.querySelector("#pack").addEventListener("click", () => { if (!ready) setReady(false, "Here it comes..."); }, { once: true });
   attachTilt(card);
   const done = () => {
     if (!Q || $("#quest").hidden) return;
@@ -3230,7 +3258,7 @@ function nShow(html, after) {
   if (G && st.firstElementChild) { G.to(st.firstElementChild, { opacity: 0, y: -12, duration: .3, ease: "power1.in", onComplete: go }); setTimeout(go, 450); } else go();
 }
 function nightIntro() {
-  nShow(`<p class="n-k">Bedtime Heart Check</p><h2 class="n-h">${named() ? `Goodnight soon, ${esc(named())}.` : "Time to rest."}</h2><p class="n-p">Let's quiet our hearts and talk to Jesus about today.</p>
+  nShow(`<p class="n-k">Bedtime Heart Check</p><h2 class="n-h">${named() ? `Almost bedtime, ${esc(named())}.` : "Time to rest."}</h2><p class="n-p">Let's quiet our hearts and talk to Jesus about today.</p>
     <div class="breathe" aria-hidden="true"><span></span></div><p class="n-breath" id="nBreath">Breathe in&hellip;</p>
     <button type="button" class="n-btn" id="nGo">I'm ready</button>`, el => {
     let k = 0; N.t = setInterval(() => { const b = el.querySelector("#nBreath"); if (!b) return clearInterval(N.t); b.textContent = ++k % 2 ? "Breathe out…" : "Breathe in…"; }, 4000);
@@ -3282,7 +3310,7 @@ addEventListener("keydown", e => { if (!$("#night").hidden && e.key === "Escape"
 
 /* ---------- the prayer studio: learn a prayer, practice it, then say it by heart ---------- */
 const STUDIO = {
-  ourfather: { set: "ourfather", pic: "pray_ourfather", intro: "Jesus himself taught us this prayer, when his friends asked: “Lord, teach us to pray.” We pray it at every Mass.", ref: "Matthew 6:9–13" },
+  ourfather: { set: "ourfather", pic: "pray_ourfather", intro: "Jesus Himself taught us this prayer, when his friends asked: “Lord, teach us to pray.” We pray it at every Mass.", ref: "Matthew 6:9–13" },
   hailmary: { set: "hailmary", pic: "pray_hailmary", intro: "The first words are the angel Gabriel's, when he told Mary she would be Jesus' mother. Then come her cousin Elizabeth's words, and then we ask Mary to pray for us.", ref: "Luke 1:28, 42" },
   glorybe: { set: "glorybe", pic: "pray_glorybe", intro: "A short prayer of praise to the Holy Trinity: the Father, the Son, and the Holy Spirit. Perfect any time of day.", ref: "" },
   prayer: { set: "contrition", pic: "confession", intro: "The prayer we say in confession to tell God we're sorry and want to do better.", ref: "Version A, from the workbook" },
@@ -3300,13 +3328,13 @@ function psTab(t) {
   PS_.tab = t; document.querySelectorAll("#pstudio .ps-tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === t));
   const body = $("#psBody"), parts = PS_.set.parts;
   if (t === "learn") {
-    body.innerHTML = `<p class="ps-lead">Read each line, try the motion, and tap a line to see what it means.</p>${parts.map((p, i) => `<button type="button" class="ps-line" data-i="${i}"><span class="ps-n">${i + 1}</span><span class="ps-t">${esc(p.text)}</span><span class="ps-g"><img src="${A("pray")}" alt="">${esc(p.g)}</span><span class="ps-m"><b>What it means:</b> ${esc(p.mean)}</span></button>`).join("")}<button type="button" class="ps-cta" data-go="practice">Practice it &rsaquo;</button>`;
+    body.innerHTML = `<p class="ps-lead">Read each line, try the motion, and tap a line to see what it means.</p>${parts.map((p, i) => `<button type="button" class="ps-line" data-i="${i}"><span class="ps-n">${i + 1}</span><span class="ps-t">${esc(p.text)}</span><span class="ps-g"><img src="${A(gIcon(p.g))}" alt="">${esc(p.g)}</span><span class="ps-m"><b>What it means:</b> ${esc(p.mean)}</span></button>`).join("")}<button type="button" class="ps-cta" data-go="practice">Practice it &rsaquo;</button>`;
     body.querySelectorAll(".ps-line").forEach(b => b.onclick = () => { sfx.tap(); b.classList.toggle("open"); });
   }
   if (t === "practice") {
     let i = 0, right = 0;
     const one = () => {
-      if (i >= parts.length) { body.innerHTML = `<div class="ps-done"><img src="${A("stars")}" alt=""><h3>${right === parts.length ? "Perfect!" : "Nice work!"}</h3><p>${right} of ${parts.length} right the first time. Now try saying it by heart.</p><button type="button" class="ps-cta" data-go="heart">Say it by heart &rsaquo;</button></div>`; wire(); sfx.win(); return; }
+      if (i >= parts.length) { body.innerHTML = `<div class="ps-done"><img src="${A("stars")}" alt=""><h3>${right === parts.length ? "Perfect!" : right * 2 >= parts.length ? "Nice work!" : "Good try!"}</h3><p>${right} of ${parts.length} right the first time. Now try saying it by heart.</p><button type="button" class="ps-cta" data-go="heart">Say it by heart &rsaquo;</button></div>`; wire(); sfx.win(); return; }
       const P = parts[i], gapped = esc(P.text.replace(new RegExp("\\b" + P.gap + "\\b"), "%%")).replace("%%", `<span class="gap">${esc(P.gap)}</span>`);
       let first = true;
       body.innerHTML = `<p class="ps-lead">Which word is missing? <b>${i + 1} of ${parts.length}</b></p><div class="ps-card"><p class="ps-q">${gapped}</p></div><div class="ps-opts">${shuffle(P.opts).map(o => `<button type="button" data-w="${esc(o)}">${esc(o)}</button>`).join("")}</div>`;
@@ -3388,11 +3416,13 @@ function gRound() {
   }
   if (r.t === "order") {
     let k = 0;
-    st.innerHTML = `<div class="gs-card"><p class="gs-q">Put the six parts of confession in order.</p><small>Tap the one that comes first.</small></div><ol class="gs-slots">${STEPS6.map(() => `<li></li>`).join("")}</ol><div class="gs-chips">${shuffle(STEPS6.map((x, i) => [x, i])).map(([x, i]) => `<button type="button" data-i="${i}">${esc(x)}</button>`).join("")}</div>${nextBtn()}`;
+    st.innerHTML = `<div class="gs-card"><p class="gs-q">Put the six parts of confession in order.</p><small id="gsTip">Tap the one that comes first.</small></div><ol class="gs-slots">${STEPS6.map(() => `<li></li>`).join("")}</ol><div class="gs-chips">${shuffle(STEPS6.map((x, i) => [x, i])).map(([x, i]) => `<button type="button" data-i="${i}">${esc(x)}</button>`).join("")}</div>${nextBtn()}`;
+    let missed = false;
     st.querySelectorAll(".gs-chips button").forEach(c => c.onclick = () => {
-      const ok = +c.dataset.i === k; gPoints(ok, true);
-      if (!ok) { sfx.no(); c.classList.remove("wig"); void c.offsetWidth; c.classList.add("wig"); return; }
-      sfx.place(); c.disabled = true; c.classList.add("used"); const li = st.querySelectorAll(".gs-slots li")[k]; li.textContent = STEPS6[k]; li.classList.add("fill"); k++;
+      const ok = +c.dataset.i === k; gPoints(ok, !missed);
+      if (!ok) { missed = true; sfx.no(); c.classList.remove("wig"); void c.offsetWidth; c.classList.add("wig"); return; }
+      missed = false; sfx.place(); c.disabled = true; c.classList.add("used"); const li = st.querySelectorAll(".gs-slots li")[k]; li.textContent = STEPS6[k]; li.classList.add("fill"); k++;
+      const tip = st.querySelector("#gsTip"); if (tip) tip.textContent = k < STEPS6.length ? "Now tap what comes next." : "All six in order!";
       if (k === STEPS6.length) { sfx.win(); burstAt(st.querySelector(".gs-slots"), 80, true); ready(); }
     });
   }
@@ -3405,7 +3435,7 @@ function gRound() {
       d.innerHTML = who === "note" ? `<p>${esc(txt)}</p>` : `<span>${who === "me" ? "You" : "Father"}</span><p>${esc(txt)}</p>`;
       chat.appendChild(d); d.scrollIntoView({ behavior: "smooth", block: "nearest" }); sfx.tap(); k++;
       if (k >= SCRIPT.length) { btn.textContent = "Finish"; btn.onclick = () => { sfx.tap(); gNext(); }; sfx.win(); }
-      else btn.textContent = SCRIPT[k][0] === "me" ? "I said my line" : "Next line";
+      else btn.textContent = who === "me" ? "I said my line" : "Next line";
     };
   }
   if (G) G.from(st.children, { y: 20, opacity: 0, duration: .45, ease: "back.out(1.6)", stagger: .06 });
@@ -3605,7 +3635,8 @@ $("#resetAll").onclick = e => {
   if (b.dataset.sure) { pdrop(S.pid, ["done", "cards", "unlocked", "pos", "seen", "learned"]); loadPlayer(S.pid); refreshPlayer(); b.textContent = "Start over"; delete b.dataset.sure; toast(`${S.name}'s progress is cleared`); }
   else { b.dataset.sure = 1; b.textContent = "Tap again to clear progress"; setTimeout(() => { b.textContent = "Start over"; delete b.dataset.sure; }, 4000); }
 };
-$("#themeBtn").onclick = () => { const r = document.documentElement, dark = r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; r.dataset.theme = dark ? "light" : "dark"; sfx.toggle(); };
+$("#themeBtn").onclick = () => { const r = document.documentElement, dark = r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; r.dataset.theme = dark ? "light" : "dark"; try { localStorage.setItem("found.theme", r.dataset.theme); } catch (e) {} sfx.toggle(); };
+try { const t = localStorage.getItem("found.theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
 
 $("#cvClose").onclick = closeCard;
 $("#cvAll").onclick = () => { closeCard(); goView("cards"); };
@@ -3630,7 +3661,7 @@ const autoIO = "IntersectionObserver" in window ? new IntersectionObserver(es =>
 function autoVideos(root = document) { if (reduce) return; root.querySelectorAll("video[data-auto]").forEach(v => { if (v.dataset.on) return; v.dataset.on = 1; v.muted = true; autoIO ? autoIO.observe(v) : v.play().catch(() => {}); }); }
 // the Mass as a scroll story: each chapter keeps a video pinned while its parts scroll past, and the video follows the part you're reading
 const MASS_MEDIA = ["mass_font", "mass_entrance", "mass_church", "mass_kneel", "mass_church", "mass_readings", "mass_gospel", "mass_church", "mass_creed", "mass_kneel", "mass_gifts", "mass_altar", "mass_altar", "mass_altar", "mass_ourfather", "mass_peace", "mass_altar", "mass_blessing", "mass_kneel", "mass_sent"];
-const MASS_CH = { "Before Mass": "We come into God's house and remember our Baptism.", "We gather": "Jesus' family comes together and gets our hearts ready.", "The Word of God": "God speaks to us through the Bible.", "Jesus in the Eucharist": "The bread and wine become Jesus.", "Communion": "Jesus comes to us, and we share his peace.", "We go out": "We take Jesus' love home with us." };
+const MASS_CH = { "Before Mass": "We come into God's house and remember our Baptism.", "We gather": "Jesus' family comes together and gets our hearts ready.", "The Word of God": "God speaks to us through the Bible.", "Jesus in the Eucharist": "The bread and wine become Jesus.", "Communion": "Jesus comes to us, and we share His peace.", "We go out": "We take Jesus' love home with us." };
 (() => {
   const groups = [...new Set(MASS.map(m => m.g))];
   const media = k => VIDS.includes(k) ? `<video class="mmedia" data-k="${k}" src="assets/vid/${k}.mp4" poster="assets/img/${k}.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>` : `<img class="mmedia" data-k="${k}" src="assets/img/${k}.jpg" alt="" draggable="false">`;
@@ -3664,7 +3695,11 @@ const MASS_CH = { "Before Mass": "We come into God's house and remember our Bapt
   autoVideos($("#mass"));
   // finishing the story (the last part reaches the middle of the screen) counts as walking through the whole Mass
   const last = [...document.querySelectorAll(".mbeat")].pop();
-  if (last && "IntersectionObserver" in window) { const fin = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && S.pid) { fin.disconnect(); const items = activityDone("mass"); if (items.length) setTimeout(() => celebrate(items), 600); } }), { rootMargin: "-45% 0px -45% 0px" }); fin.observe(last); }
+  if (last && "IntersectionObserver" in window) {
+    const read = new Set(), tm = new Map(), beats = [...document.querySelectorAll(".mbeat")];
+    const seen = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) tm.set(e.target, setTimeout(() => read.add(e.target), 1200)); else clearTimeout(tm.get(e.target)); }), { rootMargin: "-30% 0px -30% 0px" });
+    beats.forEach(b => seen.observe(b));
+    const fin = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && S.pid && read.size >= Math.min(14, beats.length - 1)) { fin.disconnect(); seen.disconnect(); const items = activityDone("mass"); if (items.length) setTimeout(() => celebrate(items), 600); } }), { rootMargin: "-45% 0px -45% 0px" }); fin.observe(last); }
 })();
 function renderLearned() {
   const L = pget("learned", []);
