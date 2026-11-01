@@ -1494,8 +1494,8 @@ a.ptile{text-decoration:none;color:inherit}
 .qmore{position:relative;z-index:3;align-self:center;margin:-50px 0 8px;min-height:40px;padding:0 18px;border-radius:999px;background:var(--ink);color:var(--card);font-weight:800;font-size:15px;box-shadow:0 6px 18px rgba(0,0,0,.18);animation:bob 1.6s ease-in-out infinite}
 .qmore[hidden]{display:none}
 @keyframes bob{50%{transform:translateY(4px)}}
-.stage.more{-webkit-mask-image:linear-gradient(#000 calc(100% - 70px),transparent);mask-image:linear-gradient(#000 calc(100% - 70px),transparent)}
-body:has(#quest:not([hidden])) .toast{top:auto;bottom:calc(150px + env(safe-area-inset-bottom,0px))}
+.stage.more{-webkit-mask-image:linear-gradient(#000 calc(100% - 100px),transparent calc(100% - 28px));mask-image:linear-gradient(#000 calc(100% - 100px),transparent calc(100% - 28px))}
+body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0px));bottom:auto;padding:10px 18px;font-size:15px}
 .wd{padding:0 2px;margin:0 -2px}
 .tc-series{text-shadow:0 1px 3px rgba(0,0,0,.6),0 0 1px rgba(0,0,0,.7)}
 @media (max-width:600px){.cv-count{margin:56px 0 -6px}}
@@ -1504,6 +1504,18 @@ body:has(#quest:not([hidden])) .toast{top:auto;bottom:calc(150px + env(safe-area
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .badge.got small{color:#FFD66B}}
 :root[data-theme="dark"] .badge.got{background:color-mix(in srgb,#FFD66B 16%,#161617)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .badge.got{background:color-mix(in srgb,#FFD66B 16%,#161617)}}
+
+/* QA round 3 */
+#quest:focus,#pstudio:focus,#gshell:focus,#night:focus,#cardView:focus{outline:none}
+.slots.one .slot:not(.fill){min-height:30px;padding:2px 14px;font-size:14px;opacity:.75}
+.slots.one{gap:6px}
+.chips.col{gap:8px}
+.mw{position:sticky;top:-16px;z-index:3;padding:10px 0;background:var(--qbg,var(--sky))}
+@media (max-width:600px){.mm .opt{padding:10px 14px;min-height:0;font-size:16px}.mm{gap:8px}}
+.stone2::before{content:"";position:absolute;inset:-14px;border-radius:50%}
+.inked{margin-bottom:6px}
+.ink-hint{bottom:6px;padding:3px 10px;border-radius:999px;background:var(--card);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+@media (hover:hover){.mission:hover,.n-theme:hover{transform:translateY(-3px)}.stop:hover{filter:brightness(1.06)}.n-theme{transition:transform .25s}}
 /* apple scroll reveal: fade + rise, staggered */
 .rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(0,0,.5,1),transform 1s cubic-bezier(0,0,.5,1);transition-delay:calc(var(--d,0) * 90ms)}
 .rv.in{opacity:1;transform:none}
@@ -1816,7 +1828,7 @@ body:has(#quest:not([hidden])) .toast{top:auto;bottom:calc(150px + env(safe-area
 (() => {
 /* ---------- art ---------- */
 const INK = "#3B2F45";
-const GEN = { ewe: "pip", scroll: "tablets", candle: "candle", sparkles: "sparkles", stars: "star", glass: "glass", door: "door", pray: "pray", heartsp: "heart", heart: "heart", heartmend: "heartmend", boat: "canoe", canoe: "canoe", cross: "cross", lily: "lily", fire: "fire", book: "bible", ear: "stole", church: "church", zip: "zipface", trophy: "trophy", sun: "sun", noentry: "noentry", lock: "lock", house: "house", dove: "dove", cloud: "cloud", check: "check", calendar: "calendar", brain: "brain", water: "shell", bread: "chalice", ring: "rings", open: "oil", album: "cards", moon2: "moon", staff: "staff", gift: "gift", quests: "quests", flower: "daisy", herb: "buttercup", island: "island", pipsit: "pipsit", pipjump: "pipjump" };
+const GEN = { bubbles: "bubbles", rock: "rock", ewe: "pip", scroll: "tablets", candle: "candle", sparkles: "sparkles", stars: "star", glass: "glass", door: "door", pray: "pray", heartsp: "heart", heart: "heart", heartmend: "heartmend", boat: "canoe", canoe: "canoe", cross: "cross", lily: "lily", fire: "fire", book: "bible", ear: "stole", church: "church", zip: "zipface", trophy: "trophy", sun: "sun", noentry: "noentry", lock: "lock", house: "house", dove: "dove", cloud: "cloud", check: "check", calendar: "calendar", brain: "brain", water: "shell", bread: "chalice", ring: "rings", open: "oil", album: "cards", moon2: "moon", staff: "staff", gift: "gift", quests: "quests", flower: "daisy", herb: "buttercup", island: "island", pipsit: "pipsit", pipjump: "pipjump" };
 ["ic_bells","ic_bread","ic_rosary","ic_shamrock","bible","book","brain","buttercup","calendar","candle","canoe","cards","chalice","check","church","cloud","cross","daisy","door","dove","fire","gift","glass","heart","heartmend","house","island","lily","lock","moon","noentry","oil","pip","pipjump","pipsit","pray","quests","rings","shell","sparkles","staff","star","stole","sun","tablets","trophy","zipface"].forEach(n => { if (!(n in GEN)) GEN[n] = n; });
 GEN.book = "book";
 const A = n => GEN[n] ? `assets/g/${GEN[n]}.webp` : `assets/${n}.png`;
@@ -2119,7 +2131,7 @@ const QUESTS = [
    {t:"quiz",tag:"Review: Lessons 1–4",q:"___ is something we say, do, or desire that is against God's law.",opts:[["Sin",1],["A goof-up",0],["An accident",0]]},
    {t:"quiz",tag:"Review: Lessons 1–4",q:"True or false: God always loves you.",opts:[["True",1],["False",0]]},
    {t:"quiz",tag:"Review: Lessons 1–4",q:"True or false: The Bible is God's Word.",opts:[["True",1],["False",0]]},
-   {t:"quiz",tag:"Review: Lessons 1–4",q:"True or false: The three Persons in one God are called the apostles.",opts:[["False. They are the Holy Trinity.",1],["True",0]]},
+   {t:"quiz",tag:"Review: Lessons 1–4",q:"True or false: The three Persons in one God are called the apostles.",opts:[["False. They are the Holy Trinity.",1],["True. They are the apostles.",0]]},
    {t:"quiz",tag:"Review: Lessons 1–4",q:"True or false: Mortal sin breaks our friendship with God completely.",opts:[["True",1],["False",0]]},
    {t:"quiz",tag:"Review: Lessons 1–4",q:"This year we are preparing for which two sacraments?",opts:[["Reconciliation and Holy Eucharist",1],["Confirmation and Marriage",0],["Baptism and Holy Orders",0]]},
    {t:"saint"},{t:"done"}]},
@@ -2200,7 +2212,7 @@ const QUESTS = [
   covers:"Step 5: the Act of Contrition, its three parts, Version A line by line with the workbook's simple meanings, hard words explained, the word-search words, putting the prayer in order, saying it from memory, using your own words, Version B and its word-search words",
   saint:{name:"St. John Paul II", story:"As a young priest, Karol Wojtyła visited the church of St. John Vianney in Ars, France. He wanted to be a “prisoner of the confessional” like him, always ready to hear confessions. Even as Pope, he heard confessions in St. Peter's Basilica on Good Friday, and he went to confession often himself. Even a pope needs Jesus' forgiveness. He was made a saint on April 27, 2014."},
   mission:["Say it every night","Practice the Act of Contrition every night with the hand motions. Knowing it by heart is one less worry on the big day. Ask your parish whether they use Version A or Version B."],
-  remember:[{q:"A penance can be…",opts:[["A prayer, or a kind action",1],["Only a prayer",0],["A punishment",0]]}],
+  remember:[{q:"A penance can be…",opts:[["A prayer, a kind action, or both",1],["Only a prayer",0],["A punishment",0]]}],
   scenes:[
    {t:"story",art:"heart",text:"Step 5: the Act of Contrition, a prayer asking God to forgive your sins. Every version has three parts: I know my sins are wrong. I'm sorry. With God's help, I'll do better."},
    {t:"read",tag:"Big words, simple meanings",icon:"book",lines:["Heartily: with all my heart.","Offended: hurt, or went against.","Detest: hate.","Dread: am afraid of.","Grace: God's own life and help inside me.","Resolve: promise, decide for sure.","Penance: something good that shows I'm sorry.","Amend: change and make better."]},
@@ -2228,7 +2240,7 @@ const QUESTS = [
    {t:"chain"},
    {t:"story",icon:"pray",text:"Say “Thank you, Father.” Then leave and do your penance right away. Keep living for Jesus and keep your heart clean."},
    {t:"recall",level:3},
-   {t:"quiz",tag:"Review: Lessons 8–10",q:"A penance can be…",opts:[["Both a prayer and an action",1],["Only a prayer",0],["Only an action",0]]},
+   {t:"quiz",tag:"Review: Lessons 8–10",q:"A penance can be…",opts:[["A prayer, a kind action, or both",1],["Only a prayer",0],["A punishment",0]]},
    {t:"quiz",tag:"Review: Lessons 8–10",q:"We say the Act of Contrition…",opts:[["Because we are filled with sorrow and hate sin",1],["So the priest will like us",0],["To tell the priest we're done",0]]},
    {t:"quiz",tag:"Review: Lessons 8–10",q:"When you receive ___, God forgives your sins.",opts:[["absolution",1],["penance",0],["Communion",0]]},
    {t:"match",tag:"Review: Lessons 8–10",prompt:"Match each part to its meaning.",pairs:[["Examination of conscience","To think, with sorrow, of all the sins we have committed"],["Greeting","When the priest welcomes you"],["Confession","To tell the priest your sins"],["Penance","A prayer or action that shows we are sorry"],["Act of Contrition","A prayer asking God's forgiveness"],["Absolution","God forgives your sins"]]},
@@ -2256,7 +2268,7 @@ const QUESTS = [
   mission:["Listen to Father Tim","Sit down together and listen to “Questions and Answers About Reconciliation With Father Tim” using the QR code in the workbook (Lesson 12). Then answer any questions your child has."],
   remember:[{q:"Who did Jesus give the power to forgive sins?",opts:[["His apostles, and priests today",1],["Anyone",0]]}],
   scenes:[
-   {t:"story",art:"stole",text:"In this lesson, listen to Father Tim with your grown-up. He answers kids' questions about confession. The workbook has a code to play it."},
+   {t:"story",art:"stole",text:"In this lesson, listen to Father Tim with your grown-up. He answers kids' questions about confession. Your grown-up can play it with the code in your workbook."},
    {t:"quiz",tag:"Questions kids often ask",q:"What if I forget one of my sins?",opts:[["Say “and any others I can't remember.” God forgives those too.",1],["I have to start over",0]]},
    {t:"quiz",tag:"Questions kids often ask",q:"What if I forget the words?",opts:[["The priest will help me",1],["I'll get in trouble",0]]},
    {t:"quiz",tag:"Questions kids often ask",q:"Will the priest be mad at me?",opts:[["No. He's there in Jesus' place, and he's happy I came.",1],["Yes, very mad",0]]},
@@ -2277,9 +2289,8 @@ const QUESTS = [
    {t:"quiz",tag:"My workbook",q:"Two people are especially important: the ___ and I.",opts:[["priest",1],["teacher",0],["coach",0]]},
    {t:"quiz",tag:"My workbook",q:"I am ___ for my sins.",opts:[["sorry",1],["happy",0],["bored",0]]},
    {t:"quiz",tag:"My workbook",q:"I am sorry for my sins. I want to be more like ___.",opts:[["Jesus",1],["a superhero",0],["my friend",0]]},
-   {t:"quiz",tag:"My workbook",q:"I need ___ and reconciliation with my brothers and sisters.",opts:[["forgiveness",1],["a nap",0],["new shoes",0]]},
-   {t:"quiz",tag:"My workbook",q:"I need forgiveness and reconciliation with my ___ and sisters.",opts:[["brothers",1],["teachers",0],["neighbors",0]]},
-   {t:"quiz",tag:"My workbook",q:"I need forgiveness and reconciliation with my brothers and ___.",opts:[["sisters",1],["pets",0],["neighbors' cars",0]]},
+   {t:"quiz",tag:"My workbook",q:"When I sin, I need God's ___.",opts:[["forgiveness",1],["a nap",0],["new shoes",0]]},
+   {t:"quiz",tag:"My workbook",q:"I need forgiveness and reconciliation with my ___.",opts:[["brothers and sisters",1],["toys",0],["video games",0]]},
    {t:"quiz",tag:"My workbook",q:"The priest ___ me in the name of God and the Church.",opts:[["forgives",1],["scolds",0],["tests",0]]},
    {t:"quiz",tag:"My workbook",q:"He brings all of us together again in peace and ___.",opts:[["friendship",1],["homework",0],["silence",0]]},
    {t:"quiz",tag:"My workbook",q:"Before, I find a quiet time to think and pray. I think about times I was selfish and not like Jesus, and ask God to help me understand ___ I acted that way…",opts:[["why",1],["when",0],["where",0]]},
@@ -2290,7 +2301,7 @@ const QUESTS = [
    {t:"script"},
    {t:"story",art:"rays",text:"When the priest says the words of forgiveness, you are very close to God and to your brothers and sisters. Then you both praise God. Father says: “Give thanks to the Lord, for He is good.” You answer: “His mercy endures for ever.”",sm:1},
    {t:"story",art:"hug",text:"Then your heart is glad again. You'll feel just like you've been hugged by God!"},
-   {t:"quiz",tag:"Final Review",q:"What are the six parts of Reconciliation, in order?",opts:[["Examination of Conscience, Welcome, Confession, Penance, Act of Contrition, Absolution",1],["Welcome, Absolution, Penance, Confession",0]]},
+   {t:"quiz",tag:"Final Review",q:"What are the six parts of Reconciliation, in order?",opts:[["Examination of Conscience, Welcome, Confession, Penance, Act of Contrition, Absolution",1],["Welcome, Absolution, Examination of Conscience, Penance, Confession, Act of Contrition",0]]},
    {t:"quiz",tag:"Final Review",q:"Which kind of sin breaks our friendship with God completely?",opts:[["Mortal sin",1],["Venial sin",0]]},
    {t:"quiz",tag:"Final Review",q:"Who forgives your sins in Reconciliation?",opts:[["God, through the priest",1],["The priest by himself",0],["Nobody",0]]},
    {t:"quiz",tag:"Final Review",q:"Is it a sin to spill your milk by accident?",opts:[["No. Sins are chosen on purpose.",1],["Yes",0]]},
@@ -2466,7 +2477,7 @@ function activityDone(key) {
 }
 // one small mission a day: a lesson about once a week (the parish pace), Mass games on the weekend, and on the other days a prayer, a game or a quiet heart check
 const MISSIONS = {
-  lesson: { t: () => `Lesson ${current() + 1}: ${QUESTS[current()].title}`, d: "It's lesson day! About 15 minutes.", src: () => A("quests") },
+  lesson: { t: () => { const m = pget("mtoday", {}), q = Math.min(m.q ?? current(), QUESTS.length - 1); return `Lesson ${q + 1}: ${QUESTS[q].title}`; }, d: "It's lesson day! About 15 minutes.", src: () => A("quests") },
   review: { t: () => "Review game", d: "Win back the tricky questions.", src: () => A("stars") },
   ourfather: { t: () => "Pray the Our Father", d: "Say it with the motions, then from memory.", src: () => "assets/img/pray_ourfather.jpg" },
   hailmary: { t: () => "Pray the Hail Mary", d: "Say it with the motions, then from memory.", src: () => "assets/img/pray_hailmary.jpg" },
@@ -2490,7 +2501,7 @@ function todayMission() {
     const seed = [...(t + S.pid)].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7);
     k = pool[seed % pool.length];
   }
-  pset("mtoday", { d: t, k });
+  pset("mtoday", { d: t, k, q: current() });
   return k;
 }
 function missionHTML() {
@@ -2686,6 +2697,16 @@ function openQuest(i) {
   $("#quest").hidden = false; document.body.style.overflow = "hidden";
   sfx.whoosh(); show(false);
 }
+// while a lesson, studio, game, bedtime, or card is open, the page behind it can't be tabbed into or clicked
+const OVL = ["quest", "pstudio", "gshell", "night", "cardView"];
+function syncInert() {
+  const open = OVL.map(id => document.getElementById(id)).filter(o => o && !o.hidden);
+  [...document.body.children].forEach(c => { if (OVL.includes(c.id) || c.classList.contains("toast") || c.classList.contains("award") || c.tagName === "SCRIPT") return; c.inert = open.length > 0; });
+  const top = open[open.length - 1];
+  // focus the dialog itself (no ring on touch screens); Tab then moves through its buttons
+  if (top && !top.contains(document.activeElement)) { top.tabIndex = -1; setTimeout(() => top.focus({ preventScroll: true }), 60); }
+}
+OVL.forEach(id => { const o = document.getElementById(id); if (o) new MutationObserver(syncInert).observe(o, { attributes: true, attributeFilter: ["hidden"] }); });
 function closeQuest() { sfx.close(); $("#quest").hidden = true; document.body.style.overflow = ""; }
 function fitScene(el) {
   if (!el || !el.isConnected) return;
@@ -2726,8 +2747,8 @@ nextBtn.onclick = () => {
   if (si < scenes.length - 1) { si++; show(false); }
 };
 $("#qBack").onclick = () => { if (si) { si--; show(true); } };
-$("#qClose").onclick = () => { closeQuest(); if (pendingAwards.length) { const a = pendingAwards; pendingAwards = []; renderGame(); setTimeout(() => celebrate(a), 350); } };
-addEventListener("keydown", e => { if ($("#quest").hidden) return; if (e.key === "Escape") closeQuest(); });
+$("#qClose").onclick = () => { if (Q && scenes[si] && scenes[si].t === "done") { sfx.tap(); finishQuest(); return; } closeQuest(); if (pendingAwards.length) { const a = pendingAwards; pendingAwards = []; renderGame(); setTimeout(() => celebrate(a), 350); } };
+addEventListener("keydown", e => { if ($("#quest").hidden) return; if (e.key === "Escape") $("#qClose").click(); });
 
 function finishQuest() {
   const awards = () => { const a = [...pendingAwards, ...checkBadges().map(badgeAward)]; pendingAwards = []; renderGame(); return a; };
@@ -2879,14 +2900,16 @@ R.magnify = el => {
   <div class="qdots" id="qd">${qs.map(() => "<i></i>").join("")}</div>`;
   let k = 0; const qt = el.querySelector("#qt"), qn = el.querySelector("#qn"), dots = el.querySelectorAll("#qd i");
   setReady(false, "Tap the magnifying glass");
-  const showQ = () => { qn.textContent = `Question ${k + 1} of ${qs.length}`; qt.textContent = qs[k]; dots.forEach((d, j) => d.classList.toggle("on", j <= k)); };
+  const showQ = i => { qn.textContent = `Question ${i + 1} of ${qs.length}`; qt.textContent = qs[i]; dots.forEach((d, j) => d.classList.toggle("on", j <= i)); };
   el.querySelector("#mg").onclick = () => {
     if (k >= qs.length) return; sfx.pop();
     const mg = el.querySelector("#mg");
     if (G) G.fromTo(mg, { rotation: -14, scale: .92 }, { rotation: 0, scale: 1, duration: .5, ease: "back.out(2)" });
+    const i = k;
     if (G && k > 0) {
-      G.to("#qc .qt, #qc .qn", { y: -18, opacity: 0, duration: .22, ease: "power2.in", onComplete: () => { showQ(); G.fromTo("#qc .qt, #qc .qn", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: .38, ease: "power3.out" }); } });
-    } else { showQ(); if (G) G.fromTo("#qc .qt, #qc .qn", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: .38, ease: "power3.out" }); }
+      G.to("#qc .qt, #qc .qn", { y: -18, opacity: 0, duration: .22, ease: "power2.in" });
+      setTimeout(() => { showQ(i); G.fromTo("#qc .qt, #qc .qn", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: .38, ease: "power3.out" }); }, 230); // a timer, so a paused animation can never skip a question
+    } else { showQ(i); if (G) G.fromTo("#qc .qt, #qc .qn", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: .38, ease: "power3.out" }); }
     k++;
     if (k === qs.length) { setReady(true, "Great Heart Check!"); mg.classList.remove("bob"); } else setReady(false, `${qs.length - k} more`);
   };
@@ -3020,7 +3043,7 @@ const CMDS = [
   ["You shall not covet your neighbor's wife.", "Husbands and wives love only each other. Keep your heart and thoughts pure.", "Do I keep my thoughts kind and pure?"],
   ["You shall not covet your neighbor's goods.", "Be happy with what you have.", "Am I jealous of my friends' things?"]];
 // a picture for each prayer motion
-const gIcon = g => /head no/i.test(g) ? "noentry" : /heart/i.test(g) ? "heart" : /heaven/i.test(g) ? "cloud" : /arms (wide|up)|whole world/i.test(g) ? "sun" : /angel|wave/i.test(g) ? "dove" : /baby/i.test(g) ? "star" : /fist/i.test(g) ? "check" : "pray";
+const gIcon = g => /head no/i.test(g) ? "noentry" : /heart/i.test(g) ? "heart" : /heaven/i.test(g) ? "cloud" : /arms (wide|up)|whole world/i.test(g) ? "sun" : /angel|wave/i.test(g) ? "dove" : /baby/i.test(g) ? "star" : /fist/i.test(g) ? "fire" : "pray";
 const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
 R.cmds = el => {
   const nums = side => [0, 1, 2, 3, 4].map(k => side * 5 + k).map(i => `<b class="tn" data-i="${i}">${ROMAN[i]}</b>`).join("");
@@ -3052,7 +3075,8 @@ R.match = (el, s) => {
   el.innerHTML = `<span class="tag">${esc(s.tag || "Match it")}</span><p class="say sm">${esc(s.prompt || "Tap a word, then tap its meaning.")}</p><div class="chips mw">${words.map(([w, i]) => `<button class="chip" type="button" data-i="${i}">${esc(w)}</button>`).join("")}</div><div class="opts mm">${means.map(([m, i]) => `<button class="opt" type="button" data-i="${i}">${esc(m)}</button>`).join("")}</div>`;
   let pick = null, done = 0;
   setReady(false, "Tap a word first");
-  el.querySelectorAll(".mw .chip").forEach(c => c.onclick = () => { if (c.disabled) return; sfx.select(); pick = c; el.querySelectorAll(".mw .chip").forEach(x => x.classList.toggle("sel", x === c)); setReady(false, "Now tap what it means"); });
+  el.querySelectorAll(".mw .chip").forEach(c => c.onclick = () => { if (c.disabled) return; sfx.select(); pick = c; el.querySelectorAll(".mw .chip").forEach(x => x.classList.toggle("sel", x === c)); setReady(false, "Now tap what it means");
+    const o = el.querySelector(".mm .opt:not(:disabled)"), r = o && o.getBoundingClientRect(), sr = stage.getBoundingClientRect(); if (r && r.top > sr.bottom - 120) stage.scrollBy({ top: r.top - sr.bottom + 200, behavior: reduce ? "auto" : "smooth" }); });
   el.querySelectorAll(".mm .opt").forEach(o => o.onclick = () => {
     if (o.disabled) return;
     if (!pick) { setReady(false, "Tap a word first", false); return; }
@@ -3071,7 +3095,7 @@ R.pick = (el, s) => {
   el.querySelectorAll(".chip").forEach(c => c.onclick = () => {
     if (c.dataset.ok === "1") { sfx.yes(); c.disabled = true; c.classList.add("got"); got++; el.querySelector("#cnt").textContent = `${got} of ${need}`;
       if (got === need) { sfx.win(); burstAt(c, 70, true); setReady(true, s.done || "You found them all!"); } else setReady(false, `${need - got} more`); }
-    else { sfx.no(); c.disabled = true; c.classList.add("nope2"); setReady(false, "That one isn't on the list!", false); }
+    else { sfx.no(); c.disabled = true; c.classList.add("nope2"); setReady(false, "Not that one. Look again!", false); }
   });
 };
 R.recall = (el, s) => {
@@ -3703,7 +3727,7 @@ const MASS_CH = { "Before Mass": "We come into God's house and remember our Bapt
 })();
 function renderLearned() {
   const L = pget("learned", []);
-  document.querySelectorAll("[data-learn]").forEach(t => { t.classList.toggle("learned", L.includes(t.dataset.learn)); const go = t.querySelector(".go"); if (go) go.innerHTML = L.includes(t.dataset.learn) ? "Learned ✓ · Practice again &rsaquo;" : "Start &rsaquo;"; });
+  document.querySelectorAll("[data-learn]").forEach(t => { t.classList.toggle("learned", L.includes(t.dataset.learn)); const go = t.querySelector(".go"); if (go) go.innerHTML = L.includes(t.dataset.learn) ? "Learned ✓ · Practice&nbsp;again&nbsp;&rsaquo;" : "Start &rsaquo;"; });
 }
 renderLearned();
 renderGame();
