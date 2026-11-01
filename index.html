@@ -28,7 +28,7 @@
 /* Layout: a storybook meadow. Landscape hero -> winding quest map + saint shelf -> grown-ups guide. Quests open as full-screen storybook scenes. */
 :root{
   --bg:#F5F5F7; --hero-bg:#FFFFFF; --sky:#F5F5F7; --sky-2:#E4EEFA; --ink:#1D1D1F; --ink-soft:#6E6E73;
-  --accent:#0071E3; --accent-h:#0077ED; --ok:#34C759; --eyebrow-ink:#9A5B00;
+  --accent:#0066CC; --accent-h:#0077ED; --ok:#34C759; --eyebrow-ink:#9A5B00;
   --meadow:#8FD9A8; --meadow-2:#4DB878; --meadow-3:#2B8A55;
   --sun:#FFD873; --sun-soft:#FFF4CC; --berry:#F4788C; --plum:#8E7CF0;
   --wool:#FFFFFF; --card:#FFFFFF; --road:#FFFFFF; --line:rgba(0,0,0,.08);
@@ -822,7 +822,7 @@ body{padding-top:calc(var(--hdr,62px) + env(safe-area-inset-top,0px))}
   --sf:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
   --round:ui-rounded,"SF Pro Rounded","Nunito",-apple-system,BlinkMacSystemFont,sans-serif;
   --display:var(--sf);--body:var(--sf);
-  --ink:#1d1d1f;--ink-soft:#6e6e73;--gray:#86868b;--accent:#0071e3;--accent-h:#0077ed;--link:#0066cc;--bg:#f5f5f7;--hero-bg:#fff;
+  --ink:#1d1d1f;--ink-soft:#6e6e73;--gray:#6e6e73;--accent:#0066cc;--accent-h:#0071e3;--link:#0066cc;--bg:#f5f5f7;--hero-bg:#fff;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#f5f5f7;--ink-soft:#a1a1a6;--gray:#86868b;--accent:#2997ff;--accent-h:#47a6ff;--link:#2997ff;--bg:#000;--hero-bg:#000}}
 :root[data-theme="dark"]{--ink:#f5f5f7;--ink-soft:#a1a1a6;--gray:#86868b;--accent:#2997ff;--accent-h:#47a6ff;--link:#2997ff;--bg:#000;--hero-bg:#000}
@@ -1512,10 +1512,38 @@ body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0p
 .chips.col{gap:8px}
 .mw{position:sticky;top:-16px;z-index:3;padding:10px 0;background:var(--qbg,var(--sky))}
 @media (max-width:600px){.mm .opt{padding:10px 14px;min-height:0;font-size:16px}.mm{gap:8px}}
-.stone2::before{content:"";position:absolute;inset:-14px;border-radius:50%}
+.stone2.on{z-index:6}
+.stone2.on::before{content:"";position:absolute;inset:-14px;border-radius:50%}
 .inked{margin-bottom:6px}
 .ink-hint{bottom:6px;padding:3px 10px;border-radius:999px;background:var(--card);box-shadow:0 2px 8px rgba(0,0,0,.08)}
 @media (hover:hover){.mission:hover,.n-theme:hover{transform:translateY(-3px)}.stop:hover{filter:brightness(1.06)}.n-theme{transition:transform .25s}}
+
+/* QA round 4 */
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn-go,:root:not([data-theme="light"]) .ps-cta,:root:not([data-theme="light"]) .gs-next:not(.soft){background-color:#0071E3}:root:not([data-theme="light"]) .ps-g{color:#7CC0FF}:root:not([data-theme="light"]) .mw{background:color-mix(in srgb,var(--qtint,#2a2a2e) 13%,#0e0e10)}}
+:root[data-theme="dark"] .btn-go,:root[data-theme="dark"] .ps-cta,:root[data-theme="dark"] .gs-next:not(.soft){background-color:#0071E3}
+:root[data-theme="dark"] .ps-g{color:#7CC0FF}
+:root[data-theme="dark"] .mw{background:color-mix(in srgb,var(--qtint,#2a2a2e) 13%,#0e0e10)}
+.mission.done small{color:#1E7A3C}
+/* phone held sideways: compact chrome so the thing to tap stays on screen */
+@media (orientation:landscape) and (max-height:500px){
+  .qbar{padding-top:4px;padding-bottom:2px}.qbar .iconbtn{width:38px;height:38px}.qtitle small{display:none}.qtitle{font-size:16px}
+  .dots{margin:2px 0}
+  .stage{padding-top:6px;padding-bottom:6px}
+  .qfoot{grid-template-columns:auto 1fr auto;grid-template-areas:"back hint next";padding-top:4px;padding-bottom:6px}
+  .qfoot .reactor{display:none}.qfoot .hint:not(:empty){font-size:14px;padding:4px 12px}.qfoot .hint:not(:empty)::after{display:none}
+  .qfoot .btn{min-height:40px}
+  .scene .art,.scene .sc{max-height:34vh}
+  .opts{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .say{font-size:18px}
+  .cardview{flex-direction:row;flex-wrap:wrap;gap:8px;padding-top:6px;padding-bottom:6px}
+  .cv-count{position:absolute;top:18px;left:50%;translate:-50% 0;margin:0}
+  .cv-card{height:calc(100svh - 20px);width:auto;aspect-ratio:5/7}
+  .cv-card .tcard{height:100%;width:auto}
+  .cv-pray{display:none}
+  .cv-ctrl{flex-direction:column}
+  .poses,.gs-opts{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .n-themes{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
 /* apple scroll reveal: fade + rise, staggered */
 .rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(0,0,.5,1),transform 1s cubic-bezier(0,0,.5,1);transition-delay:calc(var(--d,0) * 90ms)}
 .rv.in{opacity:1;transform:none}
@@ -1543,7 +1571,7 @@ body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0p
     <a class="brand" href="#/home" aria-label="Found! home"><span id="brandLamb"></span>Found!</a>
     <nav class="tabnav" aria-label="Sections">
       <a href="#/quests" data-tab="quests"><img src="assets/g/quests.webp" alt=""><span>Lessons</span></a>
-      <a href="#/cards" data-tab="cards"><img src="assets/g/cards.webp" alt=""><span><i class="nw">Saint </i>Cards</span><b class="cardcount" id="albumBadge" aria-label="cards collected">0</b></a>
+      <a href="#/cards" data-tab="cards"><img src="assets/g/cards.webp" alt=""><span><i class="nw">Saint </i>Cards</span><b class="cardcount" id="albumBadge">0</b></a>
       <a href="#/practice" data-tab="practice"><img src="assets/g/pray.webp" alt=""><span>Prayers</span></a>
       <a href="#/mass" data-tab="mass"><img src="assets/g/church.webp" alt=""><span>Mass</span></a>
       <a href="#/grownups" data-tab="grownups"><img src="assets/g/book.webp" alt=""><span>Grown-ups</span></a>
@@ -1636,7 +1664,7 @@ body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0p
   <div class="tile tile-white rv">
     <h2>Made for families.</h2>
     <p class="t-sub">Lesson by lesson, from the parish workbook.</p>
-    <p class="t-call">Same lessons, saints, prayers, Scripture, and reviews. Works offline. Nothing is collected.</p>
+    <p class="t-call">Same lessons, saints, prayers, Scripture, and reviews. Pages work offline after your first visit; videos need internet. Nothing is collected.</p>
     <div class="ctas"><a class="btn btn-soft" href="#/grownups">Read the grown-ups guide</a></div>
     <div class="t-media wide"><img src="assets/img/mass_peace.jpg" alt="A family sharing the sign of peace at Mass" draggable="false"></div>
   </div>
@@ -2703,6 +2731,8 @@ function syncInert() {
   const open = OVL.map(id => document.getElementById(id)).filter(o => o && !o.hidden);
   [...document.body.children].forEach(c => { if (OVL.includes(c.id) || c.classList.contains("toast") || c.classList.contains("award") || c.tagName === "SCRIPT") return; c.inert = open.length > 0; });
   const top = open[open.length - 1];
+  if (top && !top._opener) top._opener = document.activeElement;
+  OVL.forEach(id => { const o = document.getElementById(id); if (o && o.hidden && o._opener) { const b = o._opener; o._opener = null; if (!open.length && b.isConnected && b.offsetParent) setTimeout(() => b.focus({ preventScroll: true }), 60); } });
   // focus the dialog itself (no ring on touch screens); Tab then moves through its buttons
   if (top && !top.contains(document.activeElement)) { top.tabIndex = -1; setTimeout(() => top.focus({ preventScroll: true }), 60); }
 }
@@ -2927,7 +2957,7 @@ R.script = el => {
   const add = () => {
     const [who, txt] = L[k];
     const d = document.createElement("div"); d.className = "line " + (who === "me" ? "me" : who === "note" ? "note" : "");
-    d.innerHTML = who === "note" ? `<div class="bub">${esc(txt)}</div>` : `<span class="who" style="background:${who === "me" ? "#FF5C7A" : "#7B5CE0"}">${who === "me" ? (named() ? esc(named()[0].toUpperCase()) : "Me") : "Fr"}</span><div class="bub">${esc(txt)}</div>`;
+    d.innerHTML = who === "note" ? `<div class="bub">${esc(txt)}</div>` : `<span class="who" style="background:${who === "me" ? "#FF5C7A" : "#7B5CE0"}">${who === "me" ? (named() ? esc(Array.from(named())[0].toUpperCase()) : "Me") : "Fr"}</span><div class="bub">${esc(txt)}</div>`;
     sl.appendChild(d); d.scrollIntoView({ behavior: "smooth", block: "nearest" });
     sfx.tap(); k++;
     if (k >= L.length) { btn.hidden = true; sfx.win(); burstAt(sl, 60, true); setReady(true, "You know the whole thing!"); }
@@ -3531,8 +3561,8 @@ function heroIntro() {
 }
 $("#stars").innerHTML = Array.from({ length: 40 }, (_, i) => `<b style="left:${(i * 37) % 100}%;top:${(i * 53) % 70}%;animation-delay:${(i % 7) * .3}s"></b>`).join("");
 /* ---------- who's playing ---------- */
-const AVC = ["#5AA7F0", "#F08A5D", "#4DB878", "#8E7CF0", "#F4788C", "#E0A800"];
-const avatar = (pl, k) => `<span class="av" style="--c:${AVC[k % AVC.length]}">${esc(pl.name.slice(0, 1).toUpperCase())}</span>`;
+const AVC = ["#1F6FC4", "#C2532B", "#25804B", "#6A55D6", "#C23F5B", "#8F6A00"];
+const avatar = (pl, k) => `<span class="av" style="--c:${AVC[k % AVC.length]}" aria-hidden="true">${esc((Array.from(pl.name)[0] || "?").toUpperCase())}</span>`;
 const savePlayers = () => store.set("players", PL);
 function refreshPlayer() {
   renderPlayers(); renderSide(); renderAlbum(); if (doneEl) refreshMap(true); if (typeof renderLearned === "function") renderLearned(); renderGame();
@@ -3594,7 +3624,9 @@ function offerRestore() {
   };
 }
 function addPlayer(name) {
-  name = name.trim().slice(0, 18); if (!name) return false;
+  name = Array.from(name.trim()).slice(0, 18).join("");
+  if (!name) { toast("Type a name first"); $("#plName")?.focus(); return false; }
+  if (PL.some(p => p.name.toLowerCase() === name.toLowerCase())) { toast(`${name} is already here. Tap their name to play.`); return false; }
   const pl = { id: "p" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), name };
   PL.push(pl); savePlayers(); keepData(); renderPlayers.adding = false; loadPlayer(pl.id); refreshPlayer(); sfx.yes(); toast(`Welcome, ${name}!`); return true;
 }
@@ -3656,7 +3688,7 @@ $("#unlockAll").onclick = () => { if (!S.pid) { askPlayer(); return; } S.unlocke
 $("#resetAll").onclick = e => {
   const b = e.currentTarget;
   if (!S.pid) return;
-  if (b.dataset.sure) { pdrop(S.pid, ["done", "cards", "unlocked", "pos", "seen", "learned"]); loadPlayer(S.pid); refreshPlayer(); b.textContent = "Start over"; delete b.dataset.sure; toast(`${S.name}'s progress is cleared`); }
+  if (b.dataset.sure) { pdrop(S.pid, PKEYS.filter(k => k !== "bigDay")); loadPlayer(S.pid); refreshPlayer(); renderGame(); b.textContent = "Start over"; delete b.dataset.sure; toast(`${S.name}'s progress is cleared`); }
   else { b.dataset.sure = 1; b.textContent = "Tap again to clear progress"; setTimeout(() => { b.textContent = "Start over"; delete b.dataset.sure; }, 4000); }
 };
 $("#themeBtn").onclick = () => { const r = document.documentElement, dark = r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; r.dataset.theme = dark ? "light" : "dark"; try { localStorage.setItem("found.theme", r.dataset.theme); } catch (e) {} sfx.toggle(); };
@@ -3709,6 +3741,10 @@ const MASS_CH = { "Before Mass": "We come into God's house and remember our Bapt
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); const ch = e.target.closest(".mch"); ch.querySelectorAll(".mbeat").forEach(b => b.classList.toggle("now", b === e.target)); show(ch, e.target.dataset.k); } }), { rootMargin: "-45% 0px -45% 0px" });
     document.querySelectorAll(".mbeat").forEach(b => io.observe(b));
+    const ratios = new Map();
+    const mio = new IntersectionObserver(es => { es.forEach(e => ratios.set(e.target, e.intersectionRatio)); let best = null, b = 0; ratios.forEach((r, m) => { if (r > b) { b = r; best = m; } });
+      const v = best && b > .5 && best.querySelector("video.mmedia.on"); if (v && v.paused && !reduce) { document.querySelectorAll("#mass .mch video").forEach(x => { if (x !== v && !x.paused) x.pause(); }); v.play().catch(() => {}); } }, { threshold: [0, .25, .5, .75, 1] });
+    document.querySelectorAll(".mch-media").forEach(m => mio.observe(m));
     const away = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) e.target.querySelectorAll("video").forEach(v => v.pause()); }));
     document.querySelectorAll(".mch").forEach(ch => away.observe(ch));
   } else document.querySelectorAll(".mbeat").forEach(b => b.classList.add("in", "now"));
