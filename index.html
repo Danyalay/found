@@ -276,9 +276,7 @@ img.flip{transform:scaleX(-1)}
 
 /* trading cards */
 .tcard{position:relative;aspect-ratio:5/7;container-type:inline-size;perspective:1400px;--rx:0deg;--ry:0deg;--mx:50%;--my:50%;--flip:0;-webkit-tap-highlight-color:transparent}
-.tcard.flipped{--flip:1}
-.tc-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(var(--rx)) rotateY(calc(var(--flip) * 180deg + var(--ry)));transition:transform .75s cubic-bezier(.3,1.35,.5,1)}
-.tcard.tilting .tc-in{transition:transform .1s linear}
+.tc-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(var(--rx)) rotateY(calc(var(--ang,0deg) + var(--ry)))}
 .tc-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:6cqw;overflow:hidden;box-shadow:0 2.5cqw 0 rgba(27,37,89,.18),0 5cqw 9cqw rgba(27,37,89,.28)}
 .tc-back{transform:rotateY(180deg)}
 .tc-frame{position:absolute;inset:0;padding:3.8cqw;display:flex;flex-direction:column;gap:2cqw;background:linear-gradient(135deg,#FFEBA8,#E3AC32 22%,#FFF4C9 45%,#C99327 70%,#FFE38E)}
@@ -1230,8 +1228,6 @@ a.ptile{text-decoration:none;color:inherit}
 
 /* ---------- video ---------- */
 .tc-window video.pimg{animation:none!important;object-fit:cover}
-.tcard.flipped .tc-front .tc-window{visibility:hidden;transition:visibility 0s .28s}
-.tcard .tc-front .tc-window{transition:visibility 0s .28s}
 .packvid video.pf{opacity:0}
 .packvid video.pf.on{opacity:1}
 .t-media.wide video{width:min(100%,980px);aspect-ratio:16/9;object-fit:cover;border-radius:18px 18px 0 0;display:block;background:#000}
@@ -1454,6 +1450,42 @@ a.ptile{text-decoration:none;color:inherit}
 .nc-copy b{font-family:var(--round);font-size:clamp(26px,7vw,34px);line-height:1.1;color:#fff}
 .nc-copy span{font-size:16px;line-height:1.4;color:rgba(244,241,255,.85)}
 .nc-copy i{justify-self:start;margin-top:10px;font-style:normal;font-weight:800;padding:10px 18px;border-radius:999px;background:linear-gradient(180deg,#FFE6A6,#FFC85C);color:#2A1E00}
+@property --rx{syntax:"<angle>";inherits:true;initial-value:0deg}
+@property --ry{syntax:"<angle>";inherits:true;initial-value:0deg}
+.tcard{transition:--rx .35s ease-out,--ry .35s ease-out}
+.tc-face.off{visibility:hidden}
+
+/* Ten Commandments: numerals carved in the app's rounded display font */
+.tabnums b{font-family:var(--round);font-weight:900;letter-spacing:.02em;color:rgba(110,98,86,.85);text-shadow:0 1.5px 0 rgba(255,255,255,.8),0 -1px 1px rgba(0,0,0,.22)}
+.tabnums{top:33%;height:42%;font-size:clamp(14px,3vw,22px)}
+.tabpic{width:min(100%,520px,calc(38vh * 4 / 3))}
+.tabcol{position:absolute;top:33%;height:42%;width:20%;translate:-50% 0;display:flex;flex-direction:column;justify-content:space-between;align-items:center}
+.tn{font-family:var(--round);font-weight:900;font-size:clamp(15px,3.6vw,26px);line-height:1;color:rgba(110,98,86,.8);text-shadow:0 1.5px 0 rgba(255,255,255,.8),0 -1px 1px rgba(0,0,0,.22);padding:2px 10px;border-radius:999px;transition:color .3s,background .3s,box-shadow .3s,transform .3s}
+.tn.done{color:#8a6400;background:rgba(255,224,138,.55)}
+.tn.now{color:#3b2a00;background:#FFD66B;box-shadow:0 0 16px rgba(255,200,61,.9);transform:scale(1.12);text-shadow:none}
+.cbox .cl{margin:6px 0 0;font-size:13px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft)}
+.cnav{display:flex;align-items:center;justify-content:space-between;gap:12px;width:min(100%,520px)}
+.cnav #cCount{font-weight:800;color:var(--ink-soft)}
+.cnav .chip:disabled{opacity:.35}
+.tabpic.review{width:min(100%,460px,calc(27vh * 4 / 3))}
+.cnav .chip{padding:10px 14px;font-size:15px}
+.cnav .chip.big{padding:12px 16px}
+.tabicon{display:block;position:relative;container-type:inline-size;aspect-ratio:1}
+.medal .tabicon{width:66%;filter:drop-shadow(0 4px 4px rgba(27,37,89,.18))}
+.tabicon img{display:block;width:100%;height:100%}
+.medal .tabicon img{width:100%;filter:none}
+.ticol{position:absolute;top:26%;height:50%;translate:-50% 0;display:flex;flex-direction:column;justify-content:space-between;align-items:center}
+.ticol b{font-family:var(--round);font-weight:900;font-size:8.5cqw;line-height:1;color:rgba(96,86,76,.85);text-shadow:0 .4cqw 0 rgba(255,255,255,.75),0 -.3cqw .3cqw rgba(0,0,0,.25)}
+/* invisible ink (Apple Messages style) */
+.inked,.unink{position:relative}
+.inked{cursor:grab;user-select:none;-webkit-user-select:none;touch-action:pan-y}
+.inked>.wd{display:inline-block}
+.inked>:not(canvas):not(.ink-hint),.inked>.wd{filter:blur(9px);opacity:.35;transition:filter .35s,opacity .35s}
+.inked.inkpeek>:not(canvas):not(.ink-hint),.inked.inkpeek>.wd{filter:none;opacity:1}
+.ink{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;transition:opacity .5s}
+.inked.inkpeek .ink{opacity:.12}
+.ink-hint{position:absolute;left:50%;bottom:-22px;translate:-50% 0;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap;pointer-events:none}
+.inked.inkpeek .ink-hint{opacity:0}
 /* apple scroll reveal: fade + rise, staggered */
 .rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(0,0,.5,1),transform 1s cubic-bezier(0,0,.5,1);transition-delay:calc(var(--d,0) * 90ms)}
 .rv.in{opacity:1;transform:none}
@@ -1774,7 +1806,7 @@ const pip = (cls = "", st = "") => `<span class="pip ${cls}" style="${st}"><span
 let gid = 0;
 function tablets() {
   const col = (x, rows) => `<div class="tabnums" style="left:${x}%">${rows.map((r, k) => `<b style="--k:${k}">${r}</b>`).join("")}</div>`;
-  return `<div class="sc"><img class="ph" src="assets/img/tablets.jpg" alt="" draggable="false">${col(38.8, ["I", "II", "III"])}${col(62.8, ["IV V", "VI VII", "VIII IX", "X"])}</div>`;
+  return `<div class="sc"><img class="ph" src="assets/img/tablets.jpg" alt="" draggable="false">${col(38.6, ["I", "II", "III", "IV", "V"])}${col(62.8, ["VI", "VII", "VIII", "IX", "X"])}</div>`;
 }
 const ground = `<img class="ground2" src="${A("island")}" alt="" draggable="false">`;
 const ART = {
@@ -1807,7 +1839,8 @@ const ART = {
   pray_glorybe: () => `<div class="sc"><img class="ph kb" src="assets/img/pray_glorybe.jpg" alt="" draggable="false"></div>`,
   mass_church: () => `<div class="sc"><img class="ph kb" src="assets/img/mass_church.jpg" alt="" draggable="false"></div>`,
 };
-const ICON = { staff: img("staff"), tablets: img("scroll"), candle: img("candle"), stones: img("gift"), glass: img("glass"), door: img("door"), hands: img("pray"), heart: img("heartsp") };
+const tabIcon = (cls = "", st = "") => `<span class="tabicon ${cls}" style="${st}"><img src="${A("scroll")}" alt="" draggable="false"><span class="ticol" style="left:27%">${["I", "II", "III", "IV", "V"].map(r => `<b>${r}</b>`).join("")}</span><span class="ticol" style="left:72%">${["VI", "VII", "VIII", "IX", "X"].map(r => `<b>${r}</b>`).join("")}</span></span>`;
+const ICON = { staff: img("staff"), tablets: tabIcon(), candle: img("candle"), stones: img("gift"), glass: img("glass"), door: img("door"), hands: img("pray"), heart: img("heartsp") };
 const SAINT_ART = { boat: img("boat"), cross: img("cross"), lily: img("lily"), flame: img("fire"), book: img("book"), stole: img("ear"), mitre: img("church"), rays: img("heartsp") };
 
 /* ---------- motion ---------- */
@@ -1899,7 +1932,7 @@ function cardHTML(i, cls = "") {
     <div class="tc-window"><img class="pimg" src="assets/img/${SAINTS[i].pic}.jpg" alt="Portrait of ${esc(s.name)}" draggable="false">${/\b(big|rcard)\b/.test(cls) && LOOPS.includes(s.pic) && !reduceMotion ? `<video class="pimg anim" src="assets/vid/${s.pic}.mp4" muted loop autoplay playsinline preload="auto" disablepictureinpicture disableremoteplayback aria-hidden="true" onerror="this.remove()"></video>` : ""}</div>
     <div class="tc-plate"><b>${esc(s.name)}</b><small>Feast day ${esc(s.feast)}</small></div>
    </div><span class="tc-holo"></span><span class="tc-shine"></span></div>
-   <div class="tc-face tc-back"><div class="tc-frame back">
+   <div class="tc-face tc-back off"><div class="tc-frame back">
     <div class="tc-bhead"><span class="tc-medal"><img class="pimg" src="assets/img/${SAINTS[i].pic}.jpg" alt="" draggable="false"></span><div><b>${esc(s.name)}</b><span class="tc-power">${esc(s.power)}</span></div></div>
     <dl class="tc-facts"><div><dt>Lived</dt><dd>${esc(s.lv)}</dd></div><div><dt>Home</dt><dd>${esc(s.hm)}</dd></div><div><dt>Feast day</dt><dd>${esc(s.feast)}</dd></div></dl>
     <p class="tc-fun"><b>Cool fact</b>${esc(s.fun)}</p>
@@ -1914,12 +1947,21 @@ function lockedCardHTML(i) {
    <div class="tc-plate"><b>Mystery saint</b><small>Finish Lesson ${i + 1} to collect</small></div>
   </div></div></div></div>`;
 }
+// which side shows is decided from the card's real angle, never left to the browser
+function setAng(card, ang) {
+  card._ang = ang; card.style.setProperty("--ang", ang + "deg");
+  const a = ((ang % 360) + 360) % 360, back = a > 90 && a < 270;
+  card.querySelector(".tc-front")?.classList.toggle("off", back);
+  card.querySelector(".tc-back")?.classList.toggle("off", !back);
+  const v = card.querySelector(".tc-front video");
+  if (v) { if (back) { if (!v.paused) v.pause(); } else if (v.paused && !reduce) v.play().catch(() => {}); }
+}
 function attachTilt(card) {
   if (!card || card.dataset.tilt) return; card.dataset.tilt = 1;
   const reset = () => { card.classList.remove("tilting"); card.style.setProperty("--rx", "0deg"); card.style.setProperty("--ry", "0deg"); card.style.setProperty("--mx", "50%"); card.style.setProperty("--my", "50%"); };
   card.addEventListener("pointermove", e => {
+    if (e.pointerType !== "mouse") return; // a finger tap is a tap, not a tilt
     const r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
-    card.classList.add("tilting");
     card.style.setProperty("--ry", ((x - .5) * 26).toFixed(1) + "deg"); card.style.setProperty("--rx", ((.5 - y) * 20).toFixed(1) + "deg");
     card.style.setProperty("--mx", (x * 100).toFixed(0) + "%"); card.style.setProperty("--my", (y * 100).toFixed(0) + "%");
   });
@@ -1941,11 +1983,14 @@ function openCard(i) {
 }
 function closeCard() { sfx.close(); $("#cardView").hidden = true; if ($("#quest").hidden) document.body.style.overflow = ""; }
 function flipCard(c) {
-  if (!c) return;
-  const v = c.querySelector(".tc-front video"), toBack = !c.classList.contains("flipped");
-  c.classList.toggle("flipped"); sfx.flip();
-  // iPhone Safari paints a playing video straight through the back of a turned card, so pause it while the back shows
-  if (v) { if (toBack) setTimeout(() => v.pause(), 300); else v.play().catch(() => {}); }
+  if (!c || c._busy) return;
+  const to = c.classList.contains("flipped") ? 0 : 180, from = c._ang || 0;
+  c.classList.toggle("flipped", to === 180); sfx.flip();
+  if (!G || reduce) { setAng(c, to); return; }
+  const o = { a: from }; c._busy = 1;
+  const end = () => { if (!c._busy) return; c._busy = 0; setAng(c, to); };
+  G.to(o, { a: to, duration: .7, ease: "back.out(1.15)", onUpdate: () => setAng(c, o.a), onComplete: end });
+  setTimeout(end, 1100); // never leave a card half-turned if the phone pauses animations
 }
 function renderAlbum() {
   const n = SAINTS.filter((_, i) => isCollected(i)).length;
@@ -2461,14 +2506,22 @@ function audio() {
     try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return null; }
     SFX.forEach(n => fetch(ASSET(`assets/sfx/${n}.mp3`)).then(r => r.arrayBuffer()).then(b => ac.decodeAudioData(b)).then(d => { bufs[n] = d; }).catch(() => {}));
   }
-  if (ac.state === "suspended") ac.resume();
+  // iOS pauses web audio when the phone sleeps or the app is switched ("suspended" or "interrupted"); wake it on any tap
+  if (ac.state !== "running") ac.resume().catch(() => {});
   return ac;
 }
 function play(n, vol = 1, delay = 0) {
   if (!S.sound) return; const a = audio(); if (!a || !bufs[n]) return;
   const src = a.createBufferSource(), g = a.createGain(); src.buffer = bufs[n]; g.gain.value = vol; src.connect(g); g.connect(a.destination); src.start(a.currentTime + delay);
 }
-["pointerdown", "keydown", "touchstart"].forEach(t => addEventListener(t, audio, { once: true, passive: true }));
+// iPhone: play sounds like media, so they work with the silent switch on, and unlock audio with a silent blip on the first tap
+function unlockAudio() {
+  try { if (navigator.audioSession) navigator.audioSession.type = "playback"; } catch (e) {}
+  const a = audio(); if (!a) return;
+  try { const s = a.createBufferSource(); s.buffer = a.createBuffer(1, 1, 22050); s.connect(a.destination); s.start(0); } catch (e) {}
+}
+["pointerup", "touchend", "keydown"].forEach(t => addEventListener(t, unlockAudio, { once: true, passive: true }));
+addEventListener("pointerdown", () => { if (ac && ac.state !== "running") ac.resume().catch(() => {}); }, { passive: true });
 const sfx = {
   tap: () => play("tap"), select: () => play("select"), pop: () => play("pop", .8), toggle: () => play("toggle"),
   yes: () => { play("yes", .8); react("yes"); }, no: () => { play("no", .7); react("no"); },
@@ -2676,7 +2729,7 @@ function comboPop(n) {
   const c = document.createElement("div"); c.className = "combo"; c.innerHTML = `<img src="${A("stars")}" alt="">${n} in a row!`;
   $("#quest").appendChild(c); sfx.sparkle(); setTimeout(() => c.remove(), 1600);
 }
-const iconArt = n => `<div class="sc">${ground}${img(n, "float", "left:50%;top:42%;width:54%;translate:-50% -50%")}</div>`;
+const iconArt = n => `<div class="sc">${ground}${n === "tablets" ? tabIcon("float", "position:absolute;left:50%;top:42%;width:54%;translate:-50% -50%") : img(n, "float", "left:50%;top:42%;width:54%;translate:-50% -50%")}</div>`;
 R.story = (el, s) => {
   el.innerHTML = `${s.tag ? `<span class="tag">${s.tag}</span>` : ""}<div class="art${/shepherd|carry/.test(s.art) ? " tall" : ""}">${s.icon ? iconArt(s.icon) : (ART[s.art] || ART.lamb)()}</div><p class="say ${s.sm ? "sm" : ""}">${esc(s.text)}</p>${s.ref ? `<p class="ref">${esc(s.ref)}</p>` : ""}`;
 };
@@ -2867,6 +2920,35 @@ R.order = (el, sc = {}) => {
     else setReady(false, sc.prayer || sc.steps ? "What comes next?" : `What comes after ${STEPS[k - 1]}?`);
   });
 };
+// invisible ink over a block of text: drifting, twinkling particles over blurred words; a swipe peeks underneath
+function inkCover(el) {
+  if (!el || el._ink) return;
+  const cv = document.createElement("canvas"); cv.className = "ink"; cv.setAttribute("aria-hidden", "true");
+  const hint = document.createElement("span"); hint.className = "ink-hint"; hint.textContent = "Swipe to peek";
+  el.classList.add("inked"); el.append(cv, hint);
+  const ctx = cv.getContext("2d"), dpr = Math.min(devicePixelRatio || 1, 2); let W = 0, H = 0, dots = [], raf = 0, t;
+  const size = () => { const r = el.getBoundingClientRect(); W = cv.width = Math.round(r.width * dpr); H = cv.height = Math.round(r.height * dpr);
+    dots = Array.from({ length: Math.min(2200, Math.round(r.width * r.height / 34)) }, () => ({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .5 * dpr, vy: (Math.random() - .5) * .5 * dpr, p: Math.random() * 6.3, r: (Math.random() * .9 + .7) * dpr })); };
+  const draw = () => {
+    if (!el.isConnected || !el._ink) return;
+    ctx.clearRect(0, 0, W, H);
+    for (const d of dots) {
+      if (!reduce) { d.x += d.vx; d.y += d.vy; d.p += .05; if (d.x < 0 || d.x > W) d.vx *= -1; if (d.y < 0 || d.y > H) d.vy *= -1; }
+      ctx.globalAlpha = .45 + .4 * Math.sin(d.p); ctx.fillStyle = "#7d7a92"; ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, 6.283); ctx.fill();
+    }
+    if (!reduce) raf = requestAnimationFrame(draw);
+  };
+  const peek = () => { el.classList.add("inkpeek"); clearTimeout(t); t = setTimeout(() => el.classList.remove("inkpeek"), 1400); };
+  el.addEventListener("pointerdown", peek); el.addEventListener("pointermove", e => { if (e.buttons || e.pointerType !== "mouse") peek(); });
+  el._ink = { cv, hint, stop: () => cancelAnimationFrame(raf) };
+  size(); draw();
+}
+function inkUncover(el) {
+  if (!el || !el._ink) return;
+  const { cv, hint, stop } = el._ink; el._ink = null;
+  el.classList.remove("inked", "inkpeek"); el.classList.add("unink"); hint.remove();
+  cv.style.opacity = 0; setTimeout(() => { stop(); cv.remove(); }, 600);
+}
 R.pray = (el, s) => {
   const PS = setOf(s), P = PS.parts[s.i];
   const words = P.text.split(" ");
@@ -2877,14 +2959,14 @@ R.pray = (el, s) => {
   el.querySelector("#said").onclick = e => { sfx.tap(); e.currentTarget.hidden = true; quiz(); };
   function quiz() {
     if (!el.querySelector("#fill").hidden) return;
-    const f = el.querySelector("#fill"); f.hidden = false;
+    const f = el.querySelector("#fill"); f.hidden = false; inkCover(el.querySelector("#pl"));
     const gapped = P.text.replace(new RegExp("\\b" + P.gap + "\\b"), "%%");
     f.innerHTML = `<p class="say sm">Which word is missing?</p><p class="pline" style="font-size:clamp(20px,2.8vw,28px)">${esc(gapped).replace("%%", `<span class="gap">${esc(P.gap)}</span>`)}</p><div class="chips">${shuffle(P.opts).map(o => `<button class="chip" type="button" data-w="${o}">${o}</button>`).join("")}</div>`;
     f.scrollIntoView({ behavior: "smooth", block: "nearest" });
     setReady(false, "Pick the missing word");
     f.querySelectorAll(".chip").forEach(c => c.onclick = () => {
       if (ready) return;
-      if (c.dataset.w === P.gap) { f.querySelector(".gap").classList.add("ok"); sfx.yes(); burstAt(c, 40); setReady(true, "Yes! That's the missing word."); }
+      if (c.dataset.w === P.gap) { f.querySelector(".gap").classList.add("ok"); inkUncover(el.querySelector("#pl")); sfx.yes(); burstAt(c, 40); setReady(true, "Yes! That's the missing word."); }
       else { sfx.no(); c.disabled = true; setReady(false, "Try again!", false); }
     });
   }
@@ -2893,7 +2975,7 @@ R.prayall = (el, s = {}) => {
   const PS = setOf(s), P5 = s.upto ? PS.parts.slice(0, s.upto) : PS.parts;
   el.innerHTML = `<span class="tag">${s.upto && s.upto < PS.parts.length ? `${PS.name}, parts 1 to ${s.upto}` : `The whole ${PS.name}`}</span><p class="say sm">${s.upto && s.upto < PS.parts.length ? "Say all the parts you know so far, with the motions!" : "Say it all, with the motions! A grown-up can help."}</p><div class="fullprayer">${P5.map(p => `<p style="margin-bottom:8px">${esc(p.text)} <span class="ref">(${esc(p.g.toLowerCase())})</span></p>`).join("")}</div><div class="chips"><button class="chip" type="button" id="hide">Cover the words</button><button class="chip big" type="button" id="did">I said it!</button></div>`;
   setReady(false, "Tap when you've said it");
-  el.querySelector("#hide").onclick = e => { const fp = el.querySelector(".fullprayer"); fp.classList.toggle("covered"); e.currentTarget.textContent = fp.classList.contains("covered") ? "Show the words" : "Cover the words"; sfx.tap(); };
+  el.querySelector("#hide").onclick = e => { const fp = el.querySelector(".fullprayer"), on = !fp._ink; on ? inkCover(fp) : inkUncover(fp); e.currentTarget.textContent = on ? "Show the words" : "Cover the words"; sfx.tap(); };
   el.querySelector("#did").onclick = e => { e.currentTarget.disabled = true; sfx.win(); burst(innerWidth / 2, innerHeight / 2, 120, true); const m = s.upto && s.upto < PS.parts.length ? "Great! You know parts 1 to " + s.upto + "!" : `Wow! The whole ${PS.name}!`; setReady(true, m); };
 };
 R.read = (el, s) => {
@@ -2911,20 +2993,30 @@ const CMDS = [
   ["You shall not bear false witness against your neighbor.", "Tell the truth.", "Have I lied, or blamed someone else for what I did? Do TV shows or movies make lying seem okay?"],
   ["You shall not covet your neighbor's wife.", "Husbands and wives love only each other. Keep your heart and thoughts pure.", "Do I keep my thoughts kind and pure?"],
   ["You shall not covet your neighbor's goods.", "Be happy with what you have.", "Am I jealous of my friends' things?"]];
+const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
 R.cmds = el => {
-  el.innerHTML = `<span class="tag">The Ten Commandments</span><p class="say sm">Tap each number to open it. Commandments 1 to 3 are about loving God. 4 to 10 are about loving others.</p>
-  <div class="tabpic"><img class="ph" src="assets/img/tablets.jpg" alt="Two stone tablets on a hill" draggable="false"><div class="tab1">${[0, 1, 2].map(i => `<button type="button" class="cnum" data-i="${i}">${i + 1}</button>`).join("")}</div><div class="tab2">${[3, 4, 5, 6, 7, 8, 9].map(i => `<button type="button" class="cnum" data-i="${i}">${i + 1}</button>`).join("")}</div></div>
-  <div class="cbox" id="cb" hidden></div>`;
-  const seen = new Set(), cb = el.querySelector("#cb");
-  setReady(false, "Tap number 1");
-  el.querySelectorAll(".cnum").forEach(b => b.onclick = () => {
-    const i = +b.dataset.i, c = CMDS[i]; sfx.pop(); seen.add(i);
-    el.querySelectorAll(".cnum").forEach(x => x.classList.toggle("on", x === b)); b.classList.add("seen");
-    cb.hidden = false; cb.innerHTML = `<b class="cn">${i + 1}${["st", "nd", "rd"][i] || "th"} Commandment</b><p class="cw">${esc(c[0])}</p><p><b>What it means:</b> ${esc(c[1])}</p><p class="cq"><b>Ask yourself:</b> ${esc(c[2])}</p>`;
-    if (G) G.from(cb, { y: 10, duration: .35, ease: "power2.out" });
-    
-    if (seen.size === 10) { sfx.win(); setReady(true, "You opened all ten!"); } else setReady(false, `${10 - seen.size} more to open`);
-  });
+  const nums = side => [0, 1, 2, 3, 4].map(k => side * 5 + k).map(i => `<b class="tn" data-i="${i}">${ROMAN[i]}</b>`).join("");
+  el.innerHTML = `<div class="tabpic review"><img class="ph" src="assets/img/tablets.jpg" alt="Two stone tablets on a hill" draggable="false"><div class="tabcol" style="left:38.6%">${nums(0)}</div><div class="tabcol" style="left:62.8%">${nums(1)}</div></div>
+  <div class="cnav"><button type="button" class="chip" id="cPrev">&lsaquo; Previous</button><span id="cCount"></span><button type="button" class="chip big" id="cNext">Next commandment &rsaquo;</button></div>
+  <div class="cbox" id="cb" aria-live="polite"></div>`;
+  const cb = el.querySelector("#cb"); let i = 0, top = 0;
+  const show = (dir) => {
+    const c = CMDS[i];
+    el.querySelectorAll(".tn").forEach(t => { const k = +t.dataset.i; t.classList.toggle("now", k === i); t.classList.toggle("done", k <= top && k !== i); });
+    cb.innerHTML = `<b class="cn">${i + 1}${["st", "nd", "rd"][i] || "th"} Commandment</b><p class="cw">${esc(c[0])}</p><p><b>What it means:</b> ${esc(c[1])}</p><p class="cq"><b>Ask yourself:</b> ${esc(c[2])}</p>
+      <p class="cl">${i < 3 ? "About loving God" : "About loving others"}</p>`;
+    el.querySelector("#cCount").textContent = `${i + 1} of 10`;
+    el.querySelector("#cPrev").disabled = i === 0;
+    el.querySelector("#cNext").disabled = i === 9;
+    if (G && dir) G.fromTo(cb, { x: dir * 40, opacity: 0 }, { x: 0, opacity: 1, duration: .4, ease: "power2.out" });
+    if (top === 9) setReady(true, "You reviewed all ten!"); else setReady(false, `${9 - top} more to go`);
+    // keep the card in view on short screens
+    const r = cb.getBoundingClientRect(), sr = stage.getBoundingClientRect();
+    if (dir && (r.bottom > sr.bottom - 8 || r.top < sr.top)) stage.scrollTo({ top: stage.scrollTop + r.top - sr.top - 12, behavior: reduce ? "auto" : "smooth" });
+  };
+  el.querySelector("#cNext").onclick = () => { if (i < 9) { i++; top = Math.max(top, i); sfx.pop(); show(1); if (top === 9 && i === 9) { sfx.win(); burstAt(el.querySelector(".tabpic"), 70, true); } } };
+  el.querySelector("#cPrev").onclick = () => { if (i > 0) { i--; sfx.tap(); show(-1); } };
+  show(0);
 };
 R.match = (el, s) => {
   const words = shuffle(s.pairs.map((p, i) => [p[0], i]));
@@ -3026,11 +3118,12 @@ R.saint = el => {
       if (reveal.on) return; reveal.on = 1;
       slot.style.visibility = "visible"; sfx.reveal();
       if (!G) { pack.style.visibility = "hidden"; return finish(); }
-      const tl = G.timeline({ onComplete: finish });
-      setTimeout(() => { if (!fin) { tl.progress(1); finish(); } }, 2400);
+      const spin = { a: -540 }; setAng(card, -540);
+      const tl = G.timeline({ onComplete: () => { setAng(card, 0); finish(); } });
+      setTimeout(() => { if (!fin) { tl.progress(1); setAng(card, 0); finish(); } }, 2400);
       tl.to(pack, { opacity: 0, scale: 1.08, duration: .7, ease: "power2.in" })
         .fromTo(slot, { scale: .3, y: "-28%", opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 1, ease: "back.out(1.3)" }, "<.1")
-        .fromTo(card.querySelector(".tc-in"), { rotationY: -540 }, { rotationY: 0, duration: 1.1, ease: "power3.out", clearProps: "transform" }, "<")
+        .fromTo(spin, { a: -540 }, { a: 0, duration: 1.1, ease: "power3.out", onUpdate: () => setAng(card, spin.a), onComplete: () => setAng(card, 0) }, "<")
         .set(pack, { visibility: "hidden" });
     };
     if (reduce) { sfx.pack(); reveal(); return; }
