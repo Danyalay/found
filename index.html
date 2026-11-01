@@ -1234,29 +1234,29 @@ a.ptile{text-decoration:none;color:inherit}
 .mpic video.ph{width:100%;height:100%;object-fit:cover;display:block}
 /* ---------- the Mass, as a scroll story ---------- */
 .masspage2{background:var(--bg);padding-bottom:40px}
-.mhero{position:relative;height:190svh;background:#000}
+.mhero{position:relative;height:150svh;background:#000}
 .mhero-sticky{position:sticky;top:var(--hdr,62px);height:calc(100svh - var(--hdr,62px));overflow:hidden;display:grid;place-items:center;--p:0}
 .mhero{--p:0}
-.mhero-media{position:absolute;inset:0;transform:scale(calc(1 - var(--p) * .14));border-radius:calc(var(--p) * 34px);overflow:hidden;transform-origin:50% 40%}
+.mhero-media{position:absolute;inset:0;overflow:hidden}
 .mhero-media video{width:100%;height:100%;object-fit:cover;display:block}
 .mhero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 30%,rgba(0,0,0,.62) 100%)}
-.mhero-copy{position:relative;z-index:2;align-self:end;margin-bottom:max(110px,14svh);padding:0 22px;text-align:center;color:#fff;max-width:640px;opacity:calc(1 - var(--p) * 2.2);transform:translateY(calc(var(--p) * -80px))}
+.mhero-copy{position:relative;z-index:2;align-self:end;margin-bottom:max(110px,14svh);padding:0 22px;text-align:center;color:#fff;max-width:640px;opacity:calc(1 - var(--p) * 2.2);transform:translate3d(0,calc(var(--p) * -80px),0);will-change:transform,opacity}
 .mh-eyebrow{margin:0 0 6px;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#FFD66B}
 .mhero-copy h2{margin:0;font-size:clamp(46px,11vw,96px);line-height:1;letter-spacing:-.035em;color:#fff}
 .mh-sub{margin:14px auto 0;font-size:clamp(17px,4.4vw,22px);line-height:1.4;color:rgba(255,255,255,.9);max-width:30ch}
 .mh-cue{display:block;width:26px;height:42px;margin:24px auto 0;border:2px solid rgba(255,255,255,.75);border-radius:14px;position:relative}
 .mh-cue::after{content:"";position:absolute;left:50%;top:8px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:#fff;animation:cue 1.6s ease-in-out infinite}
 @keyframes cue{0%{opacity:0;transform:translateY(0)}40%{opacity:1}100%{opacity:0;transform:translateY(14px)}}
-.mstory{position:relative;z-index:1;margin-top:-10svh}
+.mstory{position:relative;z-index:1}
 .mch{padding:0 0 30px}
 .mch-head{max-width:720px;margin:0 auto;padding:70px 22px 26px;text-align:center}
 .mch-k{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent,#0071e3)}
 .mch-head h3{margin:6px 0 8px;font-size:clamp(34px,8.6vw,64px);line-height:1.02;letter-spacing:-.03em}
 .mch-head p{margin:0;font-size:clamp(17px,4.2vw,22px);color:var(--ink-soft)}
 .mch-body{position:relative;max-width:1180px;margin:0 auto;padding:0 16px}
-.mch-media{position:sticky;top:calc(var(--hdr,62px) + 8px);z-index:2;height:min(46svh,64vw);border-radius:26px;overflow:hidden;background:#000;box-shadow:0 18px 40px rgba(0,0,0,.18)}
+.mch-media{contain:paint;position:sticky;top:calc(var(--hdr,62px) + 8px);z-index:2;height:min(46svh,64vw);border-radius:26px;overflow:hidden;background:#000;box-shadow:0 -24px 0 0 var(--bg),0 18px 40px rgba(0,0,0,.18)}
 .mstage{position:absolute;inset:0}
-.mmedia{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease;display:block}
+.mmedia{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease;display:block;will-change:opacity}
 .mmedia.on{opacity:1}
 .mch-beats{position:relative;z-index:1;display:grid;gap:18svh;padding:22svh 0 26svh}
 .mbeat{position:relative;background:var(--card);border-radius:24px;padding:20px 20px 18px;box-shadow:0 10px 30px rgba(0,0,0,.08);transform:translateY(30px) scale(.97);transition:transform .7s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
@@ -1679,7 +1679,7 @@ a.ptile{text-decoration:none;color:inherit}
 <section class="masspage2" id="mass" data-view="mass">
   <div class="mhero" id="mHero">
     <div class="mhero-sticky">
-      <div class="mhero-media"><video class="mvid" data-auto src="assets/vid/mass_church.mp4" poster="assets/img/mass_church.jpg" muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
+      <div class="mhero-media"><video class="mvid" data-auto src="assets/vid/mass_hero.mp4" poster="assets/img/mass_church.jpg" muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
       <div class="mhero-copy">
         <p class="mh-eyebrow">Every Sunday</p>
         <h2>Come to Mass.</h2>
@@ -3625,11 +3625,11 @@ $("#cardView .cv-card").addEventListener("click", e => { if (e.target.closest(".
 addEventListener("keydown", e => { if ($("#cardView").hidden) return; if (e.key === "Escape") { if (!$("#cvSheet").hidden) { $("#cvSheetClose").click(); return; } closeCard(); } if (e.key === "ArrowLeft") $("#cvPrev").click(); if (e.key === "ArrowRight") $("#cvNext").click(); if (e.key === " " || e.key === "Enter") { e.preventDefault(); $("#cvFlip").click(); } });
 document.querySelectorAll("[data-practice]").forEach(b => b.onclick = () => { sfx.tap(); openPractice(b.dataset.practice); });
 /* ---------- videos: play while on screen, pause when scrolled away (saves battery, keeps scrolling smooth) ---------- */
-const VIDS = ["mass_church", "mass_entrance", "mass_readings", "mass_gospel", "mass_gifts", "mass_altar", "mass_peace", "mass_blessing", "mass_sent", "mass_kneel"];
+const VIDS = ["mass_church", "mass_entrance", "mass_readings", "mass_gospel", "mass_gifts", "mass_altar", "mass_peace", "mass_blessing", "mass_sent", "mass_kneel", "mass_font", "mass_ourfather", "mass_creed"];
 const autoIO = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => { const v = e.target; if (e.isIntersecting) { if (v.preload !== "auto") { v.preload = "auto"; v.load(); } v.play().catch(() => {}); } else v.pause(); }), { threshold: .2 }) : null;
 function autoVideos(root = document) { if (reduce) return; root.querySelectorAll("video[data-auto]").forEach(v => { if (v.dataset.on) return; v.dataset.on = 1; v.muted = true; autoIO ? autoIO.observe(v) : v.play().catch(() => {}); }); }
 // the Mass as a scroll story: each chapter keeps a video pinned while its parts scroll past, and the video follows the part you're reading
-const MASS_MEDIA = ["font", "mass_entrance", "mass_church", "mass_kneel", "mass_church", "mass_readings", "mass_gospel", "mass_church", "shamrock", "mass_kneel", "mass_gifts", "mass_altar", "mass_altar", "mass_altar", "pray_ourfather", "mass_peace", "mass_altar", "mass_blessing", "mass_kneel", "mass_sent"];
+const MASS_MEDIA = ["mass_font", "mass_entrance", "mass_church", "mass_kneel", "mass_church", "mass_readings", "mass_gospel", "mass_church", "mass_creed", "mass_kneel", "mass_gifts", "mass_altar", "mass_altar", "mass_altar", "mass_ourfather", "mass_peace", "mass_altar", "mass_blessing", "mass_kneel", "mass_sent"];
 const MASS_CH = { "Before Mass": "We come into God's house and remember our Baptism.", "We gather": "Jesus' family comes together and gets our hearts ready.", "The Word of God": "God speaks to us through the Bible.", "Jesus in the Eucharist": "The bread and wine become Jesus.", "Communion": "Jesus comes to us, and we share his peace.", "We go out": "We take Jesus' love home with us." };
 (() => {
   const groups = [...new Set(MASS.map(m => m.g))];
@@ -3649,7 +3649,7 @@ const MASS_CH = { "Before Mass": "We come into God's house and remember our Bapt
     </section>`;
   }).join("");
   // one active picture per chapter: the part closest to the middle of the screen decides which video plays
-  const show = (ch, k) => ch.querySelectorAll(".mmedia").forEach(x => { const on = x.dataset.k === k; x.classList.toggle("on", on); if (x.tagName === "VIDEO") { if (on && !reduce) { if (x.preload !== "auto") { x.preload = "auto"; x.load(); } x.play().catch(() => {}); } else x.pause(); } });
+  const show = (ch, k) => ch.querySelectorAll(".mmedia").forEach(x => { const on = x.dataset.k === k; x.classList.toggle("on", on); if (x.tagName === "VIDEO") { if (on && !reduce) { document.querySelectorAll("#mass video").forEach(v => { if (v !== x && !v.paused) v.pause(); }); if (x.preload !== "auto") { x.preload = "auto"; x.load(); } x.play().catch(() => {}); } else x.pause(); } });
   document.querySelectorAll(".mch").forEach(ch => show(ch, ch.querySelector(".mbeat").dataset.k));
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); const ch = e.target.closest(".mch"); ch.querySelectorAll(".mbeat").forEach(b => b.classList.toggle("now", b === e.target)); show(ch, e.target.dataset.k); } }), { rootMargin: "-45% 0px -45% 0px" });
