@@ -16,8 +16,8 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Found! A First Reconciliation adventure">
 <meta property="og:description" content="13 lessons, saint cards, and prayer practice for kids 6 to 8. Tap to play in your browser.">
-<meta property="og:image" content="https://danyalay.github.io/found/share.jpg">
-<meta property="og:url" content="https://danyalay.github.io/found/">
+<meta property="og:image" content="https://foundlamb.pages.dev/share.jpg">
+<meta property="og:url" content="https://foundlamb.pages.dev/">
 <meta name="twitter:card" content="summary_large_image">
 <title>Found! Reconciliation Quest</title>
 <script>document.documentElement.classList.add("js")</script>
@@ -1166,7 +1166,7 @@ a.ptile{text-decoration:none;color:inherit}
   <img src="assets/g/pip.webp" alt="" width="96" height="96">
   <h1>Found! plays in your web browser.</h1>
   <p class="nj-lede">This is an interactive app for kids getting ready for First Reconciliation. This viewer can't play it, so it looks empty here.</p>
-  <p><a class="nj-btn" href="https://danyalay.github.io/found/">Open Found! in Safari or Chrome</a></p>
+  <p><a class="nj-btn" href="https://foundlamb.pages.dev/">Open Found! in Safari or Chrome</a></p>
   <p class="nj-small">Each family's players and progress are saved only on their own device. Nothing is shared or collected.</p>
 </div>
 
@@ -1348,7 +1348,7 @@ a.ptile{text-decoration:none;color:inherit}
           <button type="button" id="pvB" aria-pressed="false">Version B</button>
         </div>
         <p id="pvText"></p>
-        <p class="ref">Both versions are printed in the workbook. Lesson 9 teaches Version A, the one used in the workbook's confession walkthrough, and also shows Version B. Ask your parish which one they use.</p>
+        <p class="ref">Version A is the prayer printed in the workbook, and Lesson 9 teaches it line by line. Version B is the newest official translation from the Order of Penance, required in U.S. parishes since April 2023. Any sincere act of contrition is valid, even in a child's own words. Ask your parish's faith formation office which one your child should memorize.</p>
       </div>
     </div>
 
@@ -1790,8 +1790,8 @@ const QUESTS = [
    {t:"recall",level:3,final:1},
    {t:"prayall"},
    {t:"story",icon:"pray",text:"In the confessional, you can pray the Act of Contrition, or tell God you're sorry in your own words."},
-   {t:"read",tag:"Version B",lines:["My God, I am sorry for my sins with all my heart.","In choosing to do wrong and in failing to do good, I have sinned against You, Whom I should love above all things.","I firmly intend, with Your help, to do penance, to sin no more, and to avoid whatever leads me to sin.","Our Savior Jesus Christ suffered and died for us. In His name, my God, have mercy. Amen."],ref:"Some parishes use this version. Ask which one yours uses."},
-   {t:"pick",prompt:"Version B words: tap every word that is in Version B.",items:[["God",1],["sorry",1],["wrong",1],["sinned",1],["intend",1],["penance",1],["avoid",1],["Jesus",1],["suffered",1],["mercy",1],["recess",0],["dinosaur",0],["vacation",0]],done:"You found all ten Version B words!"},
+   {t:"read",tag:"Version B: from the Order of Penance (2023)",lines:["O my God, I am sorry and repent with all my heart for all the wrong I have done and for the good I have failed to do,","because by sinning I have offended you, who are all good and worthy to be loved above all things.","I firmly resolve, with the help of your grace, to do penance, to sin no more, and to avoid the occasions of sin.","Through the merits of the Passion of our Savior Jesus Christ, Lord, have mercy."],ref:"The newest official words, used in every U.S. parish since 2023. Ask which version your parish teaches."},
+   {t:"pick",prompt:"Version B words: tap every word that is in Version B.",items:[["God",1],["sorry",1],["repent",1],["wrong",1],["good",1],["offended",1],["grace",1],["penance",1],["Jesus",1],["mercy",1],["recess",0],["dinosaur",0],["vacation",0]],done:"You found all ten Version B words!"},
    {t:"saint"},{t:"done"}]},
 
  { title:"Absolution", lesson:"Lesson 10", icon:"heart", bg:"#FFE2E8",
@@ -1885,7 +1885,7 @@ const PRAYER = [
   {text:"I firmly resolve, with the help of Your grace,",gap:"grace",opts:["grace","friends","words"],g:"Make a strong fist",mean:"I promise, with Your loving help,"},
   {text:"to confess my sins, to do penance, and to amend my life. Amen.",gap:"life",opts:["room","life","words"],g:"Fold your hands",mean:"to tell You my sins, to do something good to show You I'm sorry and want to change, and to start living the way I should."},
 ];
-const PRAYER_B = "My God, I am sorry for my sins with all my heart. In choosing to do wrong and in failing to do good, I have sinned against You, Whom I should love above all things. I firmly intend, with Your help, to do penance, to sin no more, and to avoid whatever leads me to sin. Our Savior Jesus Christ suffered and died for us. In His name, my God, have mercy. Amen.";
+const PRAYER_B = "O my God, I am sorry and repent with all my heart for all the wrong I have done and for the good I have failed to do, because by sinning I have offended you, who are all good and worthy to be loved above all things. I firmly resolve, with the help of your grace, to do penance, to sin no more, and to avoid the occasions of sin. Through the merits of the Passion of our Savior Jesus Christ, Lord, have mercy.";
 // every prayer the kids can practice; each part has a motion, a missing-word check and a kid-sized meaning
 const PRAYERS = {
   contrition: { name: "Act of Contrition", parts: PRAYER },
@@ -1928,7 +1928,7 @@ const MASS = [
   { g: "Communion", name: "Our Father", img: "pray_ourfather", pose: "stand", means: "We pray the prayer Jesus taught us, together as one family.", doo: "Stand and pray the Our Father with everyone." },
   { g: "Communion", name: "Sign of Peace", img: "mass_peace", pose: "stand", means: "We share Jesus' peace with the people around us.", doo: "Shake hands with the people near you and smile.", say: ["Peace be with you.", "Peace be with you."], who: "Your neighbor says" },
   { g: "Communion", name: "Lamb of God", img: "shepherd_carry", pose: "stand", means: "We sing to Jesus, the Lamb of God who takes away our sins and gives us peace. Then the priest holds up the Host and we tell Jesus we need Him.", doo: "Stand and sing. When the song ends, kneel and answer with everyone.", say: ["Behold the Lamb of God, behold him who takes away the sins of the world. Blessed are those called to the supper of the Lamb.", "Lord, I am not worthy that you should enter under my roof, but only say the word and my soul shall be healed."] },
-  { g: "Communion", name: "Holy Communion", img: "mass_blessing", pose: "stand", means: "Jesus comes to us in Holy Communion. After your First Communion, you'll receive him too!", doo: "Walk up with your family. Before your First Communion, cross your arms over your chest, and the priest will give you a blessing. After it, you'll bow your head before you receive Jesus.", say: ["The Body of Christ.", "Amen."] },
+  { g: "Communion", name: "Holy Communion", img: "mass_blessing", pose: "stand", means: "Jesus comes to us in Holy Communion. After your First Communion, you'll receive him too!", doo: "Walk up with your family. Before your First Communion, cross your arms over your chest. The priest may bless you, or you can quietly pray: “Jesus, come into my heart.” After your First Communion, you'll bow your head before you receive Jesus.", say: ["The Body of Christ.", "Amen."] },
   { g: "Communion", name: "Quiet thank you", img: "mass_kneel", pose: "kneel", means: "Jesus is very close to us now. It's a special time to talk to him.", doo: "Kneel or sit quietly. Thank Jesus, and tell him what's on your heart." },
   { g: "We go out", name: "Go in peace", img: "mass_sent", pose: "stand", means: "The priest blesses us and sends us out to love and serve God all week.", doo: "Make the Sign of the Cross for the blessing. Bend your knee toward the tabernacle on your way out.", say: ["Go in peace.", "Thanks be to God."] },
 ];
