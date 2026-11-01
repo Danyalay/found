@@ -1587,12 +1587,80 @@ body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0p
 .tabn{font-size:min(26px,6cqw);padding:.4cqw 2.4cqw}
 .tabnums{top:25.5%;height:51%;justify-content:space-between}
 .tabnums b{font-size:min(24px,5.8cqw);line-height:1}
+
+/* ---------- Phase 1: Today card, prayers for every age, prayer reader ---------- */
+.fp-today{--lit:#3A8D4F;background:var(--card);color:var(--ink);text-align:left;padding:28px 24px 26px;border-top:8px solid var(--lit)}
+.fp-today[data-color="violet"]{--lit:#6B3FA0}.fp-today[data-color="rose"]{--lit:#D9739B}.fp-today[data-color="white"]{--lit:#D4AF37}.fp-today[data-color="red"]{--lit:#C8102E}
+.tile.fp-today{align-items:center;min-height:0;padding:28px 20px 28px;text-align:left}
+.tile.fp-today>*{width:min(100%,760px);max-width:none;text-align:left;margin-left:0;margin-right:0}
+.tile.fp-today h2,.tile.fp-today .t-sub{max-width:none;text-align:left}
+.fp-today h2{margin:2px 0 4px}
+.fp-today .t-sub{margin:0 0 10px}
+.fp-band{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--ink-soft);margin-bottom:14px}
+.fp-dot{width:14px;height:14px;border-radius:50%;background:var(--lit);box-shadow:0 0 0 3px color-mix(in srgb,var(--lit) 25%,transparent)}
+.fp-col{margin-left:auto;padding:3px 10px;border-radius:999px;background:color-mix(in srgb,var(--lit) 14%,var(--card));color:var(--ink)}
+.fp-feast{display:flex;align-items:center;gap:10px;margin:0 0 10px;padding:12px 14px;border-radius:16px;background:color-mix(in srgb,#FFD66B 22%,var(--card));font-weight:700}
+.fp-feast img{width:32px;height:32px;flex:none}
+.fp-why{margin:0 0 12px;font-size:16px;line-height:1.45;color:var(--ink-soft);max-width:60ch}
+.fp-who{margin:0 0 12px;font-size:15px;color:var(--ink-soft)}
+.fp-ask{display:grid;gap:6px;margin:0 0 14px;padding:14px 16px;border-radius:18px;background:color-mix(in srgb,var(--accent) 10%,var(--card))}
+.fp-ask span{font-size:14px;color:var(--ink-soft)}
+.fp-ask select,#plGrade,.fp-grade,#fpFc,#fpConf{font:inherit;font-size:16px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);max-width:100%}
+.fp-grade{font-size:14px;padding:6px 8px}
+.trow.pl-set{flex-wrap:wrap;row-gap:8px}
+@media (max-width:600px){.trow.pl-set .pn{flex:1 1 calc(100% - 60px)}.trow.pl-set .fp-grade{flex:1 1 auto}}
+.fp-fam{margin-top:6px;padding:16px 18px;border-radius:20px;background:var(--bg)}
+.fp-h{margin:0 0 6px;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+.fp-do{margin:0 0 8px;font-family:var(--round);font-weight:800;font-size:19px;line-height:1.35;color:var(--ink)}
+.fp-say{margin:0;font-size:15.5px;line-height:1.45;color:var(--ink-soft)}
+.fp-say b{color:var(--ink)}
+.fp-pray{display:grid;gap:12px;margin-bottom:28px}
+.fp-tabs{display:flex;gap:6px;overflow-x:auto;padding:4px;border-radius:999px;background:color-mix(in srgb,var(--ink) 6%,transparent);scrollbar-width:none}
+.fp-tabs button{flex:1 0 auto;padding:9px 14px;border-radius:999px;font-weight:700;font-size:14.5px;color:color-mix(in srgb,var(--ink) 74%,transparent);white-space:nowrap}
+.fp-tabs button[aria-selected="true"]{background:var(--card);color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.1)}
+@media (max-width:600px){.fp-tabs{display:grid;grid-template-columns:1fr 1fr;border-radius:20px}.fp-tabs button{white-space:normal}}
+.fp-bl{margin:0;font-size:14px;font-weight:700;color:var(--ink-soft)}
+.fp-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.fp-pr{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:12px;padding:12px 14px;border-radius:20px;background:var(--card);box-shadow:0 4px 14px rgba(0,0,0,.06);text-align:left;color:var(--ink)}
+.fp-pr img{width:44px;height:44px;object-fit:contain}
+.fp-pr b{display:block;font-family:var(--round);font-size:17px}
+.fp-pr small{display:block;font-size:13.5px;line-height:1.35;color:var(--ink-soft)}
+.fp-pr i{font-style:normal;font-weight:800;font-size:13.5px;color:var(--accent);white-space:nowrap}
+.fp-pr.known i{color:#1E7A3C}
+@media (hover:hover){.fp-pr:hover{transform:translateY(-2px)}.fp-pr{transition:transform .25s}}
+.pread{position:fixed;inset:0;z-index:96;background:var(--bg);color:var(--ink)}
+.pr-x{position:absolute;z-index:2;top:calc(12px + env(safe-area-inset-top,0px));right:14px}
+.pr-scroll{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.pr-in{max-width:640px;margin:0 auto;padding:calc(60px + env(safe-area-inset-top,0px)) 20px calc(40px + env(safe-area-inset-bottom,0px));display:grid;justify-items:center;text-align:center;gap:10px}
+.pr-icon{width:92px;height:92px;object-fit:contain}
+.pr-k{margin:0;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+.pr-in h2{margin:0;font-family:var(--round);font-size:clamp(28px,7vw,40px);line-height:1.1}
+.pr-when{margin:0 0 6px;font-size:16px;color:var(--ink-soft);max-width:44ch}
+.pr-text{width:100%;padding:22px 20px;border-radius:24px;background:var(--card);box-shadow:0 8px 24px rgba(0,0,0,.07);text-align:left}
+.pr-text p{margin:0 0 12px;font-family:var(--round);font-weight:700;font-size:clamp(19px,4.8vw,23px);line-height:1.5}
+.pr-text p:last-child{margin-bottom:0}
+.pr-amen{margin-top:10px;min-width:220px;padding:15px 26px;border-radius:999px;background:#0066CC;color:#fff;font-weight:700;font-size:17px}
+.pr-know{min-width:220px;padding:12px 22px;border-radius:999px;background:color-mix(in srgb,var(--ink) 7%,transparent);color:var(--ink);font-weight:700;font-size:15px}
+.pr-know.on{background:color-mix(in srgb,#30D158 22%,var(--card));color:#1E7A3C}
+.n-themes.lam .n-theme.pick{background:#3A3F8F;border-color:#FFD98A}
+.n-grown{margin:6px 0 0;padding:12px 16px;border-radius:16px;background:#1B2156;font-size:15px;color:#FFE7B0;max-width:40ch}
+.pl-add select{flex:1 1 140px}
 /* apple scroll reveal: fade + rise, staggered */
 .rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(0,0,.5,1),transform 1s cubic-bezier(0,0,.5,1);transition-delay:calc(var(--d,0) * 90ms)}
 .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.land-frame{transform:none}}
 </style>
 
+<div class="pread" id="pread" hidden role="dialog" aria-modal="true" aria-labelledby="prTitle">
+  <button type="button" class="ps-x pr-x" id="prX" aria-label="Close">&times;</button>
+  <div class="pr-scroll"><div class="pr-in">
+    <img class="pr-icon" id="prIcon" src="" alt="">
+    <p class="pr-k" id="prK"></p><h2 id="prTitle"></h2><p class="pr-when" id="prWhen"></p>
+    <div class="pr-text" id="prText"></div>
+    <button type="button" class="pr-amen" id="prDone">Amen</button>
+    <button type="button" class="pr-know" id="prKnow"></button>
+  </div></div>
+</div>
 <div class="night" id="night" hidden role="dialog" aria-modal="true" aria-label="Bedtime Heart Check">
   <div class="night-bg"><img src="assets/img/night_sky.jpg" alt=""><video id="nightVid" src="assets/vid/night_sky.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
   <button type="button" class="night-x" id="nightX" aria-label="Close Bedtime Heart Check">&times;</button>
@@ -1637,7 +1705,7 @@ body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0p
     <div class="copy">
       <p class="eyebrow" id="season" hidden></p>
       <h1 id="heroH"><span class="mask"><span class="w">A</span></span> <span class="mask"><span class="w">little</span></span> <span class="mask"><span class="w">closer</span></span> <span class="mask"><span class="w">to</span></span> <span class="mask"><span class="w hl">Jesus,</span></span> <span class="mask"><span class="w">every</span></span> <span class="mask"><span class="w">day.</span></span></h1>
-      <p class="lede">A Catholic faith app for kids 6 to 8.</p>
+      <p class="lede">A Catholic faith companion for kids from age 3 to Confirmation, and the grown-ups who love them.</p>
       <p class="t-call">Prayers, the Mass, saints, a bedtime talk with Jesus, and lessons for First Reconciliation.</p>
       <div class="ctas">
         <button class="btn btn-go" id="heroGo" type="button">Today's mission</button>
@@ -1654,6 +1722,7 @@ body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0p
         <div class="homeweek" id="homeWeek"></div>
         <form class="pl-add" id="plAdd" hidden>
           <input id="plName" maxlength="24" autocomplete="off" placeholder="Child's first name" aria-label="Child's first name">
+          <select id="plGrade" aria-label="Grade"><option value="">Grade or age</option></select>
           <button class="btn btn-go" type="submit">Add</button>
         </form>
       </div>
@@ -1665,6 +1734,7 @@ body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0p
       </div>
     </div>
   </div>
+  <div class="tile fp-today rv" id="fpToday" aria-live="polite"></div>
   <div class="tile tile-dark rv">
     <p class="t-eyebrow">Getting ready for a sacrament</p>
     <h2>First Reconciliation.</h2>
@@ -1767,6 +1837,8 @@ body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0p
       <button type="button" class="ptile" data-practice="glorybe" data-learn="glorybe"><img class="ph" src="assets/img/pray_glorybe.jpg" alt=""><b>Glory Be</b><small>Praise to the Holy Trinity.</small><i class="go">Start &rsaquo;</i></button>
       <button type="button" class="ptile" data-practice="prayer" data-learn="contrition"><img class="ph" src="assets/img/confession.jpg" alt=""><b>Act of Contrition</b><small>The prayer we say in confession.</small><i class="go">Start &rsaquo;</i></button>
     </div>
+    <h3 class="pp-h">Prayers for every age</h3>
+    <div class="fp-pray" id="fpPray"></div>
     <h3 class="pp-h">Games</h3>
     <div class="pgrid big">
       <button type="button" class="ptile review" data-practice="review"><img src="assets/g/star.webp" alt=""><b>Review game</b><small id="revSub">A quick quiz from your lessons.</small><i class="go">Play &rsaquo;</i></button>
@@ -1850,6 +1922,11 @@ body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0p
       <h3>Settings.</h3>
       <p class="tgroup">Players</p>
       <div class="tools" id="plSettings"></div>
+      <p class="tgroup">Our parish</p>
+      <div class="tools">
+        <label class="trow" for="fpFc"><span>First Communion grade<small class="tnote">First Reconciliation comes first, in the same year. Holy Family Orlando: 2nd grade.</small></span><select id="fpFc"><option value="1">1st grade</option><option value="2">2nd grade</option><option value="3">3rd grade</option></select></label>
+        <label class="trow" for="fpConf"><span>Confirmation grade<small class="tnote">Preparation starts the year before. Holy Family Orlando: 7th grade, after a 6th-grade pre-year.</small></span><select id="fpConf"><option value="6">6th grade</option><option value="7">7th grade</option><option value="8">8th grade</option><option value="9">9th grade</option><option value="10">10th grade</option><option value="11">11th grade</option></select></label>
+      </div>
       <p class="tgroup">This device</p>
       <div class="tools">
         <label class="trow" for="bigDay"><span id="dayLbl">First Reconciliation date</span><input type="date" id="bigDay"></label>
@@ -2458,7 +2535,7 @@ const SAVE_VERSION = 3;
   } catch (e) {}
 })();
 // every saved value must have the shape the app expects; anything else reads as the default
-const SHAPE = { done: "arr", cards: "arr", badges: "arr", days: "arr", learned: "arr", missed: "arr", stars: "obj", practiced: "obj", nightSeen: "obj", pos: "obj", mtoday: "obj", unlocked: "bool", bigDay: "str", missionDone: "str", lastLesson: "str", seen: "num", fixed: "num" };
+const SHAPE = { grade: "obj", known: "arr", done: "arr", cards: "arr", badges: "arr", days: "arr", learned: "arr", missed: "arr", stars: "obj", practiced: "obj", nightSeen: "obj", pos: "obj", mtoday: "obj", unlocked: "bool", bigDay: "str", missionDone: "str", lastLesson: "str", seen: "num", fixed: "num" };
 const fits = (k, v) => { const t = SHAPE[k]; if (!t || v == null) return true; if (t === "arr") return Array.isArray(v); if (t === "obj") return typeof v === "object" && !Array.isArray(v); return typeof v === { bool: "boolean", str: "string", num: "number" }[t]; };
 const okId = id => typeof id === "string" && /^[\w-]{1,40}$/.test(id);
 const S = { pid: null, name: "", done: [], cards: [], unlocked: false, sound: store.get("sound", true), bigDay: "" };
@@ -2521,6 +2598,22 @@ function remapChild(pid, wasQ, wasS) {
 // every key saved for one child, including ones future versions add
 const childKeys = id => { const pre = `found.p.${id}.`, out = []; try { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.startsWith(pre)) out.push(k.slice(pre.length)); } } catch (e) {} return out; };
 PL = (Array.isArray(PL) ? PL : []).filter(p => p && okId(p.id) && typeof p.name === "string");
+/* ---------- each child's grade and age band ---------- */
+// a grade is saved with the school year it was set in, so it moves up by itself every August
+const GRADES = [[-2, "Age 3"], [-1, "Pre-K (age 4)"], [0, "Kindergarten"], [1, "1st grade"], [2, "2nd grade"], [3, "3rd grade"], [4, "4th grade"], [5, "5th grade"], [6, "6th grade"], [7, "7th grade"], [8, "8th grade"], [9, "High school"]];
+const schoolYear = (d = new Date()) => d.getMonth() >= 7 ? d.getFullYear() : d.getFullYear() - 1;
+const gradeName = g => (GRADES.find(x => x[0] === g) || [0, ""])[1];
+const gradeOpts = sel => GRADES.map(([g, n]) => `<option value="${g}"${g === sel ? " selected" : ""}>${n}</option>`).join("");
+// the parish sets the sacrament grades; Holy Family Orlando: First Communion in 2nd grade, Confirmation in 7th
+const PARISH = () => Object.assign({ fc: 2, conf: 7 }, store.get("parish", {}));
+const BANDS = {
+  lambs: { name: "Little Lambs", ages: "Ages 3 to 5", line: "Wonder: God made you and loves you." },
+  first: { name: "First Sacraments", ages: "Grades 1 to 3", line: "Jesus forgives us and feeds us." },
+  grow: { name: "Growing Disciples", ages: "Grades 4 and up", line: "How the whole story fits together." },
+  confirm: { name: "Confirmation", ages: "Confirmation years", line: "Your faith, your mission." },
+};
+const gradeFor = id => { const v = store.get(`p.${id}.grade`, null); return v && typeof v.g === "number" ? Math.max(-2, Math.min(9, v.g + (schoolYear() - (+v.sy || schoolYear())))) : null; };
+const bandOf = g => { if (g == null) return null; const c = Math.max(4, PARISH().conf); return g <= 0 ? "lambs" : g <= 3 ? "first" : g < c - 1 ? "grow" : "confirm"; };
 const pget = (k, d) => { if (!S.pid) return d; const v = store.get(`p.${S.pid}.${k}`, d); return fits(k, v) ? v : d; };
 const pset = (k, v) => { if (S.pid) store.set(`p.${S.pid}.${k}`, v); };
 const pdrop = (id, keys) => keys.forEach(k => { try { localStorage.removeItem(`found.p.${id}.${k}`); } catch (e) {} });
@@ -2534,6 +2627,9 @@ loadPlayer(store.get("active", null) || (PL[0] && PL[0].id));
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const named = () => (S.name || "").trim();
+const gradeOf = () => S.pid ? gradeFor(S.pid) : null;
+const band = () => bandOf(gradeOf());
+const setGrade = (g, id = S.pid) => { if (id) store.set(`p.${id}.grade`, { g, sy: schoolYear() }); };
 const kid = () => named() || "Friend";
 const whose = (cap) => named() ? named() + "'s" : cap ? "Your" : "your";
 const isDone = i => S.done.includes(i);
@@ -2620,16 +2716,22 @@ const MISSIONS = {
   steps: { t: () => "Reconciliation practice", d: "Put the six parts in order and play the whole script.", src: () => A("door") },
   bedtime: { t: () => "Bedtime Heart Check", d: "Three quiet minutes with Jesus before sleep.", src: () => A("moon2") },
 };
+const missionInfo = k => MISSIONS[k] || (/^pr\./.test(k) && PRAY[k.slice(3)] ? { t: () => `Pray the ${PRAY[k.slice(3)].name}`, d: PRAY[k.slice(3)].when, src: () => A(PRAY[k.slice(3)].icon) } : null);
+const BAND_POOL = {
+  lambs: ["pr.signcross", "pr.angel", "pr.grace", "ourfather", "hailmary", "bedtime", "bedtime", "massPose"],
+  grow: ["pr.rosary", "pr.faith", "pr.hope", "pr.love", "pr.holyqueen", "bedtime", "massSay", "massPose"],
+  confirm: ["pr.comeholy", "pr.nicene", "pr.memorare", "pr.michael", "pr.angelus", "bedtime", "massSay"],
+};
 function todayMission() {
   const t = today(), saved = pget("mtoday", null);
-  if (saved && saved.d === t && MISSIONS[saved.k]) return saved.k;
-  const dow = new Date().getDay(), last = pget("lastLesson", ""), left = current() < QUESTS.length;
+  if (saved && saved.d === t && missionInfo(saved.k)) return saved.k;
+  const b = band(), dow = new Date().getDay(), last = pget("lastLesson", ""), left = (!b || b === "first") && current() < QUESTS.length;
   const since = last ? Math.round((new Date(t + "T12:00:00") - new Date(last + "T12:00:00")) / 864e5) : 99;
   let k;
   if (left && (dow === 0 || dow === 6) && S.done.length) k = dow === 6 ? "massPose" : "massSay";
   else if (left && since >= 6) k = "lesson";
   else {
-    const pool = ["ourfather", "hailmary", "glorybe", "prayer", "bedtime", "massPose", "massSay", ...(S.done.length ? ["review", "review"] : []), ...(S.done.length >= 7 ? ["steps"] : [])];
+    const pool = BAND_POOL[b] ? [...BAND_POOL[b], ...(S.done.length && b === "grow" ? ["review"] : [])] : ["ourfather", "hailmary", "glorybe", "prayer", "bedtime", "massPose", "massSay", "pr.morning", "pr.apostles", ...(S.done.length ? ["review", "review"] : []), ...(S.done.length >= 7 ? ["steps"] : [])];
     const seed = [...(t + S.pid)].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7);
     k = pool[seed % pool.length];
   }
@@ -2637,10 +2739,10 @@ function todayMission() {
   return k;
 }
 function missionHTML() {
-  const k = todayMission(), M = MISSIONS[k], done = pget("missionDone", "") === today();
+  const k = todayMission(), M = missionInfo(k), done = pget("missionDone", "") === today();
   return `<button type="button" class="mission${done ? " done" : ""}" id="${"m" + Math.random().toString(36).slice(2, 7)}" data-mission="${k}"><span class="mimg"><img src="${M.src()}" alt=""></span><span class="mtxt"><small>${done ? "Today's mission: done!" : "Today's mission"}</small><b>${esc(M.t())}</b><span>${done ? "Your candle is lit. A new mission comes tomorrow. Tap to play again." : esc(typeof M.d === "function" ? M.d() : M.d)}</span></span><i class="go">${done ? "Again" : "Start"} &rsaquo;</i></button>`;
 }
-function startMission(k) { sfx.tap(); if (k === "lesson") openQuest(Math.min(current(), QUESTS.length - 1)); else openPractice(k); }
+function startMission(k) { sfx.tap(); if (/^pr\./.test(k)) { openPrayer(k.slice(3)); return; } if (k === "lesson") openQuest(Math.min(current(), QUESTS.length - 1)); else openPractice(k); }
 function weekHTML() {
   const D = pget("days", []), t = today(), n = litThisWeek();
   return `<div class="week" role="img" aria-label="${n} of 7 candles lit this week">${weekDays().map((d, k) => `<span class="wkd${D.includes(d) ? " lit" : ""}${d === t ? " today" : ""}"><img src="${A("candle")}" alt=""><small>${"SMTWTFS"[k]}</small></span>`).join("")}</div><p class="week-t">${n ? `<b>${n} of 7</b> candles lit this week` : "Do one lesson or prayer to light today's candle"}</p>`;
@@ -2652,7 +2754,7 @@ function renderBadges() {
   g.querySelectorAll(".badge").forEach(x => x.onclick = () => { const b = BADGES.find(y => y.id === x.dataset.id); sfx.tap(); toast(have.includes(b.id) ? `${b.name}: you earned it!` : `${b.name}: ${b.how}.`); });
 }
 function renderGame() {
-  checkBadges();
+  checkBadges(); try { renderToday(); renderPrayList(); } catch (e) {} // both are defined further down; the first call at start-up waits for them
   renderBadges();
   const hw = $("#homeWeek"); if (hw) hw.innerHTML = S.pid ? weekHTML() + missionHTML() : "";
   const wp = $("#weekPanel"); if (wp) wp.innerHTML = `<h3>This week</h3>${S.pid ? missionHTML() : ""}${weekHTML()}<p class="star-total"><img src="${A("stars")}" alt=""><span><b>${totalStars()}</b> of ${QUESTS.length * 3} lesson stars</span></p>`;
@@ -2830,7 +2932,7 @@ function openQuest(i) {
   sfx.whoosh(); show(false);
 }
 // while a lesson, studio, game, bedtime, or card is open, the page behind it can't be tabbed into or clicked
-const OVL = ["quest", "pstudio", "gshell", "night", "cardView"];
+const OVL = ["quest", "pstudio", "gshell", "night", "cardView", "pread"];
 function syncInert() {
   const open = OVL.map(id => document.getElementById(id)).filter(o => o && !o.hidden);
   [...document.body.children].forEach(c => { if (OVL.includes(c.id) || c.classList.contains("toast") || c.classList.contains("award") || c.tagName === "SCRIPT") return; c.inert = open.length > 0; });
@@ -3420,7 +3522,7 @@ function nightIntro() {
     <div class="breathe" aria-hidden="true"><span></span></div><p class="n-breath" id="nBreath">Breathe in&hellip;</p>
     <button type="button" class="n-btn" id="nGo">I'm ready</button>`, el => {
     let k = 0; N.t = setInterval(() => { const b = el.querySelector("#nBreath"); if (!b) return clearInterval(N.t); b.textContent = ++k % 2 ? "Breathe out…" : "Breathe in…"; }, 4000);
-    el.querySelector("#nGo").onclick = () => { clearInterval(N.t); sfx.tap(); nightThemes(); };
+    el.querySelector("#nGo").onclick = () => { clearInterval(N.t); sfx.tap(); const b = band(); b === "lambs" ? nightLambs() : b === "grow" || b === "confirm" ? nightExamen(0) : nightThemes(); };
   });
 }
 function nightThemes() {
@@ -3445,6 +3547,45 @@ function nightQuestions(t) {
   });
   one();
 }
+// ages 3 to 5: thank you, sorry, please, with pictures, then the Guardian Angel prayer
+function nightLambs() {
+  const THANKS = [["house", "My family"], ["gift", "Yummy food"], ["heart", "My friends"], ["sun", "Playing outside"], ["pip", "Animals"], ["daisy", "Flowers and trees"]];
+  const HELP = [["house", "My family"], ["heartmend", "Someone who is sick"], ["heart", "My friends"], ["star", "Me, tomorrow"]];
+  const pickers = (list) => `<div class="n-themes lam">${list.map(([ic, t]) => `<button type="button" class="n-theme" aria-pressed="false"><img src="${A(ic)}" alt=""><span>${esc(t)}</span></button>`).join("")}</div>`;
+  const tog = el => el.querySelectorAll(".n-theme").forEach(b => b.onclick = () => { const on = b.getAttribute("aria-pressed") !== "true"; b.setAttribute("aria-pressed", on); b.classList.toggle("pick", on); on ? sfx.select() : sfx.tap(); });
+  nShow(`<p class="n-k">Thank you, Jesus</p><h2 class="n-h sm">What are you thankful for today?</h2>${pickers(THANKS)}<button type="button" class="n-btn" id="nNext">Thank you, Jesus!</button>`, el => {
+    tog(el); el.querySelector("#nNext").onclick = () => { sfx.tap();
+      nShow(`<p class="n-k">Sorry, Jesus</p><h2 class="n-h sm">Was there a time today you weren't kind, or didn't listen?</h2><p class="n-p">Tell Jesus you're sorry. He always forgives you, and He loves you so much.</p><button type="button" class="n-btn" id="nNext">Sorry, Jesus</button>`, el2 => {
+        el2.querySelector("#nNext").onclick = () => { sfx.tap();
+          nShow(`<p class="n-k">Please, Jesus</p><h2 class="n-h sm">Who should Jesus help tonight?</h2>${pickers(HELP)}<button type="button" class="n-btn" id="nNext">Please help them, Jesus</button>`, el3 => {
+            tog(el3); el3.querySelector("#nNext").onclick = () => { sfx.tap();
+              nShow(`<p class="n-k">Let's pray together</p><h2 class="n-h sm">Angel of God</h2><div class="n-prayer"><p>${esc(PRAY.angel.text[0])}</p></div><p class="n-p">Then make the Sign of the Cross: In the name of the Father, and of the Son, and of the Holy Spirit. Amen.</p><button type="button" class="n-btn" id="nAmen">Amen</button>`, el4 => {
+                el4.querySelector("#nAmen").onclick = () => { sfx.bless(); nightEnd("Grown-up: trace a little cross on their forehead and whisper, “God bless you. I love you.”"); };
+              });
+            };
+          });
+        };
+      });
+    };
+  });
+}
+// grade 4 and up: the five steps of the examen (St. Ignatius), then the three prayers
+function nightExamen(k) {
+  const teen = band() === "confirm";
+  const STEPS = [
+    ["Be still", "God is right here with you.", "Take three slow breaths. Ask the Holy Spirit to help you see your day the way God sees it."],
+    ["Give thanks", "What were today's gifts?", "Name three good things from today, big or small, and thank God for each one."],
+    ["Look back", "Replay your day like a movie.", "Morning, school, afternoon, evening. When did you feel close to God? When did you feel far away?"],
+    ["Say sorry", "Is there a moment you wish you could do over?", teen ? "Tell God about it and ask for His mercy. If it was something serious, plan to bring it to Reconciliation soon. God is waiting there too." : "Tell God about it and ask for His mercy. He is always ready to forgive."],
+    ["Look ahead", "What about tomorrow?", "Ask God to help you with one thing tomorrow. Picture yourself doing it with Him."],
+  ];
+  const [t, h, p] = STEPS[k];
+  nShow(`<p class="n-k">The Examen · ${k + 1} of 5 · ${esc(t)}</p><h2 class="n-h sm">${esc(h)}</h2><p class="n-p">${esc(p)}</p>
+    <div class="n-dots">${STEPS.map((_, j) => `<i class="${j <= k ? "on" : ""}"></i>`).join("")}</div>
+    <button type="button" class="n-btn" id="nNext">${k < 4 ? "Next" : "Amen"}</button>`, el => {
+    el.querySelector("#nNext").onclick = () => { sfx.tap(); k < 4 ? nightExamen(k + 1) : nightPrayers(0); };
+  });
+}
 function nightSorry() {
   nShow(`<p class="n-k">Step 2</p><h2 class="n-h sm">Talk to Jesus</h2>
     <p class="n-pray">Jesus, I'm sorry for the times today I didn't love like you. Thank you for all the good things. Help me to be more like you tomorrow. Amen.</p>
@@ -3457,16 +3598,68 @@ function nightPrayers(k) {
     <div class="n-dots">${list.map((_, j) => `<i class="${j <= k ? "on" : ""}"></i>`).join("")}</div>
     <button type="button" class="n-btn" id="nAmen">Amen</button>`, el => { el.querySelector("#nAmen").onclick = () => { sfx.bless(); k < 2 ? nightPrayers(k + 1) : nightEnd(); }; });
 }
-function nightEnd() {
+function nightEnd(note) {
   const items = activityDone("bedtime");
   nShow(`<img class="n-moon" src="${A("moon2")}" alt=""><h2 class="n-h">Goodnight${named() ? `, ${esc(named())}` : ""}.</h2>
-    <p class="n-p">Jesus loves you and stays with you all night long. Sleep well!</p>
+    <p class="n-p">Jesus loves you and stays with you all night long. Sleep well!</p>${typeof note === "string" ? `<p class="n-grown">${esc(note)}</p>` : ""}
     <button type="button" class="n-btn" id="nBye">Sleep tight</button>`, el => { el.querySelector("#nBye").onclick = () => closeNight(items); });
 }
+$("#prX").onclick = () => { sfx.close(); closePrayer(); };
+addEventListener("keydown", e => { if (!$("#pread").hidden && e.key === "Escape") { closePrayer(); } });
 $("#nightX").onclick = () => { clearInterval(N && N.t); closeNight(); };
 addEventListener("keydown", e => { if (!$("#night").hidden && e.key === "Escape") $("#nightX").click(); });
 
 /* ---------- the prayer studio: learn a prayer, practice it, then say it by heart ---------- */
+/* ---------- prayers to know, by age band (grade placements follow Florida diocesan prayer charts) ---------- */
+const PRAY = {
+  signcross: { name: "Sign of the Cross", band: "lambs", icon: "cross", when: "We begin and end every prayer with it, and at Mass.", text: ["In the name of the Father, and of the Son, and of the Holy Spirit. Amen."] },
+  angel: { name: "Guardian Angel Prayer", band: "lambs", icon: "dove", when: "In the morning and at bedtime. God gave you your own angel!", text: ["Angel of God, my guardian dear, to whom God's love commits me here, ever this day be at my side, to light and guard, to rule and guide. Amen."] },
+  grace: { name: "Grace Before Meals", band: "lambs", icon: "gift", when: "Before we eat, to thank God for our food.", text: ["Bless us, O Lord, and these thy gifts, which we are about to receive from thy bounty, through Christ our Lord. Amen."] },
+  ourfather: { name: "Our Father", band: "lambs", icon: "pray", studio: "ourfather", when: "The prayer Jesus taught us. We pray it at every Mass." },
+  hailmary: { name: "Hail Mary", band: "lambs", icon: "lily", studio: "hailmary", when: "The angel's greeting to Mary. We ask her to pray for us." },
+  glorybe: { name: "Glory Be", band: "lambs", icon: "sparkles", studio: "glorybe", when: "A short prayer of praise to the Holy Trinity." },
+  contrition: { name: "Act of Contrition", band: "first", icon: "heartmend", studio: "prayer", when: "We say it in confession, and at night to tell God we're sorry." },
+  graceafter: { name: "Grace After Meals", band: "first", icon: "gift", when: "After we eat, to say thank you.", text: ["We give thee thanks, almighty God, for all thy benefits, who livest and reignest for ever and ever. Amen."] },
+  morning: { name: "Morning Offering", band: "first", icon: "sun", when: "First thing in the morning: we give the whole day to Jesus.", text: ["O Jesus, through the Immaculate Heart of Mary, I offer you my prayers, works, joys, and sufferings of this day for all the intentions of your Sacred Heart, in union with the Holy Sacrifice of the Mass throughout the world, for the salvation of souls, the reparation of sins, the reunion of all Christians, and in particular for the intentions of the Holy Father this month. Amen."] },
+  apostles: { name: "Apostles' Creed", band: "first", icon: "church", when: "What we believe, in one prayer. We pray it to begin the Rosary.", text: ["I believe in God, the Father almighty, Creator of heaven and earth, and in Jesus Christ, his only Son, our Lord, who was conceived by the Holy Spirit, born of the Virgin Mary, suffered under Pontius Pilate, was crucified, died and was buried; he descended into hell; on the third day he rose again from the dead; he ascended into heaven, and is seated at the right hand of God the Father almighty; from there he will come to judge the living and the dead.", "I believe in the Holy Spirit, the holy catholic Church, the communion of saints, the forgiveness of sins, the resurrection of the body, and life everlasting. Amen."] },
+  rosary: { name: "The Rosary", band: "grow", icon: "ic_rosary", when: "We walk through Jesus' life with Mary, one mystery at a time.", text: ["Begin with the Sign of the Cross and the Apostles' Creed, then one Our Father, three Hail Marys and a Glory Be.", "For each of the five mysteries: think about the mystery, then pray one Our Father, ten Hail Marys and a Glory Be.", "End with the Hail, Holy Queen and the Sign of the Cross.", "Joyful Mysteries (Monday, Saturday): the Annunciation, the Visitation, the Nativity, the Presentation, the Finding of Jesus in the Temple.", "Luminous Mysteries (Thursday): the Baptism of Jesus, the Wedding at Cana, the Proclamation of the Kingdom, the Transfiguration, the Institution of the Eucharist.", "Sorrowful Mysteries (Tuesday, Friday): the Agony in the Garden, the Scourging at the Pillar, the Crowning with Thorns, the Carrying of the Cross, the Crucifixion.", "Glorious Mysteries (Wednesday, Sunday): the Resurrection, the Ascension, the Descent of the Holy Spirit, the Assumption of Mary, the Coronation of Mary."] },
+  faith: { name: "Act of Faith", band: "grow", icon: "church", when: "We tell God we believe everything He has shown us.", text: ["O my God, I firmly believe that you are one God in three divine Persons, Father, Son, and Holy Spirit. I believe that your divine Son became man and died for our sins and that he will come to judge the living and the dead. I believe these and all the truths which the Holy Catholic Church teaches because you have revealed them, who are eternal truth and wisdom, who can neither deceive nor be deceived. In this faith I intend to live and die. Amen."] },
+  hope: { name: "Act of Hope", band: "grow", icon: "sun", when: "We trust God to keep His promises.", text: ["O Lord God, I hope by your grace for the pardon of all my sins and after life here to gain eternal happiness because you have promised it who are infinitely powerful, faithful, kind, and merciful. In this hope I intend to live and die. Amen."] },
+  love: { name: "Act of Love", band: "grow", icon: "heart", when: "We tell God we love Him above everything.", text: ["O Lord God, I love you above all things and I love my neighbor for your sake because you are the highest, infinite and perfect good, worthy of all my love. In this love I intend to live and die. Amen."] },
+  rest: { name: "Eternal Rest", band: "grow", icon: "candle", when: "For people who have died, especially in November.", text: ["Eternal rest grant unto them, O Lord, and let perpetual light shine upon them. May they rest in peace. Amen."] },
+  holyqueen: { name: "Hail, Holy Queen", band: "grow", icon: "lily", when: "We pray it at the end of the Rosary.", text: ["Hail, holy Queen, Mother of mercy, our life, our sweetness and our hope. To thee do we cry, poor banished children of Eve; to thee do we send up our sighs, mourning and weeping in this valley of tears. Turn then, most gracious advocate, thine eyes of mercy toward us, and after this our exile show unto us the blessed fruit of thy womb, Jesus. O clement, O loving, O sweet Virgin Mary.", "Pray for us, O holy Mother of God, that we may be made worthy of the promises of Christ. Amen."] },
+  comeholy: { name: "Come, Holy Spirit", band: "confirm", icon: "fire", when: "Before school, a test, a choice, and all through Confirmation.", text: ["Come, Holy Spirit, fill the hearts of your faithful and kindle in them the fire of your love.", "Send forth your Spirit and they shall be created. And you shall renew the face of the earth."] },
+  nicene: { name: "Nicene Creed", band: "confirm", icon: "church", when: "We pray it together at Sunday Mass. You'll profess this faith at Confirmation.", text: ["I believe in one God, the Father almighty, maker of heaven and earth, of all things visible and invisible.", "I believe in one Lord Jesus Christ, the Only Begotten Son of God, born of the Father before all ages. God from God, Light from Light, true God from true God, begotten, not made, consubstantial with the Father; through him all things were made. For us men and for our salvation he came down from heaven, and by the Holy Spirit was incarnate of the Virgin Mary, and became man. For our sake he was crucified under Pontius Pilate, he suffered death and was buried, and rose again on the third day in accordance with the Scriptures. He ascended into heaven and is seated at the right hand of the Father. He will come again in glory to judge the living and the dead and his kingdom will have no end.", "I believe in the Holy Spirit, the Lord, the giver of life, who proceeds from the Father and the Son, who with the Father and the Son is adored and glorified, who has spoken through the prophets.", "I believe in one, holy, catholic and apostolic Church. I confess one Baptism for the forgiveness of sins and I look forward to the resurrection of the dead and the life of the world to come. Amen."] },
+  memorare: { name: "Memorare", band: "confirm", icon: "lily", when: "When you need help, ask Mary. She never turns anyone away.", text: ["Remember, O most gracious Virgin Mary, that never was it known that anyone who fled to thy protection, implored thy help, or sought thine intercession was left unaided. Inspired by this confidence, I fly unto thee, O Virgin of virgins, my mother; to thee do I come, before thee I stand, sinful and sorrowful. O Mother of the Word Incarnate, despise not my petitions, but in thy mercy hear and answer me. Amen."] },
+  michael: { name: "St. Michael Prayer", band: "confirm", icon: "staff", when: "For courage and protection against evil.", text: ["Saint Michael the Archangel, defend us in battle. Be our protection against the wickedness and snares of the devil. May God rebuke him, we humbly pray, and do thou, O Prince of the heavenly hosts, by the power of God, cast into hell Satan, and all the evil spirits, who prowl about the world seeking the ruin of souls. Amen."] },
+  angelus: { name: "The Angelus", band: "confirm", icon: "ic_bells", when: "Traditionally at 6 a.m., noon and 6 p.m., remembering that God became man.", text: ["V. The Angel of the Lord declared unto Mary, R. And she conceived of the Holy Spirit. Hail Mary…", "V. Behold the handmaid of the Lord. R. Be it done unto me according to your Word. Hail Mary…", "V. And the Word was made flesh, R. And dwelt among us. Hail Mary…", "V. Pray for us, O holy Mother of God, R. that we may be made worthy of the promises of Christ.", "Let us pray: Pour forth, we beseech you, O Lord, your grace into our hearts; that we, to whom the incarnation of Christ, your Son, was made known by the message of an angel, may by his passion and cross be brought to the glory of his resurrection, through the same Christ our Lord. Amen."] },
+};
+const BAND_ORDER = ["lambs", "first", "grow", "confirm"];
+let prayBand = null;
+function renderPrayList() {
+  const el = $("#fpPray"); if (!el) return;
+  const mine = band(), sel = prayBand || mine || "lambs", known = pget("known", []), learned = pget("learned", []);
+  const isKnown = id => known.includes(id) || (PRAY[id].studio && learned.includes(PRAY[id].studio === "prayer" ? "contrition" : PRAY[id].studio));
+  el.innerHTML = `<div class="fp-tabs" role="tablist">${BAND_ORDER.map(b => `<button type="button" role="tab" aria-selected="${b === sel}" data-b="${b}">${BANDS[b].name}${b === mine ? " ★" : ""}</button>`).join("")}</div>
+    <p class="fp-bl">${esc(BANDS[sel].ages)}${sel === mine && named() ? ` · ${esc(named())}'s prayers this year` : ""}</p>
+    <div class="fp-list">${Object.entries(PRAY).filter(([, P]) => P.band === sel).map(([id, P]) => `<button type="button" class="fp-pr${isKnown(id) ? " known" : ""}" data-id="${id}"><img src="${A(P.icon)}" alt=""><span><b>${esc(P.name)}</b><small>${esc(P.when)}</small></span><i>${isKnown(id) ? "By heart ✓" : "Pray &rsaquo;"}</i></button>`).join("")}</div>`;
+  el.querySelectorAll(".fp-tabs button").forEach(t => t.onclick = () => { sfx.tap(); prayBand = t.dataset.b; renderPrayList(); });
+  el.querySelectorAll(".fp-pr").forEach(t => t.onclick = () => openPrayer(t.dataset.id));
+}
+function openPrayer(id) {
+  const P = PRAY[id]; if (!P) return;
+  if (P.studio) { openPractice(P.studio); return; }
+  sfx.whoosh();
+  const known = pget("known", []), k = known.includes(id);
+  $("#prK").textContent = BANDS[P.band].name; $("#prTitle").textContent = P.name; $("#prWhen").textContent = P.when;
+  $("#prIcon").src = A(P.icon);
+  $("#prText").innerHTML = P.text.map(t => `<p>${esc(t)}</p>`).join("");
+  const kb = $("#prKnow"); kb.textContent = k ? "I know it by heart ✓" : "I can pray it by heart"; kb.classList.toggle("on", k);
+  kb.onclick = () => { if (!S.pid) { askPlayer(); return; } const L = pget("known", []), on = L.includes(id); pset("known", on ? L.filter(x => x !== id) : [...L, id]); if (!on) { sfx.win(); burstAt(kb, 50); } else sfx.tap(); kb.textContent = on ? "I can pray it by heart" : "I know it by heart ✓"; kb.classList.toggle("on", !on); renderPrayList(); };
+  $("#prDone").onclick = () => { sfx.bless(); const items = activityDone("pr." + id); closePrayer(); if (items.length) setTimeout(() => celebrate(items), 350); };
+  $("#pread").hidden = false; document.body.style.overflow = "hidden"; $("#pread .pr-scroll").scrollTop = 0;
+}
+function closePrayer() { $("#pread").hidden = true; if ($("#quest").hidden) document.body.style.overflow = ""; }
 const STUDIO = {
   ourfather: { set: "ourfather", pic: "pray_ourfather", intro: "Jesus Himself taught us this prayer, when His friends asked: “Lord, teach us to pray.” We pray it at every Mass.", ref: "Matthew 6:9–13" },
   hailmary: { set: "hailmary", pic: "pray_hailmary", intro: "The first words are the angel Gabriel's, when he told Mary she would be Jesus' mother. Then come her cousin Elizabeth's words, and then we ask Mary to pray for us.", ref: "Luke 1:28, 42" },
@@ -3684,8 +3877,9 @@ function renderPlayers() {
   if (S.pid) { $("#whoAv").outerHTML = avatar(PL[k], k).replace('class="av"', 'class="av" id="whoAv"'); $("#whoNm").textContent = S.name; $("#whoBtn").setAttribute("aria-label", `Who's playing: ${S.name}`); }
   $("#whoMenu").innerHTML = PL.map((pl, j) => `<button type="button" role="menuitemradio" aria-checked="${pl.id === S.pid}" data-id="${esc(pl.id)}">${avatar(pl, j)}<span>${esc(pl.name)}</span></button>`).join("")
     + `<hr><button type="button" role="menuitem" data-act="add"><span class="av plus">+</span><span>Add a child</span></button><button type="button" role="menuitem" data-act="manage"><span class="av plus">⋯</span><span>Manage players</span></button>`;
-  $("#plSettings").innerHTML = PL.length ? PL.map((pl, j) => `<div class="trow pl-set" data-id="${esc(pl.id)}">${avatar(pl, j)}<span class="pn">${esc(pl.name)}${pl.id === S.pid ? ' <i>Playing now</i>' : ""}</span><button class="tbtn" type="button" data-act="ren">Rename</button><button class="tbtn danger" type="button" data-act="del">Remove</button></div>`).join("")
+  $("#plSettings").innerHTML = PL.length ? PL.map((pl, j) => `<div class="trow pl-set" data-id="${esc(pl.id)}">${avatar(pl, j)}<span class="pn">${esc(pl.name)}${pl.id === S.pid ? ' <i>Playing now</i>' : ""}</span><select class="fp-grade" aria-label="${esc(pl.name)}'s grade"><option value="">Grade?</option>${gradeOpts(gradeFor(pl.id))}</select><button class="tbtn" type="button" data-act="ren">Rename</button><button class="tbtn danger" type="button" data-act="del">Remove</button></div>`).join("")
     : `<div class="trow"><span>No players yet</span><button class="tbtn" type="button" data-act="add">Add a child</button></div>`;
+  $("#plSettings").querySelectorAll(".fp-grade").forEach(sel => sel.onchange = () => { const id = sel.closest("[data-id]").dataset.id; if (sel.value === "") return; setGrade(+sel.value, id); sfx.tap(); toast("Grade saved"); refreshPlayer(); });
   $("#resetLbl").textContent = S.pid ? `Erase ${S.name}'s progress` : "Erase progress";
   $("#dayLbl").textContent = S.pid ? `${S.name}'s First Reconciliation` : "First Reconciliation date";
 }
@@ -3761,7 +3955,8 @@ function askPlayer() {
   if (ios && !standalone && /^https?:/.test(location.protocol) && !PL.length && !store.get("a2hsSeen", false)) $("#a2hs").hidden = false;
   $("#a2hsX").onclick = () => { store.set("a2hsSeen", true); $("#a2hs").hidden = true; sfx.tap(); };
 })();
-$("#plAdd").addEventListener("submit", e => { e.preventDefault(); if (addPlayer($("#plName").value)) $("#plName").value = ""; });
+$("#plGrade").innerHTML = `<option value="">Grade or age</option>${gradeOpts(null)}`;
+$("#plAdd").addEventListener("submit", e => { e.preventDefault(); const g = $("#plGrade").value; if (addPlayer($("#plName").value)) { $("#plName").value = ""; if (g !== "") { setGrade(+g); $("#plGrade").value = ""; refreshPlayer(); } } });
 const whoBtn = $("#whoBtn"), whoMenu = $("#whoMenu");
 const menuOpen = on => { whoMenu.hidden = !on; whoBtn.setAttribute("aria-expanded", on); };
 whoBtn.onclick = e => { e.stopPropagation(); sfx.tap(); menuOpen(whoMenu.hidden); };
@@ -3806,6 +4001,11 @@ $("#resetAll").onclick = e => {
   if (b.dataset.sure) { pdrop(S.pid, childKeys(S.pid).filter(k => k !== "bigDay")); loadPlayer(S.pid); refreshPlayer(); renderGame(); b.textContent = "Start over"; delete b.dataset.sure; toast(`${S.name}'s progress is cleared`); }
   else { b.dataset.sure = 1; b.textContent = "Tap again to clear progress"; setTimeout(() => { b.textContent = "Start over"; delete b.dataset.sure; }, 4000); }
 };
+(function parishSettings() {
+  const P = PARISH(), fc = $("#fpFc"), cf = $("#fpConf"); fc.value = P.fc; cf.value = P.conf;
+  const save = () => { store.set("parish", { fc: +fc.value, conf: +cf.value }); sfx.tap(); toast("Parish settings saved"); refreshPlayer(); };
+  fc.onchange = save; cf.onchange = save;
+})();
 $("#themeBtn").onclick = () => { const r = document.documentElement, dark = r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; r.dataset.theme = dark ? "light" : "dark"; try { localStorage.setItem("found.theme", r.dataset.theme); } catch (e) {} sfx.toggle(); };
 try { const t = localStorage.getItem("found.theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
 
@@ -3955,6 +4155,97 @@ function churchDay(when) {
   return { msg: "13 saint cards to collect", icon: "album", lesson: "album" };
 }
 window.__churchDay = churchDay;
+// the liturgical season, color and week for any date (U.S. calendar), worked out from Easter
+function litDay(when = new Date()) {
+  const t = new Date(when); t.setHours(12, 0, 0, 0);
+  const y = t.getFullYear(), D = (mo, da) => new Date(y, mo - 1, da, 12), add = (dt, n) => new Date(dt.getFullYear(), dt.getMonth(), dt.getDate() + n, 12);
+  const same = (a, b) => a.toDateString() === b.toDateString(), wk = (a, b) => Math.round((a - b) / 6048e5), sunOf = d => add(d, -d.getDay());
+  const E = easterSunday(y), xmas = D(12, 25), adv = add(xmas, -((xmas.getDay() || 7) + 21));
+  const jan2 = D(1, 2), epi = add(jan2, (7 - jan2.getDay()) % 7), bap = epi.getDate() >= 7 ? add(epi, 1) : add(epi, 7);
+  const ash = add(E, -46), palm = add(E, -7), pent = add(E, 49), ck = add(adv, -7);
+  let k, color, week = 0;
+  if (t >= adv && t < xmas) { k = "advent"; color = same(t, add(adv, 14)) ? "rose" : "violet"; week = wk(sunOf(t), adv) + 1; }
+  else if (t >= xmas || t <= bap) { k = "christmas"; color = "white"; }
+  else if (t >= ash && t < palm) { k = "lent"; color = same(t, add(E, -21)) ? "rose" : "violet"; week = Math.max(0, wk(sunOf(t), add(ash, 4)) + 1); }
+  else if (t >= palm && t < E) { k = "holyweek"; color = same(t, palm) || same(t, add(E, -2)) ? "red" : same(t, add(E, -3)) ? "white" : "violet"; }
+  else if (t >= E && t <= pent) { k = "easter"; color = same(t, pent) ? "red" : "white"; week = same(t, pent) ? 0 : wk(sunOf(t), E) + 1; }
+  else { k = "ordinary"; color = "green"; week = t < ash ? Math.max(1, wk(sunOf(t), sunOf(bap)) + 1) : 34 - wk(ck, sunOf(t)); }
+  // solemnities and feasts that change the color
+  const white = [D(1, 1), D(8, 15), D(11, 1), D(12, 8), ck, add(E, 56), add(E, 63), add(E, 68), add(E, 42)];
+  if (k === "ordinary" && white.some(d => same(d, t))) color = "white";
+  if (k === "advent" && same(t, D(12, 8))) color = "white";
+  // the day's own name on solemnities and great feasts (U.S. calendar: Ascension and Corpus Christi on Sundays)
+  const FEASTS = [[D(1, 1), "Mary, Mother of God", "white"], [epi, "The Epiphany of the Lord", "white"], [bap, "The Baptism of the Lord", "white"], [ash, "Ash Wednesday", "violet"],
+    [palm, "Palm Sunday", "red"], [add(E, -3), "Holy Thursday", "white"], [add(E, -2), "Good Friday", "red"], [add(E, -1), "Holy Saturday", "violet"], [E, "Easter Sunday", "white"],
+    [add(E, 7), "Divine Mercy Sunday", "white"], [add(E, 42), "The Ascension of the Lord", "white"], [pent, "Pentecost", "red"], [add(E, 56), "The Most Holy Trinity", "white"],
+    [add(E, 63), "The Body and Blood of Christ", "white"], [add(E, 68), "The Sacred Heart of Jesus", "white"], [D(3, 19), "Saint Joseph", "white"], [D(3, 25), "The Annunciation", "white"],
+    [D(8, 15), "The Assumption of Mary", "white"], [D(11, 1), "All Saints' Day", "white"], [D(11, 2), "All Souls' Day", "violet"], [ck, "Christ the King", "white"],
+    [D(12, 8), "The Immaculate Conception", "white"], [D(12, 25), "Christmas Day", "white"]];
+  const fh = FEASTS.find(f => same(f[0], t) && !(k === "holyweek" && /Joseph|Annunciation/.test(f[1])));
+  if (fh) color = fh[2];
+  const names = { advent: "Advent", christmas: "Christmas", lent: "Lent", holyweek: "Holy Week", easter: "Easter", ordinary: "Ordinary Time" };
+  const ord = n => n + (["th", "st", "nd", "rd"][(n % 100 - 20) % 10] || ["th", "st", "nd", "rd"][n % 100] || "th");
+  const label = week ? `${ord(week)} week of ${names[k]}` : names[k];
+  return { k, color, week, name: names[k], label, feast: fh ? fh[1] : "", sunday: t.getDay() === 0 };
+}
+window.__litDay = litDay;
+const SEASON = {
+  advent: { line: "Getting our hearts ready for Jesus", why: "Advent means “coming.” We get ready to celebrate Jesus' birth, and for the day He comes again." },
+  christmas: { line: "Jesus is born! God is with us", why: "God loved us so much that He became one of us, a real baby in Bethlehem." },
+  ordinary: { line: "Growing with Jesus, week by week", why: "“Ordinary” comes from a word for counting: we count the weeks, and green reminds us to keep growing." },
+  lent: { line: "40 days of turning back to God", why: "Like Jesus' 40 days in the desert, we pray, give, and go without, to make room for God." },
+  holyweek: { line: "Walking with Jesus to the cross and the empty tomb", why: "The most important week of the year: Palm Sunday, the Last Supper, Good Friday, and Easter." },
+  easter: { line: "Jesus is risen! 50 days of joy", why: "Easter is so big we celebrate it for 50 days, all the way to Pentecost." },
+};
+// one small thing to do together today, for each season and age band, with a line for the grown-up to say
+const FAMILY = {
+  advent: {
+    lambs: ["Light a candle on the Advent wreath and sing a little song to Jesus.", "“We're getting our hearts ready for baby Jesus, like getting the house ready for a guest.”"],
+    first: ["Pray “Come, Lord Jesus!” at dinner, and do one secret kindness to make room for Jesus.", "“What could we give Jesus for His birthday that isn't a toy?”"],
+    grow: ["Read Isaiah's promise together (Isaiah 9:1–6). People waited hundreds of years for it!", "“What's something you've had to wait for? How is waiting a kind of hope?”"],
+    confirm: ["Go to Reconciliation before Christmas. Most parishes add extra times in Advent.", "“Advent is about making room. What's crowding out God for me right now? Here's mine…”"] },
+  christmas: {
+    lambs: ["Visit the Nativity scene and say goodnight to baby Jesus.", "“God loved us so much that He came as a little baby.”"],
+    first: ["Sing a Christmas carol together and name everyone who came to the manger.", "“Jesus is God and a real baby. That's called the Incarnation!”"],
+    grow: ["Read John 1:1–14 and find the line “the Word became flesh.”", "“Why do you think God came as a poor baby instead of a king?”"],
+    confirm: ["Reach out to someone who's lonely this season.", "“Christmas means God came close. Who could use us coming close to them?”"] },
+  ordinary: {
+    lambs: ["Go outside and thank God for three things He made.", "“God made the trees, the birds, and you!”"],
+    first: ["At Mass this Sunday, look at the color the priest is wearing. Can you guess what it means?", "“Green means growing. White means a big celebration. How are you growing closer to Jesus?”"],
+    grow: ["Read this Sunday's Gospel before Mass, then listen for it at church.", "“What did Jesus do or say? What would you have asked Him?”"],
+    confirm: ["Pick one line from Sunday's Gospel and carry it with you all week.", "“Which line stuck with you? Here's the one that stuck with me…”"] },
+  lent: {
+    lambs: ["Make a little sacrifice and give it to Jesus, like sharing a treat.", "“In Lent we give Jesus little gifts of love.”"],
+    first: ["Choose a Lent promise: pray, give, or go without something. Write it down.", "“Lent is 40 days to get closer to Jesus. Here's my promise. What's yours?”"],
+    grow: ["Pray the Stations of the Cross, at church on a Friday or at home.", "“Jesus loved us all the way to the cross. Which station means the most to you?”"],
+    confirm: ["Go to Reconciliation, and fast or give in a way that really costs you something.", "“What's one habit I'd like God's help to break? I'll tell you mine first.”"] },
+  holyweek: {
+    lambs: ["Wave a palm branch, and on Good Friday look at the crucifix and whisper “Thank you, Jesus.”", "“Jesus loves us so much. And Sunday is the happiest day!”"],
+    first: ["Go to a Holy Thursday or Good Friday service together if you can.", "“On Holy Thursday Jesus gave us the Eucharist, the same Jesus we receive at Mass.”"],
+    grow: ["Read the Passion from one Gospel together, a little each night.", "“Why do you think we call it Good Friday?”"],
+    confirm: ["Try to go to the Easter Vigil, the most beautiful Mass of the year.", "“The Vigil starts in darkness and ends in light. That's the whole story of our faith.”"] },
+  easter: {
+    lambs: ["Say “Alleluia!” as loud as you can. Jesus is alive!", "“Jesus died and rose again. He is alive right now, and He loves you!”"],
+    first: ["Light a candle at dinner. Say “Christ is risen!” and answer “He is risen indeed!”", "“Easter isn't one day. It's 50 days of celebrating!”"],
+    grow: ["Read the road to Emmaus (Luke 24:13–35). Where did they recognize Jesus?", "“They knew Jesus in the breaking of the bread. Where do we meet Him?”"],
+    confirm: ["Read Acts 2, and pray “Come, Holy Spirit” every day until Pentecost.", "“The Spirit turned scared apostles into brave ones. What would you do for God if you weren't afraid?”"] },
+};
+function renderToday() {
+  const el = $("#fpToday"); if (!el) return;
+  const L = litDay(), c = churchDay(new Date()), b = band() || "first", fam = FAMILY[L.k === "christmas" || L.k === "advent" || L.k === "lent" || L.k === "easter" || L.k === "holyweek" ? L.k : "ordinary"][b];
+  const g = gradeOf(), feast = c && !/^13 saint/.test(c.msg) ? c.msg : "";
+  const day = new Date().toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
+  const ask = S.pid && g == null ? `<div class="fp-ask"><b>What grade is ${esc(named())} in?</b><span>Prayers, bedtime and paths will fit ${esc(named())}'s age.</span><select id="fpAskG" aria-label="${esc(named())}'s grade"><option value="">Choose a grade</option>${gradeOpts(null)}</select></div>` : "";
+  const who = S.pid && g != null ? `<p class="fp-who"><b>${esc(named())}</b> · ${gradeName(g)} · ${BANDS[bandOf(g)].name}</p>` : "";
+  el.dataset.color = L.color;
+  el.innerHTML = `<div class="fp-band"><span class="fp-dot"></span><span>${esc(day)}</span><span class="fp-col">${L.color === "rose" ? "Rose" : L.color[0].toUpperCase() + L.color.slice(1)}</span></div>
+    <p class="t-eyebrow dark">Today in the Church${L.feast ? ` · ${esc(L.label)}` : ""}</p><h2>${esc(L.feast || L.label)}.</h2><p class="t-sub">${esc(SEASON[L.k].line)}.</p>
+    ${feast ? `<p class="fp-feast">${img(c.icon)}<span>${esc(feast)}</span></p>` : ""}
+    <p class="fp-why">${esc(SEASON[L.k].why)}</p>${who}${ask}
+    <div class="fp-fam"><p class="fp-h">A family moment</p><p class="fp-do">${esc(fam[0])}</p><p class="fp-say"><b>Grown-up, try saying:</b> ${esc(fam[1])}</p></div>`;
+  const sel = el.querySelector("#fpAskG"); if (sel) sel.onchange = () => { if (sel.value === "") return; setGrade(+sel.value); sfx.yes(); toast(`Got it: ${gradeName(+sel.value)}`); refreshPlayer(); };
+}
+renderToday(); renderPrayList();
 (function season() {
   const c = churchDay(new Date()), el = $("#season");
   const go = c.lesson === "album" ? "See the album" : c.lesson ? `Lesson ${c.lesson}` : "";
