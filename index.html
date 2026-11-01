@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="A First Reconciliation adventure for kids 6 to 8: 13 lessons from the parish workbook, saint cards, and prayer practice.">
+<meta name="description" content="A Catholic faith app for kids 6 to 8: prayers, the Mass, saint cards, a bedtime talk with Jesus, and 13 First Reconciliation lessons.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -14,12 +14,12 @@
 <link rel="manifest" href="manifest.webmanifest">
 <script>if ("serviceWorker" in navigator && /^https:|^http:\/\/localhost/.test(location.href)) addEventListener("load", () => navigator.serviceWorker.register("sw.js"));</script>
 <meta property="og:type" content="website">
-<meta property="og:title" content="Found! A First Reconciliation adventure">
-<meta property="og:description" content="13 lessons, saint cards, and prayer practice for kids 6 to 8. Tap to play in your browser.">
+<meta property="og:title" content="Found! Catholic faith for kids">
+<meta property="og:description" content="Prayers, the Mass, saints, bedtime prayer, and First Reconciliation lessons for kids 6 to 8. Tap to open in your browser.">
 <meta property="og:image" content="https://foundlamb.pages.dev/share.jpg">
 <meta property="og:url" content="https://foundlamb.pages.dev/">
 <meta name="twitter:card" content="summary_large_image">
-<title>Found! Reconciliation Quest</title>
+<title>Found! Catholic faith for kids</title>
 <script>document.documentElement.classList.add("js")</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1294,19 +1294,193 @@ a.ptile{text-decoration:none;color:inherit}
   .mbeat{padding:26px 26px 22px}
 }
 @media (prefers-reduced-motion:reduce){.mhero{height:auto}.mhero-sticky{position:relative;height:80svh}.mhero-media,.mhero-copy{transform:none;opacity:1}.mbeat{opacity:1;transform:none}}
+
+/* ---------- Bedtime Heart Check: night theme ---------- */
+.night{position:fixed;inset:0;z-index:95;color:#F4F1FF;background:#0E1236;overflow:hidden;--round:"Nunito",ui-rounded,system-ui,sans-serif}
+.night[hidden]{display:none}
+.night-bg{position:absolute;inset:0}
+.night-bg img,.night-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.night-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,12,40,.55) 0%,rgba(10,12,40,.35) 40%,rgba(8,10,34,.82) 100%)}
+.night-x{position:absolute;z-index:3;top:calc(14px + env(safe-area-inset-top,0px));right:16px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;font-size:28px;line-height:44px;text-align:center}
+.night-stage{position:absolute;inset:0;z-index:2;overflow-y:auto;-webkit-overflow-scrolling:touch;display:grid;padding:calc(70px + env(safe-area-inset-top,0px)) 22px calc(30px + env(safe-area-inset-bottom,0px))}
+.nscene{align-self:center;justify-self:center;width:min(100%,560px);display:grid;justify-items:center;gap:14px;text-align:center}
+.n-k{display:flex;align-items:center;gap:8px;margin:0;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#FFD98A}
+.n-ti{width:24px;height:24px;object-fit:contain}
+.n-h{margin:0;font-family:var(--round);font-weight:800;font-size:clamp(32px,8vw,48px);line-height:1.12;letter-spacing:-.01em;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.4);text-wrap:balance}
+.n-h.sm{font-size:clamp(25px,6.4vw,36px)}
+.n-h.q{font-size:clamp(27px,7vw,40px);min-height:3.4em;display:grid;place-items:center}
+.n-p{margin:0;font-size:17px;line-height:1.45;color:rgba(244,241,255,.82);max-width:32ch}
+.n-btn{margin-top:10px;min-width:220px;padding:16px 28px;border-radius:999px;background:linear-gradient(180deg,#FFE6A6,#FFC85C);color:#2A1E00;font-family:var(--round);font-weight:800;font-size:19px;box-shadow:0 0 30px rgba(255,200,90,.35),0 8px 20px rgba(0,0,0,.3);transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
+.n-btn:active{transform:scale(.96)}
+.breathe{width:150px;height:150px;border-radius:50%;display:grid;place-items:center;margin:8px 0 0;background:radial-gradient(circle,rgba(255,224,150,.35),rgba(255,224,150,0) 70%)}
+.breathe span{width:84px;height:84px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#FFF4D6,#FFD27A 60%,#E8A93A);box-shadow:0 0 40px rgba(255,210,120,.65);animation:breathe 8s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scale(.72)}50%{transform:scale(1.18)}}
+.n-breath{margin:0;font-family:var(--round);font-weight:700;font-size:20px;color:#FFE7B0}
+.n-themes{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:6px}
+.n-theme{display:grid;grid-template-columns:44px 1fr;align-items:center;gap:10px;padding:12px 12px;border-radius:20px;text-align:left;background:#1B2156;border:1px solid rgba(255,255,255,.12);color:#fff;font-family:var(--round);font-weight:800;font-size:16px;line-height:1.15;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.n-theme img{width:44px;height:44px;object-fit:contain}
+.n-theme small{grid-column:2;font-size:11.5px;font-weight:800;color:#FFD98A;letter-spacing:.04em;text-transform:uppercase}
+.n-theme.pick{grid-column:1/-1;background:linear-gradient(120deg,#2A2F7A,#3B2C76);border-color:rgba(255,217,138,.55);box-shadow:0 0 0 2px rgba(255,217,138,.25),0 10px 24px rgba(0,0,0,.3)}
+.n-theme.pick img{width:52px;height:52px}
+.n-theme.surprise{grid-column:1/-1;justify-content:center;background:#151A47}
+.n-theme:active{transform:scale(.97)}
+.n-dots{display:flex;gap:8px;margin-top:6px}
+.n-dots i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25)}
+.n-dots i.on{background:#FFD98A}
+.n-pray{margin:4px 0 0;padding:20px 22px;border-radius:24px;background:#1B2156;border:1px solid rgba(255,255,255,.12);font-family:var(--round);font-weight:700;font-size:21px;line-height:1.5;color:#fff}
+.n-prayer{width:100%;padding:20px 22px;border-radius:24px;background:#141A4C;border:1px solid rgba(255,255,255,.12);text-align:left;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.n-prayer p{margin:0 0 8px;font-family:var(--round);font-weight:700;font-size:clamp(18px,4.8vw,22px);line-height:1.5;color:#fff}
+.n-prayer p:last-child{margin:0}
+.n-moon{width:120px;height:120px;object-fit:contain;filter:drop-shadow(0 0 30px rgba(255,220,140,.6));animation:awardbob 3s ease-in-out infinite alternate}
+@media (min-width:700px){.n-themes{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (prefers-reduced-motion:reduce){.breathe span,.n-moon{animation:none}}
+
+/* ---------- prayer studio ---------- */
+.pstudio{position:fixed;inset:0;z-index:94;background:var(--bg);color:var(--ink)}
+.pstudio[hidden]{display:none}
+.ps-top{position:absolute;z-index:3;top:0;left:0;right:0;display:flex;align-items:center;gap:12px;padding:calc(10px + env(safe-area-inset-top,0px)) 14px 10px;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.ps-x{flex:none;width:40px;height:40px;border-radius:50%;background:color-mix(in srgb,var(--ink) 8%,transparent);font-size:26px;line-height:40px;color:var(--ink)}
+.ps-tabs{flex:1;display:grid;grid-template-columns:repeat(3,1fr);padding:3px;border-radius:999px;background:color-mix(in srgb,var(--ink) 7%,transparent);max-width:420px;margin:0 auto}
+.ps-tabs button{padding:9px 6px;border-radius:999px;font-weight:700;font-size:15px;color:var(--ink-soft)}
+.ps-tabs button[aria-selected="true"]{background:var(--card);color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.ps-scroll{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.ps-hero{position:relative;height:min(62svh,560px);overflow:hidden;background:#000}
+.ps-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ps-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.7))}
+.ps-hcopy{position:absolute;z-index:1;left:0;right:0;bottom:0;padding:0 22px 24px;color:#fff;max-width:680px;margin:0 auto}
+.ps-k{margin:0;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#FFD66B}
+.ps-hcopy h2{margin:2px 0 6px;font-size:clamp(38px,10vw,64px);line-height:1;letter-spacing:-.03em;color:#fff}
+.ps-hcopy p{margin:0;font-size:17px;line-height:1.4;color:rgba(255,255,255,.92)}
+.ps-hcopy small{display:block;margin-top:6px;font-size:13px;color:rgba(255,255,255,.7)}
+.ps-body{max-width:680px;margin:0 auto;padding:22px 16px calc(40px + env(safe-area-inset-bottom,0px));display:grid;gap:12px}
+.ps-lead{margin:0 0 4px;font-size:17px;color:var(--ink-soft)}
+.ps-lead b{color:var(--ink)}
+.ps-line{display:grid;grid-template-columns:32px 1fr;gap:4px 12px;text-align:left;padding:16px;border-radius:22px;background:var(--card);box-shadow:0 6px 18px rgba(0,0,0,.06);color:var(--ink)}
+.ps-n{grid-row:1/4;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,#FFD66B 40%,var(--card));font-weight:800;font-size:14px}
+.ps-t{font-family:var(--round);font-weight:800;font-size:clamp(20px,5.2vw,24px);line-height:1.3}
+.ps-g{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:#1F6FC4}
+.ps-g img{width:22px;height:22px}
+.ps-m{display:none;font-size:15.5px;line-height:1.45;color:var(--ink-soft);padding-top:6px}
+.ps-line.open .ps-m{display:block}
+.ps-line.open{box-shadow:0 0 0 3px #FFD66B,0 10px 24px rgba(0,0,0,.08)}
+.ps-cta{justify-self:center;margin-top:8px;min-width:220px;padding:15px 26px;border-radius:999px;background:var(--accent,#0071e3);color:#fff;font-weight:700;font-size:17px}
+.ps-cta.soft{background:color-mix(in srgb,var(--accent,#0071e3) 12%,var(--card));color:var(--accent,#0071e3)}
+.ps-card{padding:22px 20px;border-radius:24px;background:var(--card);box-shadow:0 8px 24px rgba(0,0,0,.07)}
+.ps-q{margin:0;font-family:var(--round);font-weight:800;font-size:clamp(22px,6vw,28px);line-height:1.35}
+.ps-opts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ps-opts button{padding:16px 8px;border-radius:18px;background:var(--card);box-shadow:0 4px 14px rgba(0,0,0,.07);font-family:var(--round);font-weight:800;font-size:18px;color:var(--ink)}
+.ps-opts button.right{background:#34c759;color:#fff}
+.ps-opts button.wrong{opacity:.35}
+.ps-levels{display:flex;gap:8px;justify-content:center}
+.ps-levels i{width:44px;height:8px;border-radius:4px;background:color-mix(in srgb,var(--ink) 12%,transparent)}
+.ps-levels i.on{background:#FFC83D}
+.ps-recall p{margin:0 0 10px;font-family:var(--round);font-weight:700;font-size:clamp(19px,5vw,23px);line-height:1.5}
+.ps-recall p:last-child{margin:0}
+.ps-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.ps-done{display:grid;justify-items:center;gap:8px;text-align:center;padding:30px 10px}
+.ps-done img{width:110px;height:110px;object-fit:contain}
+.ps-done h3{margin:0;font-size:32px;letter-spacing:-.02em}
+.ps-done p{margin:0;color:var(--ink-soft);font-size:17px;max-width:30ch}
+/* ---------- game shell ---------- */
+.gshell{position:fixed;inset:0;z-index:94;display:grid;grid-template-rows:auto auto 1fr;background:radial-gradient(120% 80% at 50% 0%,#5B4BDB 0%,#3A2F9E 45%,#22205E 100%);color:#fff}
+.gshell[hidden]{display:none}
+.gs-hud{display:flex;align-items:center;gap:12px;padding:calc(12px + env(safe-area-inset-top,0px)) 14px 8px}
+.gs-x{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.16);font-size:26px;line-height:40px;color:#fff;flex:none}
+.gs-title{flex:1;font-family:var(--round);font-weight:800;font-size:18px;text-align:center}
+.gs-score{display:flex;align-items:center;gap:6px;padding:6px 12px 6px 8px;border-radius:999px;background:rgba(0,0,0,.25);font-family:var(--round);font-size:18px}
+.gs-score img{width:24px;height:24px}
+.gs-score.bump{animation:pop .4s cubic-bezier(.3,1.6,.5,1)}
+.gs-bar{height:8px;margin:0 16px;border-radius:4px;background:rgba(255,255,255,.18);overflow:hidden}
+.gs-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#FFE08A,#FF9F5A);border-radius:4px;transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.gs-stage{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:18px 16px calc(28px + env(safe-area-inset-bottom,0px));display:grid;align-content:start;gap:14px;max-width:620px;width:100%;margin:0 auto}
+.gs-card{display:grid;justify-items:center;gap:8px;text-align:center;padding:22px 18px;border-radius:26px;background:#fff;color:#1B2559;box-shadow:0 14px 34px rgba(0,0,0,.25)}
+.gs-card small{color:#5b6178;font-size:15px}
+.gs-tag{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#6A55E0}
+.gs-q{margin:0;font-family:var(--round);font-weight:800;font-size:clamp(21px,5.6vw,27px);line-height:1.3}
+.gs-card.pic{padding-top:12px}
+.gs-img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:18px}
+.gs-icon img{width:120px}
+.gs-opts{display:grid;gap:10px}
+.gs-opts button{padding:16px 18px;border-radius:20px;background:rgba(255,255,255,.96);color:#1B2559;text-align:left;font-family:var(--round);font-weight:800;font-size:17px;line-height:1.3;box-shadow:0 6px 0 rgba(0,0,0,.18)}
+.gs-opts button:active{transform:translateY(3px);box-shadow:0 3px 0 rgba(0,0,0,.18)}
+.gs-opts button.right,.gs-poses button.right{background:#34c759;color:#fff}
+.gs-opts button.wrong,.gs-poses button.wrong{opacity:.4}
+.gs-poses{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.gs-poses button{display:grid;justify-items:center;gap:4px;padding:12px 6px;border-radius:20px;background:#fff;color:#1B2559;font-family:var(--round);font-weight:800;font-size:17px;box-shadow:0 6px 0 rgba(0,0,0,.18)}
+.gs-poses img{width:70%;max-width:90px;aspect-ratio:1;object-fit:contain}
+.gs-next{justify-self:center;min-width:200px;padding:15px 26px;border-radius:999px;background:linear-gradient(180deg,#FFE08A,#FFB547);color:#3A2400;font-family:var(--round);font-weight:800;font-size:18px;box-shadow:0 6px 0 rgba(0,0,0,.2)}
+.gs-next:disabled{opacity:.35;box-shadow:none}
+.gs-next.soft{background:rgba(255,255,255,.18);color:#fff}
+.gs-slots{list-style:none;margin:0;padding:0;display:grid;gap:8px;counter-reset:s}
+.gs-slots li{counter-increment:s;min-height:46px;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:16px;border:2px dashed rgba(255,255,255,.35);font-family:var(--round);font-weight:800}
+.gs-slots li::before{content:counter(s);width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.2);font-size:14px}
+.gs-slots li.fill{border-style:solid;border-color:#FFE08A;background:rgba(255,224,138,.16)}
+.gs-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.gs-chips button{padding:12px 16px;border-radius:999px;background:#fff;color:#1B2559;font-family:var(--round);font-weight:800;font-size:16px;box-shadow:0 5px 0 rgba(0,0,0,.18)}
+.gs-chips button.used{visibility:hidden}
+.gs-chips button.wig{animation:wiggle .45s}
+.gs-chat{display:grid;gap:10px}
+.gs-line{display:grid;gap:4px;max-width:88%}
+.gs-line span{font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.gs-line p{margin:0;padding:12px 16px;border-radius:20px;background:#fff;color:#1B2559;font-family:var(--round);font-weight:700;font-size:17px;line-height:1.4}
+.gs-line.me{justify-self:end;text-align:right}
+.gs-line.me p{background:linear-gradient(120deg,#FFE08A,#FFC07A)}
+.gs-line.note{justify-self:center;max-width:100%}
+.gs-line.note p{background:rgba(255,255,255,.14);color:#fff;font-size:15px;text-align:center}
+.gs-end{display:grid;justify-items:center;gap:10px;text-align:center;padding:40px 10px}
+.gs-stars{display:flex;gap:10px}
+.gs-stars img{width:64px;height:64px;filter:grayscale(1);opacity:.25;transition:transform .45s cubic-bezier(.3,1.8,.5,1),filter .3s,opacity .3s}
+.gs-stars img:nth-child(2){translate:0 -12px}
+.gs-stars img.on{transform:scale(.4)}
+.gs-stars img.on.pop{filter:none;opacity:1;transform:scale(1)}
+.gs-end h3{margin:0;font-size:38px;color:#fff}
+.gs-final{margin:0;font-size:20px}
+.gs-final b{font-family:var(--round);font-size:44px;color:#FFE08A}
+.gs-end p{margin:0;color:rgba(255,255,255,.85)}
+.gs-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:8px}
+
+.t-eyebrow{margin:0 0 6px;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#FFD66B}
+.t-eyebrow.dark{color:var(--accent,#0071e3)}
+.tile-night{background:linear-gradient(180deg,#0E1236,#1B1A55);color:#F4F1FF}
+.tile-night h2{color:#fff}
+.tile-night .t-sub{color:#F4F1FF}
+.tile-night .t-call{color:rgba(244,241,255,.75)}
+.tile-night .btn-go{background:linear-gradient(180deg,#FFE6A6,#FFC85C);color:#2A1E00}
+.nightcard{position:relative;display:block;width:100%;margin:0 0 26px;border-radius:26px;overflow:hidden;text-align:left;background:#0E1236;min-height:220px;box-shadow:0 14px 34px rgba(14,18,54,.3)}
+.nightcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 70%}
+.nightcard::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,12,40,.85) 0%,rgba(10,12,40,.45) 70%,rgba(10,12,40,.15))}
+.nc-copy{position:relative;z-index:1;display:grid;gap:4px;padding:24px 22px;max-width:420px;color:#F4F1FF}
+.nc-copy small{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#FFD98A}
+.nc-copy b{font-family:var(--round);font-size:clamp(26px,7vw,34px);line-height:1.1;color:#fff}
+.nc-copy span{font-size:16px;line-height:1.4;color:rgba(244,241,255,.85)}
+.nc-copy i{justify-self:start;margin-top:10px;font-style:normal;font-weight:800;padding:10px 18px;border-radius:999px;background:linear-gradient(180deg,#FFE6A6,#FFC85C);color:#2A1E00}
 /* apple scroll reveal: fade + rise, staggered */
 .rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(0,0,.5,1),transform 1s cubic-bezier(0,0,.5,1);transition-delay:calc(var(--d,0) * 90ms)}
 .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.land-frame{transform:none}}
 </style>
 
+<div class="night" id="night" hidden role="dialog" aria-modal="true" aria-label="Bedtime Heart Check">
+  <div class="night-bg"><img src="assets/img/night_sky.jpg" alt=""><video id="nightVid" src="assets/vid/night_sky.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+  <button type="button" class="night-x" id="nightX" aria-label="Close Bedtime Heart Check">&times;</button>
+  <div class="night-stage" id="nStage" aria-live="polite"></div>
+</div>
+<div class="pstudio" id="pstudio" hidden role="dialog" aria-modal="true" aria-label="Prayer">
+  <div class="ps-top"><button type="button" class="ps-x" id="psX" aria-label="Close">&times;</button><div class="ps-tabs" role="tablist"><button type="button" role="tab" data-tab="learn">Learn</button><button type="button" role="tab" data-tab="practice">Practice</button><button type="button" role="tab" data-tab="heart">By heart</button></div></div>
+  <div class="ps-scroll" id="psScroll"><div class="ps-hero" id="psHero"></div><div class="ps-body" id="psBody"></div></div>
+</div>
+<div class="gshell" id="gshell" hidden role="dialog" aria-modal="true" aria-label="Game">
+  <div class="gs-hud"><button type="button" class="gs-x" id="gsX" aria-label="Close">&times;</button><div class="gs-title" id="gsTitle"></div><div class="gs-score" id="gsScore"><img src="assets/g/star.webp" alt=""><b>0</b></div></div>
+  <div class="gs-bar"><i id="gsBar"></i></div>
+  <div class="gs-stage" id="gsStage"></div>
+</div>
 </head>
 <body>
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#/home" aria-label="Found! home"><span id="brandLamb"></span>Found!</a>
     <nav class="tabnav" aria-label="Sections">
-      <a href="#/quests" data-tab="quests"><img src="assets/g/quests.webp" alt=""><span>Quests</span></a>
+      <a href="#/quests" data-tab="quests"><img src="assets/g/quests.webp" alt=""><span>Lessons</span></a>
       <a href="#/cards" data-tab="cards"><img src="assets/g/cards.webp" alt=""><span><i class="nw">Saint </i>Cards</span><b class="cardcount" id="albumBadge" aria-label="cards collected">0</b></a>
       <a href="#/practice" data-tab="practice"><img src="assets/g/pray.webp" alt=""><span>Prayers</span></a>
       <a href="#/mass" data-tab="mass"><img src="assets/g/church.webp" alt=""><span>Mass</span></a>
@@ -1319,7 +1493,7 @@ a.ptile{text-decoration:none;color:inherit}
 <div id="nojs" role="note">
   <img src="assets/g/pip.webp" alt="" width="96" height="96">
   <h1>Found! plays in your web browser.</h1>
-  <p class="nj-lede">This is an interactive app for kids getting ready for First Reconciliation. This viewer can't play it, so it looks empty here.</p>
+  <p class="nj-lede">This is an interactive Catholic faith app for kids. This viewer can't play it, so it looks empty here.</p>
   <p><a class="nj-btn" href="https://foundlamb.pages.dev/">Open Found! in Safari or Chrome</a></p>
   <p class="nj-small">Each family's players and progress are saved only on their own device. Nothing is shared or collected.</p>
 </div>
@@ -1329,11 +1503,11 @@ a.ptile{text-decoration:none;color:inherit}
   <div class="tile tile-hero">
     <div class="copy">
       <p class="eyebrow" id="season" hidden></p>
-      <h1 id="heroH"><span class="mask"><span class="w">Every</span></span> <span class="mask"><span class="w">lost</span></span> <span class="mask"><span class="w">lamb</span></span> <span class="mask"><span class="w">gets</span></span> <span class="mask"><span class="w">carried</span></span> <span class="mask"><span class="w hl">home.</span></span></h1>
-      <p class="lede">A First Reconciliation adventure for kids 6 to 8.</p>
-      <p class="t-call">13 lessons. About 15 minutes each, at your own pace.</p>
+      <h1 id="heroH"><span class="mask"><span class="w">A</span></span> <span class="mask"><span class="w">little</span></span> <span class="mask"><span class="w">closer</span></span> <span class="mask"><span class="w">to</span></span> <span class="mask"><span class="w hl">Jesus,</span></span> <span class="mask"><span class="w">every</span></span> <span class="mask"><span class="w">day.</span></span></h1>
+      <p class="lede">A Catholic faith app for kids 6 to 8.</p>
+      <p class="t-call">Prayers, the Mass, saints, a bedtime talk with Jesus, and lessons for First Reconciliation.</p>
       <div class="ctas">
-        <button class="btn btn-go" id="heroGo" type="button">Start the quest</button>
+        <button class="btn btn-go" id="heroGo" type="button">Today's mission</button>
         <a class="btn btn-soft" href="#/grownups">How it works</a>
       </div>
       <div class="players" id="players">
@@ -1359,10 +1533,11 @@ a.ptile{text-decoration:none;color:inherit}
     </div>
   </div>
   <div class="tile tile-dark rv">
-    <h2>13 lessons.</h2>
-    <p class="t-sub">The whole parish workbook. One path home.</p>
-    <p class="t-call">Stories, games, and prayers, in the workbook's order.</p>
-    <div class="ctas"><a class="btn btn-go" href="#/quests">See the map</a><a class="btn btn-soft" href="#/grownups">What's inside</a></div>
+    <p class="t-eyebrow">Getting ready for a sacrament</p>
+    <h2>First Reconciliation.</h2>
+    <p class="t-sub">13 lessons from the parish workbook.</p>
+    <p class="t-call">Stories, games, and prayers that get you ready for your first confession, one step at a time.</p>
+    <div class="ctas"><a class="btn btn-go" href="#/quests">Open the lessons</a><a class="btn btn-soft" href="#/grownups">What's inside</a></div>
     <div class="t-media wide"><img src="assets/img/shepherd_carry.jpg" alt="The Good Shepherd carrying a lamb home" draggable="false"></div>
   </div>
   <div class="tile-grid">
@@ -1388,6 +1563,14 @@ a.ptile{text-decoration:none;color:inherit}
     <div class="ctas"><a class="btn btn-go" href="#/mass">Explore the Mass</a></div>
     <div class="t-media wide"><video data-auto src="assets/vid/mass_church.mp4" poster="assets/img/mass_church.jpg" muted loop playsinline preload="none" aria-label="Families at Sunday Mass"></video></div>
   </div>
+  <div class="tile tile-night rv">
+    <p class="t-eyebrow">Every night</p>
+    <h2>Bedtime Heart Check.</h2>
+    <p class="t-sub">A quiet talk with Jesus before sleep.</p>
+    <p class="t-call">Pick something to talk about, think through a few gentle questions, then pray the Our Father, Hail Mary, and Glory Be.</p>
+    <div class="ctas"><button type="button" class="btn btn-go" data-practice="bedtime">Start tonight</button></div>
+    <div class="t-media wide"><img src="assets/img/night_sky.jpg" alt="A starry night sky over a sleepy village and its church" draggable="false"></div>
+  </div>
   <div class="tile tile-white rv">
     <h2>Made for families.</h2>
     <p class="t-sub">Lesson by lesson, from the parish workbook.</p>
@@ -1400,7 +1583,8 @@ a.ptile{text-decoration:none;color:inherit}
 <section class="sec" id="map" data-view="quests">
   <div class="wrap">
     <div class="sec-head">
-      <h2 id="mapTitle">Your quest map.</h2>
+      <p class="t-eyebrow dark">First Reconciliation</p>
+      <h2 id="mapTitle">Your path home.</h2>
       <p>Help Pip the lamb find the way home to the Good Shepherd. Each stop is one lesson from the workbook. Finish a lesson to move Pip along the path and win a saint card.</p>
     </div>
     <div class="mapgrid">
@@ -1439,9 +1623,10 @@ a.ptile{text-decoration:none;color:inherit}
 <section class="sec practicepage" id="practice" data-view="practice">
   <div class="wrap">
     <div class="sec-head">
-      <h2>Prayers and practice.</h2>
-      <p>Learn the prayers every Catholic knows, one line at a time, with motions and meanings. Then say them from memory.</p>
+      <h2>Prayers and games.</h2>
+      <p>Learn the prayers every Catholic knows, with motions and meanings, then say them by heart. Play quick games to practice for Mass and confession.</p>
     </div>
+    <button type="button" class="nightcard" data-practice="bedtime"><img src="assets/img/night_sky.jpg" alt=""><span class="nc-copy"><small>Every night</small><b>Bedtime Heart Check</b><span>Talk to Jesus about your day, then pray together before sleep.</span><i>Start tonight &rsaquo;</i></span></button>
     <h3 class="pp-h">Prayers</h3>
     <div class="pgrid big pray4">
       <button type="button" class="ptile" data-practice="ourfather" data-learn="ourfather"><img class="ph" src="assets/img/pray_ourfather.jpg" alt=""><b>Our Father</b><small>The prayer Jesus taught us.</small><i class="go">Start &rsaquo;</i></button>
@@ -1449,12 +1634,12 @@ a.ptile{text-decoration:none;color:inherit}
       <button type="button" class="ptile" data-practice="glorybe" data-learn="glorybe"><img class="ph" src="assets/img/pray_glorybe.jpg" alt=""><b>Glory Be</b><small>Praise to the Holy Trinity.</small><i class="go">Start &rsaquo;</i></button>
       <button type="button" class="ptile" data-practice="prayer" data-learn="contrition"><img class="ph" src="assets/img/confession.jpg" alt=""><b>Act of Contrition</b><small>The prayer we say in confession.</small><i class="go">Start &rsaquo;</i></button>
     </div>
-    <h3 class="pp-h">Practice</h3>
+    <h3 class="pp-h">Games</h3>
     <div class="pgrid big">
       <button type="button" class="ptile review" data-practice="review"><img src="assets/g/star.webp" alt=""><b>Review game</b><small id="revSub">A quick quiz from your lessons.</small><i class="go">Play &rsaquo;</i></button>
-      <button type="button" class="ptile" data-practice="steps"><img src="assets/g/door.webp" alt=""><b>Confession steps</b><small>Put the six steps in order and role-play the whole script.</small><i class="go">Start &rsaquo;</i></button>
-      <button type="button" class="ptile" data-practice="bedtime"><img src="assets/g/moon.webp" alt=""><b>Bedtime Heart Check</b><small>Three quiet minutes before sleep.</small><i class="go">Start &rsaquo;</i></button>
-      <a class="ptile" href="#/mass"><img src="assets/g/church.webp" alt=""><b>Come to Mass</b><small>Every part of the Mass, and what you do.</small><i class="go">Explore &rsaquo;</i></a>
+      <button type="button" class="ptile" data-practice="steps"><img src="assets/g/door.webp" alt=""><b>Confession practice</b><small>Put the six steps in order and role-play the whole script.</small><i class="go">Play &rsaquo;</i></button>
+      <button type="button" class="ptile" data-practice="massPose"><img src="assets/g/ic_kneel.webp" alt=""><b>Stand, sit, or kneel?</b><small>Know what to do at each part of Mass.</small><i class="go">Play &rsaquo;</i></button>
+      <button type="button" class="ptile" data-practice="massSay"><img src="assets/g/ic_bells.webp" alt=""><b>What do we say?</b><small>Learn your answers at Mass.</small><i class="go">Play &rsaquo;</i></button>
     </div>
   </div>
 </section>
@@ -1478,7 +1663,6 @@ a.ptile{text-decoration:none;color:inherit}
     <div class="mplay-row">
       <button type="button" class="mplay-t" data-practice="massPose"><img src="assets/g/ic_kneel.webp" alt=""><b>Stand, sit, or kneel?</b><small>Know what to do at each part.</small></button>
       <button type="button" class="mplay-t" data-practice="massSay"><img src="assets/g/ic_bells.webp" alt=""><b>What do we say?</b><small>Learn your answers.</small></button>
-      <button type="button" class="mplay-t" data-practice="mass"><img src="assets/g/church.webp" alt=""><b>Step by step</b><small>All 20 parts, one at a time.</small></button>
     </div>
   </div>
 </section>
@@ -2116,7 +2300,7 @@ const S = { pid: null, name: "", done: [], cards: [], unlocked: false, sound: st
 if (store.get("v", 1) < 2) { ["done", "cards"].forEach(k => store.set(k, [])); store.set("pos", null); store.set("seen", 0); store.set("v", 2); }
 
 /* ---------- players: each child keeps their own map, saint cards and place in a lesson ---------- */
-const PKEYS = ["done", "cards", "unlocked", "pos", "seen", "bigDay", "learned", "stars", "days", "badges", "missed", "fixed", "practiced", "mtoday", "missionDone", "lastLesson"];
+const PKEYS = ["done", "cards", "unlocked", "pos", "seen", "bigDay", "learned", "stars", "days", "badges", "missed", "fixed", "practiced", "mtoday", "missionDone", "lastLesson", "nightSeen"];
 let PL = store.get("players", null);
 if (!PL) {
   // earlier versions kept one shared slot: move it into the first child's profile
@@ -2207,6 +2391,15 @@ function nextAward() {
 }
 const badgeAward = b => ({ kicker: "New badge!", title: b.name, text: `${b.how}: done!`, src: badgeSrc(b.icon) });
 let pendingAwards = [];
+function activityDone(key) {
+  if (!S.pid) return [];
+  const P = pget("practiced", {}); P[key] = (P[key] || 0) + 1; pset("practiced", P);
+  const items = [], lit = lightCandle();
+  if (todayMission() === key && pget("missionDone", "") !== today()) { pset("missionDone", today()); items.push({ kicker: "Today's mission", title: "Mission complete!", text: `${lit ? "You lit today's candle. " : ""}${litThisWeek()} of 7 candles this week. A new mission is waiting tomorrow!`, src: A("candle") }); }
+  else if (lit) items.push({ kicker: "Today's candle", title: "You lit a candle!", text: `${litThisWeek()} of 7 candles lit this week.`, src: A("candle") });
+  items.push(...checkBadges().map(badgeAward)); renderGame();
+  return items;
+}
 // one small mission a day: a lesson about once a week (the parish pace), Mass games on the weekend, and on the other days a prayer, a game or a quiet heart check
 const MISSIONS = {
   lesson: { t: () => `Lesson ${current() + 1}: ${QUESTS[current()].title}`, d: "It's lesson day! About 15 minutes.", src: () => A("quests") },
@@ -2400,7 +2593,7 @@ function renderSide() {
     cd.hidden = false;
     cd.innerHTML = `${img("calendar")}<div><b>${d > 1 ? d + " days" : d === 1 ? "1 day" : d === 0 ? "Today!" : "You did it!"}</b><span>${d > 0 ? "until First Reconciliation" : d === 0 ? "is your First Reconciliation" : "First Reconciliation is done"}</span></div>`;
   } else cd.hidden = true;
-  $("#mapTitle").textContent = `${whose(1)} quest map.`;
+  $("#mapTitle").textContent = `${whose(1)} path home.`;
 }
 
 /* ---------- quest engine ---------- */
@@ -2623,8 +2816,9 @@ R.journal = el => {
   el.innerHTML = `<span class="tag">Tonight's mission</span><p class="say sm">Two things that made God happy. Two things I'm sorry for. Tell a grown-up, or type them here.</p>
   <div class="journal"><div><b style="color:var(--meadow-2)">Made God happy</b><input id="j1" aria-label="First happy thing"><input id="j2" aria-label="Second happy thing"></div><div><b style="color:var(--berry)">I'm sorry for</b><input id="j3" aria-label="First sorry thing"><input id="j4" aria-label="Second sorry thing"></div></div><p class="ref">Nothing typed here is saved.</p>`;
 };
+const SCRIPT = [["p", "The priest welcomes you with a smile. You both make the Sign of the Cross: In the name of the Father, and of the Son, and of the Holy Spirit. Amen."], ["p", "Sometimes the priest reads Jesus' words, like: “My friend, your sins are forgiven you.”"], ["me", "Bless me, Father, for I have sinned. This is my first confession."], ["note", "Next time, say how long it has been since your last confession."], ["note", "Now tell the priest your sins, in your own words."], ["me", "Please forgive me for all of these sins and any others I can't remember."], ["p", "The priest talks with you about how to be more like Jesus, and gives you a penance."], ["me", "O my God, I am heartily sorry… (pray the Act of Contrition, or say sorry in your own words)"], ["p", "God, the Father of mercies, through the death and the Resurrection of His Son, has reconciled the world to Himself and poured out the Holy Spirit for the forgiveness of sins. Through the ministry of the Church, may God grant you pardon and peace, and I absolve you from your sins in the name of the Father, and of the Son, and of the Holy Spirit."], ["note", "Make the Sign of the Cross as Father says the last line."], ["me", "Amen!"], ["p", "Give thanks to the Lord, for He is good."], ["me", "His mercy endures for ever."], ["p", "The Lord has freed you from your sins. Go in peace."], ["me", "Thank you, Father!"], ["note", "Now go and do your penance right away."]];
 R.script = el => {
-  const L = [["p", "The priest welcomes you with a smile. You both make the Sign of the Cross: In the name of the Father, and of the Son, and of the Holy Spirit. Amen."], ["p", "Sometimes the priest reads Jesus' words, like: “My friend, your sins are forgiven you.”"], ["me", "Bless me, Father, for I have sinned. This is my first confession."], ["note", "Next time, say how long it has been since your last confession."], ["note", "Now tell the priest your sins, in your own words."], ["me", "Please forgive me for all of these sins and any others I can't remember."], ["p", "The priest talks with you about how to be more like Jesus, and gives you a penance."], ["me", "O my God, I am heartily sorry… (pray the Act of Contrition, or say sorry in your own words)"], ["p", "God, the Father of mercies, through the death and the Resurrection of His Son, has reconciled the world to Himself and poured out the Holy Spirit for the forgiveness of sins. Through the ministry of the Church, may God grant you pardon and peace, and I absolve you from your sins in the name of the Father, and of the Son, and of the Holy Spirit."], ["note", "Make the Sign of the Cross as Father says the last line."], ["me", "Amen!"], ["p", "Give thanks to the Lord, for He is good."], ["me", "His mercy endures for ever."], ["p", "The Lord has freed you from your sins. Go in peace."], ["me", "Thank you, Father!"], ["note", "Now go and do your penance right away."]];
+  const L = SCRIPT;
   el.innerHTML = `<p class="say sm">Let's practice! Read your yellow lines out loud.</p><div class="script" id="sl"></div><button class="chip big" type="button" id="say">Start</button>`;
   let k = 0; const sl = el.querySelector("#sl"), btn = el.querySelector("#say");
   setReady(false, "Tap Start");
@@ -2906,6 +3100,233 @@ const PRACTICE = {
   review: { title: "Review game", bg: "#FFF1C9", scenes: () => reviewScenes() },
   bedtime: { title: "Bedtime Heart Check", bg: "#EDE6FF", scenes: [{ t: "magnify" }, { t: "journal" }, { t: "story", art: "heartsp", text: "Now pray: Jesus, I'm sorry for the wrong things I did today. Thank you for loving me. Help me do better tomorrow. Amen." }, { t: "done", practice: 1 }] },
 };
+
+/* ---------- Bedtime Heart Check: a quiet night-time talk with Jesus ---------- */
+const NIGHT = [
+  { k: "family", icon: "house", name: "My family", qs: ["Did I show love to my mom, dad, or the grown-ups who care for me?", "Was I kind to my brothers, sisters, or cousins?", "Did I listen the first time I was asked?", "Did I help at home without being asked?", "Did I say sorry when I upset someone in my family?", "Did I say thank you for my food and my home?"] },
+  { k: "friends", icon: "heart", name: "My friends", qs: ["Was I a good friend today?", "Did I include someone who was left out?", "Did I say anything unkind about a friend?", "Did I share and take turns?", "Did I forgive a friend who hurt me?", "Did I stand up for someone who was being picked on?"] },
+  { k: "school", icon: "book", name: "School", qs: ["Did I do my best work today?", "Did I listen to my teacher?", "Was I kind to the other kids in my class?", "Did I tell the truth about my work?", "Did I help someone who was stuck?", "Did I use good words at recess?"] },
+  { k: "truth", icon: "check", name: "Telling the truth", qs: ["Did I tell the truth today, even when it was hard?", "Did I blame someone else for something I did?", "Did I make up a story to stay out of trouble?", "Did I keep the promises I made?", "Did I say sorry when I wasn't honest?", "Is there something I should tell a grown-up?"] },
+  { k: "kind", icon: "sparkles", name: "Kind words", qs: ["Did I use kind words today?", "Did I notice someone who was sad?", "Did I smile at someone or say hello?", "Was I gentle with people and animals?", "Did I make fun of anyone?", "What is one kind thing I can do tomorrow?"] },
+  { k: "share", icon: "gift", name: "Sharing", qs: ["Did I share my things today?", "Did I take something that wasn't mine?", "Was I jealous of someone else's things?", "Did I take turns without grumbling?", "Did I give something to help someone?", "Was I happy with what I have?"] },
+  { k: "obey", icon: "staff", name: "Listening and obeying", qs: ["Did I obey my parents and teachers today?", "Did I do what I was asked without whining?", "Did I follow the rules, even when nobody was watching?", "Did I talk back or roll my eyes?", "Did I listen to the little voice that tells me what's right?", "Did I follow Jesus, my Good Shepherd, today?"] },
+  { k: "feelings", icon: "cloud", name: "Big feelings", qs: ["Did I get angry today? What did I do with my anger?", "Did I hit, yell, or slam things?", "Did I stop and take a breath when I was upset?", "Did I hurt someone when I was grumpy?", "Is something worrying me that I can give to Jesus?", "Did I say sorry after I calmed down?"] },
+  { k: "god", icon: "pray", name: "God and prayer", qs: ["Did I talk to God today?", "Did I say God's name with love and respect?", "Did I thank God for something good?", "Did I pay attention at prayer time?", "Did I think about Jesus today?", "What would I like to ask Jesus for tonight?"] },
+  { k: "thanks", icon: "sun", name: "A thankful heart", qs: ["What made me happy today?", "Who was kind to me today?", "Did I say thank you to the people who helped me?", "What beautiful thing that God made did I see today?", "Did I grumble or complain a lot?", "What am I most thankful for tonight?"] },
+  { k: "help", icon: "flower", name: "Helping hands", qs: ["Did I help someone today?", "Did I clean up my own things?", "Did I do my chores without being asked twice?", "Did I help someone who was sad or hurt?", "Did I say yes when someone needed me?", "How can I help my family tomorrow?"] },
+  { k: "forgive", icon: "heartmend", name: "Forgiving", qs: ["Is there someone I need to forgive?", "Did I stay mad at someone for a long time?", "Did I ask someone to forgive me?", "Was I patient with someone who made a mistake?", "Did I remember that Jesus always forgives me?", "Who can I pray for, even if they were unkind?"] },
+  { k: "play", icon: "trophy", name: "Games and screens", qs: ["Did I share games and screen time fairly?", "Did I stop when a grown-up said it was time?", "Did I watch and play only good things?", "Was I a good sport when I lost?", "Did I spend time playing with my family?", "Did I choose people over screens today?"] },
+  { k: "brave", icon: "fire", name: "Being brave", qs: ["Was I brave today?", "Did I do the right thing, even when others didn't?", "Did I try something new or hard?", "Did I ask for help when I needed it?", "Did I trust that Jesus is with me?", "What makes me afraid that I can tell Jesus about?"] },
+  { k: "others", icon: "dove", name: "People who need help", qs: ["Did I pray for someone who is sick?", "Did I think about people who don't have enough?", "Was I kind to someone older or younger than me?", "Did I take care of God's creation, like animals and plants?", "Did I welcome someone new?", "Who can I pray for tonight?"] },
+];
+const nightPrayer = k => PRAYERS[k].parts.map(p => p.text).join(" ");
+let N = null;
+function openNight() {
+  N = { step: 0 }; $("#night").hidden = false; document.body.style.overflow = "hidden";
+  const v = $("#nightVid"); if (!reduce) { v.preload = "auto"; v.play().catch(() => {}); }
+  sfx.whoosh(); nightIntro();
+}
+function closeNight(done) {
+  $("#night").hidden = true; $("#nightVid").pause(); if ($("#quest").hidden) document.body.style.overflow = "";
+  sfx.close(); if (done && done.length) setTimeout(() => celebrate(done), 400);
+}
+function nShow(html, after) {
+  // the fade-out runs on animation frames, which pause when the phone sleeps; a timer makes sure the next step always appears
+  let did = false;
+  const st = $("#nStage"), go = () => { if (did) return; did = true; st.innerHTML = `<div class="nscene">${html}</div>`; st.scrollTop = 0; after && after(st.firstElementChild); if (G) G.from(st.firstElementChild.children, { y: 18, opacity: 0, duration: .7, ease: "power2.out", stagger: .08 }); };
+  if (G && st.firstElementChild) { G.to(st.firstElementChild, { opacity: 0, y: -12, duration: .3, ease: "power1.in", onComplete: go }); setTimeout(go, 450); } else go();
+}
+function nightIntro() {
+  nShow(`<p class="n-k">Bedtime Heart Check</p><h2 class="n-h">${named() ? `Goodnight soon, ${esc(named())}.` : "Time to rest."}</h2><p class="n-p">Let's quiet our hearts and talk to Jesus about today.</p>
+    <div class="breathe" aria-hidden="true"><span></span></div><p class="n-breath" id="nBreath">Breathe in&hellip;</p>
+    <button type="button" class="n-btn" id="nGo">I'm ready</button>`, el => {
+    let k = 0; N.t = setInterval(() => { const b = el.querySelector("#nBreath"); if (!b) return clearInterval(N.t); b.textContent = ++k % 2 ? "Breathe out…" : "Breathe in…"; }, 4000);
+    el.querySelector("#nGo").onclick = () => { clearInterval(N.t); sfx.tap(); nightThemes(); };
+  });
+}
+function nightThemes() {
+  const pick = NIGHT[[...(today() + (S.pid || ""))].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 3) % NIGHT.length];
+  nShow(`<p class="n-k">Step 1</p><h2 class="n-h sm">What would you like to talk to Jesus about tonight?</h2>
+    <div class="n-themes">${[pick, ...NIGHT.filter(t => t !== pick)].map((t, j) => `<button type="button" class="n-theme${j ? "" : " pick"}" data-k="${t.k}"><img src="${A(t.icon)}" alt=""><span>${esc(t.name)}</span>${j ? "" : "<small>Tonight's idea</small>"}</button>`).join("")}
+      <button type="button" class="n-theme surprise" data-k="?"><img src="${A("stars")}" alt=""><span>Surprise me</span></button></div>`, el => {
+    el.querySelectorAll(".n-theme").forEach(b => b.onclick = () => { sfx.select(); const t = b.dataset.k === "?" ? NIGHT[Math.floor(Math.random() * NIGHT.length)] : NIGHT.find(x => x.k === b.dataset.k); nightQuestions(t); });
+  });
+}
+function nightQuestions(t) {
+  // three questions from the theme, skipping the ones seen last time so it stays fresh
+  const seen = pget("nightSeen", {}), last = seen[t.k] || [];
+  let pool = t.qs.map((q, i) => i).filter(i => !last.includes(i)); if (pool.length < 3) pool = t.qs.map((q, i) => i);
+  const qs = shuffle(pool).slice(0, 3); seen[t.k] = qs; pset("nightSeen", seen);
+  let i = 0;
+  const one = () => nShow(`<p class="n-k"><img class="n-ti" src="${A(t.icon)}" alt="">${esc(t.name)} &middot; ${i + 1} of ${qs.length}</p>
+    <h2 class="n-h q">${esc(t.qs[qs[i]])}</h2><p class="n-p">Think about it quietly. Jesus is listening.</p>
+    <div class="n-dots">${qs.map((_, j) => `<i class="${j <= i ? "on" : ""}"></i>`).join("")}</div>
+    <button type="button" class="n-btn" id="nNext">${i < qs.length - 1 ? "Next question" : "I thought about it"}</button>`, el => {
+    el.querySelector("#nNext").onclick = () => { sfx.tap(); i++; i < qs.length ? one() : nightSorry(); };
+  });
+  one();
+}
+function nightSorry() {
+  nShow(`<p class="n-k">Step 2</p><h2 class="n-h sm">Talk to Jesus</h2>
+    <p class="n-pray">Jesus, I'm sorry for the times today I didn't love like you. Thank you for all the good things. Help me to be more like you tomorrow. Amen.</p>
+    <p class="n-p">You can say it in your own words too.</p><button type="button" class="n-btn" id="nAmen">Amen</button>`, el => { el.querySelector("#nAmen").onclick = () => { sfx.bless(); nightPrayers(0); }; });
+}
+function nightPrayers(k) {
+  const list = [["ourfather", "Our Father"], ["hailmary", "Hail Mary"], ["glorybe", "Glory Be"]], [key, name] = list[k];
+  nShow(`<p class="n-k">Step 3 &middot; Let's pray together</p><h2 class="n-h sm">${name}</h2>
+    <div class="n-prayer">${PRAYERS[key].parts.map(p => `<p>${esc(p.text)}</p>`).join("")}</div>
+    <div class="n-dots">${list.map((_, j) => `<i class="${j <= k ? "on" : ""}"></i>`).join("")}</div>
+    <button type="button" class="n-btn" id="nAmen">Amen</button>`, el => { el.querySelector("#nAmen").onclick = () => { sfx.bless(); k < 2 ? nightPrayers(k + 1) : nightEnd(); }; });
+}
+function nightEnd() {
+  const items = activityDone("bedtime");
+  nShow(`<img class="n-moon" src="${A("moon2")}" alt=""><h2 class="n-h">Goodnight${named() ? `, ${esc(named())}` : ""}.</h2>
+    <p class="n-p">Jesus loves you and stays with you all night long. Sleep well!</p>
+    <button type="button" class="n-btn" id="nBye">Sleep tight</button>`, el => { el.querySelector("#nBye").onclick = () => closeNight(items); });
+}
+$("#nightX").onclick = () => { clearInterval(N && N.t); closeNight(); };
+addEventListener("keydown", e => { if (!$("#night").hidden && e.key === "Escape") $("#nightX").click(); });
+
+/* ---------- the prayer studio: learn a prayer, practice it, then say it by heart ---------- */
+const STUDIO = {
+  ourfather: { set: "ourfather", pic: "pray_ourfather", intro: "Jesus himself taught us this prayer, when his friends asked: “Lord, teach us to pray.” We pray it at every Mass.", ref: "Matthew 6:9–13" },
+  hailmary: { set: "hailmary", pic: "pray_hailmary", intro: "The first words are the angel Gabriel's, when he told Mary she would be Jesus' mother. Then come her cousin Elizabeth's words, and then we ask Mary to pray for us.", ref: "Luke 1:28, 42" },
+  glorybe: { set: "glorybe", pic: "pray_glorybe", intro: "A short prayer of praise to the Holy Trinity: the Father, the Son, and the Holy Spirit. Perfect any time of day.", ref: "" },
+  prayer: { set: "contrition", pic: "confession", intro: "The prayer we say in confession to tell God we're sorry and want to do better.", ref: "Version A, from the workbook" },
+};
+let PS_ = null;
+function openStudio(k) {
+  const st = STUDIO[k], set = PRAYERS[st.set];
+  PS_ = { k, st, set, tab: "learn", lvl: 1 };
+  $("#psHero").innerHTML = `<img src="assets/img/${st.pic}.jpg" alt=""><div class="ps-hcopy"><p class="ps-k">Prayer</p><h2>${esc(set.name)}</h2><p>${esc(st.intro)}</p>${st.ref ? `<small>${esc(st.ref)}</small>` : ""}</div>`;
+  $("#pstudio").hidden = false; document.body.style.overflow = "hidden"; sfx.whoosh(); psTab("learn");
+  if (G) G.from("#psHero img", { scale: 1.12, duration: 1.4, ease: "power2.out" });
+}
+function closeStudio(items) { $("#pstudio").hidden = true; if ($("#quest").hidden) document.body.style.overflow = ""; sfx.close(); if (items && items.length) setTimeout(() => celebrate(items), 350); }
+function psTab(t) {
+  PS_.tab = t; document.querySelectorAll("#pstudio .ps-tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === t));
+  const body = $("#psBody"), parts = PS_.set.parts;
+  if (t === "learn") {
+    body.innerHTML = `<p class="ps-lead">Read each line, try the motion, and tap a line to see what it means.</p>${parts.map((p, i) => `<button type="button" class="ps-line" data-i="${i}"><span class="ps-n">${i + 1}</span><span class="ps-t">${esc(p.text)}</span><span class="ps-g"><img src="${A("pray")}" alt="">${esc(p.g)}</span><span class="ps-m"><b>What it means:</b> ${esc(p.mean)}</span></button>`).join("")}<button type="button" class="ps-cta" data-go="practice">Practice it &rsaquo;</button>`;
+    body.querySelectorAll(".ps-line").forEach(b => b.onclick = () => { sfx.tap(); b.classList.toggle("open"); });
+  }
+  if (t === "practice") {
+    let i = 0, right = 0;
+    const one = () => {
+      if (i >= parts.length) { body.innerHTML = `<div class="ps-done"><img src="${A("stars")}" alt=""><h3>${right === parts.length ? "Perfect!" : "Nice work!"}</h3><p>${right} of ${parts.length} right the first time. Now try saying it by heart.</p><button type="button" class="ps-cta" data-go="heart">Say it by heart &rsaquo;</button></div>`; wire(); sfx.win(); return; }
+      const P = parts[i], gapped = esc(P.text.replace(new RegExp("\\b" + P.gap + "\\b"), "%%")).replace("%%", `<span class="gap">${esc(P.gap)}</span>`);
+      let first = true;
+      body.innerHTML = `<p class="ps-lead">Which word is missing? <b>${i + 1} of ${parts.length}</b></p><div class="ps-card"><p class="ps-q">${gapped}</p></div><div class="ps-opts">${shuffle(P.opts).map(o => `<button type="button" data-w="${esc(o)}">${esc(o)}</button>`).join("")}</div>`;
+      body.querySelectorAll(".ps-opts button").forEach(c => c.onclick = () => {
+        if (c.dataset.w === P.gap) { if (first) right++; c.classList.add("right"); body.querySelector(".gap").classList.add("ok"); sfx.yes(); burstAt(c, 36); body.querySelectorAll(".ps-opts button").forEach(x => x.disabled = true); setTimeout(() => { i++; one(); }, 900); }
+        else { first = false; c.classList.add("wrong"); c.disabled = true; sfx.no(); }
+      });
+    };
+    one();
+  }
+  if (t === "heart") {
+    const lvl = PS_.lvl, hide = (w, k) => lvl >= 3 ? true : lvl === 2 ? k % 2 === 1 : k % 3 === 2;
+    const mask = w => { const m = w.match(/^([^A-Za-z]*)([A-Za-z])([A-Za-z'-]*)(.*)$/); return m ? `${m[1]}${m[2]}<i class="blank">${"_".repeat(Math.min(m[3].length, 8))}</i>${m[4]}` : w; };
+    const build = rev => parts.map(p => `<p>${p.text.split(" ").map((w, k) => hide(w, k) && !rev ? `<span class="hw">${mask(esc(w))}</span>` : esc(w)).join(" ")}</p>`).join("");
+    body.innerHTML = `<p class="ps-lead">Level ${lvl} of 3: ${["", "some words are hidden", "half the words are hidden", "only the first letters"][lvl]}. Say it out loud!</p><div class="ps-levels">${[1, 2, 3].map(n => `<i class="${n <= lvl ? "on" : ""}"></i>`).join("")}</div><div class="ps-card ps-recall" id="psRecall">${build(false)}</div><div class="ps-row"><button type="button" class="ps-cta soft" id="psCheck">Check my words</button></div>`;
+    body.querySelector("#psCheck").onclick = () => {
+      sfx.tap(); body.querySelector("#psRecall").innerHTML = build(true);
+      body.querySelector(".ps-row").innerHTML = `<button type="button" class="ps-cta soft" id="psAgain">Try again</button><button type="button" class="ps-cta" id="psGot">I got it!</button>`;
+      body.querySelector("#psAgain").onclick = () => { sfx.tap(); psTab("heart"); };
+      body.querySelector("#psGot").onclick = () => {
+        if (PS_.lvl < 3) { PS_.lvl++; sfx.yes(); burstAt(body.querySelector("#psGot"), 50); psTab("heart"); return; }
+        const L = pget("learned", []); if (!L.includes(PS_.st.set)) { L.push(PS_.st.set); pset("learned", L); } renderLearned();
+        const items = activityDone(PS_.k);
+        sfx.win(); burst(innerWidth / 2, innerHeight * .4, 140, true);
+        body.innerHTML = `<div class="ps-done"><img src="${A("trophy")}" alt=""><h3>You know it by heart!</h3><p>Pray the ${esc(PS_.set.name)} every day, at bedtime, or whenever you want to talk to God.</p><button type="button" class="ps-cta" id="psFin">Done</button></div>`;
+        body.querySelector("#psFin").onclick = () => closeStudio(items);
+      };
+    };
+  }
+  wire(); $("#psScroll").scrollTo({ top: t === "learn" ? 0 : $("#psBody").offsetTop - 70, behavior: reduce ? "auto" : "smooth" });
+  function wire() { body.querySelectorAll("[data-go]").forEach(b => b.onclick = () => { sfx.tap(); psTab(b.dataset.go); }); }
+}
+document.querySelectorAll("#pstudio .ps-tabs button").forEach(b => b.onclick = () => { sfx.tap(); psTab(b.dataset.tab); });
+$("#psX").onclick = () => closeStudio();
+
+/* ---------- the game shell: quick rounds with a score, combos and stars ---------- */
+let GM = null;
+function openGame(k) {
+  let rounds = [], title = "";
+  if (k === "massPose") { title = "Stand, sit, or kneel?"; rounds = shuffle(MASS.map((m, j) => j).filter(j => MASS[j].pose !== "genuflect")).slice(0, 8).map(j => ({ t: "pose", k: j })); }
+  if (k === "massSay") { title = "What do we say?"; rounds = shuffle(massSay()).map(q => ({ ...q, t: "quiz" })); }
+  if (k === "review") { title = "Review game"; rounds = reviewScenes().filter(x => x.t === "quiz"); if (!rounds.length) { sfx.no(); toast("Finish a lesson first, then come back to play!"); return; } }
+  if (k === "steps") { title = "Confession practice"; rounds = [{ t: "order" }, { t: "script" }]; }
+  GM = { k, rounds, i: 0, score: 0, right: 0, total: 0, combo: 0 };
+  $("#gsTitle").textContent = title; $("#gsScore b").textContent = "0";
+  $("#gshell").hidden = false; document.body.style.overflow = "hidden"; sfx.whoosh(); gRound();
+}
+function closeGame(items) { $("#gshell").hidden = true; if ($("#quest").hidden) document.body.style.overflow = ""; sfx.close(); if (items && items.length) setTimeout(() => celebrate(items), 350); }
+function gPoints(ok, first) {
+  if (!first) return;
+  GM.total++;
+  if (ok) { GM.right++; GM.combo++; GM.score += 10 + Math.min(GM.combo - 1, 4) * 5; if (GM.combo >= 3 && GM.combo % 2 === 1) { const c = document.createElement("div"); c.className = "combo"; c.innerHTML = `<img src="${A("stars")}" alt="">${GM.combo} in a row!`; $("#gshell").appendChild(c); sfx.sparkle(); setTimeout(() => c.remove(), 1600); } }
+  else GM.combo = 0;
+  const sc = $("#gsScore"); sc.querySelector("b").textContent = GM.score; sc.classList.remove("bump"); void sc.offsetWidth; sc.classList.add("bump");
+}
+function gNext() { GM.i++; gRound(); }
+function gRound() {
+  const st = $("#gsStage"); $("#gsBar").style.width = (GM.i / GM.rounds.length * 100) + "%";
+  if (GM.i >= GM.rounds.length) return gEnd();
+  const r = GM.rounds[GM.i]; let first = true;
+  const nextBtn = label => `<button type="button" class="gs-next" id="gsNext" disabled>${label || "Next"}</button>`;
+  const ready = () => { const n = st.querySelector("#gsNext"); n.disabled = false; n.onclick = () => { sfx.tap(); gNext(); }; };
+  if (r.t === "quiz") {
+    st.innerHTML = `<div class="gs-card">${r.tag ? `<span class="gs-tag">${esc(r.tag)}</span>` : ""}<p class="gs-q">${esc(r.q)}</p></div><div class="gs-opts">${shuffle(r.opts).map(o => `<button type="button" data-ok="${o[1]}">${esc(o[0])}</button>`).join("")}</div>${nextBtn()}`;
+    st.querySelectorAll(".gs-opts button").forEach(b => b.onclick = () => {
+      const ok = b.dataset.ok === "1"; gPoints(ok, first);
+      if (ok) { if (first && r.review) fixMiss(r.review); b.classList.add("right"); sfx.yes(); burstAt(b, 40); st.querySelectorAll(".gs-opts button").forEach(x => x.disabled = true); ready(); }
+      else { first = false; b.classList.add("wrong"); b.disabled = true; sfx.no(); }
+    });
+  }
+  if (r.t === "pose") {
+    const m = MASS[r.k], want = m.pose === "genuflect" ? "kneel" : m.pose;
+    st.innerHTML = `<div class="gs-card pic">${m.img ? `<img class="gs-img" src="assets/img/${m.img}.jpg" alt="">` : `<div class="gs-icon">${img(m.icon)}</div>`}<p class="gs-q">${esc(m.name)}</p><small>What do you do?</small></div><div class="gs-poses">${["stand", "sit", "kneel"].map(p => `<button type="button" data-p="${p}"><img src="assets/g/ic_${p}.webp" alt=""><b>${POSE[p].label}</b></button>`).join("")}</div>${nextBtn()}`;
+    st.querySelectorAll(".gs-poses button").forEach(b => b.onclick = () => {
+      const ok = b.dataset.p === want; gPoints(ok, first);
+      if (ok) { b.classList.add("right"); sfx.yes(); burstAt(b, 40); st.querySelectorAll(".gs-poses button").forEach(x => x.disabled = true); ready(); }
+      else { first = false; b.classList.add("wrong"); b.disabled = true; sfx.no(); }
+    });
+  }
+  if (r.t === "order") {
+    let k = 0;
+    st.innerHTML = `<div class="gs-card"><p class="gs-q">Put the six parts of confession in order.</p><small>Tap the one that comes first.</small></div><ol class="gs-slots">${STEPS6.map(() => `<li></li>`).join("")}</ol><div class="gs-chips">${shuffle(STEPS6.map((x, i) => [x, i])).map(([x, i]) => `<button type="button" data-i="${i}">${esc(x)}</button>`).join("")}</div>${nextBtn()}`;
+    st.querySelectorAll(".gs-chips button").forEach(c => c.onclick = () => {
+      const ok = +c.dataset.i === k; gPoints(ok, true);
+      if (!ok) { sfx.no(); c.classList.remove("wig"); void c.offsetWidth; c.classList.add("wig"); return; }
+      sfx.place(); c.disabled = true; c.classList.add("used"); const li = st.querySelectorAll(".gs-slots li")[k]; li.textContent = STEPS6[k]; li.classList.add("fill"); k++;
+      if (k === STEPS6.length) { sfx.win(); burstAt(st.querySelector(".gs-slots"), 80, true); ready(); }
+    });
+  }
+  if (r.t === "script") {
+    let k = 0;
+    st.innerHTML = `<div class="gs-card"><p class="gs-q">Let's practice your confession!</p><small>Read your yellow lines out loud.</small></div><div class="gs-chat" id="gsChat"></div><button type="button" class="gs-next" id="gsSay">Start</button>`;
+    const chat = st.querySelector("#gsChat"), btn = st.querySelector("#gsSay");
+    btn.onclick = () => {
+      const [who, txt] = SCRIPT[k]; const d = document.createElement("div"); d.className = "gs-line " + who;
+      d.innerHTML = who === "note" ? `<p>${esc(txt)}</p>` : `<span>${who === "me" ? "You" : "Father"}</span><p>${esc(txt)}</p>`;
+      chat.appendChild(d); d.scrollIntoView({ behavior: "smooth", block: "nearest" }); sfx.tap(); k++;
+      if (k >= SCRIPT.length) { btn.textContent = "Finish"; btn.onclick = () => { sfx.tap(); gNext(); }; sfx.win(); }
+      else btn.textContent = SCRIPT[k][0] === "me" ? "I said my line" : "Next line";
+    };
+  }
+  if (G) G.from(st.children, { y: 20, opacity: 0, duration: .45, ease: "back.out(1.6)", stagger: .06 });
+}
+function gEnd() {
+  const pct = GM.total ? GM.right / GM.total : 1, stars = pct >= .9 ? 3 : pct >= .6 ? 2 : 1, items = activityDone(GM.k);
+  $("#gsStage").innerHTML = `<div class="gs-end"><div class="gs-stars">${[1, 2, 3].map(n => `<img src="${A("stars")}" alt="" class="${n <= stars ? "on" : ""}">`).join("")}</div><h3>${stars === 3 ? "Amazing!" : stars === 2 ? "Great job!" : "Good try!"}</h3><p class="gs-final"><b>${GM.score}</b> points</p><p>${GM.total ? `${GM.right} of ${GM.total} right the first time.` : "You did the whole thing!"}</p><div class="gs-row"><button type="button" class="gs-next soft" id="gsAgain">Play again</button><button type="button" class="gs-next" id="gsDone">Done</button></div></div>`;
+  sfx.win(); burst(innerWidth / 2, innerHeight * .35, 140, true);
+  $("#gsStage").querySelectorAll(".gs-stars img.on").forEach((x, j) => setTimeout(() => { x.classList.add("pop"); sfx.pop(); }, 400 + j * 350));
+  $("#gsAgain").onclick = () => { sfx.tap(); const k = GM.k; openGame(k); };
+  $("#gsDone").onclick = () => closeGame(items);
+}
+$("#gsX").onclick = () => closeGame();
+addEventListener("keydown", e => { if (e.key !== "Escape") return; if (!$("#gshell").hidden) closeGame(); else if (!$("#pstudio").hidden) closeStudio(); });
 // "practice your mistakes": questions missed the first time come back until they're answered right
 function quizByKey(k) {
   const cut = k.indexOf("|"), Qx = QUESTS[+k.slice(0, cut)], q = k.slice(cut + 1); if (!Qx) return null;
@@ -2917,6 +3338,10 @@ function reviewScenes() {
   return pool.length ? [...pool, { t: "done", practice: 1 }] : [];
 }
 function openPractice(k, start = 0) {
+  if (k === "bedtime") { openNight(); return; }
+  if (STUDIO[k]) { openStudio(k); return; }
+  if (["massPose", "massSay", "review", "steps"].includes(k)) { openGame(k); return; }
+  if (k === "mass") { goView("mass"); return; }
   const P = PRACTICE[k];
   const sc = typeof P.scenes === "function" ? P.scenes() : P.scenes;
   if (sc.length < 2) { sfx.no(); toast("Finish a lesson first, then come back to play!"); return; }
@@ -3072,9 +3497,7 @@ $("#plSettings").addEventListener("click", e => {
     refreshPlayer(); toast(`${pl.name} was removed`);
   }
 });
-const go = () => {
-  if (!S.pid) { askPlayer(); return; }
-  sfx.tap(); const c = current(); if (c >= QUESTS.length) { goView("quests"); return; } openQuest(c); };
+const go = () => { if (!S.pid) { askPlayer(); return; } startMission(todayMission()); };
 $("#heroGo").onclick = go; $("#navGo").onclick = go;
 
 $("#session").innerHTML = [["Remember", 2, "Review questions from last time"], ["Learn", 5, "One idea per screen"], ["Do", 4, "A hands-on game"], ["Pray", 3, "A short prayer with motions"], ["Celebrate", 1, "A new saint card"]].map(([n, m, d]) => `<div><small>${m} min</small><b>${n}</b><p>${d}</p></div>`).join("");
@@ -3109,7 +3532,7 @@ $("#cardView .cv-card").addEventListener("click", e => { if (e.target.closest(".
 addEventListener("keydown", e => { if ($("#cardView").hidden) return; if (e.key === "Escape") { if (!$("#cvSheet").hidden) { $("#cvSheetClose").click(); return; } closeCard(); } if (e.key === "ArrowLeft") $("#cvPrev").click(); if (e.key === "ArrowRight") $("#cvNext").click(); if (e.key === " " || e.key === "Enter") { e.preventDefault(); $("#cvFlip").click(); } });
 document.querySelectorAll("[data-practice]").forEach(b => b.onclick = () => { sfx.tap(); openPractice(b.dataset.practice); });
 /* ---------- videos: play while on screen, pause when scrolled away (saves battery, keeps scrolling smooth) ---------- */
-const VIDS = ["mass_church", "mass_entrance", "mass_readings", "mass_gospel", "mass_gifts", "mass_peace", "mass_blessing", "mass_sent"];
+const VIDS = ["mass_church", "mass_entrance", "mass_readings", "mass_gospel", "mass_gifts", "mass_altar", "mass_peace", "mass_blessing", "mass_sent", "mass_kneel"];
 const autoIO = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => { const v = e.target; if (e.isIntersecting) { if (v.preload !== "auto") { v.preload = "auto"; v.load(); } v.play().catch(() => {}); } else v.pause(); }), { threshold: .2 }) : null;
 function autoVideos(root = document) { if (reduce) return; root.querySelectorAll("video[data-auto]").forEach(v => { if (v.dataset.on) return; v.dataset.on = 1; v.muted = true; autoIO ? autoIO.observe(v) : v.play().catch(() => {}); }); }
 // the Mass as a scroll story: each chapter keeps a video pinned while its parts scroll past, and the video follows the part you're reading
@@ -3146,6 +3569,9 @@ const MASS_CH = { "Before Mass": "We come into God's house and remember our Bapt
   const upd = () => { if (!hero.offsetParent) return; const r = hero.getBoundingClientRect(), span = hero.offsetHeight - innerHeight; hero.style.setProperty("--p", Math.min(Math.max(-r.top / Math.max(span, 1), 0), 1).toFixed(3)); };
   let tk = 0; addEventListener("scroll", () => { if (!tk) tk = requestAnimationFrame(() => { tk = 0; upd(); }); }, { passive: true }); addEventListener("resize", upd); addEventListener("hashchange", () => setTimeout(upd, 50)); upd();
   autoVideos($("#mass"));
+  // finishing the story (the last part reaches the middle of the screen) counts as walking through the whole Mass
+  const last = [...document.querySelectorAll(".mbeat")].pop();
+  if (last && "IntersectionObserver" in window) { const fin = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && S.pid) { fin.disconnect(); const items = activityDone("mass"); if (items.length) setTimeout(() => celebrate(items), 600); } }), { rootMargin: "-45% 0px -45% 0px" }); fin.observe(last); }
 })();
 function renderLearned() {
   const L = pget("learned", []);
