@@ -2434,8 +2434,26 @@ const STEPS6 = ["Examination of Conscience","Welcome","Confession","Penance","Ac
 /* ---------- state ---------- */
 const store = {
   get(k, d) { try { const v = localStorage.getItem("found." + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
-  set(k, v) { try { localStorage.setItem("found." + k, JSON.stringify(v)); } catch (e) {} },
+  set(k, v) { try { localStorage.setItem("found." + k, JSON.stringify(v)); } catch (e) { saveFailed(); } },
 };
+let saveWarned = false;
+function saveFailed() { if (saveWarned) return; saveWarned = true; setTimeout(() => { if (typeof toast === "function") toast("This browser isn't saving progress. Try a normal (not private) window, or add Found! to your Home Screen."); }, 800); }
+const SAVE_VERSION = 3;
+// before any upgrade runs, keep a copy of the saves exactly as they were (once per version; only the two newest are kept)
+(function safetyCopy() {
+  try {
+    const from = store.get("schema", 2); if (from >= SAVE_VERSION) return;
+    const keys = []; for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.startsWith("found.") && !k.startsWith("found.safety.")) keys.push(k); }
+    if (!keys.some(k => /^found\.(players|done|cards|name|p\.)/.test(k))) return; // nothing saved yet
+    if (localStorage.getItem(`found.safety.${from}`) == null) { const snap = {}; keys.forEach(k => { snap[k] = localStorage.getItem(k); }); localStorage.setItem(`found.safety.${from}`, JSON.stringify(snap)); }
+    const copies = []; for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.startsWith("found.safety.")) copies.push(k); }
+    copies.sort((a, b) => parseInt(b.slice(13)) - parseInt(a.slice(13))).slice(2).forEach(k => localStorage.removeItem(k));
+  } catch (e) {}
+})();
+// every saved value must have the shape the app expects; anything else reads as the default
+const SHAPE = { done: "arr", cards: "arr", badges: "arr", days: "arr", learned: "arr", missed: "arr", stars: "obj", practiced: "obj", nightSeen: "obj", pos: "obj", mtoday: "obj", unlocked: "bool", bigDay: "str", missionDone: "str", lastLesson: "str", seen: "num", fixed: "num" };
+const fits = (k, v) => { const t = SHAPE[k]; if (!t || v == null) return true; if (t === "arr") return Array.isArray(v); if (t === "obj") return typeof v === "object" && !Array.isArray(v); return typeof v === { bool: "boolean", str: "string", num: "number" }[t]; };
+const okId = id => typeof id === "string" && /^[\w-]{1,40}$/.test(id);
 const S = { pid: null, name: "", done: [], cards: [], unlocked: false, sound: store.get("sound", true), bigDay: "" };
 if (store.get("v", 1) < 2) { ["done", "cards"].forEach(k => store.set(k, [])); store.set("pos", null); store.set("seen", 0); store.set("v", 2); }
 
@@ -2459,35 +2477,44 @@ if (!PL) {
    1. Never rename or delete a saved key. Add new keys instead; a new course saves under p.<child>.<course>.<key>.
    2. Every lesson keeps its permanent id (recon-01 ...). If the lesson list ever changes order, progress is moved by id.
    3. A change to the save format is a new numbered step in SAVE_STEPS. A full copy of the old saves is kept first. */
-const QUEST_IDS = QUESTS.map(q => q.id);
-const SAVE_VERSION = 3;
+const QUEST_IDS = QUESTS.map(q => q.id), SAINT_IDS = SAINTS.map(x => x.name);
 const SAVE_STEPS = {
   3: () => {}, // 3: lesson ids are recorded (nothing moves)
 };
-function remapQuests(pid, was) {
-  if (!Array.isArray(was) || was.join() === QUEST_IDS.join()) return;
-  const to = i => QUEST_IDS.indexOf(was[i]), key = k => `p.${pid}.${k}`;
-  ["done", "cards"].forEach(k => { const v = store.get(key(k), null); if (Array.isArray(v)) store.set(key(k), v.map(to).filter(i => i >= 0)); });
-  const st = store.get(key("stars"), null); if (st) { const o = {}; Object.keys(st).forEach(i => { const j = to(+i); if (j >= 0) o[j] = st[i]; }); store.set(key("stars"), o); }
-  const pos = store.get(key("pos"), null); if (pos) store.set(key("pos"), to(pos.q) >= 0 ? { q: to(pos.q), si: 0 } : null);
-  const ms = store.get(key("missed"), null); if (Array.isArray(ms)) store.set(key("missed"), ms.map(x => { const [q, ...r] = String(x).split("|"); const j = to(+q); return j >= 0 ? [j, ...r].join("|") : null; }).filter(Boolean));
-  const mt = store.get(key("mtoday"), null); if (mt && mt.q != null) { mt.q = Math.max(0, to(mt.q)); store.set(key("mtoday"), mt); }
+// move one child's progress (an object of saved keys) from an old lesson / saint order to today's
+function remapSaves(o, wasQ, wasS) {
+  if (Array.isArray(wasQ) && wasQ.join() !== QUEST_IDS.join()) {
+    const to = i => QUEST_IDS.indexOf(wasQ[i]);
+    if (Array.isArray(o.done)) o.done = o.done.map(to).filter(i => i >= 0);
+    if (o.stars && typeof o.stars === "object") { const n = {}; Object.keys(o.stars).forEach(i => { const j = to(+i); if (j >= 0) n[j] = o.stars[i]; }); o.stars = n; }
+    if (o.pos && typeof o.pos === "object") o.pos = to(o.pos.q) >= 0 ? { q: to(o.pos.q), si: 0 } : null;
+    if (Array.isArray(o.missed)) o.missed = o.missed.map(x => { const [q, ...r] = String(x).split("|"); const j = to(+q); return j >= 0 ? [j, ...r].join("|") : null; }).filter(Boolean);
+    if (o.mtoday && o.mtoday.q != null) { const j = to(o.mtoday.q); if (j >= 0) o.mtoday.q = j; else delete o.mtoday.q; }
+  }
+  if (Array.isArray(wasS) && wasS.join() !== SAINT_IDS.join() && Array.isArray(o.cards)) o.cards = o.cards.map(i => SAINT_IDS.indexOf(wasS[i])).filter(i => i >= 0);
+  return o;
+}
+function remapChild(pid, wasQ, wasS) {
+  const keys = ["done", "stars", "pos", "missed", "mtoday", "cards"], o = {};
+  keys.forEach(k => { const v = store.get(`p.${pid}.${k}`, null); if (v != null && fits(k, v)) o[k] = v; });
+  remapSaves(o, wasQ, wasS);
+  keys.forEach(k => { if (k in o) store.set(`p.${pid}.${k}`, o[k]); });
 }
 (function upgradeSaves() {
   const from = store.get("schema", 2);
   if (from < SAVE_VERSION) {
-    // keep a full copy of the saves exactly as they were, then upgrade one step at a time
-    try { const snap = {}; for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.startsWith("found.") && !k.startsWith("found.safety.")) snap[k] = localStorage.getItem(k); } localStorage.setItem(`found.safety.${from}`, JSON.stringify(snap)); } catch (e) {}
+    // (the safety copy was taken right after the store was set up) upgrade one step at a time
     for (let v = from + 1; v <= SAVE_VERSION; v++) { try { if (SAVE_STEPS[v]) SAVE_STEPS[v](); } catch (e) {} }
     store.set("schema", SAVE_VERSION);
   }
-  const was = store.get("questIds", null);
-  if (was) PL.forEach(pl => remapQuests(pl.id, was));
-  store.set("questIds", QUEST_IDS);
+  const wasQ = store.get("questIds", null), wasS = store.get("saintIds", null);
+  if (wasQ || wasS) PL.forEach(pl => remapChild(pl.id, wasQ || QUEST_IDS, wasS || SAINT_IDS));
+  store.set("questIds", QUEST_IDS); store.set("saintIds", SAINT_IDS);
 })();
 // every key saved for one child, including ones future versions add
 const childKeys = id => { const pre = `found.p.${id}.`, out = []; try { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.startsWith(pre)) out.push(k.slice(pre.length)); } } catch (e) {} return out; };
-const pget = (k, d) => S.pid ? store.get(`p.${S.pid}.${k}`, d) : d;
+PL = (Array.isArray(PL) ? PL : []).filter(p => p && okId(p.id) && typeof p.name === "string");
+const pget = (k, d) => { if (!S.pid) return d; const v = store.get(`p.${S.pid}.${k}`, d); return fits(k, v) ? v : d; };
 const pset = (k, v) => { if (S.pid) store.set(`p.${S.pid}.${k}`, v); };
 const pdrop = (id, keys) => keys.forEach(k => { try { localStorage.removeItem(`found.p.${id}.${k}`); } catch (e) {} });
 function loadPlayer(id) {
@@ -2818,7 +2845,7 @@ function fitScene(el) {
 addEventListener("resize", () => fitScene(stage.querySelector(".scene")));
 // is part of this screen still below the fold?
 const moreBelow = () => stage.scrollHeight - stage.scrollTop - stage.clientHeight > 24;
-function updMore() { const m = moreBelow(); $("#qMore").hidden = !m; stage.classList.toggle("more", m); }
+function updMore() { const m = moreBelow() && !(scenes[si] && scenes[si].t === "done"); $("#qMore").hidden = !m; stage.classList.toggle("more", m); }
 stage.addEventListener("scroll", updMore, { passive: true });
 $("#qMore").onclick = () => { sfx.tap(); stage.scrollBy({ top: stage.clientHeight * .75, behavior: reduce ? "auto" : "smooth" }); };
 function setReady(v, msg, good = v) {
@@ -3641,28 +3668,34 @@ function refreshPlayer() {
 }
 function renderPlayers() {
   const k = PL.findIndex(x => x.id === S.pid);
-  $("#plRow").innerHTML = PL.map((pl, j) => `<button type="button" class="pl" data-id="${pl.id}" aria-pressed="${pl.id === S.pid}">${avatar(pl, j)}<span>${esc(pl.name)}</span></button>`).join("")
+  $("#plRow").innerHTML = PL.map((pl, j) => `<button type="button" class="pl" data-id="${esc(pl.id)}" aria-pressed="${pl.id === S.pid}">${avatar(pl, j)}<span>${esc(pl.name)}</span></button>`).join("")
     + (PL.length ? `<button type="button" class="pl add" id="plNew"><span class="av plus">+</span><span>Add a child</span></button>` : "");
   $("#plAdd").hidden = PL.length > 0 && !renderPlayers.adding;
   $("#plRow").querySelectorAll(".pl[data-id]").forEach(b => b.onclick = () => { sfx.select(); switchPlayer(b.dataset.id); });
   const nb = $("#plNew"); if (nb) nb.onclick = () => { sfx.tap(); renderPlayers.adding = true; renderPlayers(); $("#plName").focus(); };
   const wb = $("#whoBtn"); wb.hidden = !S.pid;
   if (S.pid) { $("#whoAv").outerHTML = avatar(PL[k], k).replace('class="av"', 'class="av" id="whoAv"'); $("#whoNm").textContent = S.name; $("#whoBtn").setAttribute("aria-label", `Who's playing: ${S.name}`); }
-  $("#whoMenu").innerHTML = PL.map((pl, j) => `<button type="button" role="menuitemradio" aria-checked="${pl.id === S.pid}" data-id="${pl.id}">${avatar(pl, j)}<span>${esc(pl.name)}</span></button>`).join("")
+  $("#whoMenu").innerHTML = PL.map((pl, j) => `<button type="button" role="menuitemradio" aria-checked="${pl.id === S.pid}" data-id="${esc(pl.id)}">${avatar(pl, j)}<span>${esc(pl.name)}</span></button>`).join("")
     + `<hr><button type="button" role="menuitem" data-act="add"><span class="av plus">+</span><span>Add a child</span></button><button type="button" role="menuitem" data-act="manage"><span class="av plus">⋯</span><span>Manage players</span></button>`;
-  $("#plSettings").innerHTML = PL.length ? PL.map((pl, j) => `<div class="trow pl-set" data-id="${pl.id}">${avatar(pl, j)}<span class="pn">${esc(pl.name)}${pl.id === S.pid ? ' <i>Playing now</i>' : ""}</span><button class="tbtn" type="button" data-act="ren">Rename</button><button class="tbtn danger" type="button" data-act="del">Remove</button></div>`).join("")
+  $("#plSettings").innerHTML = PL.length ? PL.map((pl, j) => `<div class="trow pl-set" data-id="${esc(pl.id)}">${avatar(pl, j)}<span class="pn">${esc(pl.name)}${pl.id === S.pid ? ' <i>Playing now</i>' : ""}</span><button class="tbtn" type="button" data-act="ren">Rename</button><button class="tbtn danger" type="button" data-act="del">Remove</button></div>`).join("")
     : `<div class="trow"><span>No players yet</span><button class="tbtn" type="button" data-act="add">Add a child</button></div>`;
   $("#resetLbl").textContent = S.pid ? `Erase ${S.name}'s progress` : "Erase progress";
   $("#dayLbl").textContent = S.pid ? `${S.name}'s First Reconciliation` : "First Reconciliation date";
 }
 function switchPlayer(id) { if (id === S.pid) return; loadPlayer(id); refreshPlayer(); toast(`Hi, ${S.name}!`); }
 // progress lives in this browser; ask it to keep the data, even when storage gets tight or the site isn't opened for a while
+function purgeSafety(id) {
+  try { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (!k || !k.startsWith("found.safety.")) continue;
+    const snap = JSON.parse(localStorage.getItem(k) || "{}"); Object.keys(snap).forEach(x => { if (x.startsWith(`found.p.${id}.`)) delete snap[x]; });
+    if (snap["found.players"]) { try { snap["found.players"] = JSON.stringify(JSON.parse(snap["found.players"]).filter(p => p && p.id !== id)); } catch (e) {} }
+    localStorage.setItem(k, JSON.stringify(snap)); } } catch (e) {}
+}
 const keepData = () => { try { navigator.storage && navigator.storage.persist && navigator.storage.persist().catch(() => {}); } catch (e) {} };
 // a backup link carries every child's progress inside the #fragment, which browsers never send to any server
 const b64u = t => btoa(unescape(encodeURIComponent(t))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 const unb64u = t => decodeURIComponent(escape(atob(t.replace(/-/g, "+").replace(/_/g, "/"))));
 function backupLink() {
-  const d = { v: 2, save: SAVE_VERSION, ids: QUEST_IDS, players: PL, active: S.pid, p: {} };
+  const d = { v: 2, save: SAVE_VERSION, ids: QUEST_IDS, saints: SAINT_IDS, players: PL, active: S.pid, p: {} };
   PL.forEach(pl => { const o = d.p[pl.id] = {}; childKeys(pl.id).forEach(k => { const v = store.get(`p.${pl.id}.${k}`, null); if (v != null) o[k] = k === "days" && Array.isArray(v) ? v.slice(-60) : v; }); });
   return `${location.origin}${location.pathname}#restore=${b64u(JSON.stringify(d))}`;
 }
@@ -3681,15 +3714,18 @@ function offerRestore() {
   if (!d || !Array.isArray(d.players) || !d.players.length) { toast("That backup link didn't work. Try copying it again."); return; }
   const names = d.players.map(x => x.name).join(", ");
   const box = document.createElement("div"); box.id = "award"; box.className = "award"; box.setAttribute("role", "dialog"); box.setAttribute("aria-label", "Restore progress");
-  box.innerHTML = `<div class="award-card"><span class="tag">Backup link</span><div class="award-art"><img src="${A("ewe")}" alt=""></div><h3>Bring back progress?</h3><p>This adds ${esc(names)} to this device, with every lesson, card, star and badge from the backup.</p><button class="btn btn-go" type="button" id="rsYes">Restore</button><button class="btn btn-soft" type="button" id="rsNo">Not now</button></div>`;
+  box.innerHTML = `<div class="award-card"><span class="tag">Backup link</span><div class="award-art"><img src="${A("ewe")}" alt=""></div><h3>Bring back progress?</h3><p>${(() => { const here = d.players.filter(x => x && PL.some(y => y.id === x.id)).map(x => x.name); return here.length ? `This brings back ${esc(names)}. Progress already on this device for ${esc(here.join(", "))} is replaced by the backup.` : `This adds ${esc(names)} to this device, with every lesson, card, star and badge from the backup.`; })()}</p><button class="btn btn-go" type="button" id="rsYes">Restore</button><button class="btn btn-soft" type="button" id="rsNo">Not now</button></div>`;
   document.body.appendChild(box);
   box.querySelector("#rsNo").onclick = () => { sfx.close(); box.remove(); };
   box.querySelector("#rsYes").onclick = () => {
     d.players.forEach(pl => {
-      if (!pl || !pl.id || !pl.name) return;
+      if (!pl || !okId(pl.id) || typeof pl.name !== "string" || !pl.name.trim()) return;
       const at = PL.findIndex(x => x.id === pl.id); at < 0 ? PL.push({ id: String(pl.id), name: String(pl.name).slice(0, 24) }) : (PL[at].name = String(pl.name).slice(0, 24));
-      const o = (d.p || {})[pl.id] || {}; Object.keys(o).forEach(k => { if (/^[\w.-]+$/.test(k) && o[k] != null) store.set(`p.${pl.id}.${k}`, o[k]); });
-      remapQuests(String(pl.id), Array.isArray(d.ids) ? d.ids : QUEST_IDS);
+      const src = (d.p || {})[pl.id], o = {};
+      if (src && typeof src === "object") Object.keys(src).forEach(k => { if (/^[\w.-]{1,60}$/.test(k) && src[k] != null && fits(k, src[k])) o[k] = src[k]; });
+      remapSaves(o, Array.isArray(d.ids) ? d.ids : QUEST_IDS, Array.isArray(d.saints) ? d.saints : SAINT_IDS);
+      if (at >= 0) pdrop(pl.id, childKeys(pl.id)); // the backup replaces what this device had for that child
+      Object.keys(o).forEach(k => store.set(`p.${pl.id}.${k}`, o[k]));
     });
     savePlayers(); keepData(); loadPlayer(PL.some(x => x.id === d.active) ? d.active : PL[0].id); refreshPlayer();
     box.remove(); sfx.win(); burst(innerWidth / 2, innerHeight * .4, 120, true); toast(`Welcome back, ${names}!`);
@@ -3742,7 +3778,7 @@ $("#plSettings").addEventListener("click", e => {
   }
   if (b.dataset.act === "del") {
     if (!b.dataset.sure) { b.dataset.sure = 1; b.textContent = `Tap again to remove ${pl.name}`; setTimeout(() => { if (b.isConnected) { b.textContent = "Remove"; delete b.dataset.sure; } }, 4000); return; }
-    pdrop(id, childKeys(id));
+    pdrop(id, childKeys(id)); purgeSafety(id);
     PL = PL.filter(x => x.id !== id); savePlayers();
     if (id === S.pid) loadPlayer(PL[0] && PL[0].id);
     refreshPlayer(); toast(`${pl.name} was removed`);
