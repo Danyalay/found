@@ -1729,6 +1729,12 @@ body[data-band="confirm"]:not([data-showmap="1"]) #map{display:none!important}
 
 body[data-band="lambs"] .fp-games,body[data-band="lambs"] .fp-games+.pgrid{display:none}
 @media (orientation:landscape) and (max-height:500px){.fp-signx{gap:6px;width:min(100%,520px)}.fp-sx{padding:6px 8px}.fp-sx span{font-size:14px}.fp-sxc img{max-width:52px}}
+
+.fp-glist{margin:6px 0 10px;padding-left:20px;display:grid;gap:8px;line-height:1.45;max-width:66ch}
+.fp-gtry{margin:0 0 8px;padding:12px 16px;border-radius:16px;background:color-mix(in srgb,#FFD66B 22%,var(--card));font-weight:700;max-width:66ch}
+.fp-gnote{margin:0;font-size:13.5px;color:var(--ink-soft);max-width:66ch}
+:root[data-theme="dark"] .fp-lamb.done .fp-lt i{color:#5BE37D}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .fp-lamb.done .fp-lt i{color:#5BE37D}}
 /* apple scroll reveal: fade + rise, staggered */
 .rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(0,0,.5,1),transform 1s cubic-bezier(0,0,.5,1);transition-delay:calc(var(--d,0) * 90ms)}
 .rv.in{opacity:1;transform:none}
@@ -1738,7 +1744,7 @@ body[data-band="lambs"] .fp-games,body[data-band="lambs"] .fp-games+.pgrid{displ
 <div class="pread" id="pread" hidden role="dialog" aria-modal="true" aria-labelledby="prTitle">
   <button type="button" class="ps-x pr-x" id="prX" aria-label="Close">&times;</button>
   <div class="pr-scroll"><div class="pr-in">
-    <img class="pr-icon" id="prIcon" src="" alt="">
+    <img loading="lazy" decoding="async" class="pr-icon" id="prIcon" src="" alt="">
     <p class="pr-k" id="prK"></p><h2 id="prTitle"></h2><p class="pr-when" id="prWhen"></p>
     <div class="pr-text" id="prText"></div>
     <button type="button" class="pr-read" id="prRead" hidden><span aria-hidden="true">🔊</span> Read it to me</button>
@@ -1747,7 +1753,7 @@ body[data-band="lambs"] .fp-games,body[data-band="lambs"] .fp-games+.pgrid{displ
   </div></div>
 </div>
 <div class="night" id="night" hidden role="dialog" aria-modal="true" aria-label="Bedtime Heart Check">
-  <div class="night-bg"><img src="assets/img/night_sky.jpg" alt=""><video id="nightVid" src="assets/vid/night_sky.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+  <div class="night-bg"><img loading="lazy" decoding="async" src="assets/img/night_sky.jpg" alt=""><video id="nightVid" src="assets/vid/night_sky.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
   <button type="button" class="night-x" id="nightX" aria-label="Close Bedtime Heart Check">&times;</button>
   <button type="button" class="night-read" id="nightRead" aria-label="Read this to me" hidden><span aria-hidden="true">🔊</span></button>
   <div class="night-stage" id="nStage" aria-live="polite"></div>
@@ -1757,7 +1763,7 @@ body[data-band="lambs"] .fp-games,body[data-band="lambs"] .fp-games+.pgrid{displ
   <div class="ps-scroll" id="psScroll"><div class="ps-hero" id="psHero"></div><div class="ps-body" id="psBody"></div></div>
 </div>
 <div class="gshell" id="gshell" hidden role="dialog" aria-modal="true" aria-label="Game">
-  <div class="gs-hud"><button type="button" class="gs-x" id="gsX" aria-label="Close">&times;</button><div class="gs-title" id="gsTitle"></div><div class="gs-score" id="gsScore"><img src="assets/g/star.webp" alt=""><b>0</b></div></div>
+  <div class="gs-hud"><button type="button" class="gs-x" id="gsX" aria-label="Close">&times;</button><div class="gs-title" id="gsTitle"></div><div class="gs-score" id="gsScore"><img loading="lazy" decoding="async" src="assets/g/star.webp" alt=""><b>0</b></div></div>
   <div class="gs-bar"><i id="gsBar"></i></div>
   <div class="gs-stage" id="gsStage"></div>
 </div>
@@ -1767,18 +1773,18 @@ body[data-band="lambs"] .fp-games,body[data-band="lambs"] .fp-games+.pgrid{displ
   <div class="wrap">
     <a class="brand" href="#/home" aria-label="Found! home"><span id="brandLamb"></span>Found!</a>
     <nav class="tabnav" aria-label="Sections">
-      <a href="#/quests" data-tab="quests"><img src="assets/g/quests.webp" alt=""><span>Lessons</span></a>
-      <a href="#/cards" data-tab="cards"><img src="assets/g/cards.webp" alt=""><span><i class="nw">Saint </i>Cards</span><b class="cardcount" id="albumBadge">0</b></a>
-      <a href="#/practice" data-tab="practice"><img src="assets/g/pray.webp" alt=""><span>Prayers</span></a>
-      <a href="#/mass" data-tab="mass"><img src="assets/g/church.webp" alt=""><span>Mass</span></a>
-      <a href="#/grownups" data-tab="grownups"><img src="assets/g/book.webp" alt=""><span>Grown-ups</span></a>
+      <a href="#/quests" data-tab="quests"><img loading="lazy" decoding="async" src="assets/g/quests.webp" alt=""><span>Lessons</span></a>
+      <a href="#/cards" data-tab="cards"><img loading="lazy" decoding="async" src="assets/g/cards.webp" alt=""><span><i class="nw">Saint </i>Cards</span><b class="cardcount" id="albumBadge">0</b></a>
+      <a href="#/practice" data-tab="practice"><img loading="lazy" decoding="async" src="assets/g/pray.webp" alt=""><span>Prayers</span></a>
+      <a href="#/mass" data-tab="mass"><img loading="lazy" decoding="async" src="assets/g/church.webp" alt=""><span>Mass</span></a>
+      <a href="#/grownups" data-tab="grownups"><img loading="lazy" decoding="async" src="assets/g/book.webp" alt=""><span>Grown-ups</span></a>
     </nav>
     <div class="who-wrap"><button class="who" id="whoBtn" type="button" aria-haspopup="menu" aria-expanded="false" hidden><span class="av" id="whoAv"></span><span class="nm" id="whoNm"></span></button><div class="whomenu" id="whoMenu" role="menu" hidden></div></div>
     <button class="btn btn-go" id="navGo" type="button">Play</button>
   </div>
 </header>
 <div id="nojs" role="note">
-  <img src="assets/g/pip.webp" alt="" width="96" height="96">
+  <img loading="lazy" decoding="async" src="assets/g/pip.webp" alt="" width="96" height="96">
   <h1>Found! plays in your web browser.</h1>
   <p class="nj-lede">This is an interactive Catholic faith app for kids. This viewer can't play it, so it looks empty here.</p>
   <p><a class="nj-btn" href="https://foundlamb.pages.dev/">Open Found! in Safari or Chrome</a></p>
@@ -1799,7 +1805,7 @@ body[data-band="lambs"] .fp-games,body[data-band="lambs"] .fp-games+.pgrid{displ
       </div>
       <div class="players" id="players">
         <div class="a2hs" id="a2hs" hidden>
-          <img src="assets/g/pip.webp" alt="" width="44" height="44">
+          <img loading="lazy" decoding="async" src="assets/g/pip.webp" alt="" width="44" height="44">
           <p><b>Tip for iPhone and iPad:</b> add Found! to your Home Screen before you start, so it opens like an app. Tap <b>Share</b>, then <b>Add to Home Screen</b>. Progress stays with wherever you play.</p>
           <button type="button" class="a2hs-x" id="a2hsX" aria-label="Hide this tip">Got it</button>
         </div>
@@ -1816,7 +1822,7 @@ body[data-band="lambs"] .fp-games,body[data-band="lambs"] .fp-games+.pgrid{displ
     <div class="land" aria-hidden="true">
       <div class="land-frame">
         <img class="land-img" src="assets/img/hero.jpg" alt="">
-        <img class="heart-pop" src="assets/g/heart.webp" alt="">
+        <img loading="lazy" decoding="async" class="heart-pop" src="assets/g/heart.webp" alt="">
       </div>
     </div>
   </div>
@@ -1827,7 +1833,7 @@ body[data-band="lambs"] .fp-games,body[data-band="lambs"] .fp-games+.pgrid{displ
     <p class="t-sub">Wonder moments with the Good Shepherd.</p>
     <p class="t-call">Ten short moments with big pictures, words read aloud, and something to do together.</p>
     <div class="ctas"><a class="btn btn-go" href="#/quests">Open Little Lambs</a></div>
-    <div class="t-media wide"><img src="assets/img/shepherd_carry.jpg" alt="The Good Shepherd carrying a lamb home" draggable="false"></div>
+    <div class="t-media wide"><img loading="lazy" decoding="async" src="assets/img/shepherd_carry.jpg" alt="The Good Shepherd carrying a lamb home" draggable="false"></div>
   </div>
   <div class="tile tile-dark rv fp-conftile" id="confTile">
     <p class="t-eyebrow">Confirmation</p>
@@ -1835,7 +1841,7 @@ body[data-band="lambs"] .fp-games,body[data-band="lambs"] .fp-games+.pgrid{displ
     <p class="t-sub">Ten sessions for your Confirmation years.</p>
     <p class="t-call">The Holy Spirit and His gifts, choosing your saint, your sponsor, the rite, and honest answers to hard questions.</p>
     <div class="ctas"><a class="btn btn-go" href="#/quests">Open Confirmation</a></div>
-    <div class="t-media wide"><img src="assets/img/conf_anoint.jpg" alt="A bishop anoints a teen at Confirmation while the sponsor stands behind" draggable="false"></div>
+    <div class="t-media wide"><img loading="lazy" decoding="async" src="assets/img/conf_anoint.jpg" alt="A bishop anoints a teen at Confirmation while the sponsor stands behind" draggable="false"></div>
   </div>
   <div class="tile tile-dark rv" id="frTile">
     <p class="t-eyebrow">Getting ready for a sacrament</p>
@@ -1843,7 +1849,7 @@ body[data-band="lambs"] .fp-games,body[data-band="lambs"] .fp-games+.pgrid{displ
     <p class="t-sub">13 lessons from the parish workbook.</p>
     <p class="t-call">Stories, games, and prayers that get you ready for your first confession, one step at a time.</p>
     <div class="ctas"><a class="btn btn-go" href="#/quests">Open the lessons</a><a class="btn btn-soft" href="#/grownups">What's inside</a></div>
-    <div class="t-media wide"><img src="assets/img/shepherd_carry.jpg" alt="The Good Shepherd carrying a lamb home" draggable="false"></div>
+    <div class="t-media wide"><img loading="lazy" decoding="async" src="assets/img/shepherd_carry.jpg" alt="The Good Shepherd carrying a lamb home" draggable="false"></div>
   </div>
   <div class="tile-grid">
     <div class="tile tile-light rv">
@@ -1858,7 +1864,7 @@ body[data-band="lambs"] .fp-games,body[data-band="lambs"] .fp-games+.pgrid{displ
       <p class="t-sub">Learn them by heart.</p>
       <p class="t-call">The prayers every Catholic knows, for every age, from the Sign of the Cross to the Creed.</p>
       <div class="ctas"><a class="btn btn-go" href="#/practice">Learn a prayer</a></div>
-      <div class="t-media fan"><img src="assets/img/pray_ourfather.jpg" alt="" draggable="false"><img src="assets/img/pray_hailmary.jpg" alt="" draggable="false"><img src="assets/img/pray_glorybe.jpg" alt="" draggable="false"></div>
+      <div class="t-media fan"><img loading="lazy" decoding="async" src="assets/img/pray_ourfather.jpg" alt="" draggable="false"><img loading="lazy" decoding="async" src="assets/img/pray_hailmary.jpg" alt="" draggable="false"><img loading="lazy" decoding="async" src="assets/img/pray_glorybe.jpg" alt="" draggable="false"></div>
     </div>
   </div>
   <div class="tile tile-dark rv">
@@ -1870,18 +1876,18 @@ body[data-band="lambs"] .fp-games,body[data-band="lambs"] .fp-games+.pgrid{displ
   </div>
   <div class="tile tile-night rv">
     <p class="t-eyebrow">Every night</p>
-    <h2>Bedtime Heart Check.</h2>
+    <h2 id="bedTileH">Bedtime Heart Check.</h2>
     <p class="t-sub">A quiet talk with Jesus before sleep.</p>
     <p class="t-call">Talk with Jesus about your day, in a way that fits your age, then pray together before sleep.</p>
     <div class="ctas"><button type="button" class="btn btn-go" data-practice="bedtime">Start tonight</button></div>
-    <div class="t-media wide"><img src="assets/img/night_sky.jpg" alt="A starry night sky over a sleepy village and its church" draggable="false"></div>
+    <div class="t-media wide"><img loading="lazy" decoding="async" src="assets/img/night_sky.jpg" alt="A starry night sky over a sleepy village and its church" draggable="false"></div>
   </div>
   <div class="tile tile-white rv">
     <h2>Made for families.</h2>
     <p class="t-sub">Lesson by lesson, from the parish workbook.</p>
     <p class="t-call">Same lessons, saints, prayers, Scripture, and reviews. Pages work offline after your first visit; videos need internet. Nothing is collected.</p>
     <div class="ctas"><a class="btn btn-soft" href="#/grownups">Read the grown-ups guide</a></div>
-    <div class="t-media wide"><img src="assets/img/mass_peace.jpg" alt="A family sharing the sign of peace at Mass" draggable="false"></div>
+    <div class="t-media wide"><img loading="lazy" decoding="async" src="assets/img/mass_peace.jpg" alt="A family sharing the sign of peace at Mass" draggable="false"></div>
   </div>
 </section>
 
@@ -1911,7 +1917,7 @@ body[data-band="lambs"] .fp-games,body[data-band="lambs"] .fp-games+.pgrid{displ
       <label for="confSaint">My Confirmation saint</label><input id="confSaint" maxlength="60" autocomplete="off" placeholder="Who are you thinking of?">
       <label for="confSponsor">My sponsor</label><input id="confSponsor" maxlength="60" autocomplete="off" placeholder="Name">
       <label class="fp-cdone"><input type="checkbox" id="confDone"> I've been confirmed</label>
-      <div class="fp-hrs"><span>Service hours</span><button type="button" class="tbtn" id="confMinus" aria-label="One hour less">−</button><b id="confHrs">0</b><button type="button" class="tbtn" id="confPlus" aria-label="One hour more">+</button></div>
+      <div class="fp-hrs"><span>Service hours</span><button type="button" class="tbtn" id="confMinus" aria-label="One hour less">−</button><b id="confHrs" aria-live="polite">0</b><button type="button" class="tbtn" id="confPlus" aria-label="One hour more">+</button></div>
     </div>
     <p class="fp-more"><button type="button" class="tbtn" id="confReview" aria-expanded="false" aria-controls="map">Review the First Reconciliation lessons</button></p>
   </div>
@@ -1944,7 +1950,7 @@ body[data-band="lambs"] .fp-games,body[data-band="lambs"] .fp-games+.pgrid{displ
   <div class="wrap">
     <div class="album-book">
       <div class="album-head">
-        <div><h2 id="albumTitle">Your Saint Album.</h2><p>These saints needed God's forgiveness too. Finish a lesson to open a card pack. Tap a card to see it big, then flip it to read about the saint.</p></div>
+        <div><h2 id="albumTitle">Your Saint Album.</h2><p><span id="albumHow">These saints needed God's forgiveness too. Finish a lesson to open a card pack.</span> Tap a card to see it big, then flip it to read about the saint.</p></div>
         <div class="album-meter"><span id="albumCount"></span><i id="albumBar"></i></div>
       </div>
       <div class="album-grid" id="albumGrid"></div>
@@ -1960,24 +1966,24 @@ body[data-band="lambs"] .fp-games,body[data-band="lambs"] .fp-games+.pgrid{displ
   <div class="wrap">
     <div class="sec-head">
       <h2>Prayers and games.</h2>
-      <p>Learn the prayers every Catholic knows, with motions and meanings, then say them by heart. Play quick games to practice for Mass and confession.</p>
+      <p>Learn the prayers every Catholic knows, then say them by heart. There are prayers for every age, and quick games to practice for Mass.</p>
     </div>
-    <button type="button" class="nightcard" data-practice="bedtime"><img src="assets/img/night_sky.jpg" alt=""><span class="nc-copy"><small>Every night</small><b>Bedtime Heart Check</b><span>Talk to Jesus about your day, then pray together before sleep.</span><i>Start tonight &rsaquo;</i></span></button>
+    <button type="button" class="nightcard" data-practice="bedtime"><img loading="lazy" decoding="async" src="assets/img/night_sky.jpg" alt=""><span class="nc-copy"><small>Every night</small><b>Bedtime Heart Check</b><span>Talk to Jesus about your day, then pray together before sleep.</span><i>Start tonight &rsaquo;</i></span></button>
     <h3 class="pp-h" id="studioH">Prayers</h3>
     <div class="pgrid big pray4" id="studioGrid">
-      <button type="button" class="ptile" data-practice="ourfather" data-learn="ourfather"><img class="ph" src="assets/img/pray_ourfather.jpg" alt=""><b>Our Father</b><small>The prayer Jesus taught us.</small><i class="go">Start &rsaquo;</i></button>
-      <button type="button" class="ptile" data-practice="hailmary" data-learn="hailmary"><img class="ph" src="assets/img/pray_hailmary.jpg" alt=""><b>Hail Mary</b><small>The angel's greeting to Mary.</small><i class="go">Start &rsaquo;</i></button>
-      <button type="button" class="ptile" data-practice="glorybe" data-learn="glorybe"><img class="ph" src="assets/img/pray_glorybe.jpg" alt=""><b>Glory Be</b><small>Praise to the Holy Trinity.</small><i class="go">Start &rsaquo;</i></button>
-      <button type="button" class="ptile" data-practice="prayer" data-learn="contrition"><img class="ph" src="assets/img/confession.jpg" alt=""><b>Act of Contrition</b><small>The prayer we say in confession.</small><i class="go">Start &rsaquo;</i></button>
+      <button type="button" class="ptile" data-practice="ourfather" data-learn="ourfather"><img loading="lazy" decoding="async" class="ph" src="assets/img/pray_ourfather.jpg" alt=""><b>Our Father</b><small>The prayer Jesus taught us.</small><i class="go">Start &rsaquo;</i></button>
+      <button type="button" class="ptile" data-practice="hailmary" data-learn="hailmary"><img loading="lazy" decoding="async" class="ph" src="assets/img/pray_hailmary.jpg" alt=""><b>Hail Mary</b><small>The angel's greeting to Mary.</small><i class="go">Start &rsaquo;</i></button>
+      <button type="button" class="ptile" data-practice="glorybe" data-learn="glorybe"><img loading="lazy" decoding="async" class="ph" src="assets/img/pray_glorybe.jpg" alt=""><b>Glory Be</b><small>Praise to the Holy Trinity.</small><i class="go">Start &rsaquo;</i></button>
+      <button type="button" class="ptile" data-practice="prayer" data-learn="contrition"><img loading="lazy" decoding="async" class="ph" src="assets/img/confession.jpg" alt=""><b>Act of Contrition</b><small>The prayer we say in confession.</small><i class="go">Start &rsaquo;</i></button>
     </div>
     <h3 class="pp-h">Prayers for every age</h3>
     <div class="fp-pray" id="fpPray"></div>
     <h3 class="pp-h fp-games">Games</h3>
     <div class="pgrid big">
-      <button type="button" class="ptile review" data-practice="review"><img src="assets/g/star.webp" alt=""><b>Review game</b><small id="revSub">A quick quiz from your lessons.</small><i class="go">Play &rsaquo;</i></button>
-      <button type="button" class="ptile" data-practice="steps"><img src="assets/g/door.webp" alt=""><b>Reconciliation practice</b><small>Put the six parts in order and role-play the whole script.</small><i class="go">Play &rsaquo;</i></button>
-      <button type="button" class="ptile" data-practice="massPose"><img src="assets/g/ic_kneel.webp" alt=""><b>Stand, sit, or kneel?</b><small>Know what to do at each part of Mass.</small><i class="go">Play &rsaquo;</i></button>
-      <button type="button" class="ptile" data-practice="massSay"><img src="assets/g/ic_bells.webp" alt=""><b>What do we say?</b><small>Learn your answers at Mass.</small><i class="go">Play &rsaquo;</i></button>
+      <button type="button" class="ptile review" data-practice="review"><img loading="lazy" decoding="async" src="assets/g/star.webp" alt=""><b>Review game</b><small id="revSub">A quick quiz from your lessons.</small><i class="go">Play &rsaquo;</i></button>
+      <button type="button" class="ptile" data-practice="steps"><img loading="lazy" decoding="async" src="assets/g/door.webp" alt=""><b>Reconciliation practice</b><small>Put the six parts in order and role-play the whole script.</small><i class="go">Play &rsaquo;</i></button>
+      <button type="button" class="ptile" data-practice="massPose"><img loading="lazy" decoding="async" src="assets/g/ic_kneel.webp" alt=""><b>Stand, sit, or kneel?</b><small>Know what to do at each part of Mass.</small><i class="go">Play &rsaquo;</i></button>
+      <button type="button" class="ptile" data-practice="massSay"><img loading="lazy" decoding="async" src="assets/g/ic_bells.webp" alt=""><b>What do we say?</b><small>Learn your answers at Mass.</small><i class="go">Play &rsaquo;</i></button>
     </div>
   </div>
 </section>
@@ -1985,7 +1991,7 @@ body[data-band="lambs"] .fp-games,body[data-band="lambs"] .fp-games+.pgrid{displ
 <section class="masspage2" id="mass" data-view="mass">
   <div class="mhero" id="mHero">
     <div class="mhero-sticky">
-      <div class="mhero-media"><video class="mvid" data-auto src="assets/vid/mass_hero.mp4" poster="assets/img/mass_church.jpg" muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
+      <div class="mhero-media"><video class="mvid" data-auto src="assets/vid/mass_hero.mp4" data-poster="assets/img/mass_church.jpg" muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
       <div class="mhero-copy">
         <p class="mh-eyebrow">Every Sunday</p>
         <h2>Come to Mass.</h2>
@@ -1999,8 +2005,8 @@ body[data-band="lambs"] .fp-games,body[data-band="lambs"] .fp-games+.pgrid{displ
     <h3>Ready for Sunday?</h3>
     <p>Play a quick game to practice.</p>
     <div class="mplay-row">
-      <button type="button" class="mplay-t" data-practice="massPose"><img src="assets/g/ic_kneel.webp" alt=""><b>Stand, sit, or kneel?</b><small>Know what to do at each part.</small></button>
-      <button type="button" class="mplay-t" data-practice="massSay"><img src="assets/g/ic_bells.webp" alt=""><b>What do we say?</b><small>Learn your answers.</small></button>
+      <button type="button" class="mplay-t" data-practice="massPose"><img loading="lazy" decoding="async" src="assets/g/ic_kneel.webp" alt=""><b>Stand, sit, or kneel?</b><small>Know what to do at each part.</small></button>
+      <button type="button" class="mplay-t" data-practice="massSay"><img loading="lazy" decoding="async" src="assets/g/ic_bells.webp" alt=""><b>What do we say?</b><small>Learn your answers.</small></button>
     </div>
   </div>
 </section>
@@ -2012,6 +2018,7 @@ body[data-band="lambs"] .fp-games,body[data-band="lambs"] .fp-games+.pgrid{displ
       <p>Found follows the parish workbook lesson by lesson, Lessons 1 to 13, with the same titles, saints, Scripture, prayers, definitions, and reviews. What changes is how it reaches a 7-year-old: one idea per screen, pictures beside words, hands-on play, short prayers with motions, and a little review at the start of every lesson.</p>
     </div>
 
+    <div class="gsec fp-gband" id="gBand"></div>
     <div class="gsec">
       <h3>A 15-minute lesson.</h3>
       <div class="session" id="session"></div>
@@ -2092,7 +2099,7 @@ body[data-band="lambs"] .fp-games,body[data-band="lambs"] .fp-games+.pgrid{displ
 <div class="cardview" id="cardView" role="dialog" aria-modal="true" aria-label="Saint card" hidden>
   <button class="iconbtn cv-x" id="cvClose" type="button" aria-label="Close the card"><img class="gl" src="assets/g/gl_close.webp" alt="" draggable="false"></button>
   <div class="cv-sheet" id="cvSheet" hidden><div class="cv-sheet-in"><span class="cv-sheet-k">Forgiveness story</span><b id="cvSheetName"></b><p id="cvSheetText"></p><button class="btn btn-go" id="cvSheetClose" type="button">Back to the card</button></div></div>
-  <button class="cv-all" id="cvAll" type="button"><img src="assets/g/cards.webp" alt="">All my cards</button>
+  <button class="cv-all" id="cvAll" type="button"><img loading="lazy" decoding="async" src="assets/g/cards.webp" alt="">All my cards</button>
   <p class="cv-count" id="cvCount"></p>
   <div class="cv-card"></div>
   <p class="cv-pray" id="cvPray"></p>
@@ -2113,46 +2120,46 @@ const GEN = { bubbles: "bubbles", rock: "rock", ewe: "pip", scroll: "tablets", c
 ["ic_bells","ic_bread","ic_rosary","ic_shamrock","bible","book","brain","buttercup","calendar","candle","canoe","cards","chalice","check","church","cloud","cross","daisy","door","dove","fire","gift","glass","heart","heartmend","house","island","lily","lock","moon","noentry","oil","pip","pipjump","pipsit","pray","quests","rings","shell","sparkles","staff","star","stole","sun","tablets","trophy","zipface"].forEach(n => { if (!(n in GEN)) GEN[n] = n; });
 GEN.book = "book";
 const A = n => GEN[n] ? `assets/g/${GEN[n]}.webp` : `assets/${n}.png`;
-const img = (n, cls = "", st = "", alt = "") => `<img src="${A(n)}" class="${cls}" style="${st}" alt="${alt}" draggable="false">`;
-const pip = (cls = "", st = "") => `<span class="pip ${cls}" style="${st}"><span class="face"><img src="${A("ewe")}" alt="Pip the lamb" draggable="false"></span></span>`;
+const img = (n, cls = "", st = "", alt = "") => `<img loading="lazy" decoding="async" src="${A(n)}" class="${cls}" style="${st}" alt="${alt}" draggable="false">`;
+const pip = (cls = "", st = "") => `<span class="pip ${cls}" style="${st}"><span class="face"><img loading="lazy" decoding="async" src="${A("ewe")}" alt="Pip the lamb" draggable="false"></span></span>`;
 let gid = 0;
 function tablets() {
   const col = (x, rows) => `<div class="tabnums" style="left:${x}%">${rows.map((r, k) => `<b style="--k:${k}">${r}</b>`).join("")}</div>`;
-  return `<div class="sc"><img class="ph" src="assets/img/tablets.jpg" alt="" draggable="false">${col(38.6, ["I", "II", "III", "IV", "V"])}${col(62.8, ["VI", "VII", "VIII", "IX", "X"])}</div>`;
+  return `<div class="sc"><img loading="lazy" decoding="async" class="ph" src="assets/img/tablets.jpg" alt="" draggable="false">${col(38.6, ["I", "II", "III", "IV", "V"])}${col(62.8, ["VI", "VII", "VIII", "IX", "X"])}</div>`;
 }
-const ground = `<img class="ground2" src="${A("island")}" alt="" draggable="false">`;
+const ground = `<img loading="lazy" decoding="async" class="ground2" src="${A("island")}" alt="" draggable="false">`;
 const ART = {
   lamb: () => `<div class="sc">${ground}${pip("idle", "left:50%;bottom:12%;width:58%;translate:-50% 0")}</div>`,
-  beach: () => `<div class="sc"><img class="ph kb" src="assets/img/beach.jpg" alt="" draggable="false"></div>`,
-  crosshill: () => `<div class="sc"><img class="ph kb" src="assets/img/crosshill.jpg" alt="" draggable="false"></div>`,
-  eden: () => `<div class="sc"><img class="ph kb" src="assets/img/eden.jpg" alt="" draggable="false"></div>`,
-  lucy: () => `<div class="sc"><img class="ph kb" src="assets/img/lucy.jpg" alt="" draggable="false"></div>`,
-  font: () => `<div class="sc"><img class="ph kb" src="assets/img/font.jpg" alt="" draggable="false"></div>`,
-  keys: () => `<div class="sc"><img class="ph kb" src="assets/img/keys.jpg" alt="" draggable="false"></div>`,
-  lostlamb: () => `<div class="sc"><img class="ph kb" src="assets/img/lostlamb.jpg" alt="" draggable="false"></div>`,
-  away: () => `<div class="sc">${ground}${img("house", "", "left:6%;bottom:18%;width:34%")}<span class="pip idle" style="right:6%;bottom:14%;width:36%"><span class="face"><img src="${A("ewe")}" alt="" style="transform:none"></span></span></div>`,
-  shepherd: () => `<div class="sc"><img class="ph kb" src="assets/img/shepherd.jpg" alt="" draggable="false"></div>`,
-  carry: () => `<div class="sc"><img class="ph kb" src="assets/img/shepherd_carry.jpg" alt="" draggable="false"></div>`,
-  trinity: () => `<div class="sc"><img class="ph" src="assets/img/shamrock.jpg" alt="" draggable="false"><span class="leaf" style="left:36.8%;top:37%;--k:0">Father</span><span class="leaf" style="left:62.5%;top:36%;--k:1">Son</span><span class="leaf" style="left:50%;top:60%;--k:2">Holy Spirit</span><span class="onegod">One God</span></div>`,
+  beach: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/beach.jpg" alt="" draggable="false"></div>`,
+  crosshill: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/crosshill.jpg" alt="" draggable="false"></div>`,
+  eden: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/eden.jpg" alt="" draggable="false"></div>`,
+  lucy: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/lucy.jpg" alt="" draggable="false"></div>`,
+  font: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/font.jpg" alt="" draggable="false"></div>`,
+  keys: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/keys.jpg" alt="" draggable="false"></div>`,
+  lostlamb: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/lostlamb.jpg" alt="" draggable="false"></div>`,
+  away: () => `<div class="sc">${ground}${img("house", "", "left:6%;bottom:18%;width:34%")}<span class="pip idle" style="right:6%;bottom:14%;width:36%"><span class="face"><img loading="lazy" decoding="async" src="${A("ewe")}" alt="" style="transform:none"></span></span></div>`,
+  shepherd: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/shepherd.jpg" alt="" draggable="false"></div>`,
+  carry: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/shepherd_carry.jpg" alt="" draggable="false"></div>`,
+  trinity: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph" src="assets/img/shamrock.jpg" alt="" draggable="false"><span class="leaf" style="left:36.8%;top:37%;--k:0">Father</span><span class="leaf" style="left:62.5%;top:36%;--k:1">Son</span><span class="leaf" style="left:50%;top:60%;--k:2">Holy Spirit</span><span class="onegod">One God</span></div>`,
   tablets: () => tablets(),
   hearts: () => `<div class="sc">${img("heart", "float", "left:6%;top:12%;width:42%;filter:hue-rotate(48deg) saturate(1.7) brightness(1.25) drop-shadow(0 8px 10px rgba(27,37,89,.16))")}${img("heart", "float", "right:6%;top:12%;width:42%;animation-delay:.5s")}<b class="hlbl" style="left:27%;top:36%">Love<br>God</b><b class="hlbl" style="left:73%;top:36%">Love<br>others</b>${img("sparkles", "", "left:44%;top:0;width:14%")}</div>`,
   brain: () => `<div class="sc">${img("brain", "float", "left:50%;top:6%;width:44%;translate:-50% 0")}${img("check", "", "left:6%;bottom:8%;width:26%")}${img("noentry", "", "right:6%;bottom:8%;width:26%")}</div>`,
   sun: () => `<div class="sc">${img("sun", "spin", "left:50%;top:50%;width:62%;translate:-50% -50%")}${img("cloud", "drift", "left:0;bottom:6%;width:34%")}</div>`,
   dove: () => `<div class="sc">${img("dove", "float", "left:50%;top:50%;width:62%;translate:-50% -50%")}${img("sparkles", "", "right:10%;top:4%;width:18%")}</div>`,
   book: () => `<div class="sc">${img("bible", "float", "left:50%;top:50%;width:70%;translate:-50% -50%")}</div>`,
-  stole: () => `<div class="sc"><img class="ph kb" src="assets/img/confession.jpg" alt="" draggable="false"></div>`,
+  stole: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/confession.jpg" alt="" draggable="false"></div>`,
   lock: () => `<div class="sc">${img("lock", "float", "left:50%;top:50%;width:52%;translate:-62% -50%")}${img("zip", "", "right:8%;bottom:6%;width:28%")}</div>`,
-  hug: () => `<div class="sc"><img class="ph kb" src="assets/img/prodigal.jpg" alt="" draggable="false"></div>`,
-  prodigal: () => `<div class="sc"><img class="ph kb" src="assets/img/prodigal_away.jpg" alt="A young man walks away down a country road while his father watches from the gate" draggable="false"></div>`,
+  hug: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/prodigal.jpg" alt="" draggable="false"></div>`,
+  prodigal: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/prodigal_away.jpg" alt="A young man walks away down a country road while his father watches from the gate" draggable="false"></div>`,
   heart: () => `<div class="sc">${img("heartmend", "beat", "left:50%;top:50%;width:62%;translate:-50% -50%")}</div>`,
   heartsp: () => `<div class="sc">${img("heartsp", "beat", "left:50%;top:50%;width:60%;translate:-50% -50%")}${img("pray", "", "right:4%;bottom:4%;width:26%")}</div>`,
-  rays: () => `<div class="sc"><img class="ph kb" src="assets/img/mercy.jpg" alt="" draggable="false"></div>`,
-  pray_ourfather: () => `<div class="sc"><img class="ph kb" src="assets/img/pray_ourfather.jpg" alt="" draggable="false"></div>`,
-  pray_hailmary: () => `<div class="sc"><img class="ph kb" src="assets/img/pray_hailmary.jpg" alt="" draggable="false"></div>`,
-  pray_glorybe: () => `<div class="sc"><img class="ph kb" src="assets/img/pray_glorybe.jpg" alt="" draggable="false"></div>`,
-  mass_church: () => `<div class="sc"><img class="ph kb" src="assets/img/mass_church.jpg" alt="" draggable="false"></div>`,
+  rays: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/mercy.jpg" alt="" draggable="false"></div>`,
+  pray_ourfather: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/pray_ourfather.jpg" alt="" draggable="false"></div>`,
+  pray_hailmary: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/pray_hailmary.jpg" alt="" draggable="false"></div>`,
+  pray_glorybe: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/pray_glorybe.jpg" alt="" draggable="false"></div>`,
+  mass_church: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/mass_church.jpg" alt="" draggable="false"></div>`,
 };
-const tabIcon = (cls = "", st = "") => `<span class="tabicon ${cls}" style="${st}"><img src="${A("scroll")}" alt="" draggable="false"><span class="ticol" style="left:27%">${["I", "II", "III", "IV", "V"].map(r => `<b>${r}</b>`).join("")}</span><span class="ticol" style="left:72%">${["VI", "VII", "VIII", "IX", "X"].map(r => `<b>${r}</b>`).join("")}</span></span>`;
+const tabIcon = (cls = "", st = "") => `<span class="tabicon ${cls}" style="${st}"><img loading="lazy" decoding="async" src="${A("scroll")}" alt="" draggable="false"><span class="ticol" style="left:27%">${["I", "II", "III", "IV", "V"].map(r => `<b>${r}</b>`).join("")}</span><span class="ticol" style="left:72%">${["VI", "VII", "VIII", "IX", "X"].map(r => `<b>${r}</b>`).join("")}</span></span>`;
 const ICON = { staff: img("staff"), tablets: tabIcon(), candle: img("candle"), stones: img("gift"), glass: img("glass"), door: img("door"), hands: img("pray"), heart: img("heartsp") };
 const SAINT_ART = { boat: img("boat"), cross: img("cross"), lily: img("lily"), flame: img("fire"), book: img("book"), stole: img("ear"), mitre: img("church"), rays: img("heartsp") };
 
@@ -2242,11 +2249,11 @@ function cardHTML(i, cls = "") {
   <div class="tc-in">
    <div class="tc-face tc-front"><div class="tc-frame">
     <div class="tc-top"><span class="tc-no">${i + 1}</span><span class="tc-series">Saint Card</span><span class="tc-sym">${img(s.sym)}</span></div>
-    <div class="tc-window"><img class="pimg" src="assets/img/${SAINTS[i].pic}.jpg" alt="Portrait of ${esc(s.name)}" draggable="false">${/\b(big|rcard)\b/.test(cls) && LOOPS.includes(s.pic) && !reduceMotion ? `<video class="pimg anim" src="assets/vid/${s.pic}.mp4" muted loop autoplay playsinline preload="auto" disablepictureinpicture disableremoteplayback aria-hidden="true" onerror="this.remove()"></video>` : ""}</div>
+    <div class="tc-window"><img loading="lazy" decoding="async" class="pimg" src="assets/img/${SAINTS[i].pic}.jpg" alt="Portrait of ${esc(s.name)}" draggable="false">${/\b(big|rcard)\b/.test(cls) && LOOPS.includes(s.pic) && !reduceMotion ? `<video class="pimg anim" src="assets/vid/${s.pic}.mp4" muted loop autoplay playsinline preload="auto" disablepictureinpicture disableremoteplayback aria-hidden="true" onerror="this.remove()"></video>` : ""}</div>
     <div class="tc-plate"><b>${esc(s.name)}</b><small>Feast day ${esc(s.feast)}</small></div>
    </div><span class="tc-holo"></span><span class="tc-shine"></span></div>
    <div class="tc-face tc-back off"><div class="tc-frame back">
-    <div class="tc-bhead"><span class="tc-medal"><img class="pimg" src="assets/img/${SAINTS[i].pic}.jpg" alt="" draggable="false"></span><div><b>${esc(s.name)}</b><span class="tc-power">${esc(s.power)}</span></div></div>
+    <div class="tc-bhead"><span class="tc-medal"><img loading="lazy" decoding="async" class="pimg" src="assets/img/${SAINTS[i].pic}.jpg" alt="" draggable="false"></span><div><b>${esc(s.name)}</b><span class="tc-power">${esc(s.power)}</span></div></div>
     <dl class="tc-facts"><div><dt>Lived</dt><dd>${esc(s.lv)}</dd></div><div><dt>Home</dt><dd>${esc(s.hm)}</dd></div><div><dt>Feast day</dt><dd>${esc(s.feast)}</dd></div></dl>
     <p class="tc-fun"><b>Cool fact</b>${esc(s.fun)}</p>
    </div></div>
@@ -2256,7 +2263,7 @@ function lockedCardHTML(i) {
   const s = SAINTS[i];
   return `<div class="tcard locked" data-i="${i}" style="--c1:#3B3F6B;--c2:#6B70A8"><div class="tc-in"><div class="tc-face tc-front"><div class="tc-frame dim">
    <div class="tc-top"><span class="tc-no">${i + 1}</span><span class="tc-series">Saint Card</span></div>
-   <div class="tc-window"><img class="pimg" src="assets/img/${SAINTS[i].pic}.jpg" alt="" draggable="false"><b class="tc-q">?</b></div>
+   <div class="tc-window"><img loading="lazy" decoding="async" class="pimg" src="assets/img/${SAINTS[i].pic}.jpg" alt="" draggable="false"><b class="tc-q">?</b></div>
    <div class="tc-plate"><b>Mystery saint</b><small>Finish Lesson ${i + 1} to collect</small></div>
   </div></div></div></div>`;
 }
@@ -2308,6 +2315,7 @@ function flipCard(c) {
 function renderAlbum() {
   const n = SAINTS.filter((_, i) => isCollected(i)).length;
   $("#albumTitle").textContent = `${whose(1)} Saint Album.`;
+  const ah = $("#albumHow"); if (ah) ah.textContent = band() === "lambs" ? "Every wonder moment you finish brings a new saint card." : band() === "confirm" ? "Every Confirmation session you finish brings a new saint card. Maybe your Confirmation saint is here!" : "These saints needed God's forgiveness too. Finish a lesson to open a card pack.";
   $("#albumCount").innerHTML = n === SAINTS.length ? `<b>Complete collection!</b> All ${SAINTS.length} saints are home.` : `<b>${n}</b> of ${SAINTS.length} saints collected`;
   $("#album .album-book").classList.toggle("complete", n === SAINTS.length);
   $("#albumBar").style.setProperty("--p", n / SAINTS.length);
@@ -2821,7 +2829,7 @@ function celebrate(items) { if (!items.length) return; awardQ.push(...items); if
 function nextAward() {
   const it = awardQ.shift(); if (!it) return;
   const d = document.createElement("div"); d.id = "award"; d.className = "award"; d.setAttribute("role", "dialog"); d.setAttribute("aria-label", it.title);
-  d.innerHTML = `<div class="award-card"><span class="tag">${esc(it.kicker)}</span><div class="award-art"><img src="${it.src}" alt=""></div><h3>${esc(it.title)}</h3><p>${esc(it.text)}</p><button class="btn btn-go" type="button">Yay!</button></div>`;
+  d.innerHTML = `<div class="award-card"><span class="tag">${esc(it.kicker)}</span><div class="award-art"><img loading="lazy" decoding="async" src="${it.src}" alt=""></div><h3>${esc(it.title)}</h3><p>${esc(it.text)}</p><button class="btn btn-go" type="button">Yay!</button></div>`;
   document.body.appendChild(d); sfx.win();
   setTimeout(() => burstAt(d.querySelector(".award-art"), 90, true), 180);
   if (G) G.from(d.querySelector(".award-card"), { scale: .6, opacity: 0, duration: .6, ease: "back.out(1.8)" });
@@ -2877,24 +2885,24 @@ function todayMission() {
 }
 function missionHTML() {
   const k = todayMission(), M = missionInfo(k), done = pget("missionDone", "") === today();
-  return `<button type="button" class="mission${done ? " done" : ""}" id="${"m" + Math.random().toString(36).slice(2, 7)}" data-mission="${k}"><span class="mimg"><img src="${M.src()}" alt=""></span><span class="mtxt"><small>${done ? "Today's mission: done!" : "Today's mission"}</small><b>${esc(M.t())}</b><span>${done ? "Your candle is lit. A new mission comes tomorrow. Tap to play again." : esc(typeof M.d === "function" ? M.d() : M.d)}</span></span><i class="go">${done ? "Again" : "Start"} &rsaquo;</i></button>`;
+  return `<button type="button" class="mission${done ? " done" : ""}" id="${"m" + Math.random().toString(36).slice(2, 7)}" data-mission="${k}"><span class="mimg"><img loading="lazy" decoding="async" src="${M.src()}" alt=""></span><span class="mtxt"><small>${done ? "Today's mission: done!" : "Today's mission"}</small><b>${esc(M.t())}</b><span>${done ? "Your candle is lit. A new mission comes tomorrow. Tap to play again." : esc(typeof M.d === "function" ? M.d() : M.d)}</span></span><i class="go">${done ? "Again" : "Start"} &rsaquo;</i></button>`;
 }
 function startMission(k) { sfx.tap(); if (/^pr\./.test(k)) { openPrayer(k.slice(3)); return; } if (/^lamb\./.test(k)) { openLamb(k.slice(5)); return; } if (/^conf\./.test(k)) { openConf(k.slice(5)); return; } if (k === "lesson") openQuest(Math.min(current(), QUESTS.length - 1)); else openPractice(k); }
 function weekHTML() {
   const D = pget("days", []), t = today(), n = litThisWeek();
-  return `<div class="week" role="img" aria-label="${n} of 7 candles lit this week">${weekDays().map((d, k) => `<span class="wkd${D.includes(d) ? " lit" : ""}${d === t ? " today" : ""}"><img src="${A("candle")}" alt=""><small>${"SMTWTFS"[k]}</small></span>`).join("")}</div><p class="week-t">${n ? `<b>${n} of 7</b> candles lit this week` : "Do one lesson or prayer to light today's candle"}</p>`;
+  return `<div class="week" role="img" aria-label="${n} of 7 candles lit this week">${weekDays().map((d, k) => `<span class="wkd${D.includes(d) ? " lit" : ""}${d === t ? " today" : ""}"><img loading="lazy" decoding="async" src="${A("candle")}" alt=""><small>${"SMTWTFS"[k]}</small></span>`).join("")}</div><p class="week-t">${n ? `<b>${n} of 7</b> candles lit this week` : "Do one lesson or prayer to light today's candle"}</p>`;
 }
 function renderBadges() {
   const have = pget("badges", []), g = $("#badgeGrid"); if (!g) return;
   $("#badgeCount").innerHTML = `<b>${have.length}</b> of ${BADGES.length} badges`;
-  g.innerHTML = BADGES.map(b => `<button type="button" class="badge${have.includes(b.id) ? " got" : ""}" data-id="${b.id}" aria-label="${esc(b.name)}: ${esc(b.how)}"><span class="bimg"><img src="${badgeSrc(b.icon)}" alt=""></span><b>${esc(b.name)}</b><small>${have.includes(b.id) ? "Earned!" : esc(b.how)}</small></button>`).join("");
+  g.innerHTML = BADGES.map(b => `<button type="button" class="badge${have.includes(b.id) ? " got" : ""}" data-id="${b.id}" aria-label="${esc(b.name)}: ${esc(b.how)}"><span class="bimg"><img loading="lazy" decoding="async" src="${badgeSrc(b.icon)}" alt=""></span><b>${esc(b.name)}</b><small>${have.includes(b.id) ? "Earned!" : esc(b.how)}</small></button>`).join("");
   g.querySelectorAll(".badge").forEach(x => x.onclick = () => { const b = BADGES.find(y => y.id === x.dataset.id); sfx.tap(); toast(have.includes(b.id) ? `${b.name}: you earned it!` : `${b.name}: ${b.how}.`); });
 }
 function renderGame() {
   checkBadges(); try { renderToday(); renderPrayList(); } catch (e) {} // both are defined further down; the first call at start-up waits for them
   renderBadges();
   const hw = $("#homeWeek"); if (hw) hw.innerHTML = S.pid ? weekHTML() + missionHTML() : "";
-  const wp = $("#weekPanel"); if (wp) wp.innerHTML = `<h3>This week</h3>${S.pid ? missionHTML() : ""}${weekHTML()}<p class="star-total"><img src="${A("stars")}" alt=""><span><b>${totalStars()}</b> of ${QUESTS.length * 3} lesson stars</span></p>`;
+  const wp = $("#weekPanel"); if (wp) wp.innerHTML = `<h3>This week</h3>${S.pid ? missionHTML() : ""}${weekHTML()}<p class="star-total"><img loading="lazy" decoding="async" src="${A("stars")}" alt=""><span><b>${totalStars()}</b> of ${QUESTS.length * 3} lesson stars</span></p>`;
   document.querySelectorAll("[data-mission]").forEach(b => b.onclick = () => startMission(b.dataset.mission));
   const rs = $("#revSub"); if (rs) { const m = pget("missed", []).length; rs.textContent = m ? (m === 1 ? "1 question to fix. Win it back!" : `${m} questions to fix. Win them back!`) : S.done.length ? "A quick quiz from your lessons." : "Finish a lesson to unlock it."; }
 }
@@ -2980,7 +2988,7 @@ function buildMap() {
       <clipPath id="mclip"><rect x="-40" y="0" width="${W + 80}" height="${H + 120}" rx="60"/></clipPath>
     </defs>
     <g clip-path="url(#mclip)">
-      <image href="assets/img/map_meadow.jpg" x="-40" y="0" width="${W + 80}" height="${H + 120}" preserveAspectRatio="xMidYMin slice"/>
+      <image data-href="assets/img/map_meadow.jpg" x="-40" y="0" width="${W + 80}" height="${H + 120}" preserveAspectRatio="xMidYMin slice"/>
       <rect x="-40" y="0" width="${W + 80}" height="${H + 120}" fill="url(#mlight)"/>
       <rect class="mapdim" x="-40" y="0" width="${W + 80}" height="${H + 120}"/>
       <path d="${d}" fill="none" stroke="rgba(110,80,20,.18)" stroke-width="50" stroke-linecap="round" filter="url(#soft)" transform="translate(0 4)"/>
@@ -2988,7 +2996,7 @@ function buildMap() {
       <path class="road" d="${d}" fill="none" stroke="#FFFAEB" stroke-width="22" stroke-linecap="round" opacity=".75"/>
       <path id="donePath" d="${d}" fill="none" style="stroke:var(--sun)" stroke-width="12" stroke-linecap="round" filter="url(#glow)"/>
     </g>
-  </svg><div class="homeLbl" style="left:${homePt.x / W * 100}%;top:${(homePt.y + 46) / H * 100}%">Home!</div><div class="homeShep" style="left:${homePt.x / W * 100}%;top:${homePt.y / H * 100}%"><img src="assets/img/shepherd.jpg" alt="The Good Shepherd waiting at home"></div><div class="token" id="token">${pip("idle")}</div>`;
+  </svg><div class="homeLbl" style="left:${homePt.x / W * 100}%;top:${(homePt.y + 46) / H * 100}%">Home!</div><div class="homeShep" style="left:${homePt.x / W * 100}%;top:${homePt.y / H * 100}%"><img loading="lazy" decoding="async" src="assets/img/shepherd.jpg" alt="The Good Shepherd waiting at home"></div><div class="token" id="token">${pip("idle")}</div>`;
   doneEl = $("#donePath");
   pathLen = doneEl.getTotalLength();
   stopLens = ALL.map(p => { let best = 0, bd = 1e9; for (let l = 0; l <= pathLen; l += 4) { const q = doneEl.getPointAtLength(l), dd = (q.x - p.x) ** 2 + (q.y - p.y) ** 2; if (dd < bd) { bd = dd; best = l; } } return best; });
@@ -3009,7 +3017,7 @@ function refreshMap(jump) {
     el.classList.toggle("done", isDone(i)); el.classList.toggle("now", i === c && !isDone(i)); el.classList.toggle("locked", !canOpen(i));
     el.querySelector(".medal").style.background = isDone(i) ? "" : QUESTS[i].bg;
     const n = starsOf(i);
-    el.querySelector(".mstars").innerHTML = isDone(i) ? [1, 2, 3].map(k => `<img src="${A("stars")}" alt="" class="${k <= n ? "on" : ""}">`).join("") : "";
+    el.querySelector(".mstars").innerHTML = isDone(i) ? [1, 2, 3].map(k => `<img loading="lazy" decoding="async" src="${A("stars")}" alt="" class="${k <= n ? "on" : ""}">`).join("") : "";
     el.querySelector(".mstars").setAttribute("aria-label", isDone(i) ? `${n} of 3 stars` : "");
   });
   const L = stopLens[Math.min(c, ALL.length - 1)];
@@ -3142,18 +3150,18 @@ function finishQuest() {
 function toast(msg) { const t = document.createElement("div"); t.className = "toast"; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 2200); }
 
 /* scene renderers */
-const gimg = (n, alt = "", cls = "") => `<img class="gbg ${cls}" src="assets/img/${n}.jpg" alt="${alt}" draggable="false">`;
+const gimg = (n, alt = "", cls = "") => `<img loading="lazy" decoding="async" class="gbg ${cls}" src="assets/img/${n}.jpg" alt="${alt}" draggable="false">`;
 function ripple(el) { const r = document.createElement("span"); r.className = "ripple"; r.style.left = el.style.left; r.style.top = el.style.top; el.parentElement.appendChild(r); setTimeout(() => r.remove(), 750); }
 
 const R = {};
 function comboPop(n) {
-  const c = document.createElement("div"); c.className = "combo"; c.innerHTML = `<img src="${A("stars")}" alt="">${n} in a row!`;
+  const c = document.createElement("div"); c.className = "combo"; c.innerHTML = `<img loading="lazy" decoding="async" src="${A("stars")}" alt="">${n} in a row!`;
   $("#quest").appendChild(c); sfx.sparkle(); setTimeout(() => c.remove(), 1600);
 }
 const iconArt = n => `<div class="sc">${ground}${n === "tablets" ? tabIcon("float", "position:absolute;left:50%;top:42%;width:54%;translate:-50% -50%") : img(n, "float", "left:50%;top:42%;width:54%;translate:-50% -50%")}</div>`;
 R.story = (el, s) => {
   // teen screens without a photo are text only (no clay kids' icons)
-  const art = Q && Q.teen && !s.photo ? "" : `<div class="art${/shepherd|carry/.test(s.art) ? " tall" : ""}">${s.photo ? `<div class="sc"><img class="ph kb" src="assets/img/${s.photo}.jpg" alt="" draggable="false"></div>` : s.icon ? iconArt(s.icon) : (ART[s.art] || ART.lamb)()}</div>`;
+  const art = Q && Q.teen && !s.photo ? "" : `<div class="art${/shepherd|carry/.test(s.art) ? " tall" : ""}">${s.photo ? `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/${s.photo}.jpg" alt="" draggable="false"></div>` : s.icon ? iconArt(s.icon) : (ART[s.art] || ART.lamb)()}</div>`;
   el.innerHTML = `${s.tag ? `<span class="tag">${s.tag}</span>` : ""}${art}<p class="say ${s.sm ? "sm" : ""}">${esc(s.text)}</p>${s.ref ? `<p class="ref">${esc(s.ref)}</p>` : ""}`;
 };
 // fair random order (Fisher-Yates), so the right answer lands in any spot
@@ -3162,17 +3170,18 @@ const LAMBS = [{"id": "made", "title": "God Made Everything", "photo": "lamb_fre
 const LAMB_TOGETHER = id => (LAMBS.find(x => x.id === id) || { scenes: [] }).scenes.find(x => x.tag === "Do it together")?.text || "";
 // little lambs: tap each picture until they all light up
 R.taps = (el, s) => {
-  el.innerHTML = `<p class="say">${esc(s.q)}</p><div class="fp-taps">${Array.from({ length: s.n }, (_, i) => `<button type="button" class="fp-tap" aria-label="${i + 1} of ${s.n}"><img src="${A(s.icon)}" alt=""></button>`).join("")}</div>`;
+  el.innerHTML = `<p class="say">${esc(s.q)}</p><div class="fp-taps">${Array.from({ length: s.n }, (_, i) => `<button type="button" class="fp-tap" aria-pressed="false" aria-label="${esc(s.label || "Picture")} ${i + 1} of ${s.n}"><img loading="lazy" decoding="async" src="${A(s.icon)}" alt=""></button>`).join("")}</div>`;
   let k = 0; setReady(false, s.hint || "Tap them all!");
   el.querySelectorAll(".fp-tap").forEach(b => b.onclick = () => {
-    if (b.classList.contains("on")) return; b.classList.add("on"); k++; sfx.sparkle(); burstAt(b, 18);
+    if (b.classList.contains("on")) return; b.classList.add("on"); b.setAttribute("aria-pressed", "true"); k++; sfx.sparkle(); burstAt(b, 18);
+    if (k < s.n) setReady(false, `${s.n - k} more`);
     if (k === s.n) { sfx.win(); setReady(true, s.done || "You did it!"); if (Q && Q.read) speak(s.done || "You did it!"); }
   });
 };
 // the Sign of the Cross, one touch at a time: forehead, heart, left shoulder, right shoulder
 R.signx = el => {
   const P = [["In the name of the Father,", "Forehead", "1 / 2"], ["and of the Son,", "Heart", "3 / 2"], ["and of the Holy", "Left shoulder", "2 / 1"], ["Spirit. Amen.", "Right shoulder", "2 / 3"]];
-  el.innerHTML = `<p class="say">Let's make the Sign of the Cross. Tap each spot, the way your hand moves.</p><div class="fp-signx">${P.map(([w, part, area], i) => `<button type="button" class="fp-sx${i ? "" : " next"}" style="grid-area:${area}" data-i="${i}"><b>${esc(part)}</b><span>${esc(w)}</span></button>`).join("")}<div class="fp-sxc"><img src="${A("cross")}" alt=""></div></div>`;
+  el.innerHTML = `<p class="say">Let's make the Sign of the Cross. Tap each spot, the way your hand moves.</p><div class="fp-signx">${P.map(([w, part, area], i) => `<button type="button" class="fp-sx${i ? "" : " next"}" style="grid-area:${area}" data-i="${i}"><b>${esc(part)}</b><span>${esc(w)}</span></button>`).join("")}<div class="fp-sxc"><img loading="lazy" decoding="async" src="${A("cross")}" alt=""></div></div>`;
   let k = 0; setReady(false, "Start with your forehead");
   el.querySelectorAll(".fp-sx").forEach(b => b.onclick = () => {
     if (+b.dataset.i !== k) { sfx.no(); b.classList.remove("wig"); void b.offsetWidth; b.classList.add("wig"); return; }
@@ -3184,7 +3193,7 @@ R.signx = el => {
 const CONF = [{"id": "what", "title": "What Confirmation Is", "photo": "conf_anoint", "icon": "fire", "scenes": [{"t": "story", "text": "Confirmation completes what began at your Baptism. The Holy Spirit seals you, strengthens you, and sends you out as a witness for Christ.", "sm": 1, "photo": "conf_anoint", "ref": "Catechism 1285, 1303"}, {"t": "read", "tag": "The sacraments of initiation", "lines": ["Baptism: You became God's child and a member of the Church.", "Confirmation: The Holy Spirit seals you and strengthens you for your mission.", "Eucharist: Jesus feeds you with His own Body and Blood, again and again.", "That's the Church's own order (Catechism 1212). In most U.S. parishes First Communion comes first, then Confirmation; together they complete what Baptism began."], "icon": "church"}, {"t": "story", "text": "Confirmation leaves a permanent spiritual mark, a seal. Like Baptism, you receive it only once, and it never wears off.", "sm": 1, "icon": "fire", "ref": "Catechism 1304"}, {"t": "quiz", "q": "What does Confirmation do?", "opts": [["Completes Baptism and strengthens you with the Holy Spirit", 1], ["Ends your religious education", 0], ["Means you no longer need Mass", 0]], "yes": "Right. It's a beginning and a sending, not a graduation."}, {"t": "reflect", "q": "What's one part of your life where you'd want God's strength right now?", "tag": "Think about it"}, {"t": "done", "practice": 1, "msg": "Session 1 complete."}]}, {"id": "spirit", "title": "Who the Holy Spirit Is", "photo": "conf_pentecost", "icon": "dove", "scenes": [{"t": "story", "text": "Fifty days after Easter, the apostles and Mary were gathered in one room, praying and waiting as Jesus had told them. Then a sound like a mighty wind filled the house, and tongues of fire rested on each of them.", "sm": 1, "photo": "conf_pentecost", "ref": "Acts 1:14; 2:1–4"}, {"t": "story", "text": "Peter, who had denied Jesus three times, walked outside and preached to the crowd. About three thousand people were baptized that day.", "sm": 1, "photo": "conf_pentecost", "ref": "Acts 2:14–41"}, {"t": "story", "text": "The Holy Spirit is the third Person of the Trinity: truly God, with the Father and the Son. Not a force or a feeling, but Someone, who lives in you.", "sm": 1, "icon": "dove", "ref": "Catechism 685, 733"}, {"t": "match", "tag": "Signs of the Spirit", "prompt": "Match each sign to what it shows about the Holy Spirit.", "pairs": [["Wind", "Power you can't see, but you can feel it move"], ["Fire", "Love that warms, lights the way, and makes things new"], ["Dove", "Peace, and the Spirit coming upon Jesus at His baptism"], ["Oil", "Being chosen, strengthened, and set apart for God"]]}, {"t": "reflect", "q": "When have you felt afraid to show your faith? What would change if you really believed the Spirit was with you?", "tag": "Think about it"}, {"t": "done", "practice": 1, "msg": "Session 2 complete."}]}, {"id": "gifts", "title": "The Seven Gifts", "photo": "conf_pentecost", "icon": "gift", "scenes": [{"t": "story", "text": "At Confirmation, the Holy Spirit pours out seven gifts. They are like instincts that help you hear God and follow Him.", "sm": 1, "icon": "gift", "ref": "Isaiah 11:2–3; Catechism 1831"}, {"t": "match", "tag": "The seven gifts", "prompt": "Match each gift to what it helps you do.", "pairs": [["Wisdom", "See life the way God sees it"], ["Understanding", "Grasp the truths of the faith more deeply"], ["Counsel", "Know the right thing to do, and help others choose well"], ["Fortitude", "Have courage to do what's right, even when it's hard"], ["Knowledge", "See God's hand in creation and in your own life"], ["Piety", "Love God the way a child loves a good father"], ["Fear of the Lord", "Stand in awe of God, and never want to lose Him"]]}, {"t": "reflect", "q": "Which gift do you need most this year? Ask the Holy Spirit for it by name tonight.", "tag": "Think about it"}, {"t": "done", "practice": 1, "msg": "Session 3 complete."}]}, {"id": "fruits", "title": "The Fruits of the Spirit", "photo": "lamb_free", "icon": "daisy", "scenes": [{"t": "story", "text": "You can tell a tree by its fruit. When the Holy Spirit is at work in you, it shows in how you live.", "sm": 1, "icon": "daisy", "ref": "Galatians 5:22–23; Catechism 1832"}, {"t": "read", "tag": "The twelve fruits", "lines": ["Charity, joy, peace, patience, kindness, goodness, generosity, gentleness, faithfulness, modesty, self-control, and chastity."], "icon": "daisy"}, {"t": "pick", "prompt": "Tap the fruits of the Holy Spirit.", "items": [["Joy", 1], ["Patience", 1], ["Kindness", 1], ["Self-control", 1], ["Peace", 1], ["Popularity", 0], ["Revenge", 0], ["Bragging", 0]]}, {"t": "reflect", "q": "Which fruit do people around you see in you? Which one would you like to grow?", "tag": "Think about it"}, {"t": "done", "practice": 1, "msg": "Session 4 complete."}]}, {"id": "saint", "title": "Choosing Your Saint", "photo": "saint6", "icon": "sparkles", "scenes": [{"t": "story", "text": "Many Catholics choose a saint's name at Confirmation. It's a custom, not part of the rite, and some keep their baptismal saint. Your saint becomes a patron: a friend in heaven who prays for you and shows you how to follow Jesus.", "sm": 1, "icon": "sparkles"}, {"t": "read", "tag": "Ways to choose", "lines": ["Their story: someone whose life inspires you, or who struggled the way you do.", "Your gifts: a patron of something you love, like music, sports, science, or serving others.", "A virtue: a saint known for the courage, patience, or joy you want to grow in.", "Family: a saint whose name connects you to someone you love."], "icon": "sparkles"}, {"t": "story", "text": "Many parishes ask for a short letter or report about your saint. Start early, and talk about your choice with your sponsor.", "sm": 1, "icon": "book"}, {"t": "reflect", "q": "Write down three saints you're thinking about, and one reason for each.", "tag": "Your shortlist"}, {"t": "done", "practice": 1, "msg": "Session 5 complete."}]}, {"id": "sponsor", "title": "Your Sponsor", "photo": "conf_anoint", "icon": "house", "scenes": [{"t": "story", "text": "At Confirmation your sponsor stands behind you with a hand on your shoulder, and promises to help you live as a disciple of Christ.", "sm": 1, "photo": "conf_anoint", "ref": "Catechism 1311"}, {"t": "read", "tag": "Who can be a sponsor", "lines": ["At least 16 years old.", "A confirmed Catholic who has received the Eucharist.", "Living a life of faith that fits the role.", "Not your mom or dad.", "Often one of your godparents, to show how Baptism and Confirmation belong together."], "icon": "house", "ref": "Code of Canon Law 874. Your parish may add its own steps, like a sponsor form."}, {"t": "reflect", "q": "Who in your life lives their faith in a way you admire? What would you want to ask them?", "tag": "Think about it"}, {"t": "story", "text": "Before Confirmation, talk with your sponsor about your saint, your questions, and how they pray.", "sm": 1, "icon": "heart"}, {"t": "done", "practice": 1, "msg": "Session 6 complete."}]}, {"id": "rite", "title": "The Rite of Confirmation", "photo": "conf_anoint", "icon": "oil", "scenes": [{"t": "story", "text": "Confirmation usually happens at Mass, with the bishop. Here's what will happen, so you're ready.", "sm": 1, "photo": "conf_anoint"}, {"t": "order", "tag": "The rite, in order", "prompt": "Put the parts of the rite in order. Tap the first one!", "steps": ["Renewing your baptismal promises", "The bishop extends his hands and prays for the Holy Spirit", "Anointing with chrism on your forehead", "The sign of peace with the bishop"], "done": "That's the rite!"}, {"t": "read", "tag": "What you'll hear and say", "lines": ["The bishop: “N., be sealed with the Gift of the Holy Spirit.”", "You: “Amen.”", "The bishop: “Peace be with you.”", "You: “And with your spirit.”"], "icon": "oil"}, {"t": "story", "text": "Chrism is olive oil mixed with balsam, consecrated by the bishop at the Chrism Mass in Holy Week. It's the same holy oil used at your Baptism.", "sm": 1, "icon": "oil", "ref": "Catechism 1289, 1297"}, {"t": "quiz", "q": "When the bishop says, “Be sealed with the Gift of the Holy Spirit,” you answer:", "opts": [["Amen.", 1], ["And with your spirit.", 0], ["Thanks be to God.", 0]], "yes": "Yes: “Amen” means “I believe it. Let it be so.”"}, {"t": "done", "practice": 1, "msg": "Session 7 complete."}]}, {"id": "why", "title": "Why Be Catholic?", "photo": "mass_church", "icon": "brain", "scenes": [{"t": "story", "text": "Questions don't mean your faith is failing. The saints asked hard questions too, and the Church has been thinking about them for 2,000 years.", "sm": 1, "icon": "brain"}, {"t": "read", "tag": "Is God real?", "lines": ["The universe had a beginning and is full of order, beauty, and laws. Something can't come from nothing, so many great thinkers concluded there is a Creator.", "Your own longing for truth, goodness, and a love that never runs out points to Someone who is all of these."], "icon": "sparkles", "ref": "Catechism 31–36"}, {"t": "read", "tag": "Why do bad things happen?", "lines": ["God made us free, and freedom means people can choose evil. Much suffering comes from human choices.", "God doesn't cause evil, but He can bring good out of it. Jesus didn't explain suffering away: He entered it on the cross, and rose."], "icon": "cross", "ref": "Catechism 309–314"}, {"t": "read", "tag": "Science or faith?", "lines": ["They don't compete. Science asks how the world works; faith asks why it exists and what it's for.", "The Big Bang theory was first proposed by a Catholic priest, Fr. Georges Lemaître."], "icon": "star", "ref": "Catechism 159"}, {"t": "read", "tag": "Why confess to a priest?", "lines": ["Jesus gave His apostles the power to forgive sins in His name. The priest acts in the person of Christ, and he can never tell anyone what you confess."], "icon": "door", "ref": "John 20:22–23; Catechism 1461, 1467"}, {"t": "read", "tag": "Is Jesus really in the Eucharist?", "lines": ["Jesus said, “This is my body,” and “Unless you eat the flesh of the Son of Man… you do not have life within you.” Many followers walked away, and He let them go rather than soften His words. The Church has believed it ever since."], "icon": "chalice", "ref": "John 6:53–69; Catechism 1374–1376"}, {"t": "reflect", "q": "What's a question you've never asked out loud? Bring it to your sponsor, a parent, or a priest.", "tag": "Think about it"}, {"t": "done", "practice": 1, "msg": "Session 8 complete."}]}, {"id": "mission", "title": "Living Your Mission", "photo": "mass_sent", "icon": "heart", "scenes": [{"t": "story", "text": "Confirmation sends you out. Jesus said: “Whatever you did for one of the least of these, you did for me.”", "sm": 1, "photo": "mass_sent", "ref": "Matthew 25:40"}, {"t": "match", "tag": "Works of mercy", "prompt": "Match each work of mercy to a way you could do it.", "pairs": [["Feed the hungry", "Help at a food pantry, or share your lunch"], ["Visit the sick", "Spend time with someone who is sick or lonely"], ["Clothe the naked", "Donate clothes you've outgrown"], ["Comfort the sorrowful", "Sit with a friend who's going through something hard"]]}, {"t": "read", "tag": "All fourteen", "lines": ["Corporal: feed the hungry, give drink to the thirsty, clothe the naked, shelter the homeless, visit the sick, visit the imprisoned, bury the dead.", "Spiritual: counsel the doubtful, instruct the ignorant, admonish sinners, comfort the sorrowful, forgive offenses, bear wrongs patiently, pray for the living and the dead."], "icon": "heart", "ref": "Catechism 2447"}, {"t": "reflect", "q": "Plan one act of service this month: who will you serve, when, and with whom?", "tag": "Your plan"}, {"t": "done", "practice": 1, "msg": "Session 9 complete."}]}, {"id": "prayer", "title": "A Life of Prayer", "photo": "mass_kneel", "icon": "pray", "scenes": [{"t": "story", "text": "Prayer is a conversation with God, not a performance. The Church describes three ways to pray: vocal prayer, meditation, and contemplation.", "sm": 1, "icon": "pray", "ref": "Catechism 2700–2724"}, {"t": "read", "tag": "Lectio divina", "lines": ["Read: slowly read a short Gospel passage, maybe twice.", "Meditate: notice a word or line that stands out to you. Why that one?", "Pray: talk to God about it, honestly.", "Contemplate: rest quietly with God for a minute. No words needed."], "icon": "book"}, {"t": "story", "text": "Try it now with Mark 10:46–52. Jesus asks blind Bartimaeus: “What do you want me to do for you?” Imagine Jesus asking you.", "sm": 1, "icon": "book", "ref": "Mark 10:51"}, {"t": "reflect", "q": "If Jesus asked you, “What do you want me to do for you?”, what would you say?", "tag": "Think about it"}, {"t": "story", "text": "Many parishes have Eucharistic adoration. Sitting quietly with Jesus for even ten minutes can change your week.", "sm": 1, "icon": "church"}, {"t": "done", "practice": 1, "msg": "Session 10 complete. You're ready. Come, Holy Spirit!"}]}];
 // a teen reflection: written for yourself, never saved or sent
 R.reflect = (el, s) => {
-  el.innerHTML = `<span class="tag">${esc(s.tag || "Think about it")}</span><p class="say sm">${esc(s.q)}</p><textarea class="fp-refl" rows="4" aria-label="${esc(s.q)}" placeholder="Write here, or just think it through."></textarea><p class="ref">Nothing you type here is saved or sent anywhere.</p>`;
+  el.innerHTML = `<span class="tag">${esc(s.tag || "Think about it")}</span><p class="say sm">${esc(s.q)}</p><textarea class="fp-refl" rows="4" aria-label="${esc(s.q)}" aria-describedby="reflNote" placeholder="Write here, or just think it through."></textarea><p class="ref" id="reflNote">Nothing you type here is saved or sent anywhere.</p>`;
 };
 function nextConf() { const d = pget("conf.done", []); return (CONF.find(x => !d.includes(x.id)) || null)?.id || null; }
 function openConf(id) {
@@ -3208,7 +3217,7 @@ function renderConf() {
   $("#confWhen").textContent = done ? "You've been confirmed. Keep these close: the Spirit's work in you keeps going." : left == null ? `Your parish confirms in ${gradeName(P.conf)}.` : left > 0 ? `Your parish confirms in ${gradeName(P.conf)}: ${left === 1 ? "next year" : `in ${left} years`}. This is your preparation year.` : left === 0 ? `This is your Confirmation year (${gradeName(P.conf)}).` : "Preparing for Confirmation? It's never too late. Talk with your parish about when you can be confirmed.";
   const cb = $("#confDone"); cb.checked = !!done;
   $("#confCount").textContent = `${d.length} of ${CONF.length} sessions`;
-  g.innerHTML = CONF.map((C, i) => `<button type="button" class="fp-conf${d.includes(C.id) ? " done" : ""}${C.id === nx ? " next" : ""}" data-id="${C.id}"><img src="${A(C.icon)}" alt=""><span><small>Session ${i + 1}</small><b>${esc(C.title)}</b></span><i>${d.includes(C.id) ? "Done ✓" : C.id === nx ? "Start ›" : "Open ›"}</i></button>`).join("");
+  g.innerHTML = CONF.map((C, i) => `<button type="button" class="fp-conf${d.includes(C.id) ? " done" : ""}${C.id === nx ? " next" : ""}" data-id="${C.id}"><img loading="lazy" decoding="async" src="${A(C.icon)}" alt=""><span><small>Session ${i + 1}</small><b>${esc(C.title)}</b></span><i>${d.includes(C.id) ? "Done ✓" : C.id === nx ? "Start ›" : "Open ›"}</i></button>`).join("");
   g.querySelectorAll(".fp-conf").forEach(b => b.onclick = () => { sfx.tap(); openConf(b.dataset.id); });
   // a personal checklist that stays on this device
   const sv = pget("conf.saint", ""), sp = pget("conf.sponsor", ""), hrs = pget("conf.service", 0);
@@ -3236,7 +3245,7 @@ function renderLambs() {
 R.quiz = (el, s) => {
   const keys = "ABCD";
   const order = shuffle(s.opts);
-  el.innerHTML = `${s.tag ? `<span class="tag">${s.tag}</span>` : ""}${s.art ? `<div class="art" style="width:min(100%,240px)">${ART[s.art]()}</div>` : ""}<p class="say">${esc(s.q)}</p><div class="opts">${order.map((o, k) => `<button class="opt${o[2] ? " pic" : ""}" type="button" data-ok="${o[1]}">${o[2] ? `<img class="opt-ic" src="${A(o[2])}" alt="">` : `<span class="k">${keys[k]}</span>`}${esc(o[0])}</button>`).join("")}</div>${s.ref ? `<p class="ref">${esc(s.ref)}</p>` : ""}`;
+  el.innerHTML = `${s.tag ? `<span class="tag">${s.tag}</span>` : ""}${s.art ? `<div class="art" style="width:min(100%,240px)">${ART[s.art]()}</div>` : ""}<p class="say">${esc(s.q)}</p><div class="opts">${order.map((o, k) => `<button class="opt${o[2] ? " pic" : ""}" type="button" data-ok="${o[1]}">${o[2] ? `<img loading="lazy" decoding="async" class="opt-ic" src="${A(o[2])}" alt="">` : `<span class="k">${keys[k]}</span>`}${esc(o[0])}</button>`).join("")}</div>${s.ref ? `<p class="ref">${esc(s.ref)}</p>` : ""}`;
   setReady(false, "Tap an answer");
   el.querySelectorAll(".opt").forEach(b => b.onclick = () => {
     if (ready) return;
@@ -3498,7 +3507,7 @@ const gIcon = g => /head no/i.test(g) ? "noentry" : /heart/i.test(g) ? "heart" :
 const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
 R.cmds = el => {
   const nums = side => [0, 1, 2, 3, 4].map(k => side * 5 + k).map(i => `<b class="tabn" data-i="${i}">${ROMAN[i]}</b>`).join("");
-  el.innerHTML = `<div class="tabpic review"><img class="ph" src="assets/img/tablets.jpg" alt="Two stone tablets on a hill" draggable="false"><div class="tabcol" style="left:38.6%">${nums(0)}</div><div class="tabcol" style="left:62.8%">${nums(1)}</div></div>
+  el.innerHTML = `<div class="tabpic review"><img loading="lazy" decoding="async" class="ph" src="assets/img/tablets.jpg" alt="Two stone tablets on a hill" draggable="false"><div class="tabcol" style="left:38.6%">${nums(0)}</div><div class="tabcol" style="left:62.8%">${nums(1)}</div></div>
   <div class="cnav"><button type="button" class="chip" id="cPrev">&lsaquo; Previous</button><span id="cCount"></span><button type="button" class="chip big" id="cNext">Next commandment &rsaquo;</button></div>
   <div class="cbox" id="cb" aria-live="polite"></div>`;
   const cb = el.querySelector("#cb"); let i = 0, top = 0;
@@ -3579,7 +3588,7 @@ R.saint = el => {
   el.innerHTML = `<span class="tag">Saint card pack</span>
   <div class="reveal-stage" id="rs">
    <button type="button" class="packvid" id="pack" aria-label="Open the saint card pack">
-     <img class="pf" src="assets/g/pack_still.webp" alt="" draggable="false">
+     <img loading="lazy" decoding="async" class="pf" src="assets/g/pack_still.webp" alt="" draggable="false">
    </button>
    <div class="cardslot" id="slot">${cardHTML(i, "rcard tiltable")}</div>
   </div>
@@ -3640,11 +3649,11 @@ R.saint = el => {
 R.mass = (el, s) => {
   const m = MASS[s.k], P = POSE[m.pose];
   el.innerHTML = `<span class="tag">${esc(m.g)} · part ${s.k + 1} of ${MASS.length}</span>
-  <div class="mpic">${m.img && VIDS.includes(m.img) && !reduce ? `<video class="ph" src="assets/vid/${m.img}.mp4" poster="assets/img/${m.img}.jpg" muted loop autoplay playsinline preload="auto" aria-hidden="true"></video>` : m.img ? `<img class="ph" src="assets/img/${m.img}.jpg" alt="" draggable="false">` : `<div class="micon">${img(m.icon)}</div>`}</div>
+  <div class="mpic">${m.img && VIDS.includes(m.img) && !reduce ? `<video class="ph" src="assets/vid/${m.img}.mp4" poster="assets/img/${m.img}.jpg" muted loop autoplay playsinline preload="auto" aria-hidden="true"></video>` : m.img ? `<img loading="lazy" decoding="async" class="ph" src="assets/img/${m.img}.jpg" alt="" draggable="false">` : `<div class="micon">${img(m.icon)}</div>`}</div>
   <h3 class="mname">${esc(m.name)}</h3>
   <p class="mmean">${esc(m.means)}</p>
   ${m.say ? `<div class="msay"><p class="mb"><small>${esc(m.who || "The priest says")}</small>${esc(m.say[0])}</p><button type="button" class="mb you" id="say"><small>You say</small><span>Tap to answer</span></button></div>` : ""}
-  <div class="mdo"><img src="assets/g/ic_${P.icon}.webp" alt="" draggable="false"><div><b>${P.label}</b><span>${esc(m.doo)}</span></div></div>`;
+  <div class="mdo"><img loading="lazy" decoding="async" src="assets/g/ic_${P.icon}.webp" alt="" draggable="false"><div><b>${P.label}</b><span>${esc(m.doo)}</span></div></div>`;
   if (m.say) {
     setReady(false, "Tap to say your part");
     el.querySelector("#say").onclick = e => { const b = e.currentTarget; if (b.dataset.done) return; b.dataset.done = 1; b.querySelector("span").textContent = m.say[1]; b.classList.add("said"); sfx.yes(); burstAt(b, 30); setReady(true, "That's your part!"); };
@@ -3654,9 +3663,9 @@ R.mass = (el, s) => {
 R.pose = (el, s) => {
   const m = MASS[s.k], want = m.pose === "genuflect" ? "kneel" : m.pose;
   el.innerHTML = `<span class="tag">Stand, sit, or kneel?</span>
-  <div class="mpic">${m.img ? `<img class="ph" src="assets/img/${m.img}.jpg" alt="" draggable="false">` : `<div class="micon">${img(m.icon)}</div>`}</div>
+  <div class="mpic">${m.img ? `<img loading="lazy" decoding="async" class="ph" src="assets/img/${m.img}.jpg" alt="" draggable="false">` : `<div class="micon">${img(m.icon)}</div>`}</div>
   <p class="say sm">${esc(m.name)}: what do you do?</p>
-  <div class="poses">${["stand", "sit", "kneel"].map(p => `<button type="button" class="pose" data-p="${p}"><img src="assets/g/ic_${p}.webp" alt="" draggable="false"><b>${POSE[p].label}</b></button>`).join("")}</div>`;
+  <div class="poses">${["stand", "sit", "kneel"].map(p => `<button type="button" class="pose" data-p="${p}"><img loading="lazy" decoding="async" src="assets/g/ic_${p}.webp" alt="" draggable="false"><b>${POSE[p].label}</b></button>`).join("")}</div>`;
   setReady(false, "Pick one");
   el.querySelectorAll(".pose").forEach(b => b.onclick = () => {
     if (ready) return;
@@ -3748,8 +3757,8 @@ function nightIntro() {
 function nightThemes() {
   const pick = NIGHT[[...(today() + (S.pid || ""))].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 3) % NIGHT.length];
   nShow(`<p class="n-k">Step 1</p><h2 class="n-h sm">What would you like to talk to Jesus about tonight?</h2>
-    <div class="n-themes">${[pick, ...NIGHT.filter(t => t !== pick)].map((t, j) => `<button type="button" class="n-theme${j ? "" : " pick"}" data-k="${t.k}"><img src="${A(t.icon)}" alt=""><span>${esc(t.name)}</span>${j ? "" : "<small>Tonight's idea</small>"}</button>`).join("")}
-      <button type="button" class="n-theme surprise" data-k="?"><img src="${A("stars")}" alt=""><span>Surprise me</span></button></div>`, el => {
+    <div class="n-themes">${[pick, ...NIGHT.filter(t => t !== pick)].map((t, j) => `<button type="button" class="n-theme${j ? "" : " pick"}" data-k="${t.k}"><img loading="lazy" decoding="async" src="${A(t.icon)}" alt=""><span>${esc(t.name)}</span>${j ? "" : "<small>Tonight's idea</small>"}</button>`).join("")}
+      <button type="button" class="n-theme surprise" data-k="?"><img loading="lazy" decoding="async" src="${A("stars")}" alt=""><span>Surprise me</span></button></div>`, el => {
     el.querySelectorAll(".n-theme").forEach(b => b.onclick = () => { sfx.select(); const t = b.dataset.k === "?" ? NIGHT[Math.floor(Math.random() * NIGHT.length)] : NIGHT.find(x => x.k === b.dataset.k); nightQuestions(t); });
   });
 }
@@ -3759,7 +3768,7 @@ function nightQuestions(t) {
   let pool = t.qs.map((q, i) => i).filter(i => !last.includes(i)); if (pool.length < 3) pool = t.qs.map((q, i) => i);
   const qs = shuffle(pool).slice(0, 3); seen[t.k] = qs; pset("nightSeen", seen);
   let i = 0;
-  const one = () => nShow(`<p class="n-k"><img class="n-ti" src="${A(t.icon)}" alt="">${esc(t.name)} &middot; ${i + 1} of ${qs.length}</p>
+  const one = () => nShow(`<p class="n-k"><img loading="lazy" decoding="async" class="n-ti" src="${A(t.icon)}" alt="">${esc(t.name)} &middot; ${i + 1} of ${qs.length}</p>
     <h2 class="n-h q">${esc(t.qs[qs[i]])}</h2><p class="n-p">Think about it quietly. Jesus is listening.</p>
     <div class="n-dots">${qs.map((_, j) => `<i class="${j <= i ? "on" : ""}"></i>`).join("")}</div>
     <button type="button" class="n-btn" id="nNext">${i < qs.length - 1 ? "Next question" : "I thought about it"}</button>`, el => {
@@ -3771,7 +3780,7 @@ function nightQuestions(t) {
 function nightLambs() {
   const THANKS = [["house", "My family"], ["gift", "Yummy food"], ["heart", "My friends"], ["sun", "Playing outside"], ["pip", "Animals"], ["daisy", "Flowers and trees"]];
   const HELP = [["house", "My family"], ["heartmend", "Someone who is sick"], ["heart", "My friends"], ["star", "Me, tomorrow"]];
-  const pickers = (list) => `<div class="n-themes lam">${list.map(([ic, t]) => `<button type="button" class="n-theme" aria-pressed="false"><img src="${A(ic)}" alt=""><span>${esc(t)}</span></button>`).join("")}</div>`;
+  const pickers = (list) => `<div class="n-themes lam">${list.map(([ic, t]) => `<button type="button" class="n-theme" aria-pressed="false"><img loading="lazy" decoding="async" src="${A(ic)}" alt=""><span>${esc(t)}</span></button>`).join("")}</div>`;
   const tog = el => el.querySelectorAll(".n-theme").forEach(b => b.onclick = () => { const on = b.getAttribute("aria-pressed") !== "true"; b.setAttribute("aria-pressed", on); b.classList.toggle("pick", on); on ? sfx.select() : sfx.tap(); });
   nShow(`<p class="n-k">Thank you, Jesus</p><h2 class="n-h sm">What are you thankful for today?</h2>${pickers(THANKS)}<button type="button" class="n-btn" id="nNext">Thank you, Jesus!</button>`, el => {
     tog(el); el.querySelector("#nNext").onclick = () => { sfx.tap();
@@ -3820,7 +3829,7 @@ function nightPrayers(k) {
 }
 function nightEnd(note) {
   const items = activityDone("bedtime");
-  nShow(`<img class="n-moon" src="${A("moon2")}" alt=""><h2 class="n-h">Goodnight${named() ? `, ${esc(named())}` : ""}.</h2>
+  nShow(`<img loading="lazy" decoding="async" class="n-moon" src="${A("moon2")}" alt=""><h2 class="n-h">Goodnight${named() ? `, ${esc(named())}` : ""}.</h2>
     <p class="n-p">Jesus loves you and stays with you all night long. Sleep well!</p>${typeof note === "string" ? `<p class="n-grown">${esc(note)}</p>` : ""}
     <button type="button" class="n-btn" id="nBye">Sleep tight</button>`, el => { el.querySelector("#nBye").onclick = () => closeNight(items); });
 }
@@ -3863,7 +3872,7 @@ function renderPrayList() {
   const isKnown = id => known.includes(id) || (PRAY[id].studio && learned.includes(PRAY[id].studio === "prayer" ? "contrition" : PRAY[id].studio));
   el.innerHTML = `<div class="fp-tabs" role="tablist">${BAND_ORDER.map(b => `<button type="button" role="tab" aria-selected="${b === sel}" data-b="${b}">${BANDS[b].name}${b === mine ? " ★" : ""}</button>`).join("")}</div>
     <p class="fp-bl">${esc(BANDS[sel].ages)}${sel === mine && named() ? ` · ${esc(named())}'s prayers this year` : ""}</p>
-    <div class="fp-list">${Object.entries(PRAY).filter(([, P]) => P.band === sel).map(([id, P]) => `<button type="button" class="fp-pr${isKnown(id) ? " known" : ""}" data-id="${id}"><img src="${A(P.icon)}" alt=""><span><b>${esc(P.name)}</b><small>${esc(P.when)}</small></span><i>${isKnown(id) ? "By heart ✓" : "Pray &rsaquo;"}</i></button>`).join("")}</div>`;
+    <div class="fp-list">${Object.entries(PRAY).filter(([, P]) => P.band === sel).map(([id, P]) => `<button type="button" class="fp-pr${isKnown(id) ? " known" : ""}" data-id="${id}"><img loading="lazy" decoding="async" src="${A(P.icon)}" alt=""><span><b>${esc(P.name)}</b><small>${esc(P.when)}</small></span><i>${isKnown(id) ? "By heart ✓" : "Pray &rsaquo;"}</i></button>`).join("")}</div>`;
   el.querySelectorAll(".fp-tabs button").forEach(t => { t.tabIndex = t.getAttribute("aria-selected") === "true" ? 0 : -1; t.onclick = () => { sfx.tap(); prayBand = t.dataset.b; renderPrayList(); el.querySelector(`.fp-tabs [data-b="${prayBand}"]`)?.focus(); }; });
   el.querySelector(".fp-tabs").onkeydown = e => { const i = BAND_ORDER.indexOf(sel), n = e.key === "ArrowRight" || e.key === "ArrowDown" ? 1 : e.key === "ArrowLeft" || e.key === "ArrowUp" ? -1 : 0; if (!n && e.key !== "Home" && e.key !== "End") return; e.preventDefault(); prayBand = e.key === "Home" ? BAND_ORDER[0] : e.key === "End" ? BAND_ORDER[3] : BAND_ORDER[(i + n + 4) % 4]; renderPrayList(); el.querySelector(`.fp-tabs [data-b="${prayBand}"]`)?.focus(); };
   el.querySelectorAll(".fp-pr").forEach(t => t.onclick = () => openPrayer(t.dataset.id));
@@ -3905,7 +3914,7 @@ let PS_ = null;
 function openStudio(k) {
   const st = STUDIO[k], set = PRAYERS[st.set];
   PS_ = { k, st, set, tab: "learn", lvl: 1 };
-  $("#psHero").innerHTML = `<img src="assets/img/${st.pic}.jpg" alt=""><div class="ps-hcopy"><p class="ps-k">Prayer</p><h2>${esc(set.name)}</h2><p>${esc(st.intro)}</p>${st.ref ? `<small>${esc(st.ref)}</small>` : ""}</div>`;
+  $("#psHero").innerHTML = `<img loading="lazy" decoding="async" src="assets/img/${st.pic}.jpg" alt=""><div class="ps-hcopy"><p class="ps-k">Prayer</p><h2>${esc(set.name)}</h2><p>${esc(st.intro)}</p>${st.ref ? `<small>${esc(st.ref)}</small>` : ""}</div>`;
   $("#pstudio").hidden = false; document.body.style.overflow = "hidden"; sfx.whoosh(); psTab("learn");
   if (G) G.from("#psHero img", { scale: 1.12, duration: 1.4, ease: "power2.out" });
 }
@@ -3914,13 +3923,13 @@ function psTab(t) {
   PS_.tab = t; document.querySelectorAll("#pstudio .ps-tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === t));
   const body = $("#psBody"), parts = PS_.set.parts;
   if (t === "learn") {
-    body.innerHTML = `<p class="ps-lead">Read each line, try the motion, and tap a line to see what it means.</p>${parts.map((p, i) => `<button type="button" class="ps-line" data-i="${i}"><span class="ps-n">${i + 1}</span><span class="ps-t">${esc(p.text)}</span><span class="ps-g"><img src="${A(gIcon(p.g))}" alt="">${esc(p.g)}</span><span class="ps-m"><b>What it means:</b> ${esc(p.mean)}</span></button>`).join("")}<button type="button" class="ps-cta" data-go="practice">Practice it &rsaquo;</button>`;
+    body.innerHTML = `<p class="ps-lead">Read each line, try the motion, and tap a line to see what it means.</p>${parts.map((p, i) => `<button type="button" class="ps-line" data-i="${i}"><span class="ps-n">${i + 1}</span><span class="ps-t">${esc(p.text)}</span><span class="ps-g"><img loading="lazy" decoding="async" src="${A(gIcon(p.g))}" alt="">${esc(p.g)}</span><span class="ps-m"><b>What it means:</b> ${esc(p.mean)}</span></button>`).join("")}<button type="button" class="ps-cta" data-go="practice">Practice it &rsaquo;</button>`;
     body.querySelectorAll(".ps-line").forEach(b => b.onclick = () => { sfx.tap(); b.classList.toggle("open"); });
   }
   if (t === "practice") {
     let i = 0, right = 0;
     const one = () => {
-      if (i >= parts.length) { body.innerHTML = `<div class="ps-done"><img src="${A("stars")}" alt=""><h3>${right === parts.length ? "Perfect!" : right * 2 >= parts.length ? "Nice work!" : "Good try!"}</h3><p>${right} of ${parts.length} right the first time. Now try saying it by heart.</p><button type="button" class="ps-cta" data-go="heart">Say it by heart &rsaquo;</button></div>`; wire(); sfx.win(); return; }
+      if (i >= parts.length) { body.innerHTML = `<div class="ps-done"><img loading="lazy" decoding="async" src="${A("stars")}" alt=""><h3>${right === parts.length ? "Perfect!" : right * 2 >= parts.length ? "Nice work!" : "Good try!"}</h3><p>${right} of ${parts.length} right the first time. Now try saying it by heart.</p><button type="button" class="ps-cta" data-go="heart">Say it by heart &rsaquo;</button></div>`; wire(); sfx.win(); return; }
       const P = parts[i], gapped = esc(P.text.replace(new RegExp("\\b" + P.gap + "\\b"), "%%")).replace("%%", `<span class="gap">${esc(P.gap)}</span>`);
       let first = true;
       body.innerHTML = `<p class="ps-lead">Which word is missing? <b>${i + 1} of ${parts.length}</b></p><div class="ps-card"><p class="ps-q">${gapped}</p></div><div class="ps-opts">${shuffle(P.opts).map(o => `<button type="button" data-w="${esc(o)}">${esc(o)}</button>`).join("")}</div>`;
@@ -3945,7 +3954,7 @@ function psTab(t) {
         const L = pget("learned", []); if (!L.includes(PS_.st.set)) { L.push(PS_.st.set); pset("learned", L); } renderLearned();
         const items = activityDone(PS_.k);
         sfx.win(); burst(innerWidth / 2, innerHeight * .4, 140, true);
-        body.innerHTML = `<div class="ps-done"><img src="${A("trophy")}" alt=""><h3>You know it by heart!</h3><p>Pray the ${esc(PS_.set.name)} every day, at bedtime, or whenever you want to talk to God.</p><button type="button" class="ps-cta" id="psFin">Done</button></div>`;
+        body.innerHTML = `<div class="ps-done"><img loading="lazy" decoding="async" src="${A("trophy")}" alt=""><h3>You know it by heart!</h3><p>Pray the ${esc(PS_.set.name)} every day, at bedtime, or whenever you want to talk to God.</p><button type="button" class="ps-cta" id="psFin">Done</button></div>`;
         body.querySelector("#psFin").onclick = () => closeStudio(items);
       };
     };
@@ -3972,7 +3981,7 @@ function closeGame(items) { $("#gshell").hidden = true; if ($("#quest").hidden) 
 function gPoints(ok, first) {
   if (!first) return;
   GM.total++;
-  if (ok) { GM.right++; GM.combo++; GM.score += 10 + Math.min(GM.combo - 1, 4) * 5; if (GM.combo >= 3 && GM.combo % 2 === 1) { const c = document.createElement("div"); c.className = "combo"; c.innerHTML = `<img src="${A("stars")}" alt="">${GM.combo} in a row!`; $("#gshell").appendChild(c); sfx.sparkle(); setTimeout(() => c.remove(), 1600); } }
+  if (ok) { GM.right++; GM.combo++; GM.score += 10 + Math.min(GM.combo - 1, 4) * 5; if (GM.combo >= 3 && GM.combo % 2 === 1) { const c = document.createElement("div"); c.className = "combo"; c.innerHTML = `<img loading="lazy" decoding="async" src="${A("stars")}" alt="">${GM.combo} in a row!`; $("#gshell").appendChild(c); sfx.sparkle(); setTimeout(() => c.remove(), 1600); } }
   else GM.combo = 0;
   const sc = $("#gsScore"); sc.querySelector("b").textContent = GM.score; sc.classList.remove("bump"); void sc.offsetWidth; sc.classList.add("bump");
 }
@@ -3993,7 +4002,7 @@ function gRound() {
   }
   if (r.t === "pose") {
     const m = MASS[r.k], want = m.pose === "genuflect" ? "kneel" : m.pose;
-    st.innerHTML = `<div class="gs-card pic">${m.img ? `<img class="gs-img" src="assets/img/${m.img}.jpg" alt="">` : `<div class="gs-icon">${img(m.icon)}</div>`}<p class="gs-q">${esc(m.name)}</p><small>What do you do?</small></div><div class="gs-poses">${["stand", "sit", "kneel"].map(p => `<button type="button" data-p="${p}"><img src="assets/g/ic_${p}.webp" alt=""><b>${POSE[p].label}</b></button>`).join("")}</div>${nextBtn()}`;
+    st.innerHTML = `<div class="gs-card pic">${m.img ? `<img loading="lazy" decoding="async" class="gs-img" src="assets/img/${m.img}.jpg" alt="">` : `<div class="gs-icon">${img(m.icon)}</div>`}<p class="gs-q">${esc(m.name)}</p><small>What do you do?</small></div><div class="gs-poses">${["stand", "sit", "kneel"].map(p => `<button type="button" data-p="${p}"><img loading="lazy" decoding="async" src="assets/g/ic_${p}.webp" alt=""><b>${POSE[p].label}</b></button>`).join("")}</div>${nextBtn()}`;
     st.querySelectorAll(".gs-poses button").forEach(b => b.onclick = () => {
       const ok = b.dataset.p === want; gPoints(ok, first);
       if (ok) { b.classList.add("right"); sfx.yes(); burstAt(b, 40); st.querySelectorAll(".gs-poses button").forEach(x => x.disabled = true); ready(); }
@@ -4028,7 +4037,7 @@ function gRound() {
 }
 function gEnd() {
   const pct = GM.total ? GM.right / GM.total : 1, stars = pct >= .9 ? 3 : pct >= .6 ? 2 : 1, items = activityDone(GM.k);
-  $("#gsStage").innerHTML = `<div class="gs-end"><div class="gs-stars">${[1, 2, 3].map(n => `<img src="${A("stars")}" alt="" class="${n <= stars ? "on" : ""}">`).join("")}</div><h3>${stars === 3 ? "Amazing!" : stars === 2 ? "Great job!" : "Good try!"}</h3><p class="gs-final"><b>${GM.score}</b> points</p><p>${GM.total ? `${GM.right} of ${GM.total} right the first time.` : "You did the whole thing!"}</p><div class="gs-row"><button type="button" class="gs-next soft" id="gsAgain">Play again</button><button type="button" class="gs-next" id="gsDone">Done</button></div></div>`;
+  $("#gsStage").innerHTML = `<div class="gs-end"><div class="gs-stars">${[1, 2, 3].map(n => `<img loading="lazy" decoding="async" src="${A("stars")}" alt="" class="${n <= stars ? "on" : ""}">`).join("")}</div><h3>${stars === 3 ? "Amazing!" : stars === 2 ? "Great job!" : "Good try!"}</h3><p class="gs-final"><b>${GM.score}</b> points</p><p>${GM.total ? `${GM.right} of ${GM.total} right the first time.` : "You did the whole thing!"}</p><div class="gs-row"><button type="button" class="gs-next soft" id="gsAgain">Play again</button><button type="button" class="gs-next" id="gsDone">Done</button></div></div>`;
   sfx.win(); burst(innerWidth / 2, innerHeight * .35, 140, true);
   $("#gsStage").querySelectorAll(".gs-stars img.on").forEach((x, j) => setTimeout(() => { x.classList.add("pop"); sfx.pop(); }, 400 + j * 350));
   $("#gsAgain").onclick = () => { sfx.tap(); const k = GM.k; openGame(k); };
@@ -4065,8 +4074,9 @@ function openPractice(k, start = 0) {
 }
 R.done = (el, s) => {
   hush();
-  if (Q && Q.course === "conf" && S.pid) { const d = pget("conf.done", []); if (!d.includes(Q.cid)) pset("conf.done", [...d, Q.cid]); }
-  if (Q && Q.course === "lambs" && S.pid) { const d = pget("lambs.done", []); if (!d.includes(Q.lid)) pset("lambs.done", [...d, Q.lid]); }
+  const newCard = () => { const i = SAINTS.findIndex((x, j) => !S.cards.includes(j)); if (i < 0) return; S.cards.push(i); pset("cards", S.cards); pendingAwards.push({ kicker: "New saint card", title: SAINTS[i].name, text: "A new friend in heaven for your Saint Album!", src: `assets/img/${SAINTS[i].pic}.jpg` }); renderAlbum(); };
+  if (Q && Q.course === "conf" && S.pid) { const d = pget("conf.done", []); if (!d.includes(Q.cid)) { pset("conf.done", [...d, Q.cid]); newCard(); } }
+  if (Q && Q.course === "lambs" && S.pid) { const d = pget("lambs.done", []); if (!d.includes(Q.lid)) { pset("lambs.done", [...d, Q.lid]); newCard(); } }
   if (Q && Q.learn) { const L = pget("learned", []); if (!L.includes(Q.learn)) { L.push(Q.learn); pset("learned", L); } renderLearned(); }
   let earned = 0;
   if (!run.scored) {
@@ -4081,7 +4091,7 @@ R.done = (el, s) => {
   }
   earned = run.earned || 0;
   const msg = s.final ? `You're ready, ${kid()}!` : Q && Q.course === "lambs" ? "Wonderful!" : Q && Q.course === "conf" ? "Session complete." : s.practice ? "Great practice!" : "Lesson complete!";
-  el.innerHTML = `<div class="art">${Q && Q.teen ? `<div class="sc"><img class="ph kb" src="assets/img/conf_pentecost.jpg" alt="" draggable="false"></div>` : s.final ? ART.carry() : `<div class="sc">${ground}${img("trophy", "", "left:4%;top:4%;width:30%")}${img("stars", "float", "right:6%;top:2%;width:22%")}${pip("idle", "left:50%;bottom:12%;width:54%;translate:-50% 0").replace('class="pip', 'id="dp" class="pip')}</div>`}</div><div class="stamp">${esc(msg)}</div>${earned ? `<div class="starrow" aria-label="${earned} of 3 stars">${[1, 2, 3].map(k => `<img src="${A("stars")}" alt="" class="${k <= earned ? "on" : ""}">`).join("")}</div><p class="ref">${run.total ? `${run.right} of ${run.total} answers right the first time. ` : ""}${earned === 3 ? "All 3 stars!" : "Play it again to win all 3 stars."}</p>` : ""}<p class="say sm">${s.final ? "Pip is home on the Shepherd's shoulders. On your big day, you'll feel just like you've been hugged by God!" : s.msg ? esc(s.msg) : s.practice ? `Practice makes prayer feel like home. Keep it up, ${esc(kid())}!` : `You worked hard and learned so much. ${esc(kid())}, Pip is one step closer to home.`}</p>`;
+  el.innerHTML = `<div class="art">${Q && Q.teen ? `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/conf_pentecost.jpg" alt="" draggable="false"></div>` : s.final ? ART.carry() : `<div class="sc">${ground}${img("trophy", "", "left:4%;top:4%;width:30%")}${img("stars", "float", "right:6%;top:2%;width:22%")}${pip("idle", "left:50%;bottom:12%;width:54%;translate:-50% 0").replace('class="pip', 'id="dp" class="pip')}</div>`}</div><div class="stamp">${esc(msg)}</div>${earned ? `<div class="starrow" aria-label="${earned} of 3 stars">${[1, 2, 3].map(k => `<img loading="lazy" decoding="async" src="${A("stars")}" alt="" class="${k <= earned ? "on" : ""}">`).join("")}</div><p class="ref">${run.total ? `${run.right} of ${run.total} answers right the first time. ` : ""}${earned === 3 ? "All 3 stars!" : "Play it again to win all 3 stars."}</p>` : ""}<p class="say sm">${s.final ? "Pip is home on the Shepherd's shoulders. On your big day, you'll feel just like you've been hugged by God!" : s.msg ? esc(s.msg) : s.practice ? `Practice makes prayer feel like home. Keep it up, ${esc(kid())}!` : `You worked hard and learned so much. ${esc(kid())}, Pip is one step closer to home.`}</p>`;
   setTimeout(() => { burst(innerWidth / 2, innerHeight * .35, s.final ? 200 : 110, true); s.final ? sfx.bless() : sfx.done(); el.querySelectorAll(".starrow img.on").forEach((st, k) => setTimeout(() => { st.classList.add("pop"); sfx.pop(); }, 500 + k * 380)); const dp = el.querySelector("#dp"); if (G && dp) { const tl = G.timeline(); tl.add(hop(dp, { h: 50 })).add(hop(dp, { h: 30 })); } }, 300);
 };
 /* ---------- page wiring ---------- */
@@ -4135,7 +4145,7 @@ const keepData = () => { try { navigator.storage && navigator.storage.persist &&
 const b64u = t => btoa(unescape(encodeURIComponent(t))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 const unb64u = t => decodeURIComponent(escape(atob(t.replace(/-/g, "+").replace(/_/g, "/"))));
 function backupLink() {
-  const d = { v: 2, save: SAVE_VERSION, ids: QUEST_IDS, saints: SAINT_IDS, players: PL, active: S.pid, p: {} };
+  const d = { v: 2, save: SAVE_VERSION, ids: QUEST_IDS, saints: SAINT_IDS, parish: store.get("parish", null), players: PL, active: S.pid, p: {} };
   PL.forEach(pl => { const o = d.p[pl.id] = {}; childKeys(pl.id).forEach(k => { const v = store.get(`p.${pl.id}.${k}`, null); if (v != null) o[k] = k === "days" && Array.isArray(v) ? v.slice(-60) : v; }); });
   return `${location.origin}${location.pathname}#restore=${b64u(JSON.stringify(d))}`;
 }
@@ -4154,7 +4164,7 @@ function offerRestore() {
   if (!d || !Array.isArray(d.players) || !d.players.length) { toast("That backup link didn't work. Try copying it again."); return; }
   const names = d.players.map(x => x.name).join(", ");
   const box = document.createElement("div"); box.id = "award"; box.className = "award"; box.setAttribute("role", "dialog"); box.setAttribute("aria-label", "Restore progress");
-  box.innerHTML = `<div class="award-card"><span class="tag">Backup link</span><div class="award-art"><img src="${A("ewe")}" alt=""></div><h3>Bring back progress?</h3><p>${(() => { const here = d.players.filter(x => x && PL.some(y => y.id === x.id)).map(x => x.name); return here.length ? `This brings back ${esc(names)}. Progress already on this device for ${esc(here.join(", "))} is replaced by the backup.` : `This adds ${esc(names)} to this device, with every lesson, card, star and badge from the backup.`; })()}</p><button class="btn btn-go" type="button" id="rsYes">Restore</button><button class="btn btn-soft" type="button" id="rsNo">Not now</button></div>`;
+  box.innerHTML = `<div class="award-card"><span class="tag">Backup link</span><div class="award-art"><img loading="lazy" decoding="async" src="${A("ewe")}" alt=""></div><h3>Bring back progress?</h3><p>${(() => { const here = d.players.filter(x => x && PL.some(y => y.id === x.id)).map(x => x.name); return here.length ? `This brings back ${esc(names)}. Progress already on this device for ${esc(here.join(", "))} is replaced by the backup.` : `This adds ${esc(names)} to this device, with every lesson, card, star and badge from the backup.`; })()}</p><button class="btn btn-go" type="button" id="rsYes">Restore</button><button class="btn btn-soft" type="button" id="rsNo">Not now</button></div>`;
   document.body.appendChild(box);
   box.querySelector("#rsNo").onclick = () => { sfx.close(); box.remove(); };
   box.querySelector("#rsYes").onclick = () => {
@@ -4167,6 +4177,7 @@ function offerRestore() {
       if (at >= 0) pdrop(pl.id, childKeys(pl.id)); // the backup replaces what this device had for that child
       Object.keys(o).forEach(k => store.set(`p.${pl.id}.${k}`, o[k]));
     });
+    if (d.parish && typeof d.parish === "object" && [1, 2, 3].includes(+d.parish.fc) && +d.parish.conf >= 6 && +d.parish.conf <= 12) store.set("parish", { fc: +d.parish.fc, conf: +d.parish.conf });
     savePlayers(); keepData(); loadPlayer(PL.some(x => x.id === d.active) ? d.active : PL[0].id); refreshPlayer();
     box.remove(); sfx.win(); burst(innerWidth / 2, innerHeight * .4, 120, true); toast(`Welcome back, ${names}!`);
   };
@@ -4237,7 +4248,7 @@ $("#unlockAll").onclick = () => { if (!S.pid) { askPlayer(); return; } S.unlocke
 $("#resetAll").onclick = e => {
   const b = e.currentTarget;
   if (!S.pid) return;
-  if (b.dataset.sure) { pdrop(S.pid, childKeys(S.pid).filter(k => k !== "bigDay")); loadPlayer(S.pid); refreshPlayer(); renderGame(); b.textContent = "Start over"; delete b.dataset.sure; toast(`${S.name}'s progress is cleared`); }
+  if (b.dataset.sure) { pdrop(S.pid, childKeys(S.pid).filter(k => k !== "bigDay" && k !== "grade")); loadPlayer(S.pid); refreshPlayer(); renderGame(); b.textContent = "Start over"; delete b.dataset.sure; toast(`${S.name}'s progress is cleared`); }
   else { b.dataset.sure = 1; b.textContent = "Tap again to clear progress"; setTimeout(() => { b.textContent = "Start over"; delete b.dataset.sure; }, 4000); }
 };
 // the Confirmation checklist saves as the teen types
@@ -4281,7 +4292,7 @@ const MASS_MEDIA = ["mass_font", "mass_entrance", "mass_church", "mass_kneel", "
 const MASS_CH = { "Before Mass": "We come into God's house and remember our Baptism.", "We gather": "Jesus' family comes together and gets our hearts ready.", "The Word of God": "God speaks to us through the Bible.", "Jesus in the Eucharist": "The bread and wine become Jesus.", "Communion": "Jesus comes to us, and we share His peace.", "We go out": "We take Jesus' love home with us." };
 (() => {
   const groups = [...new Set(MASS.map(m => m.g))];
-  const media = k => VIDS.includes(k) ? `<video class="mmedia" data-k="${k}" src="assets/vid/${k}.mp4" poster="assets/img/${k}.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>` : `<img class="mmedia" data-k="${k}" src="assets/img/${k}.jpg" alt="" draggable="false">`;
+  const media = k => VIDS.includes(k) ? `<video class="mmedia" data-k="${k}" src="assets/vid/${k}.mp4" data-poster="assets/img/${k}.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>` : `<img loading="lazy" decoding="async" class="mmedia" data-k="${k}" src="assets/img/${k}.jpg" alt="" draggable="false">`;
   $("#mStory").innerHTML = groups.map((g, gi) => {
     const parts = MASS.map((m, k) => [m, k]).filter(([m]) => m.g === g), keys = [...new Set(parts.map(([, k]) => MASS_MEDIA[k]))];
     return `<section class="mch">
@@ -4290,15 +4301,16 @@ const MASS_CH = { "Before Mass": "We come into God's house and remember our Bapt
         <div class="mch-media"><div class="mstage">${keys.map(media).join("")}</div></div>
         <div class="mch-beats">${parts.map(([m, k]) => `<article class="mbeat" data-k="${MASS_MEDIA[k]}">
           <span class="mb-n">${k + 1}</span><h4>${esc(m.name)}</h4><p class="mb-mean">${esc(m.means)}</p>
-          <div class="mb-do"><img src="assets/g/ic_${POSE[m.pose].icon}.webp" alt=""><div><b>${POSE[m.pose].label}</b><span>${esc(m.doo)}</span></div></div>
+          <div class="mb-do"><img loading="lazy" decoding="async" src="assets/g/ic_${POSE[m.pose].icon}.webp" alt=""><div><b>${POSE[m.pose].label}</b><span>${esc(m.doo)}</span></div></div>
           ${m.say ? `<div class="mb-say"><p><small>${esc(m.who || "The priest says")}</small>${esc(m.say[0])}</p><p class="you"><small>We say</small>${esc(m.say[1])}</p></div>` : ""}
         </article>`).join("")}</div>
       </div>
     </section>`;
   }).join("");
   // one active picture per chapter: the part closest to the middle of the screen decides which video plays
-  const show = (ch, k) => ch.querySelectorAll(".mmedia").forEach(x => { const on = x.dataset.k === k; x.classList.toggle("on", on); if (x.tagName === "VIDEO") { if (on && !reduce) { document.querySelectorAll("#mass video").forEach(v => { if (v !== x && !v.paused) v.pause(); }); if (x.preload !== "auto") { x.preload = "auto"; x.load(); } x.play().catch(() => {}); } else x.pause(); } });
-  document.querySelectorAll(".mch").forEach(ch => show(ch, ch.querySelector(".mbeat").dataset.k));
+  const show = (ch, k, load = true) => ch.querySelectorAll(".mmedia").forEach(x => { const on = x.dataset.k === k; x.classList.toggle("on", on); if (x.tagName === "VIDEO") { if (on && !reduce && load) { document.querySelectorAll("#mass video").forEach(v => { if (v !== x && !v.paused) v.pause(); }); if (x.preload !== "auto") { x.preload = "auto"; x.load(); } x.play().catch(() => {}); } else x.pause(); } });
+  // mark each chapter's first picture, but load no video until the Mass page is actually open
+  document.querySelectorAll(".mch").forEach(ch => show(ch, ch.querySelector(".mbeat").dataset.k, false));
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); const ch = e.target.closest(".mch"); ch.querySelectorAll(".mbeat").forEach(b => b.classList.toggle("now", b === e.target)); show(ch, e.target.dataset.k); } }), { rootMargin: "-45% 0px -45% 0px" });
     document.querySelectorAll(".mbeat").forEach(b => io.observe(b));
@@ -4523,6 +4535,20 @@ const FAMILY = {
     grow: ["Read the road to Emmaus (Luke 24:13–35). Where did they recognize Jesus?", "“They knew Jesus in the breaking of the bread. Where do we meet Him?”"],
     confirm: ["Read Acts 2, and pray “Come, Holy Spirit” every day until Pentecost.", "“The Spirit turned scared apostles into brave ones. What would you do for God if you weren't afraid?”"] },
 };
+// Grown-ups: what this stage needs, for the child who is playing now
+const GUIDE = {
+  lambs: { h: "Ages 3 to 5: wonder before words.", p: ["Keep it short and full of the senses: candles, holy water, a crucifix to kiss, songs. A few minutes is plenty.", "Pray with them, not at them: the Sign of the Cross, grace before meals, and the Angel of God at bedtime.", "Tell the Good Shepherd story again and again. Little ones need to know they are loved before they learn rules.", "Bring them to Mass even when it's hard. Sit where they can see the altar, and whisper what's happening."], t: "Try asking: “What do you think Jesus is doing right now?” Then wonder about it together." },
+  first: { h: "Grades 1 to 3: stories and first sacraments.", p: ["Holy Family prepares over two years: a year of faith formation, then First Reconciliation and First Communion in 2nd grade, with a parent session and a Teaching Mass.", "Practice the confession steps at home, and go to Reconciliation yourself, so they see it's for everyone.", "Read Bible stories together, and let them retell the story to you.", "Pray a short bedtime Heart Check together most nights."], t: "Try asking: “When did you feel close to Jesus today?” Then share your own answer." },
+  grow: { h: "Grades 4 to 6: reasons and the big story.", p: ["They can follow the whole story of salvation now. Read a Gospel together, a little each night.", "Give them real roles: leading grace, reading at family prayer, serving at Mass.", "Welcome hard questions. “I don't know, let's find out together” is a great answer.", "These are the years before 13, when many kids quietly drift. Your own faith, shared out loud, matters most."], t: "Try sharing first: “Here's something I'm praying about this week.” Then ask about theirs." },
+  confirm: { h: "Confirmation years: ownership and honest questions.", p: ["Holy Family: Pre-Confirmation in 6th grade, then Confirmation (“Purpose”) in 7th, with a retreat and a sponsor form. Check your own parish's timeline.", "Help them choose a sponsor who really lives the faith. It can't be a parent, but you can help them think it through.", "Doubt is normal. Silence is the real danger: talk about your own questions and how you pray.", "Serve together: a food pantry, visiting someone lonely. Faith grows when it's lived.", "Let them see you choose Mass and Reconciliation, not just require it."], t: "Try asking: “What's one question about faith you'd want answered?” Listen more than you talk." },
+};
+function renderGuide() {
+  const el = $("#gBand"); if (!el) return;
+  const b = band(), G = GUIDE[b];
+  if (!G) { el.innerHTML = `<h3>Guidance for every age.</h3><p class="gsub">Set ${named() ? esc(named()) + "'s" : "your child's"} grade (in Settings below, or on Home) to see what this stage needs, from age 3 to Confirmation.</p>`; return; }
+  el.innerHTML = `<p class="t-eyebrow dark">For ${esc(named() || "your child")} · ${esc(BANDS[b].name)}</p><h3>${esc(G.h)}</h3><ul class="fp-glist">${G.p.map(x => `<li>${esc(x)}</li>`).join("")}</ul><p class="fp-gtry">${esc(G.t)}</p>
+    <p class="fp-gnote">Research on families finds that parents' own lived faith is the strongest influence on whether children keep the faith (Smith and Adamczyk, <i>Handing Down the Faith</i>, 2021).</p>`;
+}
 function renderToday() {
   const el = $("#fpToday"); if (!el) return;
   const L = litDay(), c = churchDay(new Date()), b = band() || "first", fam = FAMILY[L.k === "christmas" || L.k === "advent" || L.k === "lent" || L.k === "easter" || L.k === "holyweek" ? L.k : "ordinary"][b];
@@ -4533,7 +4559,8 @@ function renderToday() {
   el.dataset.color = L.color;
   // the First Reconciliation tile is for the First Sacraments years (and for families who haven't set a grade)
   const fr = $("#frTile"); if (fr) fr.hidden = !!band() && band() !== "first";
-  document.body.dataset.band = band() || ""; renderLambs(); renderConf();
+  document.body.dataset.band = band() || ""; renderLambs(); renderConf(); renderGuide();
+  const bt = $("#bedTileH"); if (bt) bt.textContent = band() === "grow" || band() === "confirm" ? "Night examen." : "Bedtime Heart Check.";
   el.innerHTML = `<div class="fp-band"><span class="fp-dot"></span><span>${esc(day)}</span><span class="fp-col">${L.color === "rose" ? "Rose" : L.color[0].toUpperCase() + L.color.slice(1)}</span></div>
     <p class="t-eyebrow dark">Today in the Church${L.feast ? ` · ${esc(L.label)}` : ""}</p><h2>${esc(L.feast || L.label)}.</h2><p class="t-sub">${esc(L.feast ? `${L.name}: ${SEASON[L.k].line[0].toLowerCase() + SEASON[L.k].line.slice(1)}` : SEASON[L.k].line)}.</p>
     ${feast && !L.feast ? `<p class="fp-feast">${img(c.icon)}<span>${esc(feast)}</span></p>` : ""}
@@ -4585,6 +4612,9 @@ renderToday(); renderPrayList();
     document.body.dataset.page = v;
     scrollTo(0, 0);
     if (v === "cards") markSeen();
+    // heavy pictures for a page load only when that page opens
+    if (v === "mass") document.querySelectorAll("#mass video[data-poster]").forEach(x => { x.poster = x.dataset.poster; x.removeAttribute("data-poster"); });
+    if (v === "quests") document.querySelectorAll("image[data-href]").forEach(x => { x.setAttribute("href", x.dataset.href); x.removeAttribute("data-href"); });
     if (v === "quests" && doneEl) { fitSide(); refreshMap(true); }
     document.querySelectorAll(`[data-view="${v}"] .rv:not(.in)`).forEach(e => { if (e.getBoundingClientRect().top < innerHeight) e.classList.add("in"); });
   };
@@ -4598,7 +4628,8 @@ renderToday(); renderPrayList();
 })();
 buildMap();
 renderAlbum();
-$("#homeCard").innerHTML = `<a href="#/cards" aria-label="Open the Saint Album">${cardHTML(8, "rcard")}</a>`;
+// the Home card is a still picture (its video would cost a megabyte on the first visit)
+$("#homeCard").innerHTML = `<a href="#/cards" aria-label="Open the Saint Album">${cardHTML(8, "rcard").replace(/<video[\s\S]*?<\/video>/, "")}</a>`;
 renderPlayers();
 heroIntro();
 autoVideos();
