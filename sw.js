@@ -1,4 +1,4 @@
-const V = "found-20261102232613", A = "found-assets";
+const V = "found-20261102233514", A = "found-assets";
 self.addEventListener("install", e => { self.skipWaiting(); e.waitUntil(caches.open(V).then(c => c.addAll(["./", "assets/vendor/gsap.min.js", "manifest.webmanifest"]))); });
 self.addEventListener("activate", e => e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== V && k !== A).map(async k => {
   // carry the old version's pictures over before it goes

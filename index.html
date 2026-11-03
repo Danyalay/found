@@ -2809,11 +2809,21 @@ let speakT = 0, speakBtn = null, speakU = null;   // the pending scene read, and
 // read-aloud in lessons: Little Lambs reads by itself unless turned off; every other course when "Read to me" is on
 const readNow = () => !!Q && (Q.course === "lambs" ? pget("readLambs", S.pid ? true : store.get("readLambs", true)) : pget("readAloud", S.pid ? false : store.get("readAloud", false)));
 const S = { pid: null, name: "", done: [], cards: [], unlocked: false, sound: store.get("sound", true), bigDay: "" };
-if (store.get("v", 1) < 2) { ["done", "cards"].forEach(k => store.set(k, [])); store.set("pos", null); store.set("seen", 0); store.set("v", 2); }
+// v1 had a different lesson set before the 13 workbook lessons, so its lesson numbers (and the cards and stars tied to
+// them) can't be carried over; the name, days and prayers learned are kept
+if (store.get("v", 1) < 2) { ["done", "cards"].forEach(k => store.set(k, [])); store.set("stars", {}); store.set("pos", null); store.set("seen", 0); store.set("v", 2); }
 
 /* ---------- players: each child keeps their own map, saint cards and place in a lesson ---------- */
 const PKEYS = ["done", "cards", "unlocked", "pos", "seen", "bigDay", "learned", "stars", "days", "badges", "missed", "fixed", "practiced", "mtoday", "missionDone", "lastLesson", "nightSeen"];
 let PL = store.get("players", null);
+// a damaged list (not an array, or emptied) is rebuilt from the children's own saved keys, so nobody disappears
+if (!Array.isArray(PL) || (!PL.length && localStorage.getItem("found.players") !== "[]")) {
+  const ids = []; try { for (let i = 0; i < localStorage.length; i++) { const m = /^found\.p\.([\w-]{1,40})\./.exec(localStorage.key(i) || ""); if (m && !ids.includes(m[1])) ids.push(m[1]); } } catch (e) {}
+  const old = Array.isArray(PL) ? PL : (PL && typeof PL === "object" ? Object.values(PL).filter(x => x && typeof x === "object") : []);
+  PL = ids.length ? ids.map((id, j) => ({ id, name: String((old.find(x => x.id === id) || {}).name || "").trim().slice(0, 30) || `Child ${j + 1}` })) : null;
+  if (PL) store.set("players", PL);
+}
+PL = PL && PL.filter(x => x && okId(x.id)).map(x => ({ ...x, name: String(x.name || "").slice(0, 30) || "Child" }));
 if (!PL) {
   // earlier versions kept one shared slot: move it into the first child's profile
   PL = [];
@@ -2875,7 +2885,7 @@ const schoolYear = (d = new Date()) => d.getMonth() >= 7 ? d.getFullYear() : d.g
 const gradeName = g => (GRADES.find(x => x[0] === g) || [0, ""])[1];
 const gradeOpts = sel => GRADES.map(([g, n]) => `<option value="${g}"${g === sel ? " selected" : ""}>${n}</option>`).join("");
 // the parish sets the sacrament grades; Holy Family Orlando: First Communion in 2nd grade, Confirmation in 7th
-const PARISH = () => Object.assign({ fc: 2, conf: 7 }, store.get("parish", {}));
+const PARISH = () => { const P = store.get("parish", {}) || {}, n = (v, d, lo, hi) => Number.isInteger(v) && v >= lo && v <= hi ? v : d; return { fc: n(P.fc, 2, 1, 3), conf: n(P.conf, 7, 6, 12) }; };
 const BANDS = {
   lambs: { name: "Little Lambs", ages: "Ages 3 to 5", line: "Wonder: God made you and loves you." },
   first: { name: "First Sacraments", ages: "Grades 1 to 3", line: "Jesus forgives us and feeds us." },
@@ -4307,7 +4317,7 @@ function renderPlayers() {
     + (PL.length ? `<button type="button" class="pl add" id="plNew"><span class="av plus">+</span><span>Add a child</span></button>` : "");
   $("#plAdd").hidden = PL.length > 0 && !renderPlayers.adding;
   $("#plRow").querySelectorAll(".pl[data-id]").forEach(b => b.onclick = () => { sfx.select(); switchPlayer(b.dataset.id); });
-  const nb = $("#plNew"); if (nb) nb.onclick = () => { sfx.tap(); renderPlayers.adding = true; renderPlayers(); $("#plName").focus(); };
+  const nb = $("#plNew"); if (nb) nb.onclick = () => { sfx.tap(); renderPlayers.adding = true; renderPlayers(); const f = $("#plName"); f.focus({ preventScroll: true }); scrollTo({ top: Math.max(0, f.getBoundingClientRect().top + scrollY - innerHeight * .3), behavior: reduce ? "auto" : "smooth" }); };
   const wb = $("#whoBtn"); wb.hidden = !S.pid;
   if (S.pid) { $("#whoAv").outerHTML = avatar(PL[k], k).replace('class="av"', 'class="av" id="whoAv"'); $("#whoNm").textContent = S.name; $("#whoBtn").setAttribute("aria-label", `Who's playing: ${S.name}`); }
   $("#whoMenu").innerHTML = PL.map((pl, j) => `<button type="button" role="menuitemradio" aria-checked="${pl.id === S.pid}" data-id="${esc(pl.id)}">${avatar(pl, j)}<span>${esc(pl.name)}</span></button>`).join("")
