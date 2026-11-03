@@ -1756,6 +1756,11 @@ body[data-band="grow"]:not([data-showmap="1"]) #map{display:none!important}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .fp-ch.done i{color:#5BE37D}}
 .fp-ch.next{box-shadow:0 0 0 3px #8E7CF0,0 8px 20px rgba(142,124,240,.3)}
 @media (hover:hover){.fp-ch{transition:transform .25s}.fp-ch:hover{transform:translateX(3px)}}
+
+body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="confirm"] #fcSec{display:none!important}
+.fp-fcsec{background:color-mix(in srgb,#FFF3C4 35%,var(--bg))}
+:root[data-theme="dark"] .fp-fcsec{background:var(--bg)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .fp-fcsec{background:var(--bg)}}
 /* apple scroll reveal: fade + rise, staggered */
 .rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(0,0,.5,1),transform 1s cubic-bezier(0,0,.5,1);transition-delay:calc(var(--d,0) * 90ms)}
 .rv.in{opacity:1;transform:none}
@@ -1987,6 +1992,17 @@ body[data-band="grow"]:not([data-showmap="1"]) #map{display:none!important}
   </div>
 </section>
 
+<section class="sec fp-fcsec" id="fcSec" data-view="quests">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="t-eyebrow dark">The next sacrament</p>
+      <h2>First Communion.</h2>
+      <p>Eight short lessons about Jesus in the Eucharist: the Last Supper, how the bread and wine become Jesus, how to receive Him, and why we come back every Sunday. In the Diocese of Orlando, children usually receive First Communion in 2nd grade, after First Reconciliation.</p>
+      <p class="fp-lc" id="fcCount"></p>
+    </div>
+    <div class="fp-list" id="fcGrid"></div>
+  </div>
+</section>
 <section class="album" id="album" data-view="cards">
   <div class="wrap">
     <div class="album-book">
@@ -2717,7 +2733,7 @@ const SAVE_VERSION = 3;
   } catch (e) {}
 })();
 // every saved value must have the shape the app expects; anything else reads as the default
-const SHAPE = { "grow.done": "arr", "conf.confirmed": "bool", "conf.done": "arr", "conf.saint": "str", "conf.sponsor": "str", "conf.service": "num", "lambs.done": "arr", grade: "obj", known: "arr", done: "arr", cards: "arr", badges: "arr", days: "arr", learned: "arr", missed: "arr", stars: "obj", practiced: "obj", nightSeen: "obj", pos: "obj", mtoday: "obj", unlocked: "bool", bigDay: "str", missionDone: "str", lastLesson: "str", seen: "num", fixed: "num" };
+const SHAPE = { "fc.done": "arr", "grow.done": "arr", "conf.confirmed": "bool", "conf.done": "arr", "conf.saint": "str", "conf.sponsor": "str", "conf.service": "num", "lambs.done": "arr", grade: "obj", known: "arr", done: "arr", cards: "arr", badges: "arr", days: "arr", learned: "arr", missed: "arr", stars: "obj", practiced: "obj", nightSeen: "obj", pos: "obj", mtoday: "obj", unlocked: "bool", bigDay: "str", missionDone: "str", lastLesson: "str", seen: "num", fixed: "num" };
 const fits = (k, v) => { const t = SHAPE[k]; if (!t || v == null) return true; if (t === "arr") return Array.isArray(v); if (t === "obj") return typeof v === "object" && !Array.isArray(v); return typeof v === { bool: "boolean", str: "string", num: "number" }[t]; };
 const okId = id => typeof id === "string" && /^[\w-]{1,40}$/.test(id);
 const S = { pid: null, name: "", done: [], cards: [], unlocked: false, sound: store.get("sound", true), bigDay: "" };
@@ -2901,7 +2917,7 @@ const MISSIONS = {
   bedtime: { t: () => band() === "confirm" || band() === "grow" ? "Night examen" : "Bedtime Heart Check", d: "A few quiet minutes with God before sleep.", src: () => A("moon2") },
 };
 const prayTitle = P => P.mt || `Pray the ${P.name.replace(/^The /, "")}`;
-const missionInfo = k => MISSIONS[k] || (/^grow\./.test(k) && typeof GROW !== "undefined" && GROW.find(x => x.id === k.slice(5)) ? (G => ({ t: () => `The Big Story: ${G.title}`, d: "About 10 minutes. Your next chapter.", src: () => `assets/img/${G.photo}.jpg` }))(GROW.find(x => x.id === k.slice(5))) : null) || (/^conf\./.test(k) && typeof CONF !== "undefined" && CONF.find(x => x.id === k.slice(5)) ? (C => ({ t: () => `Confirmation: ${C.title}`, d: "About 10 minutes. Your next session.", src: () => A(C.icon) }))(CONF.find(x => x.id === k.slice(5))) : null) || (/^lamb\./.test(k) && typeof LAMBS !== "undefined" && LAMBS.find(x => x.id === k.slice(5)) ? (L => ({ t: () => L.title, d: "A wonder moment. About 5 minutes with a grown-up.", src: () => `assets/img/${L.photo}.jpg` }))(LAMBS.find(x => x.id === k.slice(5))) : null) || (/^pr\./.test(k) && PRAY[k.slice(3)] ? { t: () => prayTitle(PRAY[k.slice(3)]), d: PRAY[k.slice(3)].when, src: () => A(PRAY[k.slice(3)].icon) } : null);
+const missionInfo = k => MISSIONS[k] || (/^fc\./.test(k) && typeof FC !== "undefined" && FC.find(x => x.id === k.slice(3)) ? (F => ({ t: () => `First Communion: ${F.title}`, d: "About 5 minutes. Getting ready to receive Jesus.", src: () => A(F.icon) }))(FC.find(x => x.id === k.slice(3))) : null) || (/^grow\./.test(k) && typeof GROW !== "undefined" && GROW.find(x => x.id === k.slice(5)) ? (G => ({ t: () => `The Big Story: ${G.title}`, d: "About 10 minutes. Your next chapter.", src: () => `assets/img/${G.photo}.jpg` }))(GROW.find(x => x.id === k.slice(5))) : null) || (/^conf\./.test(k) && typeof CONF !== "undefined" && CONF.find(x => x.id === k.slice(5)) ? (C => ({ t: () => `Confirmation: ${C.title}`, d: "About 10 minutes. Your next session.", src: () => A(C.icon) }))(CONF.find(x => x.id === k.slice(5))) : null) || (/^lamb\./.test(k) && typeof LAMBS !== "undefined" && LAMBS.find(x => x.id === k.slice(5)) ? (L => ({ t: () => L.title, d: "A wonder moment. About 5 minutes with a grown-up.", src: () => `assets/img/${L.photo}.jpg` }))(LAMBS.find(x => x.id === k.slice(5))) : null) || (/^pr\./.test(k) && PRAY[k.slice(3)] ? { t: () => prayTitle(PRAY[k.slice(3)]), d: PRAY[k.slice(3)].when, src: () => A(PRAY[k.slice(3)].icon) } : null);
 const BAND_POOL = {
   lambs: ["pr.signcross", "pr.angel", "pr.grace", "bedtime", "bedtime"],
   grow: ["pr.rosary", "pr.faith", "pr.hope", "pr.love", "pr.holyqueen", "bedtime", "massSay", "massPose"],
@@ -2916,8 +2932,8 @@ function todayMission() {
   if (left && (dow === 0 || dow === 6) && S.done.length) k = dow === 6 ? "massPose" : "massSay";
   else if (left && since >= 6) k = "lesson";
   else {
-    const nl = b === "lambs" ? nextLamb() : null, nc = b === "confirm" ? nextConf() : null, ng = b === "grow" ? nextGrow() : null;
-    const pool = BAND_POOL[b] ? [...BAND_POOL[b], ...(nl ? ["lamb." + nl, "lamb." + nl, "lamb." + nl] : []), ...(nc ? ["conf." + nc, "conf." + nc, "conf." + nc] : []), ...(ng ? ["grow." + ng, "grow." + ng, "grow." + ng] : []), ...(S.done.length && b === "grow" ? ["review"] : [])] : ["ourfather", "hailmary", "glorybe", "prayer", "bedtime", "massPose", "massSay", "pr.morning", "pr.apostles", ...(S.done.length ? ["review", "review"] : []), ...(S.done.length >= 7 ? ["steps"] : [])];
+    const nl = b === "lambs" ? nextLamb() : null, nc = b === "confirm" ? nextConf() : null, ng = b === "grow" ? nextGrow() : null, nf = (!b || b === "first") && S.done.length >= 4 ? nextFc() : null;
+    const pool = BAND_POOL[b] ? [...BAND_POOL[b], ...(nl ? ["lamb." + nl, "lamb." + nl, "lamb." + nl] : []), ...(nc ? ["conf." + nc, "conf." + nc, "conf." + nc] : []), ...(ng ? ["grow." + ng, "grow." + ng, "grow." + ng] : []), ...(nf ? ["fc." + nf, "fc." + nf] : []), ...(S.done.length && b === "grow" ? ["review"] : [])] : ["ourfather", "hailmary", "glorybe", "prayer", "bedtime", "massPose", "massSay", "pr.morning", "pr.apostles", ...(S.done.length ? ["review", "review"] : []), ...(S.done.length >= 7 ? ["steps"] : [])];
     const seed = [...(t + S.pid)].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7);
     k = pool[seed % pool.length];
   }
@@ -2928,7 +2944,7 @@ function missionHTML() {
   const k = todayMission(), M = missionInfo(k), done = pget("missionDone", "") === today();
   return `<button type="button" class="mission${done ? " done" : ""}" id="${"m" + Math.random().toString(36).slice(2, 7)}" data-mission="${k}"><span class="mimg"><img loading="lazy" decoding="async" src="${M.src()}" alt=""></span><span class="mtxt"><small>${done ? "Today's mission: done!" : "Today's mission"}</small><b>${esc(M.t())}</b><span>${done ? "Your candle is lit. A new mission comes tomorrow. Tap to play again." : esc(typeof M.d === "function" ? M.d() : M.d)}</span></span><i class="go">${done ? "Again" : "Start"} &rsaquo;</i></button>`;
 }
-function startMission(k) { sfx.tap(); if (/^pr\./.test(k)) { openPrayer(k.slice(3)); return; } if (/^lamb\./.test(k)) { openLamb(k.slice(5)); return; } if (/^conf\./.test(k)) { openConf(k.slice(5)); return; } if (/^grow\./.test(k)) { openGrow(k.slice(5)); return; } if (k === "lesson") openQuest(Math.min(current(), QUESTS.length - 1)); else openPractice(k); }
+function startMission(k) { sfx.tap(); if (/^pr\./.test(k)) { openPrayer(k.slice(3)); return; } if (/^lamb\./.test(k)) { openLamb(k.slice(5)); return; } if (/^conf\./.test(k)) { openConf(k.slice(5)); return; } if (/^grow\./.test(k)) { openGrow(k.slice(5)); return; } if (/^fc\./.test(k)) { openFc(k.slice(3)); return; } if (k === "lesson") openQuest(Math.min(current(), QUESTS.length - 1)); else openPractice(k); }
 function weekHTML() {
   const D = pget("days", []), t = today(), n = litThisWeek();
   return `<div class="week" role="img" aria-label="${n} of 7 candles lit this week">${weekDays().map((d, k) => `<span class="wkd${D.includes(d) ? " lit" : ""}${d === t ? " today" : ""}"><img loading="lazy" decoding="async" src="${A("candle")}" alt=""><small>${"SMTWTFS"[k]}</small></span>`).join("")}</div><p class="week-t">${n ? `<b>${n} of 7</b> candles lit this week` : "Do one lesson or prayer to light today's candle"}</p>`;
@@ -3129,7 +3145,7 @@ function syncInert() {
   if (top && !top.contains(document.activeElement)) { top.tabIndex = -1; setTimeout(() => top.focus({ preventScroll: true }), 60); }
 }
 OVL.forEach(id => { const o = document.getElementById(id); if (o) new MutationObserver(syncInert).observe(o, { attributes: true, attributeFilter: ["hidden"] }); });
-function closeQuest() { hush(); renderLambs(); renderConf(); renderGrow(); setTimeout(() => $("#quest").classList.remove("teen"), 400); sfx.close(); $("#quest").hidden = true; document.body.style.overflow = ""; }
+function closeQuest() { hush(); renderLambs(); renderConf(); renderGrow(); renderFc(); setTimeout(() => $("#quest").classList.remove("teen"), 400); sfx.close(); $("#quest").hidden = true; document.body.style.overflow = ""; }
 function fitScene(el) {
   if (!el || !el.isConnected) return;
   el.style.marginTop = "0px";
@@ -3286,6 +3302,28 @@ function renderGrow() {
   g.innerHTML = GROW.map((G, i) => { const head = G.era !== era ? `<p class="fp-era">${esc(era = G.era)}</p>` : "";
     return `${head}<button type="button" class="fp-ch${d.includes(G.id) ? " done" : ""}${G.id === nx ? " next" : ""}" data-id="${G.id}"><span class="fp-chd" aria-hidden="true"></span><img src="assets/img/${G.photo}.jpg" alt="" loading="lazy"><span><small>Chapter ${i + 1}</small><b>${esc(G.title)}</b></span><i>${d.includes(G.id) ? "Done ✓" : G.id === nx ? "Start ›" : "Open ›"}</i></button>`; }).join("");
   g.querySelectorAll(".fp-ch").forEach(b => b.onclick = () => { sfx.tap(); openGrow(b.dataset.id); });
+}
+const FC = [{"id": "bread", "title": "Jesus Feeds His People", "icon": "gift", "scenes": [{"t": "story", "text": "Long ago, God's people were hungry in the desert. Every morning God sent bread from heaven, called manna.", "icon": "bread", "ref": "Exodus 16:4, 14–15"}, {"t": "story", "text": "One day a huge crowd followed Jesus. A boy shared five loaves and two fish, and Jesus fed more than five thousand people!", "icon": "gift", "ref": "John 6:1–14"}, {"t": "story", "text": "Then Jesus said: “I am the bread of life. Whoever comes to me will never hunger.”", "photo": "shepherd", "ref": "John 6:35"}, {"t": "quiz", "q": "What did Jesus call Himself?", "opts": [["The bread of life", 1, "bread"], ["The king of the desert", 0, "sun"]], "yes": "Yes! Jesus is the bread of life."}, {"t": "done", "practice": 1, "msg": "First Communion lesson 1 of 8 done!"}]}, {"id": "supper", "title": "The Last Supper", "icon": "chalice", "scenes": [{"t": "story", "text": "The night before He died, Jesus ate a special meal with His apostles: the Last Supper.", "photo": "mass_altar", "ref": "Luke 22:14"}, {"t": "story", "text": "He took bread and said: “This is my body, which will be given for you.” Then He took the cup and said: “This cup is the new covenant in my blood.”", "photo": "mass_altar", "ref": "Luke 22:19–20"}, {"t": "story", "text": "He told them: “Do this in memory of me.” That's why the priest does what Jesus did, at every Mass.", "photo": "mass_altar", "ref": "Luke 22:19; Catechism 1337, 1341"}, {"t": "quiz", "q": "What did Jesus say about the bread at the Last Supper?", "opts": [["“This is my body”", 1, "bread"], ["“This is just bread”", 0, "cloud"]], "yes": "Yes. Jesus gave us Himself."}, {"t": "done", "practice": 1, "msg": "First Communion lesson 2 of 8 done!"}]}, {"id": "present", "title": "Jesus Is Really Here", "icon": "church", "scenes": [{"t": "story", "text": "At Mass the priest says Jesus' own words over the bread and wine. By the power of the Holy Spirit, they become the Body and Blood of Jesus.", "photo": "mass_altar", "ref": "Catechism 1333, 1353"}, {"t": "story", "text": "They still look and taste like bread and wine. But they are really, truly Jesus. The Church calls this change transubstantiation.", "icon": "chalice", "ref": "Catechism 1376"}, {"t": "story", "text": "After Mass, Jesus stays in the tabernacle. The red candle beside it tells us He's there, so we genuflect when we pass.", "photo": "mass_kneel", "ref": "Catechism 1379, 1418"}, {"t": "quiz", "q": "After the priest says Jesus' words, what is on the altar?", "opts": [["Jesus' Body and Blood", 1, "chalice"], ["Only a picture of Jesus", 0, "cloud"]], "yes": "Yes! Jesus is really there."}, {"t": "done", "practice": 1, "msg": "First Communion lesson 3 of 8 done!"}]}, {"id": "mass", "title": "Two Tables at Mass", "icon": "book", "scenes": [{"t": "story", "text": "The Mass has two main parts, like two tables where God feeds us.", "photo": "mass_church", "ref": "Catechism 1346"}, {"t": "story", "text": "At the table of the Word, God speaks to us in the readings and the Gospel. We listen with our hearts.", "photo": "mass_readings"}, {"t": "story", "text": "At the table of the Eucharist, the bread and wine become Jesus, and He feeds us with Himself in Holy Communion.", "photo": "mass_altar"}, {"t": "order", "tag": "In order", "prompt": "Put these parts of Mass in order. Tap the first one!", "steps": ["The readings and Gospel", "Bringing up the gifts", "The bread and wine become Jesus", "Holy Communion"], "done": "That's the Mass!"}, {"t": "done", "practice": 1, "msg": "First Communion lesson 4 of 8 done!"}]}, {"id": "ready", "title": "Getting Ready for Jesus", "icon": "heart", "scenes": [{"t": "story", "text": "Before your First Communion, you'll make your First Reconciliation, so your heart is clean and ready for Jesus.", "photo": "confession", "ref": "Catechism 1385"}, {"t": "story", "text": "We also fast for one hour before Communion: no food or drinks except water or medicine. Our tummies wait so our hearts can get ready.", "icon": "candle", "ref": "Code of Canon Law 919"}, {"t": "story", "text": "Most of all, come with faith and love. Tell Jesus: “I believe you are here. I love you.”", "icon": "heart"}, {"t": "quiz", "q": "How long do we fast before Holy Communion?", "opts": [["One hour", 1, "calendar"], ["All day", 0, "sun"]], "yes": "Right: one hour, with water and medicine allowed."}, {"t": "done", "practice": 1, "msg": "First Communion lesson 5 of 8 done!"}]}, {"id": "receive", "title": "How to Receive Jesus", "icon": "pray", "scenes": [{"t": "story", "text": "Walk up with your hands folded. When it's your turn, bow your head to Jesus.", "photo": "mass_blessing"}, {"t": "story", "text": "The priest or minister holds up the Host and says: “The Body of Christ.” You answer: “Amen.” That means “Yes, I believe!”", "photo": "mass_blessing", "ref": "Catechism 1396"}, {"t": "story", "text": "You may receive on your tongue, or in your hands: left hand on top of your right, like a little throne. Step aside and put the Host in your mouth right away.", "icon": "pray"}, {"t": "order", "tag": "Your turn", "prompt": "Put the steps in order. Tap the first one!", "steps": ["Walk up with hands folded", "Bow your head", "Hear “The Body of Christ” and say “Amen”", "Receive Jesus", "Go back and pray quietly"], "done": "You're ready!"}, {"t": "done", "practice": 1, "msg": "First Communion lesson 6 of 8 done!"}]}, {"id": "thanks", "title": "Thank You, Jesus", "icon": "sparkles", "scenes": [{"t": "story", "text": "After Communion, Jesus is with you in a special way. Go back to your pew, kneel or sit quietly, and talk to Him.", "photo": "mass_kneel"}, {"t": "story", "text": "Tell Jesus thank you, tell Him what's on your heart, and ask Him to help someone you love.", "icon": "heart"}, {"t": "story", "text": "“Jesus, thank you for coming to me. I love you. Stay close to me always. Amen.”", "icon": "pray", "tag": "Let's pray"}, {"t": "done", "practice": 1, "msg": "First Communion lesson 7 of 8 done!"}]}, {"id": "sunday", "title": "Every Sunday", "icon": "calendar", "scenes": [{"t": "story", "text": "Jesus rose on a Sunday. That's why Sunday is the Lord's Day, and Catholics go to Mass every Sunday.", "photo": "mass_church", "ref": "Catechism 2174, 2180"}, {"t": "story", "text": "Jesus is waiting for you at every Mass, not just on your First Communion day. Each time you receive Him, He helps you grow in love.", "photo": "mass_altar", "ref": "Catechism 1391–1394"}, {"t": "story", "text": "Your First Communion day is a big celebration! Families often wear something special, take pictures, and have a party, because Jesus is coming to you.", "photo": "mass_sent"}, {"t": "quiz", "q": "When do Catholics go to Mass?", "opts": [["Every Sunday", 1, "calendar"], ["Only on Christmas", 0, "star"]], "yes": "Yes! Every Sunday, and on holy days too."}, {"t": "done", "practice": 1, "msg": "You're ready to receive Jesus!"}]}];
+function nextFc() { const d = pget("fc.done", []); return (FC.find(x => !d.includes(x.id)) || null)?.id || null; }
+function openFc(id) {
+  if (!S.pid) { askPlayer(); return; }
+  const F = FC.find(x => x.id === id); if (!F) return;
+  const n = FC.indexOf(F) + 1;
+  $("#quest").classList.remove("teen");
+  Q = { title: F.title, bg: "#FFF3C4", practice: 1, saint: null, key: "fc." + id, course: "fc", fid: id }; qi = -1; newRun();
+  scenes = F.scenes; si = 0;
+  $("#qTitle").innerHTML = `<small>First Communion · Lesson ${n} of ${FC.length}${S.name ? " · " + esc(S.name) : ""}</small>${esc(F.title)}`;
+  $("#quest").style.setProperty("--qbg", "color-mix(in srgb, #FFF3C4 55%, var(--sky))"); $("#quest").style.setProperty("--qtint", "#FFF3C4");
+  $("#qDots").innerHTML = scenes.map(() => "<i></i>").join("");
+  $("#quest").hidden = false; document.body.style.overflow = "hidden";
+  sfx.whoosh(); show(false);
+}
+function renderFc() {
+  const g = $("#fcGrid"); if (!g) return;
+  const d = pget("fc.done", []), nx = nextFc();
+  $("#fcCount").textContent = `${d.length} of ${FC.length} lessons`;
+  g.innerHTML = FC.map((F, i) => `<button type="button" class="fp-pr fp-fc${d.includes(F.id) ? " known" : ""}" data-id="${F.id}"><img src="${A(F.icon)}" alt=""><span><b>${i + 1}. ${esc(F.title)}</b></span><i>${d.includes(F.id) ? "Done ✓" : F.id === nx ? "Start ›" : "Open ›"}</i></button>`).join("");
+  g.querySelectorAll(".fp-fc").forEach(b => b.onclick = () => { sfx.tap(); openFc(b.dataset.id); });
 }
 function nextLamb() { const d = pget("lambs.done", []); return (LAMBS.find(x => !d.includes(x.id)) || null)?.id || null; }
 function openLamb(id) {
@@ -4141,6 +4179,7 @@ R.done = (el, s) => {
   // little ones meet the gentlest stories first (no martyrdom or illness until they're older)
   const order = Q && Q.course === "lambs" ? [1, 8, 9, 11, 12, 3, 4, 5, 10, 7, 0, 2, 6] : SAINTS.map((x, j) => j);
   const newCard = () => { const i = order.find(j => !S.cards.includes(j)); if (i == null) return; S.cards.push(i); pset("cards", S.cards); pendingAwards.push({ kicker: "New saint card", title: SAINTS[i].name, text: "A new friend in heaven for your Saint Album!", src: `assets/img/${SAINTS[i].pic}.jpg` }); renderAlbum(); };
+  if (Q && Q.course === "fc" && S.pid) { const d = pget("fc.done", []); if (!d.includes(Q.fid)) pset("fc.done", [...d, Q.fid]); }
   if (Q && Q.course === "grow" && S.pid) { const d = pget("grow.done", []); if (!d.includes(Q.gid)) { pset("grow.done", [...d, Q.gid]); newCard(); } }
   if (Q && Q.course === "conf" && S.pid) { const d = pget("conf.done", []); if (!d.includes(Q.cid)) { pset("conf.done", [...d, Q.cid]); newCard(); } }
   if (Q && Q.course === "lambs" && S.pid) { const d = pget("lambs.done", []); if (!d.includes(Q.lid)) { pset("lambs.done", [...d, Q.lid]); newCard(); } }
@@ -4627,7 +4666,7 @@ function renderToday() {
   el.dataset.color = L.color;
   // the First Reconciliation tile is for the First Sacraments years (and for families who haven't set a grade)
   const fr = $("#frTile"); if (fr) fr.hidden = !!band() && band() !== "first";
-  document.body.dataset.band = band() || ""; renderLambs(); renderConf(); renderGrow(); renderGuide();
+  document.body.dataset.band = band() || ""; renderLambs(); renderConf(); renderGrow(); renderFc(); renderGuide();
   const bt = $("#bedTileH"); if (bt) bt.textContent = band() === "grow" || band() === "confirm" ? "Night examen." : "Bedtime Heart Check.";
   el.innerHTML = `<div class="fp-band"><span class="fp-dot"></span><span>${esc(day)}</span><span class="fp-col">${L.color === "rose" ? "Rose" : L.color[0].toUpperCase() + L.color.slice(1)}</span></div>
     <p class="t-eyebrow dark">Today in the Church${L.feast ? ` · ${esc(L.label)}` : ""}</p><h2>${esc(L.feast || L.label)}.</h2><p class="t-sub">${esc(L.feast ? `${L.name}: ${SEASON[L.k].line[0].toLowerCase() + SEASON[L.k].line.slice(1)}` : SEASON[L.k].line)}.</p>
