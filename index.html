@@ -4150,7 +4150,7 @@ function nShow(html, after) {
   if (G && st.firstElementChild) { G.to(st.firstElementChild, { opacity: 0, y: -12, duration: .3, ease: "power1.in", onComplete: go }); setTimeout(go, 450); } else go();
 }
 function nightIntro() {
-  const teen = band() === "confirm";
+  const teen = band() === "confirm" || band() === "grow";   // both older bands pray the Examen
   nShow(`<p class="n-k">${teen ? "Night examen" : "Bedtime Heart Check"}</p><h2 class="n-h">${teen ? `End your day with God${named() ? `, ${esc(named())}` : ""}.` : named() ? `Almost bedtime, ${esc(named())}.` : "Time to rest."}</h2><p class="n-p">${teen ? "Five quiet minutes to look back on today with God, the way St. Ignatius taught." : "Let's quiet our hearts and talk to Jesus about today."}</p>
     <div class="breathe" aria-hidden="true"><span></span></div><p class="n-breath" id="nBreath">Breathe in&hellip;</p>
     <button type="button" class="n-btn" id="nGo">I'm ready</button>`, el => {
@@ -4405,6 +4405,7 @@ function rosSteps(set, full, one) {
 }
 function openRosary() {
   cpOpen("rosary", "The Rosary"); sfx.whoosh();
+  if (!openRosary.warm && navigator.onLine !== false) { openRosary.warm = 1; setTimeout(() => MYST_KEYS.forEach(k => MYST[k].list.forEach(m => { const i = new Image(); i.decoding = "async"; i.src = pic(m.pic); })), 1500); }
   CP.set = mystToday(); CP.fam = band() === "lambs"; rosHome();
 }
 function rosHome() {
@@ -5168,7 +5169,7 @@ document.addEventListener("visibilitychange", () => { if (!document.hidden) dayC
 document.querySelectorAll("[data-jump]").forEach(a => a.addEventListener("click", () => setTimeout(() => { const t = document.getElementById(a.dataset.jump); if (t) scrollTo({ top: t.getBoundingClientRect().top + scrollY - 64, behavior: reduce ? "auto" : "smooth" }); }, 450)));
 function autoVideos(root = document) { if (reduce) { root.querySelectorAll("video[data-auto][data-poster]").forEach(v => { if (!v.closest("#mass")) { v.poster = v.dataset.poster; v.removeAttribute("data-poster"); } }); return; } root.querySelectorAll("video[data-auto]").forEach(v => { if (v.dataset.on) return; v.dataset.on = 1; v.muted = true; autoIO ? autoIO.observe(v) : v.play().catch(() => {}); }); }
 // the Mass as a scroll story: each chapter keeps a video pinned while its parts scroll past, and the video follows the part you're reading
-const MASS_MEDIA = ["mass_font", "mass_entrance", "mass_church", "mass_kneel", "mass_church", "mass_readings", "mass_gospel", "mass_church", "mass_creed", "mass_kneel", "mass_gifts", "mass_sanctus", "mass_altar", "mass_altar", "mass_ourfather", "mass_peace", "mass_altar", "mass_blessing", "mass_kneel", "mass_sent"];
+const MASS_MEDIA = ["mass_font", "mass_entrance", "mass_church", "mass_church", "mass_church", "mass_readings", "mass_gospel", "mass_church", "mass_creed", "mass_church", "mass_gifts", "mass_sanctus", "mass_altar", "mass_altar", "mass_ourfather", "mass_peace", "mass_altar", "mass_blessing", "mass_kneel", "mass_sent"];
 const MASS_CH = { "Before Mass": "We come into God's house and remember our Baptism.", "We gather": "Jesus' family comes together and gets our hearts ready.", "The Word of God": "God speaks to us through the Bible.", "Jesus in the Eucharist": "The bread and wine become Jesus.", "Communion": "Jesus comes to us, and we share His peace.", "We go out": "We take Jesus' love home with us." };
 (() => {
   const groups = [...new Set(MASS.map(m => m.g))];
