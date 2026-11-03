@@ -1820,6 +1820,149 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
 .rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(0,0,.5,1),transform 1s cubic-bezier(0,0,.5,1);transition-delay:calc(var(--d,0) * 90ms)}
 .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.land-frame{transform:none}}
+/* ---------- companions: Rosary, Mass follow-along, Bible guide ---------- */
+.comp{position:fixed;inset:0;z-index:96;display:flex;flex-direction:column;--cbg:#16123A;--cink:#F6F1FF;--csub:rgba(246,241,255,.78);--ccard:#241E55;--cline:rgba(255,255,255,.14);--cacc:#FFD98A;--cbtn1:#FFE6A6;--cbtn2:#FFC85C;--cbtnink:#2A1E00;background:var(--cbg);color:var(--cink);font-family:var(--round,"Nunito",ui-rounded,system-ui,sans-serif)}
+.comp[hidden]{display:none}
+.comp.rosary{--cbg:linear-gradient(180deg,#1C1446 0%,#2A1650 60%,#3A1A52 100%);--ccard:#2B2160;--cacc:#FFC6D9}
+.comp.massgo{--cbg:#0B0B12;--cink:#E9E2D0;--csub:rgba(233,226,208,.72);--ccard:#16161F;--cline:rgba(233,226,208,.12);--cacc:#C9B27A;--cbtn1:#3A3424;--cbtn2:#2E291C;--cbtnink:#F1E7C8}
+.comp.bible{--cbg:#FBF6EC;--cink:#2B2218;--csub:#5E5245;--ccard:#FFFFFF;--cline:rgba(43,34,24,.12);--cacc:#9A5B13;--cbtn1:#B8742A;--cbtn2:#9A5B13;--cbtnink:#fff}
+.cp-top{flex:none;display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top,0px)) 14px 10px;border-bottom:1px solid var(--cline);background:inherit}
+.comp.bible .cp-top{background:#FBF6EC}
+.cp-title{flex:1;min-width:0;font-weight:800;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cp-x,.cp-read{flex:none;width:44px;height:44px;border-radius:50%;background:var(--ccard);color:var(--cink);font-size:26px;line-height:44px;text-align:center;border:1px solid var(--cline)}
+.cp-read{font-size:18px}.cp-read[aria-pressed="true"]{background:var(--cacc);color:#1a1a1a}
+.cp-x{order:3}
+.cp-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.cp-body{max-width:620px;margin:0 auto;padding:20px 18px calc(40px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px}
+.cp-hero{border-radius:22px;overflow:hidden;aspect-ratio:16/9;background:var(--ccard)}
+.cp-hero img{width:100%;height:100%;object-fit:cover;display:block}
+.cp-k{margin:0;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--cacc)}
+.cp-k2{margin:0 0 2px;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--cacc)}
+.cp-h{margin:0;font-weight:800;font-size:clamp(30px,7.4vw,44px);line-height:1.1;letter-spacing:-.01em;text-wrap:balance;overflow-wrap:anywhere}
+.cp-h.sm{font-size:clamp(24px,6vw,34px)}
+.cp-h small{font-size:.5em;font-weight:700;color:var(--csub);letter-spacing:.02em}
+.cp-h3{margin:10px 0 0;font-size:21px;font-weight:800}
+.cp-p{margin:0;font-size:17px;line-height:1.5;color:var(--csub)}
+.cp-hint{margin:0;font-size:15px;line-height:1.4;color:var(--csub);font-style:italic}
+.cp-stat{margin:0;font-size:15px;color:var(--csub)}.cp-stat b{color:var(--cacc);font-size:20px}
+.cp-card{display:block;padding:16px 18px;border-radius:20px;background:var(--ccard);border:1px solid var(--cline);color:var(--cink)}
+.cp-card p{margin:0 0 6px;font-size:16px;line-height:1.5}.cp-card p:last-child{margin:0}
+.cp-card h3{margin:0 0 4px;font-size:22px}
+.cp-icon{width:110px;height:110px;object-fit:contain;align-self:center}
+.cp-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:54px;padding:14px 22px;border-radius:999px;background:linear-gradient(180deg,var(--cbtn1),var(--cbtn2));color:var(--cbtnink);font:inherit;font-weight:800;font-size:18px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.22);border:0}
+.cp-btn small{font-weight:700;font-size:13px;opacity:.82;line-height:1.3}
+.cp-btn.soft{background:var(--ccard);color:var(--cink);border:1px solid var(--cline);box-shadow:none}
+.cp-btn.ghost{background:transparent;color:var(--cink);border:1.5px solid var(--cline);box-shadow:none}
+.cp-btn.sm{min-height:48px;padding:10px 18px;font-size:16px}
+.cp-btn:active{transform:scale(.97)}
+.cp-btn[disabled]{opacity:.35}
+.cp-nav{display:flex;gap:10px;margin-top:6px}.cp-nav .cp-btn{flex:1;min-width:0}.cp-nav .cp-btn.ghost{flex:0 1 auto}
+.cp-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.cp-chips button{min-height:44px;padding:8px 14px;border-radius:999px;background:transparent;border:1.5px solid var(--cline);color:var(--cink);font:inherit;font-weight:700;font-size:15px}
+.cp-chips button[aria-checked="true"]{background:var(--cacc);border-color:var(--cacc);color:#1E1430}
+.cp-chips.big button{font-size:17px;padding:12px 16px;background:var(--ccard)}
+.cp-toggle{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:18px;background:var(--ccard);border:1px solid var(--cline);cursor:pointer}
+.cp-toggle input{flex:none;width:24px;height:24px;margin-top:2px;accent-color:var(--cacc)}
+.cp-toggle span{display:flex;flex-direction:column;gap:2px;font-size:16px}.cp-toggle small{color:var(--csub);font-size:14px;line-height:1.35}
+.cp-link{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;padding:12px 16px;border-radius:16px;border:1.5px dashed var(--cline);color:var(--cacc);font-weight:800;text-decoration:none;font-size:16px}
+.cp-link small{color:var(--csub);font-weight:700;font-size:14px}
+.cp-opts{display:grid;gap:10px}
+.cp-opts button{min-height:56px;padding:12px 18px;border-radius:18px;background:var(--ccard);border:1.5px solid var(--cline);color:var(--cink);font:inherit;font-weight:800;font-size:18px;text-align:left}
+.cp-opts button.right{background:#2E8B57;border-color:#2E8B57;color:#fff}
+.cp-opts button.wrong{opacity:.45;text-decoration:line-through}
+.cp-tabs,.cp-band{display:flex;gap:6px;padding:4px;border-radius:999px;background:var(--ccard);border:1px solid var(--cline)}
+.cp-tabs button,.cp-band button{flex:1;min-width:0;min-height:44px;padding:6px 8px;border-radius:999px;font:inherit;font-weight:800;font-size:15px;color:var(--csub);background:transparent;border:0;overflow-wrap:anywhere;line-height:1.15}
+.cp-tabs button[aria-selected="true"],.cp-band button[aria-selected="true"]{background:var(--cbtn2);color:var(--cbtnink)}
+.cp-band{flex-wrap:wrap;border-radius:22px}.cp-band button{flex:1 1 40%;font-size:14px}
+/* rosary */
+.rs-today h3{font-size:24px}
+.rs-tip b{display:block;margin-bottom:4px;color:var(--cacc)}
+.rs-bar,.mg-bar,.bb-prog{height:6px;border-radius:6px;background:var(--cline);overflow:hidden}
+.rs-bar i,.mg-bar i,.bb-prog i{display:block;height:100%;background:var(--cacc);border-radius:6px;transition:width .3s}
+.rs-for{margin:0;font-size:14px;font-weight:700;color:var(--cacc)}
+.rs-myst{border-radius:22px;overflow:hidden;aspect-ratio:4/3;background:var(--ccard)}
+.rs-myst img{width:100%;height:100%;object-fit:cover;display:block}
+.rs-fruit{color:var(--cacc)}
+.rs-mini{display:flex;align-items:center;gap:12px;padding:8px;border-radius:18px;background:var(--ccard);border:1px solid var(--cline)}
+.rs-mini img{flex:none;width:64px;height:48px;border-radius:12px;object-fit:cover}
+.rs-mini span{display:flex;flex-direction:column;min-width:0}.rs-mini small{font-size:12px;color:var(--csub);font-weight:700}.rs-mini b{font-size:16px}
+.rs-beads{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:7px;padding:6px 0}
+.rs-beads i{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.28);transition:background .25s,transform .25s}
+.rs-beads i.big{width:28px;height:28px;margin-right:6px}
+.rs-beads i.did{background:#F7B9CF;border-color:#F7B9CF}
+.rs-beads i.now{background:var(--cbtn2);border-color:#fff;transform:scale(1.22);box-shadow:0 0 14px rgba(255,200,92,.7)}
+.rs-note{margin:0;font-size:16px;font-weight:800;color:var(--cacc)}
+.rs-text p{font-size:clamp(18px,4.6vw,21px);line-height:1.5;font-weight:700}
+.rs-text.long p{font-size:17px}
+.rs-who{margin:0 0 2px!important;font-size:12px!important;font-weight:800!important;letter-spacing:.08em;text-transform:uppercase;color:var(--cacc)}
+.rs-who.all{margin-top:10px!important;color:#9FD3FF}
+.rs-map{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.rs-map li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:10px;padding:12px 14px;border-radius:16px;background:var(--ccard);border:1px solid var(--cline);font-size:15px;line-height:1.35}
+.rs-map b{color:var(--cacc)}
+.rs-sets{display:grid;gap:10px}.rs-sets .cp-card.on{border-color:var(--cacc);box-shadow:0 0 0 2px var(--cacc) inset}
+.rs-sets b{display:block;font-size:17px}.rs-sets small{display:block;color:var(--cacc);font-weight:700;margin-bottom:4px}.rs-sets p{font-size:14px;color:var(--csub)}
+/* mass follow-along: dim, still, nothing moves on its own */
+.comp.massgo *{transition:none!important;animation:none!important}
+.mg-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.mg-head .cp-h{flex:1 1 60%}
+.mg-pose{display:inline-flex;align-items:center;gap:6px;padding:6px 12px 6px 6px;border-radius:999px;background:var(--ccard);border:1px solid var(--cline);font-weight:800;font-size:15px;color:var(--cacc)}
+.mg-pose img{width:34px;height:34px;object-fit:contain;opacity:.85}
+.mg-pic{border-radius:18px;overflow:hidden;aspect-ratio:16/9}
+.mg-pic img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.55) saturate(.8)}
+.mg-sec{padding:14px 16px;border-radius:18px;background:var(--ccard);border:1px solid var(--cline)}
+.mg-sec h3{margin:0 0 4px;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--cacc)}
+.mg-sec p{margin:0;font-size:17px;line-height:1.5}
+.mg-say p+p{margin-top:8px}.mg-say small{display:block;font-size:13px;color:var(--csub);font-weight:700}.mg-say b{font-size:19px}
+.mg-heart p{font-style:italic}
+.mg-foot{position:sticky;bottom:0;z-index:2;display:flex;gap:8px;margin:0 -18px;padding:12px 18px calc(10px + env(safe-area-inset-bottom,0px));background:#0B0B12;border-top:1px solid rgba(233,226,208,.12)}
+.mg-foot .cp-btn{flex:0 1 auto}.mg-foot #mgNext{flex:1;min-width:0}
+.mg-list{display:flex;flex-direction:column;gap:6px}
+.mg-list h3{margin:12px 0 2px;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--cacc)}
+.mg-list button{display:flex;align-items:center;gap:12px;min-height:48px;padding:8px 14px;border-radius:14px;background:var(--ccard);border:1px solid var(--cline);color:var(--cink);font:inherit;font-weight:700;font-size:16px;text-align:left}
+.mg-list button span{flex:none;width:28px;color:var(--csub);font-size:14px}
+.mg-list button.on{border-color:var(--cacc);color:var(--cacc)}
+.mg-three{margin:0;padding:0 0 0 24px;font-size:18px;line-height:1.7}
+/* bible */
+.bb-list{display:flex;flex-direction:column;gap:8px}
+.bb-story{border-radius:18px;background:var(--ccard);border:1px solid var(--cline);overflow:hidden}
+.bb-story.read{border-color:rgba(154,91,19,.4)}
+.bb-head{display:flex;align-items:center;gap:12px;width:100%;min-height:64px;padding:10px 14px;background:transparent;border:0;color:var(--cink);font:inherit;text-align:left}
+.bb-head.lx{border-radius:18px;background:var(--ccard);border:1px solid var(--cline)}
+.bb-head img{flex:none;width:44px;height:44px;object-fit:contain}
+.bb-head span{flex:1;min-width:0;display:flex;flex-direction:column}.bb-head b{font-size:17px;line-height:1.25}.bb-head small{font-size:14px;color:var(--csub);font-weight:700}
+.bb-head i{flex:none;font-style:normal;font-size:20px;font-weight:800;color:var(--cacc)}
+.bb-story.open .bb-head i{transform:rotate(90deg)}
+.bb-story.read.open .bb-head i{transform:none}
+.bb-more{padding:0 16px 16px}.bb-more p{margin:0 0 10px;font-size:16px;line-height:1.5}
+.bb-w{padding:10px 12px;border-radius:12px;background:#FBF1DF}
+.bb-act{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}.bb-act .cp-link{flex:1 1 150px}.bb-act .cp-btn{flex:1 1 130px}
+.bb-sun b{display:block;color:var(--cacc);font-size:17px}.bb-sun small{display:block;color:var(--csub);font-size:14px;margin-top:2px}.bb-sun{text-decoration:none}
+.bb-shelf{padding:14px 16px;border-radius:20px;background:var(--ccard);border:1px solid var(--cline);display:grid;gap:10px}
+.bb-shelf h3{margin:0;font-size:20px}.bb-shelf h3 small{font-size:14px;color:var(--csub)}
+.bb-group b{display:block;font-size:16px}.bb-group b small{color:var(--cacc);font-size:14px;margin-left:4px}
+.bb-group p{margin:2px 0 0;font-size:14px;color:var(--csub);line-height:1.4}
+.bb-books{display:block;height:12px;width:var(--w);border-radius:4px;margin-bottom:6px;background:repeating-linear-gradient(90deg,#B8742A 0 6px,#D9A15A 6px 8px)}
+.bb-ref .bb-big{font-size:34px;font-weight:800;text-align:center;margin-bottom:2px}
+.bb-ref p:nth-child(2){text-align:center;font-weight:800}
+.b1{color:#2C6EAA}.b2{color:#B8742A}.b3{color:#2E8B57}
+.bb-q{color:var(--cacc)}
+.comp.bible .cp-opts button.right{color:#fff}
+.lx-steps{display:flex;gap:6px}.lx-steps i{flex:1;height:6px;border-radius:6px;background:var(--cline)}.lx-steps i.did,.lx-steps i.now{background:var(--cacc)}
+.lx-rest{align-self:center;width:120px;height:120px;border-radius:50%;display:grid;place-items:center;background:#F3E6CF}
+.lx-rest i{width:60px;height:60px;border-radius:50%;background:#D9A15A;animation:lxbreathe 8s ease-in-out infinite}
+@keyframes lxbreathe{0%,100%{transform:scale(.6);opacity:.6}50%{transform:scale(1.25);opacity:1}}
+@media (prefers-reduced-motion:reduce){.lx-rest i{animation:none}}
+@media (min-width:900px){.cp-body{padding-top:28px}}
+/* entry tiles */
+.cmp-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px;margin:0 0 26px}
+.cmp-t{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:180px;border-radius:24px;overflow:hidden;text-align:left;color:#fff;background:#1C1446;box-shadow:0 14px 30px rgba(20,16,60,.22);border:0;padding:0}
+.cmp-t img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cmp-t span{position:relative;display:flex;flex-direction:column;gap:2px;margin:12px;padding:12px 14px;border-radius:16px;background:#141032}
+.cmp-t small{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#FFD98A}
+.cmp-t b{font-size:21px;line-height:1.15}.cmp-t em{font-style:normal;font-size:14px;opacity:.86;line-height:1.35}
+.mg-cta{display:flex;align-items:center;gap:14px;width:min(100% - 32px,680px);margin:0 auto 28px;padding:16px 18px;border-radius:22px;background:#0B0B12;color:#E9E2D0;text-align:left;border:1px solid rgba(233,226,208,.18)}
+.mg-cta img{flex:none;width:52px;height:52px;object-fit:contain}
+.mg-cta span{display:flex;flex-direction:column;gap:2px;min-width:0}.mg-cta b{font-size:19px}.mg-cta small{font-size:14px;opacity:.8;line-height:1.35}
 </style>
 
 <div class="pread" id="pread" hidden role="dialog" aria-modal="true" aria-labelledby="prTitle">
@@ -1838,6 +1981,10 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
   <button type="button" class="night-x" id="nightX" aria-label="Close Bedtime Heart Check">&times;</button>
   <button type="button" class="night-read" id="nightRead" aria-pressed="false" aria-label="Read this to me" hidden><span aria-hidden="true">🔊</span></button>
   <div class="night-stage" id="nStage" aria-live="polite"></div>
+</div>
+<div class="comp" id="comp" hidden role="dialog" aria-modal="true" aria-label="Companion">
+  <div class="cp-top"><div class="cp-title" id="cpTitle"></div><button type="button" class="cp-read" id="cpRead" aria-pressed="false" aria-label="Read this to me" hidden><span aria-hidden="true">🔊</span></button><button type="button" class="cp-x" id="cpX" aria-label="Close">&times;</button></div>
+  <div class="cp-scroll" id="cpScroll"><div class="cp-body" id="cpBody" aria-live="polite"></div></div>
 </div>
 <div class="pstudio" id="pstudio" hidden role="dialog" aria-modal="true" aria-label="Prayer">
   <div class="ps-top"><button type="button" class="ps-x" id="psX" aria-label="Close">&times;</button><div class="ps-tabs" role="tablist"><button type="button" role="tab" data-tab="learn">Learn</button><button type="button" role="tab" data-tab="practice">Practice</button><button type="button" role="tab" data-tab="heart">By heart</button></div></div>
@@ -1952,7 +2099,7 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
   <div class="tile-grid">
     <div class="tile tile-light rv">
       <h2>Saint cards.</h2>
-      <p class="t-sub">Collect all 13.</p>
+      <p class="t-sub" id="homeCollect">Collect them all.</p>
       <p class="t-call">Every card comes to life when you open it.</p>
       <div class="ctas"><a class="btn btn-go" href="#/cards">Open the album</a></div>
       <div class="t-media card" id="homeCard"></div>
@@ -1965,11 +2112,27 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
       <div class="t-media fan"><img loading="lazy" decoding="async" src="assets/img/pray_ourfather.jpg" alt="" draggable="false"><img loading="lazy" decoding="async" src="assets/img/pray_hailmary.jpg" alt="" draggable="false"><img loading="lazy" decoding="async" src="assets/img/pray_glorybe.jpg" alt="" draggable="false"></div>
     </div>
   </div>
+  <div class="tile-grid">
+    <div class="tile tile-light rv">
+      <h2>The Rosary.</h2>
+      <p class="t-sub">Pray it together.</p>
+      <p class="t-call">Today's mysteries, one bead at a time, with a leader and everyone answering.</p>
+      <div class="ctas"><button type="button" class="btn btn-go" data-practice="rosary">Pray the Rosary</button></div>
+      <div class="t-media wide"><img loading="lazy" decoding="async" src="assets/img/rosary_hero.jpg" alt="A family praying the Rosary together" draggable="false"></div>
+    </div>
+    <div class="tile tile-light rv">
+      <h2>The Bible.</h2>
+      <p class="t-sub">Read it, find it, pray it.</p>
+      <p class="t-call">Stories for every age, how the Bible works, and how to pray with it.</p>
+      <div class="ctas"><button type="button" class="btn btn-go" data-practice="bible">Open the Bible guide</button></div>
+      <div class="t-media wide"><img loading="lazy" decoding="async" src="assets/img/bible_hero.jpg" alt="A dad and his kids reading the Bible" draggable="false"></div>
+    </div>
+  </div>
   <div class="tile tile-dark rv">
     <h2>Come to Mass.</h2>
     <p class="t-sub">What it means, and what you do.</p>
     <p class="t-call">Every part of the Mass, from the holy water to “Go in peace.” When to stand, sit, and kneel, and what to say.</p>
-    <div class="ctas"><a class="btn btn-go" href="#/mass">Explore the Mass</a></div>
+    <div class="ctas"><a class="btn btn-go" href="#/mass">Explore the Mass</a><button type="button" class="btn btn-soft" data-practice="massGo">Follow along at Mass</button></div>
     <div class="t-media wide"><video data-auto src="assets/vid/mass_church.mp4" data-poster="assets/img/mass_church.jpg" muted loop playsinline preload="none" aria-label="Families at Sunday Mass"></video></div>
   </div>
   <div class="tile tile-night rv">
@@ -2090,6 +2253,11 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
       <p>Learn the prayers every Catholic knows, then say them by heart. There are prayers for every age, and quick games to practice for Mass.</p>
     </div>
     <button type="button" class="nightcard" data-practice="bedtime"><img loading="lazy" decoding="async" src="assets/img/night_sky.jpg" alt=""><span class="nc-copy"><small>Every night</small><b class="bedName">Bedtime Heart Check</b><span>Talk to Jesus about your day, then pray together before sleep.</span><i>Start tonight &rsaquo;</i></span></button>
+    <div class="cmp-row">
+      <button type="button" class="cmp-t" data-practice="rosary"><img loading="lazy" decoding="async" src="assets/img/rosary_hero.jpg" alt=""><span><small>Pray with Mary</small><b>The Rosary</b><em>Learn it, then pray it together, one bead at a time.</em></span></button>
+      <button type="button" class="cmp-t" data-practice="bible"><img loading="lazy" decoding="async" src="assets/img/bible_hero.jpg" alt=""><span><small>God's Word</small><b>The Bible guide</b><em>Stories for your age, how to find a verse, and how to pray with it.</em></span></button>
+      <button type="button" class="cmp-t" data-practice="massGo"><img loading="lazy" decoding="async" src="assets/img/mass_kneel.jpg" alt=""><span><small>Silent, for church</small><b>Follow along at Mass</b><em>Part by part: what's happening and what to look for.</em></span></button>
+    </div>
     <h3 class="pp-h" id="studioH">Prayers</h3>
     <div class="pgrid big pray4" id="studioGrid">
       <button type="button" class="ptile" data-practice="ourfather" data-learn="ourfather"><img loading="lazy" decoding="async" class="ph" src="assets/img/pray_ourfather.jpg" alt=""><b>Our Father</b><small>The prayer Jesus taught us.</small><i class="go">Start &rsaquo;</i></button>
@@ -2121,6 +2289,7 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
       </div>
     </div>
   </div>
+  <button type="button" class="mg-cta" data-practice="massGo"><img loading="lazy" decoding="async" src="assets/g/ic_kneel.webp" alt=""><span><b>At Mass right now?</b><small>Follow along quietly: no sounds, one part at a time, with what to look for.</small></span></button>
   <div class="mstory" id="mStory"></div>
   <div class="mplay">
     <h3>Ready for Sunday?</h3>
@@ -2136,7 +2305,7 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
   <div class="wrap sec">
     <div class="sec-head">
       <h2>For grown-ups.</h2>
-      <p>Found grows with your child, from age 3 to Confirmation: wonder moments for little ones, the First Reconciliation lessons from the parish workbook, First Communion, the Big Story of the Bible, and Confirmation preparation, with prayers, the Mass and a bedtime talk with God for every age. Below is guidance for the child playing now, then details about the First Reconciliation lessons.</p>
+      <p>Found grows with your child, from age 3 to Confirmation: wonder moments for little ones, the First Reconciliation lessons from the parish workbook, First Communion, the Big Story of the Bible, and Confirmation preparation, with prayers, the Rosary, a Bible guide, the Mass (plus a silent follow-along for church) and a bedtime talk with God for every age. Below is guidance for the child playing now, then details about the First Reconciliation lessons.</p>
     </div>
 
     <div class="gsec fp-gband" id="gBand"></div>
@@ -2359,11 +2528,51 @@ const SAINTS = [
  { name: "Blessed Christina", lv: "1481–1543", hm: "L'Aquila, Italy", fun: "Her name was Mattia before she was a sister.", pic: "saint_christina", c1: "#3B3B6E", c2: "#C8C3F0", sym: "chalice", power: "Prayer helper",
    lived: "1481 to 1543", home: "L'Aquila, Italy", feast: "January 18", patron: "“Blessed” is a step on the way to “Saint.” Pray that she will be named a saint!",
    fact: "Her name was Mattia. She took the name Christina when she became a sister." },
+ { name: "St. Joseph", lv: "1st century", hm: "Nazareth", fun: "God trusted him to raise Jesus.", pic: "saint_joseph", vid: 0, c1: "#8A5A2B", c2: "#E9C99A", sym: "house", power: "Quiet protector",
+   lived: "1st century", home: "Nazareth, in Galilee", feast: "March 19", patron: "The whole Church, fathers, families and workers",
+   fact: "The Bible never records a single word Joseph said, but every time God asked him to do something, he did it right away.",
+   story: "When an angel told Joseph in a dream that Mary's baby came from the Holy Spirit, Joseph took Mary into his home. When another angel warned that King Herod wanted to hurt baby Jesus, Joseph got up in the night and led his family all the way to Egypt. Back in Nazareth he worked hard as a carpenter, and Jesus learned from him. Joseph shows us how to listen to God and protect the people we love." },
+ { name: "St. Francis of Assisi", lv: "About 1181–1226", hm: "Assisi, Italy", fun: "He set up the first live Nativity scene.", pic: "saint_francis", vid: 0, c1: "#7A5A34", c2: "#D8C49A", sym: "dove", power: "Joyful brother",
+   lived: "About 1181 to 1226", home: "Assisi, Italy", feast: "October 4", patron: "Animals, nature, and Italy",
+   fact: "At Christmas in 1223, in the town of Greccio, he set up the first live Nativity scene, with a real ox and donkey.",
+   story: "Francis grew up rich and dreamed of being a famous knight. Then, praying in a crumbling little church, he heard Jesus speak from the cross: “Francis, go and repair my house.” Francis gave away everything, lived simply, and served the poor and the sick. He called the sun his brother and the moon his sister, and praised God for every creature. Thousands joined him, and Franciscans still serve all over the world." },
+ { name: "St. Thérèse of Lisieux", lv: "1873–1897", hm: "Lisieux, France", fun: "She found a “little way” to be holy.", pic: "saint_therese", vid: 0, c1: "#B5476B", c2: "#F6C1D2", sym: "lily", power: "Little-way hero",
+   lived: "1873 to 1897", home: "Alençon and Lisieux, France", feast: "October 1", patron: "Missionaries and florists",
+   fact: "At 14 she asked the Pope himself if she could join the convent early. She is now a Doctor of the Church, a great teacher of the faith.",
+   story: "Thérèse knew she couldn't do huge, famous things, so she found a “little way” to holiness: doing small things with great love. She smiled at a sister who annoyed her, did chores nobody noticed, and offered every little sacrifice to Jesus. She called herself Jesus' little flower. Before she died at 24, she promised to spend her heaven doing good on earth." },
+ { name: "St. Kateri Tekakwitha", lv: "1656–1680", hm: "New York, then Canada", fun: "She's called the Lily of the Mohawks.", pic: "saint_kateri", vid: 0, c1: "#2F6B3F", c2: "#A8D8A0", sym: "cross", power: "Brave believer",
+   lived: "1656 to 1680", home: "Ossernenon (today New York), then near Montreal, Canada", feast: "July 14", patron: "Ecology, the environment, and Native peoples",
+   fact: "Pope Benedict XVI made her a saint in 2012. She is the first Native American saint from the United States and Canada.",
+   story: "Kateri lost her parents to smallpox when she was 4, and the sickness left scars on her face and hurt her eyes. When missionaries told her about Jesus, she wanted to be baptized, and at 20 she was. Some people in her village were angry and treated her badly, so she walked about 200 miles to a Christian village in Canada. There she prayed in the forest, made little crosses from sticks, and cared for the sick." },
+ { name: "St. Joan of Arc", lv: "1412–1431", hm: "Domrémy, France", fun: "She led an army when she was 17.", pic: "saint_joan", vid: 0, c1: "#2D4C8C", c2: "#B8C9EE", sym: "staff", power: "Brave heart",
+   lived: "1412 to 1431", home: "Domrémy, France", feast: "May 30", patron: "France and soldiers",
+   fact: "She never learned to read or write, but at her trial she answered so wisely that her judges were amazed.",
+   story: "Joan was a farm girl who loved to pray. At 13 she began to hear St. Michael, St. Catherine and St. Margaret telling her God had a mission for her: to help save France. At 17 she led the French army, carrying a banner with the names of Jesus and Mary, and won a famous victory at Orléans. Later her enemies put her on an unfair trial and she was put to death. She trusted Jesus to the end, and 25 years later the Church declared she was innocent." },
+ { name: "St. Juan Diego", lv: "1474–1548", hm: "Mexico", fun: "Mary's picture is still on his cloak.", pic: "saint_juandiego", vid: 0, c1: "#2C7A6F", c2: "#F2C66D", sym: "flower", power: "Humble messenger",
+   lived: "1474 to 1548", home: "Near Mexico City, Mexico", feast: "December 9", patron: "Indigenous peoples",
+   fact: "His cloak, called a tilma, still hangs in the Basilica of Our Lady of Guadalupe in Mexico City, almost 500 years later.",
+   story: "In December 1531, on Tepeyac hill, Mary appeared to Juan Diego, dressed like a princess of his own people. She asked him to tell the bishop to build a church there. The bishop wanted a sign, so Mary had Juan Diego gather roses, blooming in winter, in his cloak. When he opened it in front of the bishop, the roses tumbled out, and Mary's picture was on the cloak! We call her Our Lady of Guadalupe." },
+ { name: "St. Martin de Porres", lv: "1579–1639", hm: "Lima, Peru", fun: "Even stray cats and dogs came to him.", pic: "saint_martin", vid: 0, c1: "#333B4F", c2: "#C9D0E2", sym: "hands", power: "Kind helper",
+   lived: "1579 to 1639", home: "Lima, Peru", feast: "November 3", patron: "People of mixed race, barbers, and everyone working for justice",
+   fact: "He was the first Black saint of the Americas. Pope John XXIII made him a saint in 1962.",
+   story: "Martin's father was a Spanish nobleman and his mother was a freed Black woman from Panama. Some people looked down on Martin because of his skin color, but he served everyone. He joined the Dominicans, swept floors, cared for the sick, and fed the poor of Lima. He even took care of stray cats and dogs. His broom became his symbol: no job is too small when you do it for Jesus." },
+ { name: "St. Teresa of Calcutta", lv: "1910–1997", hm: "Skopje, then Kolkata, India", fun: "She won the Nobel Peace Prize.", pic: "saint_teresa", vid: 0, c1: "#1D5FA8", c2: "#CFE3FA", sym: "heart", power: "Love in action",
+   lived: "1910 to 1997", home: "Born in Skopje, served in Kolkata (Calcutta), India", feast: "September 5", patron: "World Youth Day (with St. John Paul II)",
+   fact: "She started the Missionaries of Charity, sisters who still serve the poorest of the poor in more than 100 countries.",
+   story: "As a young sister teaching in India, Teresa felt Jesus call her to serve the poorest of the poor. She put on a simple white sari with blue stripes and went into the streets of Calcutta to care for people who were sick, hungry and alone. She taught that we can all do small things with great love. Every day she prayed before Jesus in the Eucharist, and that gave her strength." },
+ { name: "St. Carlo Acutis", lv: "1991–2006", hm: "London, then Milan, Italy", fun: "He loved video games and coding.", pic: "saint_carlo", vid: 0, c1: "#C0392B", c2: "#F7B7A3", sym: "chalice", power: "Digital apostle",
+   lived: "1991 to 2006", home: "Born in London, grew up in Milan, Italy", feast: "October 12", patron: "Not named yet. Many call him the saint of the internet",
+   fact: "He built a website about Eucharistic miracles from all over the world. Pope Leo XIV made him a saint in 2025.",
+   story: "Carlo was a regular kid in Milan: he played soccer and video games (only an hour a week, his own rule!), loved his dogs, and was great with computers. But his favorite thing in the world was Jesus in the Eucharist. He went to Mass every day he could and called the Eucharist “my highway to heaven.” He died of leukemia at 15, and in 2025 he became the first millennial saint." },
+ { name: "St. Pier Giorgio Frassati", lv: "1901–1925", hm: "Turin, Italy", fun: "His motto was “To the heights!”", pic: "saint_frassati", vid: 0, c1: "#2E6E9E", c2: "#BFE1F5", sym: "sun", power: "Joyful climber",
+   lived: "1901 to 1925", home: "Turin, Italy", feast: "July 4", patron: "Young adults. St. John Paul II called him “the man of the Beatitudes”",
+   fact: "He loved mountain climbing, and wrote “Verso l'alto” (“To the heights!”) on a photo from one of his climbs. He became a saint in 2025.",
+   story: "Pier Giorgio came from a rich, important family, but he secretly gave his money, his bus fare, and even his coat to poor people. He loved mountain climbing, jokes and his friends, and he went to Mass and prayed the Rosary every day. When he died at 24, of polio he likely caught caring for the sick, thousands of poor people filled the streets of Turin. His family had no idea how many people he had helped." },
 ];
 const isCollected = i => S.cards.includes(i) || isDone(i);
 // every saint portrait has a Grok-made loop, stored as an animated AVIF image (assets/anim/<pic>.avif):
 // an image, not a video, so it plays inline in every browser and viewer app and can never open a video player
-const LOOPS = SAINTS.map(x => x.pic);
+const LOOPS = SAINTS.filter(x => x.vid !== 0).map(x => x.pic);
 const ASSET = p => p;
 function cardHTML(i, cls = "") {
   const s = SAINTS[i];
@@ -2386,7 +2595,7 @@ function lockedCardHTML(i) {
   return `<div class="tcard locked" data-i="${i}" style="--c1:#3B3F6B;--c2:#6B70A8"><div class="tc-in"><div class="tc-face tc-front"><div class="tc-frame dim">
    <div class="tc-top"><span class="tc-no">${i + 1}</span><span class="tc-series">Saint Card</span></div>
    <div class="tc-window"><img loading="lazy" decoding="async" class="pimg" src="assets/img/${SAINTS[i].pic}.jpg" alt="" draggable="false"><b class="tc-q">?</b></div>
-   <div class="tc-plate"><b>Mystery saint</b><small>Finish Lesson ${i + 1} to collect</small></div>
+   <div class="tc-plate"><b>Mystery saint</b><small>${i < QUESTS.length ? `Finish Lesson ${i + 1} to collect` : "Finish any lesson to collect"}</small></div>
   </div></div></div></div>`;
 }
 // which side shows is decided from the card's real angle, never left to the browser
@@ -2438,6 +2647,7 @@ function renderAlbum() {
   const n = SAINTS.filter((_, i) => isCollected(i)).length;
   $("#albumTitle").textContent = `${whose(1)} Saint Album.`;
   const ah = $("#albumHow"); if (ah) ah.textContent = n === SAINTS.length ? "Your album is full! Every lesson you finish now brings a visit from one of your saint friends." : band() === "grow" ? "Every Big Story chapter you finish brings a new saint card." : band() === "lambs" ? "Every wonder moment you finish brings a new saint card." : band() === "confirm" ? "Every Confirmation session you finish brings a new saint card. Maybe your Confirmation saint is here!" : "These saints needed God's forgiveness too. Finish a lesson to open a card pack.";
+  const hc = $("#homeCollect"); if (hc) hc.textContent = `Collect all ${SAINTS.length}.`;
   $("#albumCount").innerHTML = n === SAINTS.length ? `<b>Complete collection!</b> All ${SAINTS.length} saints are home.` : `<b>${n}</b> of ${SAINTS.length} saints collected`;
   $("#album .album-book").classList.toggle("complete", n === SAINTS.length);
   $("#albumBar").style.setProperty("--p", n / SAINTS.length);
@@ -2802,7 +3012,7 @@ const SAVE_VERSION = 3;
   } catch (e) {}
 })();
 // every saved value must have the shape the app expects; anything else reads as the default
-const SHAPE = { readAloud: "bool", readLambs: "bool", "fc.done": "arr", "grow.done": "arr", "conf.confirmed": "bool", "conf.done": "arr", "conf.saint": "str", "conf.sponsor": "str", "conf.service": "num", "lambs.done": "arr", grade: "obj", known: "arr", done: "arr", cards: "arr", badges: "arr", days: "arr", learned: "arr", missed: "arr", stars: "obj", practiced: "obj", nightSeen: "obj", pos: "obj", mtoday: "obj", unlocked: "bool", bigDay: "str", missionDone: "str", lastLesson: "str", seen: "num", fixed: "num" };
+const SHAPE = { "rosary.decades": "num", "rosary.days": "arr", "rosary.at": "obj", "rosary.learned": "bool", "bible.read": "arr", "massgo.n": "num", readAloud: "bool", readLambs: "bool", "fc.done": "arr", "grow.done": "arr", "conf.confirmed": "bool", "conf.done": "arr", "conf.saint": "str", "conf.sponsor": "str", "conf.service": "num", "lambs.done": "arr", grade: "obj", known: "arr", done: "arr", cards: "arr", badges: "arr", days: "arr", learned: "arr", missed: "arr", stars: "obj", practiced: "obj", nightSeen: "obj", pos: "obj", mtoday: "obj", unlocked: "bool", bigDay: "str", missionDone: "str", lastLesson: "str", seen: "num", fixed: "num" };
 const fits = (k, v) => { const t = SHAPE[k]; if (!t || v == null) return true; if (t === "arr") return Array.isArray(v); if (t === "obj") return typeof v === "object" && !Array.isArray(v); return typeof v === { bool: "boolean", str: "string", num: "number" }[t]; };
 const okId = id => typeof id === "string" && /^[\w-]{1,40}$/.test(id);
 let speakT = 0, speakBtn = null, speakU = null;   // the pending scene read, and the speaker button that is on
@@ -2998,14 +3208,15 @@ const MISSIONS = {
   massPose: { t: () => "Stand, sit, or kneel?", d: () => new Date().getDay() === 0 ? "It's Sunday! Know when to stand, sit and kneel." : "Get ready for Mass this weekend.", src: () => "assets/g/ic_kneel.webp" },
   massSay: { t: () => "What do we say at Mass?", d: () => new Date().getDay() === 0 ? "It's Sunday! Know your answers at Mass today." : "Learn your answers before Sunday.", src: () => "assets/img/mass_church.jpg" },
   steps: { t: () => "Reconciliation practice", d: "Put the six parts in order and play the whole script.", src: () => A("door") },
+  bible: { t: () => "Read a Bible story", d: "Read one story together, then wonder about it.", src: () => "assets/img/bible_hero.jpg" },
   bedtime: { t: () => band() === "confirm" || band() === "grow" ? "Night examen" : "Bedtime Heart Check", d: "A few quiet minutes with God before sleep.", src: () => A("moon2") },
 };
 const prayTitle = P => P.mt || `Pray the ${P.name.replace(/^The /, "")}`;
 const missionInfo = k => MISSIONS[k] || (/^fc\./.test(k) && typeof FC !== "undefined" && FC.find(x => x.id === k.slice(3)) ? (F => ({ t: () => `First Communion: ${F.title}`, d: "About 5 minutes. Getting ready to receive Jesus.", src: () => A(F.icon) }))(FC.find(x => x.id === k.slice(3))) : null) || (/^grow\./.test(k) && typeof GROW !== "undefined" && GROW.find(x => x.id === k.slice(5)) ? (G => ({ t: () => `The Big Story: ${G.title}`, d: "About 10 minutes. Your next chapter.", src: () => `assets/img/${G.photo}.jpg` }))(GROW.find(x => x.id === k.slice(5))) : null) || (/^conf\./.test(k) && typeof CONF !== "undefined" && CONF.find(x => x.id === k.slice(5)) ? (C => ({ t: () => `Confirmation: ${C.title}`, d: "About 10 minutes. Your next session.", src: () => A(C.icon) }))(CONF.find(x => x.id === k.slice(5))) : null) || (/^lamb\./.test(k) && typeof LAMBS !== "undefined" && LAMBS.find(x => x.id === k.slice(5)) ? (L => ({ t: () => L.title, d: "A wonder moment. About 5 minutes with a grown-up.", src: () => `assets/img/${L.photo}.jpg` }))(LAMBS.find(x => x.id === k.slice(5))) : null) || (/^pr\./.test(k) && PRAY[k.slice(3)] ? { t: () => prayTitle(PRAY[k.slice(3)]), d: PRAY[k.slice(3)].when, src: () => A(PRAY[k.slice(3)].icon) } : null);
 const BAND_POOL = {
-  lambs: ["pr.signcross", "pr.angel", "pr.grace", "bedtime", "bedtime"],
-  grow: ["pr.rosary", "pr.faith", "pr.hope", "pr.love", "pr.holyqueen", "bedtime", "massSay", "massPose"],
-  confirm: ["pr.comeholy", "pr.nicene", "pr.memorare", "pr.michael", "pr.angelus", "bedtime", "massSay"],
+  lambs: ["pr.signcross", "pr.angel", "pr.grace", "bedtime", "bedtime", "bible"],
+  grow: ["pr.rosary", "pr.rosary", "pr.faith", "pr.hope", "pr.love", "pr.holyqueen", "bedtime", "massSay", "massPose", "bible", "bible"],
+  confirm: ["pr.comeholy", "pr.nicene", "pr.memorare", "pr.michael", "pr.angelus", "bedtime", "massSay", "pr.rosary", "bible", "bible"],
 };
 function todayMission() {
   const t = today(), saved = pget("mtoday", null);
@@ -3060,8 +3271,10 @@ function audio() {
   if (ac.state !== "running") ac.resume().catch(() => {});
   return ac;
 }
+// quiet while following along at Mass: nothing plays, whatever the sound setting
+let QUIET = false;
 function play(n, vol = 1, delay = 0) {
-  if (!S.sound) return; const a = audio(); if (!a || !bufs[n]) return;
+  if (!S.sound || QUIET) return; const a = audio(); if (!a || !bufs[n]) return;
   const src = a.createBufferSource(), g = a.createGain(); src.buffer = bufs[n]; g.gain.value = vol; src.connect(g); g.connect(a.destination); src.start(a.currentTime + delay);
 }
 // iPhone: play sounds like media, so they work with the silent switch on, and unlock audio with a silent blip on the first tap
@@ -4069,7 +4282,7 @@ function renderPrayList() {
 const canSpeak = "speechSynthesis" in window;
 const endSpeak = () => { if (speakBtn) { speakBtn.setAttribute("aria-pressed", "false"); speakBtn = null; } };
 function speak(t, btn) {
-  if (!canSpeak) return;
+  if (!canSpeak || QUIET) return;
   try { clearTimeout(speakT); speechSynthesis.cancel(); endSpeak(); const u = speakU = new SpeechSynthesisUtterance(String(t).replace(/[“”]/g, "").replace(/\b[VR]\. /g, "")); u.rate = .88; u.pitch = 1.05;
     if (btn) { speakBtn = btn; btn.setAttribute("aria-pressed", "true"); u.onend = u.onerror = () => { if (speakU === u) endSpeak(); }; }
     const v = speechSynthesis.getVoices().find(x => /^en[-_]US/i.test(x.lang) && /Samantha|Ava|Allison|Google US/i.test(x.name)) || speechSynthesis.getVoices().find(x => /^en[-_]US/i.test(x.lang)); if (v) u.voice = v;
@@ -4083,6 +4296,7 @@ $("#qRead").onclick = () => { sfx.tap(); const k = Q && Q.course === "lambs" ? "
   if (on) { const sc = $("#stage .scene"); if (sc) speak(sayJoin([...sc.querySelectorAll(".stamp, .say, .opt")].map(e => e.textContent))); } else hush(); };
 function openPrayer(id) {
   const P = PRAY[id]; if (!P) return;
+  if (id === "rosary") { openRosary(); return; }
   if (P.studio) { openPractice(P.studio); return; }
   sfx.whoosh();
   const known = pget("known", []), k = known.includes(id);
@@ -4096,6 +4310,448 @@ function openPrayer(id) {
   $("#pread").hidden = false; document.body.style.overflow = "hidden"; $("#pread .pr-scroll").scrollTop = 0;
 }
 function closePrayer() { hush(); $("#pread").hidden = true; if ($("#quest").hidden) document.body.style.overflow = ""; }
+/* ---------- companions: the Rosary, Mass follow-along, and the Bible guide (one full-screen shell, three themes) ---------- */
+let CP = null, cpBack = null, wakeL = null;
+function cpOpen(kind, title) {
+  cpBack = document.activeElement;
+  CP = { kind }; const c = $("#comp"); c.className = "comp " + kind; c.setAttribute("aria-label", title);
+  $("#cpTitle").textContent = title; $("#cpRead").hidden = kind === "massgo" || !canSpeak; $("#cpRead").setAttribute("aria-pressed", "false");
+  c.hidden = false; document.body.style.overflow = "hidden"; setTimeout(() => $("#cpX").focus({ preventScroll: true }), 30);
+}
+function cpShow(html, after, say) {
+  hush(); const b = $("#cpBody"); b.innerHTML = html; $("#cpScroll").scrollTop = 0; CP.say = say || "";
+  $("#cpRead").setAttribute("aria-pressed", "false");
+  after && after(b);
+  if (G && CP.kind !== "massgo" && !reduce) { const kids = [...b.children]; G.from(kids, { y: 14, opacity: 0, duration: .5, ease: "power2.out", stagger: .05 });
+    // animation frames pause in the background or on a busy phone; the content must show up regardless
+    setTimeout(() => { if (kids[0] && kids[0].isConnected) { G.killTweensOf(kids); G.set(kids, { clearProps: "opacity,transform" }); } }, 1400); }
+}
+function cpClose() {
+  if ($("#comp").hidden) return;
+  hush(); const kind = CP && CP.kind, items = CP && CP.items; QUIET = false; try { wakeL && wakeL.release(); } catch (e) {} wakeL = null;
+  $("#comp").hidden = true; if ($("#quest").hidden) document.body.style.overflow = "";
+  if (kind !== "massgo") sfx.close();
+  CP = null; try { cpBack && cpBack.focus({ preventScroll: true }); } catch (e) {}
+  if (items && items.length) setTimeout(() => celebrate(items), 350);
+}
+$("#cpX").onclick = cpClose;
+$("#cpRead").onclick = () => { if (!CP || !CP.say) return; sfx.tap(); speakToggle(CP.say, $("#cpRead")); };
+addEventListener("keydown", e => { if (!$("#comp").hidden && e.key === "Escape") cpClose(); });
+const cpLink = (ref, url, label = "Read it in the Bible") => url ? `<a class="cp-link" href="${url}" target="_blank" rel="noopener">${esc(label)} <span aria-hidden="true">&#8599;</span><small>${esc(ref)}</small></a>` : "";
+const pic = n => `assets/img/${n}.jpg`;
+// a chapter of the Bible on the bishops' own site (New American Bible)
+const BOOKS = { Genesis: "genesis", Exodus: "exodus", Ruth: "ruth", "1 Samuel": "1samuel", "2 Samuel": "2samuel", "1 Kings": "1kings", Esther: "esther", Psalm: "psalms", Isaiah: "isaiah", Daniel: "daniel", Jonah: "jonah", Matthew: "matthew", Mark: "mark", Luke: "luke", John: "john", Acts: "acts", Romans: "romans", "1 Corinthians": "1corinthians", Galatians: "galatians", Ephesians: "ephesians", Revelation: "revelation" };
+const bibleURL = ref => { const m = String(ref).match(/^(\d?\s?[A-Za-z]+)\s(\d+)/); return m && BOOKS[m[1]] ? `https://bible.usccb.org/bible/${BOOKS[m[1]]}/${m[2]}` : ""; };
+
+/* ---------- the Rosary ---------- */
+const MYST = {
+  joyful: { name: "Joyful Mysteries", days: [1, 6], dayNames: "Mondays and Saturdays", line: "God the Son comes to live with us.", list: [
+    { t: "The Annunciation", ref: "Luke 1:26-38", pic: "pray_hailmary", fruit: "Humility", kid: "The angel Gabriel asks Mary to be the mother of God's Son. Mary says yes!", think: "When God asks something of me, can I say yes like Mary?" },
+    { t: "The Visitation", ref: "Luke 1:39-56", pic: "myst_visitation", fruit: "Love of neighbor", kid: "Mary hurries to help her cousin Elizabeth. Baby John jumps for joy inside Elizabeth!", think: "Who can I help this week, the way Mary helped?" },
+    { t: "The Nativity", ref: "Luke 2:1-20", pic: "lamb_nativity", fruit: "Being poor in spirit", kid: "Jesus is born in a stable in Bethlehem, and shepherds come to see Him.", think: "Jesus came small and poor. What can I give Him from my heart?" },
+    { t: "The Presentation", ref: "Luke 2:22-38", pic: "myst_presentation", fruit: "Obedience", kid: "Mary and Joseph bring baby Jesus to the Temple. Old Simeon holds Him and knows He is the Savior.", think: "Simeon waited his whole life for Jesus. Am I glad to meet Him at Mass?" },
+    { t: "The Finding in the Temple", ref: "Luke 2:41-52", pic: "myst_finding", fruit: "Joy in finding Jesus", kid: "Jesus, 12 years old, is lost for three days. Mary and Joseph find Him in the Temple, His Father's house.", think: "Where do I find Jesus? In prayer, at Mass, in my family." } ] },
+  luminous: { name: "Luminous Mysteries", days: [4], dayNames: "Thursdays", line: "Jesus shows us who He is: the Light of the world.", list: [
+    { t: "The Baptism of Jesus", ref: "Matthew 3:13-17", pic: "myst_baptism", fruit: "Openness to the Holy Spirit", kid: "John baptizes Jesus in the Jordan River. The Holy Spirit comes like a dove, and the Father says: “This is my beloved Son.”", think: "At my Baptism, God called me His beloved child too." },
+    { t: "The Wedding at Cana", ref: "John 2:1-11", pic: "myst_cana", fruit: "Going to Jesus through Mary", kid: "At a wedding the wine runs out. Mary tells the servants, “Do whatever He tells you,” and Jesus turns water into wine.", think: "Mary always points to Jesus. What is Jesus telling me to do?" },
+    { t: "The Proclamation of the Kingdom", ref: "Mark 1:14-15", pic: "myst_kingdom", fruit: "Turning back to God", kid: "Jesus tells everyone the Good News: God's kingdom is here! Turn back to God and believe.", think: "Is there something I need to say sorry for and change?" },
+    { t: "The Transfiguration", ref: "Matthew 17:1-8", pic: "myst_transfig", fruit: "Wanting to be holy", kid: "On a mountain, Jesus shines bright as the sun. Moses and Elijah appear, and the Father says, “Listen to Him.”", think: "How can I listen to Jesus today?" },
+    { t: "The Institution of the Eucharist", ref: "Luke 22:14-20", pic: "myst_supper", fruit: "Love for Jesus in the Eucharist", kid: "At the Last Supper, Jesus takes bread and wine and says: “This is my Body… this is my Blood.” He gives us Himself.", think: "Jesus is really present in the Eucharist. How can I thank Him at Mass?" } ] },
+  sorrowful: { name: "Sorrowful Mysteries", days: [2, 5], dayNames: "Tuesdays and Fridays", line: "Jesus loves us all the way to the cross.", list: [
+    { t: "The Agony in the Garden", ref: "Luke 22:39-46", pic: "myst_agony", fruit: "Trusting God's will", kid: "The night before He dies, Jesus prays in a garden. He is very sad, but He tells His Father, “Not my will but yours be done.”", think: "When I'm scared or sad, I can pray like Jesus did." },
+    { t: "The Scourging at the Pillar", ref: "John 19:1", pic: "myst_scourging", fruit: "A pure heart", kid: "Soldiers hurt Jesus, and He doesn't hit back. He suffers out of love for us.", think: "Jesus loves me this much. I can be gentle when someone is unkind." },
+    { t: "The Crowning with Thorns", ref: "Matthew 27:27-31", pic: "myst_thorns", fruit: "Courage", kid: "Soldiers put a crown of thorns on Jesus and make fun of Him. He is the real King, and He stays loving.", think: "When people tease me for doing what's right, Jesus gives me courage." },
+    { t: "The Carrying of the Cross", ref: "Luke 23:26-32", pic: "myst_carrying", fruit: "Patience", kid: "Jesus carries His cross. A man named Simon helps Him carry it.", think: "Who needs help carrying something hard? I can be a Simon." },
+    { t: "The Crucifixion", ref: "Luke 23:33-46", pic: "crosshill", fruit: "Perseverance", kid: "Jesus dies on the cross for our sins. Even then He forgives: “Father, forgive them.”", think: "Thank you, Jesus, for loving me so much." } ] },
+  glorious: { name: "Glorious Mysteries", days: [0, 3], dayNames: "Sundays and Wednesdays", line: "Jesus is risen, and heaven is open to us!", list: [
+    { t: "The Resurrection", ref: "Matthew 28:1-10", pic: "lamb_tomb", fruit: "Faith", kid: "On the third day, the tomb is empty. Jesus is alive! The women run to tell the apostles.", think: "Jesus beat sin and death. Nothing is too big for Him." },
+    { t: "The Ascension", ref: "Acts 1:6-11", pic: "myst_ascension", fruit: "Hope", kid: "Forty days after Easter, Jesus goes up to heaven. He promises to send the Holy Spirit.", think: "Jesus is getting a place ready for me in heaven." },
+    { t: "The Descent of the Holy Spirit", ref: "Acts 2:1-4", pic: "conf_pentecost", fruit: "Love of God", kid: "At Pentecost, the Holy Spirit comes on Mary and the apostles like tongues of fire. They become brave and tell everyone about Jesus.", think: "The Holy Spirit lives in me too. Come, Holy Spirit!" },
+    { t: "The Assumption of Mary", ref: "Church teaching; see Revelation 12:1", url: "https://bible.usccb.org/bible/revelation/12", pic: "myst_assumption", fruit: "Love for Mary", kid: "At the end of her life on earth, God takes Mary, body and soul, into heaven.", think: "Mary is in heaven, and she prays for me like a mom." },
+    { t: "The Coronation of Mary", ref: "Revelation 12:1", pic: "myst_coronation", fruit: "Trust in Mary's prayers", kid: "Jesus crowns His mother Mary as Queen of Heaven and Earth.", think: "Mary, my Queen and my mother, pray for me." } ] },
+};
+const MYST_KEYS = ["joyful", "luminous", "sorrowful", "glorious"];
+const mystToday = (d = new Date()) => MYST_KEYS.find(k => MYST[k].days.includes(d.getDay()));
+const ORD = ["First", "Second", "Third", "Fourth", "Fifth"];
+const RP = {
+  sign: { name: "Sign of the Cross", lead: ["In the name of the Father, and of the Son, and of the Holy Spirit. Amen."], all: [] },
+  creed: { name: "Apostles' Creed", lead: [], all: PRAY.apostles.text, hold: "Hold the crucifix." },
+  of: { name: "Our Father", lead: ["Our Father, who art in heaven, hallowed be thy name; thy kingdom come, thy will be done on earth as it is in heaven."], all: ["Give us this day our daily bread, and forgive us our trespasses, as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil. Amen."], hold: "Hold the big bead." },
+  hm: { name: "Hail Mary", lead: ["Hail Mary, full of grace, the Lord is with thee. Blessed art thou among women, and blessed is the fruit of thy womb, Jesus."], all: ["Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen."], hold: "Hold a small bead." },
+  gb: { name: "Glory Be", lead: ["Glory be to the Father, and to the Son, and to the Holy Spirit,"], all: ["as it was in the beginning, is now, and ever shall be, world without end. Amen."], hold: "On the chain, before the next big bead." },
+  fatima: { name: "O my Jesus", lead: [], all: ["O my Jesus, forgive us our sins, save us from the fires of hell; lead all souls to Heaven, especially those in most need of thy mercy."], note: "Mary taught this prayer to three children at Fatima in 1917." },
+  queen: { name: "Hail, Holy Queen", lead: [], all: PRAY.holyqueen.text, hold: "The decades are done!" },
+  close: { name: "Closing prayer", lead: ["Let us pray. O God, whose only begotten Son, by his life, death, and resurrection, has purchased for us the rewards of eternal life, grant, we beseech thee, that while meditating on these mysteries of the most holy Rosary of the Blessed Virgin Mary, we may imitate what they contain and obtain what they promise, through the same Christ our Lord."], all: ["Amen."] },
+};
+const FOR = ["My family", "Someone who is sick", "People who have died", "Our parish", "The Pope", "Peace in the world", "Someone I'm thinking of"];
+function rosSteps(set, full, one) {
+  const st = [{ k: "sign" }];
+  const decade = d => { st.push({ k: "myst", d }, { k: "of", d }); for (let n = 1; n <= 10; n++) st.push({ k: "hm", d, n }); st.push({ k: "gb", d }, { k: "fatima", d }); };
+  if (full) { st.push({ k: "creed" }, { k: "of" }); ["faith", "hope", "love"].forEach((v, j) => st.push({ k: "hm", n: j + 1, of: 3, v })); st.push({ k: "gb" }); for (let d = 0; d < 5; d++) decade(d); st.push({ k: "queen" }, { k: "close" }, { k: "sign", last: 1 }); }
+  else { decade(one); st.push({ k: "sign", last: 1 }); }
+  return st;
+}
+function openRosary() {
+  cpOpen("rosary", "The Rosary"); sfx.whoosh();
+  CP.set = mystToday(); CP.fam = band() === "lambs"; rosHome();
+}
+function rosHome() {
+  const set = CP.set, M = MYST[set], at = pget("rosary.at", {}), next = (+at[set] || 0) % 5, dec = pget("rosary.decades", 0), learned = pget("rosary.learned", false), little = band() === "lambs";
+  const days = pget("rosary.days", []), wk = days.filter(d => (new Date(today()) - new Date(d)) / 864e5 < 7).length;
+  cpShow(`<div class="cp-hero"><img src="${pic("rosary_hero")}" alt="A family praying the Rosary together at home"></div>
+    <p class="cp-k">Pray with Mary</p><h2 class="cp-h">The Rosary.</h2>
+    <p class="cp-p">We think about Jesus' life with Mary, one mystery at a time, while we pray. St. John Paul II called it a summary of the whole Gospel.</p>
+    ${dec ? `<p class="cp-stat"><b>${dec}</b> decade${dec > 1 ? "s" : ""} prayed${wk ? ` · ${wk} day${wk > 1 ? "s" : ""} this week` : ""}</p>` : ""}
+    <div class="cp-card rs-today"><p class="cp-k2">${set === mystToday() ? "Today's mysteries" : "You picked"}</p><h3>${M.name}</h3><p>${esc(M.line)}</p>
+      <div class="cp-chips" role="radiogroup" aria-label="Choose the mysteries">${MYST_KEYS.map(k => `<button type="button" role="radio" aria-checked="${k === set}" data-set="${k}">${MYST[k].name.replace(" Mysteries", "")}${k === mystToday() ? " · today" : ""}</button>`).join("")}</div></div>
+    <button type="button" class="cp-btn" id="rsOne">Pray one decade together<small>About 5 minutes · ${ORD[next]} ${M.name.replace(" Mysteries", "")} Mystery: ${esc(M.list[next].t.replace(/^The /, ""))}</small></button>
+    ${little ? "" : `<button type="button" class="cp-btn soft" id="rsFull">Pray the whole Rosary<small>All five mysteries · about 20 minutes</small></button>`}
+    <label class="cp-toggle"><input type="checkbox" id="rsFam"${CP.fam ? " checked" : ""}><span><b>Praying with my family</b><small>One person leads the first half of each prayer, and everyone answers.</small></span></label>
+    <button type="button" class="cp-btn ghost" id="rsLearn">${learned ? "How the Rosary works ✓" : "New to the Rosary? Learn it first"}</button>
+    <div class="cp-card rs-tip"><b>Tip for families</b><p>${little ? "With little ones, pray one decade and let them count the Hail Marys on their fingers or on the beads. Even one Hail Mary prayed with love is a gift to Mary." : "One decade after dinner is a beautiful family habit. Take turns leading the Hail Marys, and pray one decade a day to walk through a whole set of mysteries in five days."}</p></div>`,
+    b => {
+      b.querySelectorAll("[data-set]").forEach(c => c.onclick = () => { sfx.tap(); CP.set = c.dataset.set; rosHome(); b.querySelector(`[data-set="${CP.set}"]`)?.focus(); });
+      b.querySelector("#rsFam").onchange = e => { CP.fam = e.target.checked; sfx.toggle(); };
+      b.querySelector("#rsOne").onclick = () => rosFor(false, next);
+      b.querySelector("#rsFull") && (b.querySelector("#rsFull").onclick = () => rosFor(true, 0));
+      b.querySelector("#rsLearn").onclick = () => { sfx.tap(); rosLearn(0); };
+    }, "The Rosary. We think about Jesus' life with Mary, one mystery at a time, while we pray.");
+}
+function rosFor(full, one) {
+  sfx.tap();
+  cpShow(`<p class="cp-k">Before we begin</p><h2 class="cp-h sm">Who are we praying for?</h2><p class="cp-p">Offering the Rosary for someone is a gift of love. Pick one, or skip.</p>
+    <div class="cp-chips big">${FOR.map(f => `<button type="button" data-f="${esc(f)}">${esc(f)}</button>`).join("")}</div>
+    <button type="button" class="cp-btn ghost" id="rsSkip">Skip</button>`, b => {
+      const go = f => { sfx.tap(); CP.r = { full, one, steps: rosSteps(CP.set, full, one), i: 0, forWho: f }; rosStep(); };
+      b.querySelectorAll("[data-f]").forEach(c => c.onclick = () => go(c.dataset.f)); b.querySelector("#rsSkip").onclick = () => go("");
+    }, "Who are we praying for?");
+}
+function rosBeads(r, s) {
+  // the ten beads of this decade, as a progress row
+  if (s.k === "hm" && s.of) return `<div class="rs-beads three" aria-hidden="true">${[1, 2, 3].map(n => `<i class="${n < s.n ? "did" : n === s.n ? "now" : ""}"></i>`).join("")}</div>`;
+  if (s.d == null) return "";
+  const n = s.k === "hm" ? s.n : s.k === "gb" || s.k === "fatima" ? 11 : 0;
+  return `<div class="rs-beads" aria-hidden="true"><i class="big ${s.k === "of" ? "now" : n ? "did" : ""}"></i>${Array.from({ length: 10 }, (_, j) => `<i class="${j + 1 < n ? "did" : j + 1 === n ? "now" : ""}"></i>`).join("")}</div>`;
+}
+function rosStep() {
+  const r = CP.r, s = r.steps[r.i], M = MYST[CP.set], little = band() === "lambs";
+  if (!s) { rosEnd(); return; }
+  const m = s.d != null ? M.list[r.full ? s.d : r.one] : null, P = RP[s.k];
+  const pct = Math.round(r.i / r.steps.length * 100), back = r.i > 0 ? `<button type="button" class="cp-btn ghost sm" id="rsBack">Back</button>` : "";
+  const top = `<div class="rs-bar" role="progressbar" aria-label="Rosary progress" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"><i style="width:${pct}%"></i></div>${r.forWho ? `<p class="rs-for">Praying for: ${esc(r.forWho)}</p>` : ""}`;
+  if (s.k === "myst") {
+    const say = `The ${ORD[r.full ? s.d : r.one]} ${M.name.replace(/ies$/, "y")}: ${m.t}. ${m.kid}`;
+    cpShow(`${top}<div class="rs-myst"><img src="${pic(m.pic)}" alt=""></div>
+      <p class="cp-k">The ${ORD[r.full ? s.d : r.one]} ${M.name.replace(/ies$/, "y")}</p><h2 class="cp-h sm">${esc(m.t)}</h2>
+      <p class="cp-p">${esc(m.kid)}</p>
+      <div class="cp-card"><p><b>Think about it:</b> ${esc(m.think)}</p><p class="rs-fruit">Ask God for: <b>${esc(m.fruit)}</b></p></div>
+      ${cpLink(m.ref, m.url || bibleURL(m.ref))}
+      <p class="cp-hint">While you pray the Hail Marys, picture this mystery like a movie in your mind.</p>
+      <div class="cp-nav">${back}<button type="button" class="cp-btn" id="rsNext">Begin this decade</button></div>`, rosWire, say);
+    return;
+  }
+  const fam = CP.fam && P.lead.length && P.all.length, lines = fam ? null : [...P.lead, ...P.all];
+  const title = s.k === "hm" ? (s.of ? `Hail Mary ${s.n} of 3` : `Hail Mary ${s.n} of 10`) : s.k === "sign" && s.last ? "Sign of the Cross" : P.name;
+  const note = s.k === "hm" && s.v ? `For more ${s.v}` : P.note || "";
+  const text = fam ? `<p class="rs-who">Leader</p>${P.lead.map(t => `<p>${esc(t)}</p>`).join("")}<p class="rs-who all">Everyone</p>${P.all.map(t => `<p>${esc(t)}</p>`).join("")}` : lines.map(t => `<p>${esc(t)}</p>`).join("");
+  const nextLbl = s.k === "hm" ? (s.n < (s.of || 10) ? "Next bead" : "Done with the beads") : s.last ? "Amen" : "Next";
+  cpShow(`${top}${m ? `<div class="rs-mini"><img src="${pic(m.pic)}" alt=""><span><small>${esc(M.name.replace(" Mysteries", ""))} · ${ORD[r.full ? s.d : r.one]} mystery</small><b>${esc(m.t)}</b></span></div>` : ""}
+    ${rosBeads(r, s)}
+    <h2 class="cp-h sm">${esc(title)}</h2>${note ? `<p class="rs-note">${esc(note)}</p>` : ""}${P.hold && !(s.k === "hm" && s.n > 1) ? `<p class="cp-hint">${esc(P.hold)}</p>` : ""}
+    <div class="cp-card rs-text${s.k === "creed" || s.k === "queen" || s.k === "close" ? " long" : ""}">${text}</div>
+    ${little && s.k === "hm" ? `<p class="cp-hint">Count on your fingers: ${s.n}!</p>` : ""}
+    <div class="cp-nav">${back}<button type="button" class="cp-btn" id="rsNext">${nextLbl}</button></div>`, rosWire, sayJoin([title, ...P.lead, ...P.all]));
+}
+function rosWire(b) {
+  b.querySelector("#rsNext").onclick = () => { const r = CP.r, s = r.steps[r.i]; s.k === "hm" ? sfx.pop() : sfx.tap(); r.i++; rosStep(); };
+  const bk = b.querySelector("#rsBack"); if (bk) bk.onclick = () => { sfx.tap(); CP.r.i = Math.max(0, CP.r.i - 1); rosStep(); };
+}
+function rosEnd() {
+  const r = CP.r, n = r.full ? 5 : 1, M = MYST[CP.set];
+  if (S.pid) {
+    pset("rosary.decades", pget("rosary.decades", 0) + n);
+    const d = pget("rosary.days", []); if (!d.includes(today())) pset("rosary.days", [...d, today()].slice(-60));
+    if (!r.full) { const at = { ...pget("rosary.at", {}) }; at[CP.set] = (r.one + 1) % 5; pset("rosary.at", at); }
+  }
+  CP.items = activityDone("pr.rosary");
+  sfx.bless(); burst(innerWidth / 2, innerHeight * .35, 90, true);
+  const nx = !r.full ? M.list[(r.one + 1) % 5] : null;
+  cpShow(`<img class="cp-icon" src="${A("ic_rosary")}" alt=""><h2 class="cp-h">${r.full ? "You prayed the whole Rosary!" : "You prayed a decade with Mary!"}</h2>
+    <p class="cp-p">Every Hail Mary is like a rose for Mary, and she brings each one to Jesus${r.forWho ? `, for ${esc(r.forWho.toLowerCase().replace(/^the pope$/, "the Pope"))}` : ""}.</p>
+    ${nx ? `<div class="cp-card"><p><b>Next time:</b> ${esc(nx.t)}. Pray one decade a day to walk through all five ${esc(M.name)}.</p></div>` : ""}
+    ${S.pid ? "" : `<p class="cp-hint">Add your child on the Home page to keep count of decades prayed.</p>`}
+    <button type="button" class="cp-btn" id="rsDone">Amen</button>`, b => { b.querySelector("#rsDone").onclick = cpClose; }, r.full ? "You prayed the whole Rosary!" : "You prayed a decade with Mary!");
+}
+// learn how the Rosary works: five short pages and three quick questions
+const RS_LEARN = [
+  { h: "What is the Rosary?", pic: "rosary_hero", p: ["The Rosary is a prayer we pray with Mary. While our lips pray, our hearts think about Jesus' life: the happy times, the times of light, the sad times, and the glorious times.", "The word rosary means “a garden of roses.” Each Hail Mary is like a rose we give to Mary, and she gives our prayers to Jesus."] },
+  { h: "The beads", icon: "ic_rosary", map: [["The crucifix", "Sign of the Cross, then the Apostles' Creed"], ["The first big bead", "Our Father"], ["Three small beads", "Three Hail Marys, for more faith, hope and love"], ["Then", "Glory Be"], ["Each big bead", "Think about the next mystery, then pray an Our Father"], ["Ten small beads (a decade)", "Ten Hail Marys, thinking about the mystery"], ["After each decade", "Glory Be and “O my Jesus”"], ["At the very end", "Hail, Holy Queen and the closing prayer"]] },
+  { h: "Four sets of mysteries", sets: 1, p: ["A mystery is a moment in the life of Jesus or Mary that we think about while we pray. There are 20, in four sets of five. Each day of the week has its own set."] },
+  { h: "How to pray it well", p: ["Picture the mystery like a movie in your mind: where it happens, who is there, what Jesus says.", "Go slowly. One decade prayed with love is better than five said in a rush.", "No rosary yet? Count on your ten fingers. That's how many people have prayed it for hundreds of years."] },
+];
+const RS_QUIZ = [
+  { q: "On a big bead we pray the…", a: "Our Father", o: ["Our Father", "Hail Mary", "Glory Be"] },
+  { q: "How many Hail Marys are in one decade?", a: "10", o: ["5", "10", "12"] },
+  { q: () => `Which mysteries do we pray on ${["Sundays", "Mondays", "Tuesdays", "Wednesdays", "Thursdays", "Fridays", "Saturdays"][new Date().getDay()]}?`, a: () => MYST[mystToday()].name.replace(" Mysteries", ""), o: ["Joyful", "Luminous", "Sorrowful", "Glorious"] },
+];
+function rosLearn(i) {
+  const L = RS_LEARN[i];
+  if (!L) { rosQuiz(0, 0); return; }
+  const td = mystToday();
+  cpShow(`<p class="cp-k">Learn the Rosary · ${i + 1} of ${RS_LEARN.length + 1}</p>${L.pic ? `<div class="cp-hero"><img src="${pic(L.pic)}" alt=""></div>` : ""}${L.icon ? `<img class="cp-icon" src="${A(L.icon)}" alt="">` : ""}<h2 class="cp-h sm">${esc(L.h)}</h2>
+    ${(L.p || []).map(t => `<p class="cp-p">${esc(t)}</p>`).join("")}
+    ${L.map ? `<ol class="rs-map">${L.map.map(([a, b]) => `<li><b>${esc(a)}</b><span>${esc(b)}</span></li>`).join("")}</ol>` : ""}
+    ${L.sets ? `<div class="rs-sets">${MYST_KEYS.map(k => `<div class="cp-card${k === td ? " on" : ""}"><b>${MYST[k].name}${k === td ? " · today" : ""}</b><small>${MYST[k].dayNames}</small><p>${MYST[k].list.map(x => esc(x.t.replace(/^The /, ""))).join(" · ")}</p></div>`).join("")}</div>` : ""}
+    <div class="cp-nav">${i ? `<button type="button" class="cp-btn ghost sm" id="rlBack">Back</button>` : `<button type="button" class="cp-btn ghost sm" id="rlBack">Rosary home</button>`}<button type="button" class="cp-btn" id="rlNext">Next</button></div>`,
+    b => { b.querySelector("#rlNext").onclick = () => { sfx.tap(); rosLearn(i + 1); }; b.querySelector("#rlBack").onclick = () => { sfx.tap(); i ? rosLearn(i - 1) : rosHome(); }; },
+    sayJoin([L.h, ...(L.p || []), ...(L.map || []).map(x => x.join(": "))]));
+}
+function rosQuiz(k, right) {
+  const Qz = RS_QUIZ[k];
+  if (!Qz) {
+    if (S.pid) pset("rosary.learned", true);
+    sfx.win();
+    cpShow(`<img class="cp-icon" src="${A("trophy")}" alt=""><h2 class="cp-h sm">${right === 3 ? "You know how the Rosary works!" : "Nice work!"}</h2><p class="cp-p">${right} of 3 right. Now let's pray a decade together.</p>
+      <div class="cp-nav"><button type="button" class="cp-btn ghost sm" id="rqHome">Rosary home</button><button type="button" class="cp-btn" id="rqGo">Pray a decade</button></div>`,
+      b => { b.querySelector("#rqHome").onclick = () => { sfx.tap(); rosHome(); }; b.querySelector("#rqGo").onclick = () => { const at = pget("rosary.at", {}); rosFor(false, (+at[CP.set] || 0) % 5); }; }, "Now let's pray a decade together.");
+    return;
+  }
+  const q = typeof Qz.q === "function" ? Qz.q() : Qz.q, a = typeof Qz.a === "function" ? Qz.a() : Qz.a;
+  let first = true;
+  cpShow(`<p class="cp-k">Quick check · ${k + 1} of 3</p><h2 class="cp-h sm">${esc(q)}</h2><div class="cp-opts">${Qz.o.map(o => `<button type="button" data-o="${esc(o)}">${esc(o)}</button>`).join("")}</div>`, b => {
+    b.querySelectorAll("[data-o]").forEach(c => c.onclick = () => {
+      if (c.dataset.o === a) { c.classList.add("right"); sfx.yes(); b.querySelectorAll("[data-o]").forEach(x => x.disabled = true); setTimeout(() => rosQuiz(k + 1, right + (first ? 1 : 0)), 800); }
+      else { first = false; c.classList.add("wrong"); c.disabled = true; sfx.no(); }
+    });
+  }, q);
+}
+
+/* ---------- follow along at Mass: silent, dark, one part at a time ---------- */
+// what to look for and a whispered prayer for each part (same order as MASS)
+const MASS_LOOK = [
+  { look: "Find the tabernacle, the golden box where Jesus is kept. The candle burning next to it (the sanctuary lamp) tells you He is there.", heart: "Jesus, I'm here to be with You." },
+  { look: "Look for the cross carried high at the front, candles, and the Book of the Gospels held up. When the priest reaches the altar, he kisses it: the altar stands for Jesus. Check the color the priest wears: green for Ordinary Time, purple for Advent and Lent, white or gold for Christmas and Easter, red for the Holy Spirit and martyrs.", heart: "Here I am, Lord." },
+  { look: "Watch the priest open his arms to greet everyone. All of us together are one family.", heart: "Thank you for my family and my parish." },
+  { look: "Listen for the middle line: “Christ, have mercy.” Sometimes everyone says “I confess” and taps their chest at “through my fault.”", heart: "Jesus, I'm sorry. Help me do better this week." },
+  { look: "Listen for the words the angels sang over Bethlehem: “Glory to God in the highest, and on earth peace.”", heart: "Glory to You, God!" },
+  { look: "The readings are read from the ambo, the reading stand. Usually the first is from the Old Testament, then a sung psalm (try to remember its short answer line), then a letter from an apostle.", heart: "Speak, Lord, I'm listening." },
+  { look: "Look for the Book of the Gospels carried to the ambo, maybe with candles and incense. When we trace three small crosses on forehead, lips and heart, we pray: “Lord, be in my mind, on my lips, and in my heart.” Listen for who Jesus talks to or helps today.", heart: "Jesus, be in my mind, on my lips, and in my heart." },
+  { look: "Try to catch one sentence to remember. You'll tell your family later.", heart: "Help me live what I hear today." },
+  { look: "Watch everyone bow at the words “and by the Holy Spirit was incarnate of the Virgin Mary, and became man.” (On Christmas, we kneel!)", heart: "Jesus, I believe in You." },
+  { look: "Listen for the people being prayed for. Silently add someone of your own.", heart: "Lord, please help ______ (someone you love)." },
+  { look: "Watch the altar being set: a white cloth, the chalice, the bread. The priest adds a drop of water to the wine and washes his hands. You can give God your week, your worries, and your joys along with the gifts.", heart: "Jesus, I give You my whole self." },
+  { look: "“Hosanna” is what the crowds shouted when Jesus rode into Jerusalem on Palm Sunday.", heart: "Holy, holy, holy Lord!" },
+  { look: "Look for the priest holding his hands over the bread and wine: he asks the Holy Spirit to make them holy. Then watch him lift up the Host, and then the chalice. The bells ring. Look up at Jesus!", heart: "My Lord and my God! (These are St. Thomas's words when he saw Jesus risen.)" },
+  { look: "Watch the priest lift up the Host and the chalice together: “Through him, and with him, and in him…” Then everyone sings Amen.", heart: "Amen! Yes, I believe!" },
+  { look: "Listen for the end: after the priest prays a little more, we add “For the kingdom, the power and the glory are yours, now and for ever.”", heart: "Give us this day our daily bread." },
+  { look: "Look at the people near you. Share peace with a handshake, a nod, or a little wave.", heart: "Jesus, help me make peace with anyone I'm upset with." },
+  { look: "Watch the priest break the Host into pieces and drop a tiny piece into the chalice. Our answer, “Lord, I am not worthy…”, comes from a Roman soldier who asked Jesus to heal his servant.", heart: "Lord, I am not worthy, but only say the word, and I shall be healed." },
+  { look: "Put this away now and walk up with your family. You'll hear “The Body of Christ,” and the answer “Amen.” Not receiving yet? Cross your arms over your chest for a blessing. Tap Next when you're back in your pew.", heart: "Jesus, I can't wait to receive You. Please come into my heart." },
+  { look: "Jesus is very close right now. Close your eyes. Thank Him for three things, and tell Him one thing on your heart.", heart: "Thank you, Jesus, for coming to me." },
+  { look: "Listen for the blessing and make the Sign of the Cross. Stay for the closing song until the priest has walked past, then bend your knee toward the tabernacle on the way out.", heart: "Help me love and serve You this week." },
+];
+const MPOSE = { stand: ["ic_stand", "Stand"], sit: ["ic_sit", "Sit"], kneel: ["ic_kneel", "Kneel"], genuflect: ["ic_kneel", "Genuflect"] };
+function openMassGo() {
+  cpOpen("massgo", "Follow along at Mass"); QUIET = true; hush();
+  CP.i = -1; mgShow();
+}
+function mgWake() { try { if ("wakeLock" in navigator && !wakeL) navigator.wakeLock.request("screen").then(l => { wakeL = l; }).catch(() => {}); } catch (e) {} }
+function mgShow() {
+  const i = CP.i, N = MASS.length;
+  if (i < 0) {
+    cpShow(`<p class="cp-k">At Mass</p><h2 class="cp-h">Follow along.</h2>
+      <p class="cp-p">Nothing on this screen makes a sound. Turn your brightness down, and tap <b>Next</b> each time Mass moves on. Lost your place, or is it a weekday Mass that skips some parts? Tap <b>Where are we?</b></p>
+      <div class="cp-card"><p><b>Grown-ups:</b> this is for whispering along, not for playing. When it's time for Communion, the screen will remind your child to put it away.</p></div>
+      <button type="button" class="cp-btn" id="mgGo">Mass is starting</button>`, b => { b.querySelector("#mgGo").onclick = () => { mgWake(); CP.i = 0; mgShow(); }; });
+    return;
+  }
+  if (i >= N) {
+    const items = activityDone("massGo"), lit = items.some(x => /candle/i.test(x.title + x.text));
+    if (S.pid) pset("massgo.n", pget("massgo.n", 0) + 1);
+    cpShow(`<p class="cp-k">The Mass is ended</p><h2 class="cp-h">Go in peace.</h2>
+      <p class="cp-p">On the way home, tell your family:</p>
+      <ol class="mg-three"><li>One thing you <b>saw</b></li><li>One thing you <b>heard</b></li><li>One thing you'll <b>do</b> this week</li></ol>
+      ${lit ? `<p class="cp-hint">You lit today's candle.</p>` : ""}
+      <button type="button" class="cp-btn" id="mgEnd">Done</button>`, b => { b.querySelector("#mgEnd").onclick = cpClose; });
+    return;
+  }
+  const P = MASS[i], L = MASS_LOOK[i], po = MPOSE[P.pose] || MPOSE.stand, pct = Math.round(i / N * 100);
+  cpShow(`<div class="mg-bar"><i style="width:${pct}%"></i></div><p class="cp-k">${esc(P.g)} · ${i + 1} of ${N}</p>
+    <div class="mg-head"><h2 class="cp-h sm">${esc(P.name)}</h2><span class="mg-pose"><img src="assets/g/${po[0]}.webp" alt="">${po[1]}</span></div>
+    ${P.img ? `<div class="mg-pic"><img src="${pic(P.img)}" alt=""></div>` : ""}
+    <div class="mg-sec"><h3>What's happening</h3><p>${esc(P.means)}</p></div>
+    <div class="mg-sec"><h3>Look for</h3><p>${esc(L.look)}</p></div>
+    ${P.say ? `<div class="mg-sec mg-say"><h3>Say</h3><p><small>${esc(P.who || "The priest says")}</small>${esc(P.say[0])}</p><p><small>You answer</small><b>${esc(P.say[1])}</b></p></div>` : ""}
+    <div class="mg-sec mg-heart"><h3>Pray quietly</h3><p>${esc(L.heart)}</p></div>
+    <div class="mg-foot"><button type="button" class="cp-btn ghost sm" id="mgBack"${i ? "" : " disabled"}>Back</button><button type="button" class="cp-btn ghost sm" id="mgWhere">Where are we?</button><button type="button" class="cp-btn" id="mgNext">${i === N - 1 ? "Mass is over" : "Next"}</button></div>`, b => {
+      b.querySelector("#mgNext").onclick = () => { CP.i++; mgShow(); };
+      b.querySelector("#mgBack").onclick = () => { CP.i = Math.max(0, CP.i - 1); mgShow(); };
+      b.querySelector("#mgWhere").onclick = mgWhere;
+    });
+}
+function mgWhere() {
+  let g = "";
+  cpShow(`<p class="cp-k">Where are we?</p><h2 class="cp-h sm">Tap the part that's happening now.</h2><div class="mg-list">${MASS.map((P, j) => { const head = P.g !== g ? `<h3>${esc(g = P.g)}</h3>` : ""; return `${head}<button type="button" data-j="${j}" class="${j === CP.i ? "on" : ""}"><span>${j + 1}</span>${esc(P.name)}</button>`; }).join("")}</div>`,
+    b => { b.querySelectorAll("[data-j]").forEach(x => x.onclick = () => { CP.i = +x.dataset.j; mgShow(); }); b.querySelector(".mg-list .on")?.scrollIntoView({ block: "center" }); });
+}
+
+/* ---------- the Bible guide ---------- */
+// short summaries are our own words; the full text opens on the U.S. bishops' Bible site
+const BIBLE = {
+  lambs: { name: "Picture stories", line: "Ten favorite stories to read with a grown-up.", list: [
+    { id: "b-create", t: "God makes the world", ref: "Genesis 1", icon: "sun", s: "God made light, sky and sea, plants, animals, and people. He looked at everything and said it was very good!", w: "What's your favorite thing God made?" },
+    { id: "b-noah", t: "Noah's big boat", ref: "Genesis 6-9", icon: "canoe", s: "Noah trusted God and built a huge boat. God kept Noah's family and the animals safe, and put a rainbow in the sky as a promise.", w: "Which animal would you sit next to on the boat?" },
+    { id: "b-baby-moses", t: "Baby Moses in a basket", ref: "Exodus 2", icon: "shell", s: "Baby Moses' mother hid him in a basket by the river. A princess found him and loved him, and God had big plans for him.", w: "Who takes care of you like that?" },
+    { id: "b-david", t: "David and the giant", ref: "1 Samuel 17", icon: "rock", s: "Young David trusted God, not his size. With one small stone he beat the giant Goliath.", w: "What feels big and scary? God is bigger!" },
+    { id: "b-jonah", t: "Jonah and the big fish", ref: "Jonah 1-3", icon: "island", s: "Jonah ran away from God, and a big fish swallowed him! Jonah prayed, and God gave him a second chance.", w: "God gives second chances. When did you get one?" },
+    { id: "b-born", t: "Jesus is born", ref: "Luke 2", icon: "star", s: "Mary and Joseph went to Bethlehem, and baby Jesus was born in a stable. Angels sang and shepherds came to see.", w: "What would you give baby Jesus?" },
+    { id: "b-children", t: "Jesus loves the children", ref: "Mark 10", icon: "heart", s: "Some grown-ups tried to send the children away, but Jesus said, “Let the children come to me!” and hugged them and blessed them.", w: "Jesus wants you close. What would you tell Him?" },
+    { id: "b-sheep", t: "The lost sheep", ref: "Luke 15", icon: "pip", s: "A shepherd had 100 sheep and one got lost. He looked and looked until he found it, then carried it home, so happy!", w: "Jesus is our Good Shepherd. He always looks for us." },
+    { id: "b-storm", t: "Jesus calms the storm", ref: "Mark 4", icon: "cloud", s: "A big storm shook the apostles' boat. Jesus stood up and said, “Quiet! Be still!” and the wind and waves stopped.", w: "When you feel scared, you can say: Jesus, help me!" },
+    { id: "b-alive", t: "Jesus is alive!", ref: "Luke 24", icon: "sparkles", s: "Jesus died on the cross, but on Easter morning the tomb was empty. Jesus is alive, and He is with us always!", w: "How does your family celebrate Easter?" } ] },
+  first: { name: "Stories of Jesus", line: "Twelve Gospel stories to read together.", list: [
+    { id: "b-annunciation", t: "The angel visits Mary", ref: "Luke 1", icon: "lily", s: "The angel Gabriel told Mary she would be the mother of God's Son. Mary said yes to God.", w: "How can you say yes to God this week?" },
+    { id: "b-temple", t: "Jesus in the Temple", ref: "Luke 2", icon: "church", s: "When Jesus was 12, He stayed behind in the Temple. Mary and Joseph found Him learning about His Father, God.", w: "Where do you learn about God?" },
+    { id: "b-baptism", t: "Jesus is baptized", ref: "Matthew 3", icon: "dove", s: "John baptized Jesus in the Jordan River. The Holy Spirit came like a dove, and God the Father said, “This is my beloved Son.”", w: "Do you know the date of your Baptism?" },
+    { id: "b-cana", t: "Water into wine", ref: "John 2", icon: "chalice", s: "At a wedding, the wine ran out. Mary told the servants to do whatever Jesus said, and Jesus turned water into wine. His first miracle!", w: "Mary helps us bring our problems to Jesus." },
+    { id: "b-zacchaeus", t: "Zacchaeus climbs a tree", ref: "Luke 19", icon: "daisy", s: "Short Zacchaeus climbed a tree to see Jesus. Jesus came to his house, and Zacchaeus changed his whole life.", w: "What would you do if Jesus came to your house?" },
+    { id: "b-samaritan", t: "The Good Samaritan", ref: "Luke 10", icon: "hands", s: "A man was hurt on the road. Two people walked past, but a Samaritan stopped, helped him, and paid for his care.", w: "Who is your neighbor? (Everyone!)" },
+    { id: "b-prodigal", t: "The forgiving father", ref: "Luke 15", icon: "house", s: "A son ran off and wasted everything. When he came home, his father ran to hug him and threw a party.", w: "God runs to us like that in Reconciliation." },
+    { id: "b-5000", t: "Bread for 5,000 people", ref: "John 6", icon: "ic_bread", s: "A boy shared five loaves and two fish. Jesus blessed them and fed more than 5,000 people, with leftovers!", w: "What small thing can you share?" },
+    { id: "b-water", t: "Jesus walks on water", ref: "Matthew 14", icon: "shell", s: "Jesus walked on the lake. Peter walked toward Him too, until he got scared and began to sink. Jesus caught his hand.", w: "Jesus always catches us when we call Him." },
+    { id: "b-supper", t: "The Last Supper", ref: "Luke 22", icon: "chalice", s: "The night before He died, Jesus took bread and wine and said, “This is my Body… this is my Blood.” We remember this at every Mass.", w: "What will you say to Jesus at your First Communion?" },
+    { id: "b-cross", t: "Jesus dies for us", ref: "Luke 23", icon: "cross", s: "Jesus died on the cross to save us from our sins. Even then, He forgave the people who hurt Him.", w: "Jesus loves you that much." },
+    { id: "b-emmaus", t: "The road to Emmaus", ref: "Luke 24", icon: "sun", s: "Two friends walked with the risen Jesus but didn't know Him, until He broke the bread. Then they ran to tell everyone!", w: "Where do we meet Jesus in the breaking of the bread? (At Mass!)" } ] },
+  grow: { name: "The Big Story", line: "Twelve stops through the whole Bible, from creation to the Church.", list: [
+    { id: "b-fall", t: "Creation and the Fall", ref: "Genesis 1-3", icon: "sun", s: "God created everything good and made us in His image. Adam and Eve chose to disobey, and sin entered the world. But God promised to save us.", w: "Why do you think God made us free to choose?" },
+    { id: "b-abraham", t: "God's promise to Abraham", ref: "Genesis 12", icon: "star", s: "God called Abraham to a new land and promised him descendants as many as the stars. Through his family, God would bless the whole world.", w: "Abraham trusted without seeing the end. What do you trust God with?" },
+    { id: "b-joseph", t: "Joseph forgives his brothers", ref: "Genesis 45", icon: "heartmend", s: "Joseph's brothers sold him as a slave. Years later, as a ruler in Egypt, he forgave them and saved his whole family from famine.", w: "Joseph said God turned evil into good. Have you seen that happen?" },
+    { id: "b-passover", t: "The Passover", ref: "Exodus 12", icon: "door", s: "God freed His people from slavery in Egypt. The blood of a lamb on their doors kept them safe: a sign pointing to Jesus, the Lamb of God.", w: "Why do we call Jesus the Lamb of God at Mass?" },
+    { id: "b-commandments", t: "The Ten Commandments", ref: "Exodus 20", icon: "tablets", s: "On Mount Sinai, God gave His people the Ten Commandments: a covenant, and a path for loving God and each other.", w: "Which commandment is hardest for you?" },
+    { id: "b-samuel", t: "Samuel hears God", ref: "1 Samuel 3", icon: "stole", s: "Young Samuel heard someone calling at night. It was God! Samuel said, “Speak, Lord, your servant is listening.”", w: "How can you make quiet time to listen to God?" },
+    { id: "b-davidking", t: "God's promise to King David", ref: "2 Samuel 7", icon: "staff", s: "God promised David that a king from his family would reign forever. That King is Jesus, the Son of David.", w: "What kind of king is Jesus?" },
+    { id: "b-elijah", t: "Elijah and the quiet voice", ref: "1 Kings 19", icon: "cloud", s: "Elijah looked for God in wind, earthquake and fire, but God came in a quiet, gentle sound.", w: "Where do you hear God's quiet voice?" },
+    { id: "b-daniel", t: "Daniel and the lions", ref: "Daniel 6", icon: "lock", s: "Daniel kept praying to God even when it was against the law. Thrown to the lions, he was kept safe by God.", w: "Is it hard to pray where others can see?" },
+    { id: "b-isaiah", t: "Isaiah's promise", ref: "Isaiah 9", icon: "candle", s: "The prophet Isaiah promised a child would be born: Wonder-Counselor, God-Hero, Prince of Peace. We hear this at Christmas.", w: "Which of these names for Jesus do you like best?" },
+    { id: "b-beatitudes", t: "The Beatitudes", ref: "Matthew 5", icon: "sparkles", s: "On a mountain, Jesus taught the Beatitudes: God blesses the poor in spirit, the merciful, the peacemakers and the pure of heart.", w: "Which Beatitude could you live today?" },
+    { id: "b-pentecost", t: "Pentecost: the Church is born", ref: "Acts 2", icon: "fire", s: "The Holy Spirit came on the apostles like tongues of fire. Peter preached, and 3,000 people were baptized in one day.", w: "The same Spirit lives in you. What would you be brave about?" } ] },
+  confirm: { name: "Go deeper", line: "Twelve chapters every confirmed Catholic should know.", list: [
+    { id: "b-word", t: "In the beginning was the Word", ref: "John 1", icon: "sun", s: "John opens his Gospel with the Word who was with God and was God, and who became flesh and lived among us. The Incarnation in one chapter.", w: "What changes if God really became one of us?" },
+    { id: "b-ps139", t: "You knit me together", ref: "Psalm 139", icon: "heart", s: "A prayer of wonder: God knows every thought, was with you before you were born, and never leaves you.", w: "Which line would you want to remember on a hard day?" },
+    { id: "b-servant", t: "The Suffering Servant", ref: "Isaiah 53", icon: "cross", s: "Written centuries before Jesus, Isaiah describes a servant pierced for our sins, by whose wounds we are healed.", w: "Why do you think the early Christians loved this chapter?" },
+    { id: "b-rock", t: "You are Peter", ref: "Matthew 16", icon: "rock", s: "Jesus asks, “Who do you say that I am?” Peter answers, and Jesus makes him the rock on which He builds His Church, and gives him the keys.", w: "How would you answer Jesus' question?" },
+    { id: "b-bread", t: "The Bread of Life", ref: "John 6", icon: "chalice", s: "Jesus says His flesh is true food and His blood true drink. Many walk away; Peter says, “Lord, to whom shall we go?”", w: "What would make you stay when others walk away?" },
+    { id: "b-vine", t: "The vine and the branches", ref: "John 15", icon: "buttercup", s: "Jesus is the vine and we are the branches. Remain in Him and you will bear much fruit. He calls us friends.", w: "What helps you stay connected to Jesus during the week?" },
+    { id: "b-thomas", t: "Peace be with you", ref: "John 20", icon: "dove", s: "The risen Jesus breathes on the apostles: “Receive the Holy Spirit. Whose sins you forgive are forgiven.” Then Thomas says, “My Lord and my God!”", w: "Where in this chapter do you see the sacrament of Reconciliation?" },
+    { id: "b-laying", t: "The apostles lay on hands", ref: "Acts 8", icon: "oil", s: "Peter and John go to new believers in Samaria, lay hands on them, and they receive the Holy Spirit. This is the root of Confirmation.", w: "Who will lay hands on you, and who stands behind you?" },
+    { id: "b-nothing", t: "Nothing can separate us", ref: "Romans 8", icon: "lock", s: "Paul says that nothing, not death, not any power, not anything at all, can separate us from the love of God in Christ Jesus.", w: "What tries to convince you that God's love has limits?" },
+    { id: "b-love", t: "Love is patient", ref: "1 Corinthians 13", icon: "heart", s: "Without love, even great gifts are just noise. Paul describes what real love looks like: patient, kind, never giving up.", w: "Put your own name in place of “love.” Which line is hardest?" },
+    { id: "b-fruit", t: "The fruit of the Spirit", ref: "Galatians 5", icon: "daisy", s: "Paul lists the fruit the Holy Spirit grows in us: love, joy, peace, patience, kindness, generosity, faithfulness, gentleness, self-control.", w: "Which fruit do you most want the Spirit to grow in you?" },
+    { id: "b-armor", t: "The armor of God", ref: "Ephesians 6", icon: "staff", s: "Paul tells Christians to put on God's armor: truth, righteousness, the Gospel of peace, faith, salvation, and the word of God.", w: "Which piece of armor do you need most right now?" } ] },
+};
+const SHELVES = [
+  { t: "Old Testament", n: 46, groups: [["The Law (Pentateuch)", 5, "Genesis to Deuteronomy: creation, Abraham, Moses, the covenant."], ["History", 16, "Joshua to the Maccabees: God's people in the promised land."], ["Wisdom", 7, "Job, Psalms, Proverbs and more: prayers, songs and wise sayings."], ["Prophets", 18, "Isaiah, Jeremiah, Daniel and more: God's messengers."]] },
+  { t: "New Testament", n: 27, groups: [["Gospels", 4, "Matthew, Mark, Luke and John: the life of Jesus."], ["Acts", 1, "The Acts of the Apostles: how the Church began."], ["Letters", 21, "Letters from Paul, Peter, James, John and Jude to the first Christians."], ["Revelation", 1, "A vision of Jesus' victory and heaven."]] },
+];
+const SHELF_Q = [["Psalms", "Wisdom"], ["Mark", "Gospels"], ["Exodus", "The Law (Pentateuch)"], ["Romans", "Letters"], ["Isaiah", "Prophets"], ["Ruth", "History"], ["Acts", "Acts"], ["Luke", "Gospels"]];
+const LECTIO = [
+  { ref: "Psalm 23", t: "The Lord is my shepherd", s: "God leads us like a shepherd, to green pastures and still water, and stays with us even in dark valleys." },
+  { ref: "Luke 15:3-7", t: "The lost sheep", s: "The shepherd leaves the 99 to find the one, and carries it home rejoicing." },
+  { ref: "Mark 4:35-41", t: "Jesus calms the storm", s: "The apostles are terrified in a storm; Jesus speaks and the sea goes calm." },
+  { ref: "1 Samuel 3:1-10", t: "Speak, Lord", s: "Young Samuel hears his name called in the night and learns to answer God." },
+  { ref: "Matthew 5:1-12", t: "The Beatitudes", s: "Jesus tells who is truly blessed: the poor in spirit, the merciful, the peacemakers." },
+  { ref: "John 15:1-11", t: "Remain in me", s: "Jesus is the vine and we are the branches; apart from Him we can do nothing." },
+];
+function openBible(tab) {
+  cpOpen("bible", "The Bible"); sfx.whoosh();
+  CP.band = band() || "first"; CP.tab = tab || "read"; bibleTab();
+}
+function bibleTabs() { return `<div class="cp-tabs" role="tablist">${[["read", "Read"], ["find", "Find it"], ["pray", "Pray it"]].map(([k, n]) => `<button type="button" role="tab" aria-selected="${CP.tab === k}" data-tab="${k}">${n}</button>`).join("")}</div>`; }
+function bibleWireTabs(b) { b.querySelectorAll(".cp-tabs [data-tab]").forEach(t => { t.onclick = () => { sfx.tap(); CP.tab = t.dataset.tab; bibleTab(); $("#cpBody").querySelector(`.cp-tabs [data-tab="${CP.tab}"]`)?.focus(); }; }); }
+function bibleTab() {
+  if (CP.tab === "find") return bibleFind();
+  if (CP.tab === "pray") return lectioHome();
+  const B = BIBLE[CP.band], read = pget("bible.read", []), got = B.list.filter(x => read.includes(x.id)).length;
+  cpShow(`<div class="cp-hero"><img src="${pic("bible_hero")}" alt="A dad and two kids reading the Bible together"></div>
+    ${bibleTabs()}
+    <p class="cp-k">God's Word, for every age</p><h2 class="cp-h sm">${esc(B.name)}.</h2><p class="cp-p">${esc(B.line)} Read the story in your family Bible or tap to open it, then talk about the question together.</p>
+    <div class="cp-band" role="tablist" aria-label="Age group">${BAND_ORDER.map(k => `<button type="button" role="tab" aria-selected="${k === CP.band}" data-band="${k}">${BANDS[k].name}${k === band() ? " ★" : ""}</button>`).join("")}</div>
+    <div class="bb-prog"><i style="width:${Math.round(got / B.list.length * 100)}%"></i></div><p class="cp-hint">${got} of ${B.list.length} read${got === B.list.length ? ". The whole path! ✓" : ""}</p>
+    <div class="bb-list">${B.list.map((x, j) => `<div class="bb-story${read.includes(x.id) ? " read" : ""}"><button type="button" class="bb-head" aria-expanded="false" data-i="${j}"><img src="${A(x.icon)}" alt=""><span><b>${esc(x.t)}</b><small>${esc(x.ref)}</small></span><i aria-hidden="true">${read.includes(x.id) ? "✓" : "›"}</i></button>
+      <div class="bb-more" hidden><p>${esc(x.s)}</p><p class="bb-w"><b>Wonder together:</b> ${esc(x.w)}</p><div class="bb-act">${cpLink(x.ref, bibleURL(x.ref), "Read it")}<button type="button" class="cp-btn sm${read.includes(x.id) ? " ghost" : ""}" data-read="${x.id}">${read.includes(x.id) ? "Read ✓" : "We read it"}</button></div></div></div>`).join("")}</div>
+    <a class="cp-card bb-sun" href="https://bible.usccb.org/daily-bible-reading" target="_blank" rel="noopener"><b>This Sunday's readings &#8599;</b><small>Read the Gospel before Mass, and listen for it at church.</small></a>`, b => {
+      bibleWireTabs(b);
+      b.querySelectorAll("[data-band]").forEach(t => t.onclick = () => { sfx.tap(); CP.band = t.dataset.band; bibleTab(); $("#cpBody").querySelector(`[data-band="${CP.band}"]`)?.focus(); });
+      b.querySelectorAll(".bb-head").forEach(h => h.onclick = () => { sfx.tap(); const m = h.nextElementSibling, open = m.hidden; m.hidden = !open; h.setAttribute("aria-expanded", open); h.parentElement.classList.toggle("open", open); CP.say = open ? sayJoin([h.querySelector("b").textContent, ...[...m.querySelectorAll("p")].map(p => p.textContent)]) : CP.say; });
+      b.querySelectorAll("[data-read]").forEach(c => c.onclick = () => {
+        if (!S.pid) { askPlayer(); return; }
+        const L = pget("bible.read", []), id = c.dataset.read, on = !L.includes(id);
+        pset("bible.read", on ? [...L, id] : L.filter(x => x !== id));
+        if (on) { sfx.win(); burstAt(c, 40); const it = activityDone("bible"); if (it.length) CP.items = [...(CP.items || []), ...it]; } else sfx.tap();
+        const y = $("#cpScroll").scrollTop; bibleTab(); $("#cpScroll").scrollTop = y;
+        const h = $("#cpBody").querySelector(`[data-read="${id}"]`)?.closest(".bb-story")?.querySelector(".bb-head"); if (h) { h.click(); h.focus({ preventScroll: true }); }
+      });
+    }, `${B.name}. ${B.line}`);
+}
+function bibleFind() {
+  cpShow(`${bibleTabs()}<p class="cp-k">How the Bible works</p><h2 class="cp-h sm">A library of 73 books.</h2>
+    <p class="cp-p">The Bible isn't one book. It's a whole library, written over more than a thousand years by many writers, all inspired by the Holy Spirit. Catholic Bibles have 73 books on two big shelves.</p>
+    ${SHELVES.map(S2 => `<div class="bb-shelf"><h3>${S2.t} <small>${S2.n} books</small></h3>${S2.groups.map(([g, n, d]) => `<div class="bb-group" style="--w:${Math.max(10, n / 46 * 100)}%"><span class="bb-books" aria-hidden="true"></span><b>${esc(g)} <small>${n}</small></b><p>${esc(d)}</p></div>`).join("")}</div>`).join("")}
+    <h3 class="cp-h3">How to find a verse</h3>
+    <div class="cp-card bb-ref"><p class="bb-big"><span class="b1">Luke</span> <span class="b2">15</span>:<span class="b3">4</span></p><p><span class="b1">Book</span> · <span class="b2">chapter</span> · <span class="b3">verse</span></p><p>Find the book in the table of contents, then the big chapter number, then the tiny verse number. A dash means “through”: Luke 15:4-7 is verses 4 to 7.</p></div>
+    <button type="button" class="cp-btn" id="bfPlay">Play: Which shelf?</button>`, b => { bibleWireTabs(b); b.querySelector("#bfPlay").onclick = () => { sfx.tap(); shelfQ(shuffle(SHELF_Q).slice(0, 5), 0, 0); }; },
+    "The Bible is a library of 73 books, on two shelves: the Old Testament, with 46 books, and the New Testament, with 27.");
+}
+function shelfQ(qs, k, right) {
+  if (k >= qs.length) {
+    const it = activityDone("bible"); if (it.length) CP.items = [...(CP.items || []), ...it];
+    sfx.win();
+    cpShow(`<img class="cp-icon" src="${A("trophy")}" alt=""><h2 class="cp-h sm">${right === qs.length ? "Bible librarian!" : "Nice work!"}</h2><p class="cp-p">${right} of ${qs.length} right the first time.</p><div class="cp-nav"><button type="button" class="cp-btn ghost sm" id="sqAgain">Play again</button><button type="button" class="cp-btn" id="sqBack">Back to the guide</button></div>`,
+      b => { b.querySelector("#sqAgain").onclick = () => { sfx.tap(); shelfQ(shuffle(SHELF_Q).slice(0, 5), 0, 0); }; b.querySelector("#sqBack").onclick = () => { sfx.tap(); bibleTab(); }; });
+    return;
+  }
+  const [book, a] = qs[k], opts = shuffle([a, ...shuffle(SHELVES.flatMap(x => x.groups.map(g => g[0])).filter(g => g !== a)).slice(0, 3)]);
+  let first = true;
+  cpShow(`<p class="cp-k">Which shelf? · ${k + 1} of ${qs.length}</p><h2 class="cp-h sm">Where does <b class="bb-q">${esc(book)}</b> go?</h2><div class="cp-opts">${opts.map(o => `<button type="button" data-o="${esc(o)}">${esc(o)}</button>`).join("")}</div>`, b => {
+    b.querySelectorAll("[data-o]").forEach(c => c.onclick = () => {
+      if (c.dataset.o === a) { c.classList.add("right"); sfx.yes(); b.querySelectorAll("[data-o]").forEach(x => x.disabled = true); setTimeout(() => shelfQ(qs, k + 1, right + (first ? 1 : 0)), 800); }
+      else { first = false; c.classList.add("wrong"); c.disabled = true; sfx.no(); }
+    });
+  }, `Where does ${book} go?`);
+}
+function lectioHome() {
+  const teen = CP.band === "grow" || CP.band === "confirm";
+  cpShow(`${bibleTabs()}<p class="cp-k">${teen ? "Lectio Divina" : "Pray with the Bible"}</p><h2 class="cp-h sm">Read, think, talk, rest.</h2>
+    <p class="cp-p">${teen ? "Lectio Divina (“holy reading”) is the Church's oldest way of praying with Scripture: read slowly, notice what stands out, talk to God about it, then rest in Him." : "We can pray with a Bible story: read it slowly, think about it, talk to God, and then just rest with Him."} Pick a passage and open your Bible to it.</p>
+    <div class="bb-list">${LECTIO.map((x, j) => `<button type="button" class="bb-head lx" data-l="${j}"><img src="${A("bible")}" alt=""><span><b>${esc(x.t)}</b><small>${esc(x.ref)}</small></span><i aria-hidden="true">›</i></button>`).join("")}</div>`,
+    b => { bibleWireTabs(b); b.querySelectorAll("[data-l]").forEach(x => x.onclick = () => { sfx.tap(); lectioStep(+x.dataset.l, 0); }); }, "Read, think, talk, rest. Pick a passage and open your Bible to it.");
+}
+function lectioStep(j, k) {
+  const x = LECTIO[j], teen = CP.band === "grow" || CP.band === "confirm";
+  const ST = [
+    ["Read", teen ? "Lectio" : "", `Open your Bible to ${x.ref}, or tap below. Read it slowly, out loud if you can. ${teen ? "Then read it a second time." : "A grown-up can read it to you."}`, `In short: ${x.s}`],
+    ["Think", teen ? "Meditatio" : "", teen ? "Which word or line stood out to you? Read it again. Why might God be showing you that today?" : "Which part did you like best? Close your eyes and imagine you are there. What do you see and hear?", ""],
+    ["Talk", teen ? "Oratio" : "", teen ? "Talk to God about it, honestly: thank Him, ask Him, tell Him what's hard." : "Tell God what you think about the story. You can thank Him, ask Him for help, or say you're sorry.", ""],
+    ["Rest", teen ? "Contemplatio" : "", "Now just be with God for a minute, quietly. You don't need words. He is happy you're here.", ""],
+  ];
+  if (teen) ST.push(["Live it", "Actio", "Choose one small thing to do this week because of what you read.", ""]);
+  const s = ST[k];
+  if (!s) {
+    const it = activityDone("bible"); if (it.length) CP.items = [...(CP.items || []), ...it];
+    sfx.bless();
+    cpShow(`<img class="cp-icon" src="${A("dove")}" alt=""><h2 class="cp-h sm">Amen.</h2><p class="cp-p">You prayed with God's Word. The Holy Spirit can bring that line back to you all week.</p><div class="cp-nav"><button type="button" class="cp-btn" id="lxDone">Back to the guide</button></div>`, b => { b.querySelector("#lxDone").onclick = () => { sfx.tap(); CP.tab = "pray"; bibleTab(); }; }, "Amen. You prayed with God's Word.");
+    return;
+  }
+  cpShow(`<p class="cp-k">${esc(x.t)} · ${esc(x.ref)}</p><div class="lx-steps" aria-hidden="true">${ST.map((_, n) => `<i class="${n < k ? "did" : n === k ? "now" : ""}"></i>`).join("")}</div>
+    <h2 class="cp-h">${esc(s[0])}${s[1] ? ` <small>${esc(s[1])}</small>` : ""}</h2><p class="cp-p">${esc(s[2])}</p>${s[3] ? `<div class="cp-card"><p>${esc(s[3])}</p></div>` : ""}
+    ${k === 0 ? cpLink(x.ref, bibleURL(x.ref)) : ""}
+    ${k === 3 ? `<div class="lx-rest" id="lxRest" aria-hidden="true"><i></i></div>` : ""}
+    <div class="cp-nav"><button type="button" class="cp-btn ghost sm" id="lxBack">Back</button><button type="button" class="cp-btn" id="lxNext">${k === ST.length - 1 ? "Amen" : "Next"}</button></div>`, b => {
+      b.querySelector("#lxNext").onclick = () => { sfx.tap(); lectioStep(j, k + 1); };
+      b.querySelector("#lxBack").onclick = () => { sfx.tap(); k ? lectioStep(j, k - 1) : lectioHome(); };
+    }, sayJoin([s[0], s[2], s[3]]));
+}
+
 const STUDIO = {
   ourfather: { set: "ourfather", pic: "pray_ourfather", intro: "Jesus Himself taught us this prayer, when His friends asked: “Lord, teach us to pray.” We pray it at every Mass.", ref: "Matthew 6:9–13" },
   hailmary: { set: "hailmary", pic: "pray_hailmary", intro: "The first words are the angel Gabriel's, when he told Mary she would be Jesus' mother. Then come her cousin Elizabeth's words, and then we ask Mary to pray for us.", ref: "Luke 1:28, 42" },
@@ -4249,6 +4905,9 @@ function reviewScenes() {
 }
 function openPractice(k, start = 0) {
   if (k === "bedtime") { openNight(); return; }
+  if (k === "rosary") { openRosary(); return; }
+  if (k === "bible") { openBible(); return; }
+  if (k === "massGo") { openMassGo(); return; }
   if (STUDIO[k]) { openStudio(k); return; }
   if (["massPose", "massSay", "review", "steps"].includes(k)) { openGame(k); return; }
   if (k === "mass") { goView("mass"); return; }
@@ -4267,7 +4926,7 @@ function openPractice(k, start = 0) {
 R.done = (el, s) => {
   hush();
   // little ones meet the gentlest stories first (no martyrdom or illness until they're older)
-  const order = Q && Q.course === "lambs" ? [1, 8, 9, 11, 12, 3, 4, 5, 10, 7, 0, 2, 6] : SAINTS.map((x, j) => j);
+  const order = Q && Q.course === "lambs" ? [1, 8, 9, 11, 12, 3, 4, 5, 10, 7, 0, 2, 6, ...SAINTS.map((x, j) => j).slice(13)] : SAINTS.map((x, j) => j);
   const newCard = () => { mergeSaved("cards"); const i = order.find(j => !S.cards.includes(j)); if (i == null) { const k = S.cards[Math.floor(Math.random() * S.cards.length)]; if (SAINTS[k]) pendingAwards.push({ kicker: "A saint friend is cheering", title: SAINTS[k].name, text: `Your album is full! Ask ${SAINTS[k].name} to pray for you today.`, src: `assets/img/${SAINTS[k].pic}.jpg` }); return; } S.cards.push(i); if (!pset("cards", S.cards)) { S.cards.pop(); return; } pendingAwards.push({ kicker: "New saint card", title: SAINTS[i].name, text: "A new friend in heaven for your Saint Album!", src: `assets/img/${SAINTS[i].pic}.jpg` }); renderAlbum(); };
   if (Q && Q.course === "fc" && S.pid) { const d = pget("fc.done", []); if (!d.includes(Q.fid)) { pset("fc.done", [...d, Q.fid]); newCard(); } }
   if (Q && Q.course === "grow" && S.pid) { const d = pget("grow.done", []); if (!d.includes(Q.gid)) { pset("grow.done", [...d, Q.gid]); newCard(); } }
@@ -4469,8 +5128,8 @@ $("#cvAll").onclick = () => { closeCard(); goView("cards"); };
 $("#cardView").addEventListener("click", e => { if (e.target.id === "cardView") closeCard(); });
 $("#cvFlip").onclick = () => flipCard($("#cardView .tcard"));
 function showStory() {
-  const sh = $("#cvSheet"), st = QUESTS[viewI].saint.story;
-  $("#cvSheetName").textContent = SAINTS[viewI].name; $("#cvSheetText").textContent = st;
+  const sh = $("#cvSheet"), st = SAINTS[viewI].story || (QUESTS[viewI] && QUESTS[viewI].saint && QUESTS[viewI].saint.story) || SAINTS[viewI].fact;
+  $("#cvSheetName").textContent = SAINTS[viewI].name; $("#cvSheet .cv-sheet-k").textContent = viewI < QUESTS.length ? "Forgiveness story" : "Their story"; $("#cvSheetText").textContent = st;
   sh.hidden = false; sfx.tap(); 
   if (G) G.fromTo(".cv-sheet-in", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: .45, ease: "power3.out" });
 }
@@ -4605,7 +5264,7 @@ function churchDay(when) {
     [MF.imm, "Today is the Immaculate Conception: Mary was made free from original sin.", "lily", 3],
     [D(12, 24), "Tomorrow is Christmas!", "star"],
     [xmas, "Merry Christmas! Jesus, God the Son, is born.", "star", 1],
-    [D(10, 31), "Tomorrow is All Saints' Day. Meet 13 saints!", "sparkles", "album"],
+    [D(10, 31), `Tomorrow is All Saints' Day. Meet ${SAINTS.length} saints!`, "sparkles", "album"],
     [add(ash, -1), "Tomorrow is Ash Wednesday. Lent is almost here.", "heartmend", 5],
     [add(pentecost, -1), "Tomorrow is Pentecost!", "dove", 1],
   ];
@@ -4625,8 +5284,8 @@ function churchDay(when) {
   const M = ["January","February","March","April","May","June","July","August","September","October","November","December"];
   const until = s => { const [mo, da] = s.feast.split(" "); let d = new Date(y, M.indexOf(mo), +da, 12); if (d < t) d = new Date(y + 1, M.indexOf(mo), +da, 12); return Math.round((d - t) / 864e5); };
   const near = SAINTS.map((s, i) => ({ s, i, d: until(s) })).sort((a, b) => a.d - b.d)[0];
-  if (near.d === 0) return { msg: `Today is the feast day of ${near.s.name}!`, icon: "sparkles", lesson: near.i + 1 };
-  if (near.d <= 2) return { msg: `${near.s.name}'s feast day is in ${near.d} day${near.d > 1 ? "s" : ""}.`, icon: "sparkles", lesson: near.i + 1 };
+  if (near.d === 0) return { msg: `Today is the feast day of ${near.s.name}!`, icon: "sparkles", lesson: near.i < QUESTS.length ? near.i + 1 : "album" };
+  if (near.d <= 2) return { msg: `${near.s.name}'s feast day is in ${near.d} day${near.d > 1 ? "s" : ""}.`, icon: "sparkles", lesson: near.i < QUESTS.length ? near.i + 1 : "album" };
   // seasons
   if (within(add(E, 1), add(E, 6))) return { msg: "It's Easter week! On Easter night, Jesus gave His apostles the power to forgive sins.", icon: "sun", lesson: 11 };
   if (within(add(palm, 1), add(E, -4))) return { msg: "It's Holy Week, the most important week of the year.", icon: "cross", lesson: 1 };
@@ -4634,8 +5293,8 @@ function churchDay(when) {
   if (within(advent, D(12, 23))) return { msg: "It's Advent: getting our hearts ready for Jesus. A great time for Reconciliation!", icon: "candle", lesson: 5 };
   if (within(D(12, 26), D(12, 31)) || within(D(1, 2), baptism)) return { msg: "It's the Christmas season! Jesus is born.", icon: "star", lesson: 1 };
   if (within(add(E, 8), add(pentecost, -2))) return { msg: "It's the Easter season. Jesus is risen!", icon: "sun", lesson: 11 };
-  if (near.d <= 7) return { msg: `${near.s.name}'s feast day is in ${near.d} days.`, icon: "sparkles", lesson: near.i + 1 };
-  return { msg: "13 saint cards to collect", icon: "album", lesson: "album" };
+  if (near.d <= 7) return { msg: `${near.s.name}'s feast day is in ${near.d} days.`, icon: "sparkles", lesson: near.i < QUESTS.length ? near.i + 1 : "album" };
+  return { msg: `${SAINTS.length} saint cards to collect`, icon: "album", lesson: "album" };
 }
 window.__churchDay = churchDay;
 // the liturgical season, color and week for any date (U.S. calendar), worked out from Easter
