@@ -1,4 +1,4 @@
-const V = "found-20261101165944";
+const V = "found-20261102211628";
 self.addEventListener("install", e => { self.skipWaiting(); e.waitUntil(caches.open(V).then(c => c.addAll(["./", "assets/vendor/gsap.min.js", "manifest.webmanifest"]))); });
 self.addEventListener("activate", e => e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== V).map(k => caches.delete(k)))).then(() => self.clients.claim())));
 self.addEventListener("fetch", e => {

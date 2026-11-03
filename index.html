@@ -1652,6 +1652,40 @@ body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0p
 .pr-read{min-width:220px;padding:12px 22px;border-radius:999px;background:color-mix(in srgb,#0066CC 12%,var(--card));color:var(--ink);font-weight:700;font-size:15px}
 .night-read{position:absolute;z-index:3;top:calc(14px + env(safe-area-inset-top,0px));right:72px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.14);font-size:20px;line-height:44px;text-align:center}
 .fp-read{margin-left:6px;width:34px;height:34px;border-radius:50%;background:var(--card);font-size:16px;line-height:34px;vertical-align:middle;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+
+/* ---------- Little Lambs ---------- */
+#lambsSec,#lambTile{display:none!important}
+body[data-band="lambs"] #lambsSec.on{display:block!important}
+body[data-band="lambs"] #lambTile{display:flex!important}
+body[data-band="lambs"] #map{display:none!important}
+.fp-lc{font-weight:800;color:var(--ink-soft)}
+.fp-lambs{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.fp-lamb{display:grid;grid-template-rows:auto 1fr;border-radius:24px;overflow:hidden;background:var(--card);box-shadow:0 8px 22px rgba(0,0,0,.08);text-align:left;color:var(--ink)}
+.fp-lph{display:block;aspect-ratio:4/3;overflow:hidden;background:#eee}
+.fp-lph img{width:100%;height:100%;object-fit:cover}
+.fp-lt{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:4px 10px;padding:12px 14px 14px}
+.fp-lt small{grid-row:1/3;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,#FFD66B 45%,var(--card));font-weight:800;font-size:15px}
+.fp-lt b{font-family:var(--round);font-size:18px;line-height:1.2}
+.fp-lt i{font-style:normal;font-weight:800;font-size:14px;color:var(--accent)}
+.fp-lamb.done .fp-lt i{color:#1E7A3C}
+.fp-lamb.next{box-shadow:0 0 0 3px #FFC83D,0 10px 26px rgba(240,170,40,.3)}
+@media (hover:hover){.fp-lamb{transition:transform .25s}.fp-lamb:hover{transform:translateY(-3px)}}
+.fp-taps{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;max-width:520px}
+.fp-tap{width:clamp(72px,20vw,96px);aspect-ratio:1;border-radius:50%;background:var(--card);box-shadow:0 6px 16px rgba(0,0,0,.1);display:grid;place-items:center;transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.fp-tap img{width:66%;height:auto;opacity:.38;filter:grayscale(.85);transition:opacity .3s,filter .3s}
+.fp-tap.on{transform:scale(1.08);background:color-mix(in srgb,#FFD66B 40%,var(--card))}
+.fp-tap.on img{opacity:1;filter:none}
+.fp-signx{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,auto);gap:10px;width:min(100%,420px)}
+.fp-sx{display:grid;gap:2px;justify-items:center;padding:12px 8px;border-radius:20px;background:var(--card);box-shadow:0 5px 14px rgba(0,0,0,.08);color:var(--ink);text-align:center}
+.fp-sx b{font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft)}
+.fp-sx span{font-family:var(--round);font-weight:800;font-size:16px;line-height:1.2}
+.fp-sx.next{box-shadow:0 0 0 3px #FFC83D,0 8px 18px rgba(240,170,40,.3);animation:bob 1.6s ease-in-out infinite}
+.fp-sx.on{background:color-mix(in srgb,#30D158 22%,var(--card))}
+.fp-sx.wig{animation:wiggle .45s}
+.fp-sxc{grid-area:2 / 2;display:grid;place-items:center}
+.fp-sxc img{width:70%;max-width:90px}
+.opt.pic{display:flex;align-items:center;gap:12px}
+.opt-ic{width:44px;height:44px;object-fit:contain;flex:none}
 /* apple scroll reveal: fade + rise, staggered */
 .rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(0,0,.5,1),transform 1s cubic-bezier(0,0,.5,1);transition-delay:calc(var(--d,0) * 90ms)}
 .rv.in{opacity:1;transform:none}
@@ -1744,6 +1778,14 @@ body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0p
     </div>
   </div>
   <div class="tile fp-today rv" id="fpToday" aria-live="polite"></div>
+  <div class="tile tile-light rv fp-lambtile" id="lambTile">
+    <p class="t-eyebrow dark">Ages 3 to 5</p>
+    <h2>Little Lambs.</h2>
+    <p class="t-sub">Wonder moments with the Good Shepherd.</p>
+    <p class="t-call">Ten short moments with big pictures, words read aloud, and something to do together.</p>
+    <div class="ctas"><a class="btn btn-go" href="#/quests">Open Little Lambs</a></div>
+    <div class="t-media wide"><img src="assets/img/shepherd_carry.jpg" alt="The Good Shepherd carrying a lamb home" draggable="false"></div>
+  </div>
   <div class="tile tile-dark rv" id="frTile">
     <p class="t-eyebrow">Getting ready for a sacrament</p>
     <h2>First Reconciliation.</h2>
@@ -1792,6 +1834,17 @@ body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0p
   </div>
 </section>
 
+<section class="sec fp-lambsec" id="lambsSec" data-view="quests">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="t-eyebrow dark">Ages 3 to 5</p>
+      <h2>Little Lambs.</h2>
+      <p>Wonder moments with Jesus, the Good Shepherd. Each one takes about five minutes, with a grown-up close by: big pictures, words read aloud, a little game, a tiny prayer, and something to do together.</p>
+      <p class="fp-lc" id="lambsCount"></p>
+    </div>
+    <div class="fp-lambs" id="lambsGrid"></div>
+  </div>
+</section>
 <section class="sec" id="map" data-view="quests">
   <div class="wrap">
     <div class="sec-head">
@@ -2544,7 +2597,7 @@ const SAVE_VERSION = 3;
   } catch (e) {}
 })();
 // every saved value must have the shape the app expects; anything else reads as the default
-const SHAPE = { grade: "obj", known: "arr", done: "arr", cards: "arr", badges: "arr", days: "arr", learned: "arr", missed: "arr", stars: "obj", practiced: "obj", nightSeen: "obj", pos: "obj", mtoday: "obj", unlocked: "bool", bigDay: "str", missionDone: "str", lastLesson: "str", seen: "num", fixed: "num" };
+const SHAPE = { "lambs.done": "arr", grade: "obj", known: "arr", done: "arr", cards: "arr", badges: "arr", days: "arr", learned: "arr", missed: "arr", stars: "obj", practiced: "obj", nightSeen: "obj", pos: "obj", mtoday: "obj", unlocked: "bool", bigDay: "str", missionDone: "str", lastLesson: "str", seen: "num", fixed: "num" };
 const fits = (k, v) => { const t = SHAPE[k]; if (!t || v == null) return true; if (t === "arr") return Array.isArray(v); if (t === "obj") return typeof v === "object" && !Array.isArray(v); return typeof v === { bool: "boolean", str: "string", num: "number" }[t]; };
 const okId = id => typeof id === "string" && /^[\w-]{1,40}$/.test(id);
 const S = { pid: null, name: "", done: [], cards: [], unlocked: false, sound: store.get("sound", true), bigDay: "" };
@@ -2728,7 +2781,7 @@ const MISSIONS = {
   bedtime: { t: () => "Bedtime Heart Check", d: "Three quiet minutes with Jesus before sleep.", src: () => A("moon2") },
 };
 const prayTitle = P => P.mt || `Pray the ${P.name.replace(/^The /, "")}`;
-const missionInfo = k => MISSIONS[k] || (/^pr\./.test(k) && PRAY[k.slice(3)] ? { t: () => prayTitle(PRAY[k.slice(3)]), d: PRAY[k.slice(3)].when, src: () => A(PRAY[k.slice(3)].icon) } : null);
+const missionInfo = k => MISSIONS[k] || (/^lamb\./.test(k) && typeof LAMBS !== "undefined" && LAMBS.find(x => x.id === k.slice(5)) ? (L => ({ t: () => L.title, d: "A wonder moment. About 5 minutes with a grown-up.", src: () => `assets/img/${L.photo}.jpg` }))(LAMBS.find(x => x.id === k.slice(5))) : null) || (/^pr\./.test(k) && PRAY[k.slice(3)] ? { t: () => prayTitle(PRAY[k.slice(3)]), d: PRAY[k.slice(3)].when, src: () => A(PRAY[k.slice(3)].icon) } : null);
 const BAND_POOL = {
   lambs: ["pr.signcross", "pr.angel", "pr.grace", "bedtime", "bedtime"],
   grow: ["pr.rosary", "pr.faith", "pr.hope", "pr.love", "pr.holyqueen", "bedtime", "massSay", "massPose"],
@@ -2743,7 +2796,8 @@ function todayMission() {
   if (left && (dow === 0 || dow === 6) && S.done.length) k = dow === 6 ? "massPose" : "massSay";
   else if (left && since >= 6) k = "lesson";
   else {
-    const pool = BAND_POOL[b] ? [...BAND_POOL[b], ...(S.done.length && b === "grow" ? ["review"] : [])] : ["ourfather", "hailmary", "glorybe", "prayer", "bedtime", "massPose", "massSay", "pr.morning", "pr.apostles", ...(S.done.length ? ["review", "review"] : []), ...(S.done.length >= 7 ? ["steps"] : [])];
+    const nl = b === "lambs" ? nextLamb() : null;
+    const pool = BAND_POOL[b] ? [...BAND_POOL[b], ...(nl ? ["lamb." + nl, "lamb." + nl, "lamb." + nl] : []), ...(S.done.length && b === "grow" ? ["review"] : [])] : ["ourfather", "hailmary", "glorybe", "prayer", "bedtime", "massPose", "massSay", "pr.morning", "pr.apostles", ...(S.done.length ? ["review", "review"] : []), ...(S.done.length >= 7 ? ["steps"] : [])];
     const seed = [...(t + S.pid)].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7);
     k = pool[seed % pool.length];
   }
@@ -2754,7 +2808,7 @@ function missionHTML() {
   const k = todayMission(), M = missionInfo(k), done = pget("missionDone", "") === today();
   return `<button type="button" class="mission${done ? " done" : ""}" id="${"m" + Math.random().toString(36).slice(2, 7)}" data-mission="${k}"><span class="mimg"><img src="${M.src()}" alt=""></span><span class="mtxt"><small>${done ? "Today's mission: done!" : "Today's mission"}</small><b>${esc(M.t())}</b><span>${done ? "Your candle is lit. A new mission comes tomorrow. Tap to play again." : esc(typeof M.d === "function" ? M.d() : M.d)}</span></span><i class="go">${done ? "Again" : "Start"} &rsaquo;</i></button>`;
 }
-function startMission(k) { sfx.tap(); if (/^pr\./.test(k)) { openPrayer(k.slice(3)); return; } if (k === "lesson") openQuest(Math.min(current(), QUESTS.length - 1)); else openPractice(k); }
+function startMission(k) { sfx.tap(); if (/^pr\./.test(k)) { openPrayer(k.slice(3)); return; } if (/^lamb\./.test(k)) { openLamb(k.slice(5)); return; } if (k === "lesson") openQuest(Math.min(current(), QUESTS.length - 1)); else openPractice(k); }
 function weekHTML() {
   const D = pget("days", []), t = today(), n = litThisWeek();
   return `<div class="week" role="img" aria-label="${n} of 7 candles lit this week">${weekDays().map((d, k) => `<span class="wkd${D.includes(d) ? " lit" : ""}${d === t ? " today" : ""}"><img src="${A("candle")}" alt=""><small>${"SMTWTFS"[k]}</small></span>`).join("")}</div><p class="week-t">${n ? `<b>${n} of 7</b> candles lit this week` : "Do one lesson or prayer to light today's candle"}</p>`;
@@ -2955,7 +3009,7 @@ function syncInert() {
   if (top && !top.contains(document.activeElement)) { top.tabIndex = -1; setTimeout(() => top.focus({ preventScroll: true }), 60); }
 }
 OVL.forEach(id => { const o = document.getElementById(id); if (o) new MutationObserver(syncInert).observe(o, { attributes: true, attributeFilter: ["hidden"] }); });
-function closeQuest() { sfx.close(); $("#quest").hidden = true; document.body.style.overflow = ""; }
+function closeQuest() { hush(); renderLambs(); sfx.close(); $("#quest").hidden = true; document.body.style.overflow = ""; }
 function fitScene(el) {
   if (!el || !el.isConnected) return;
   el.style.marginTop = "0px";
@@ -2984,6 +3038,7 @@ function show(back) {
   stage.innerHTML = ""; stage.appendChild(el); stage.scrollTop = 0;
   setReady(true);
   (R[sc.t] || R.story)(el, sc);
+  if (Q && Q.read && sc.t !== "done") { hush(); const t = [...el.querySelectorAll(".say, .opt")].map(e => e.textContent).join(". "); if (t) setTimeout(() => speak(t), 350); }
   fitScene(el);
   if (G) G.from(el.children, { y: 14, scale: .97, duration: .55, ease: "back.out(1.6)", stagger: .06, clearProps: "transform,scale" });
   updMore(); setTimeout(updMore, 700);
@@ -3026,14 +3081,56 @@ function comboPop(n) {
 }
 const iconArt = n => `<div class="sc">${ground}${n === "tablets" ? tabIcon("float", "position:absolute;left:50%;top:42%;width:54%;translate:-50% -50%") : img(n, "float", "left:50%;top:42%;width:54%;translate:-50% -50%")}</div>`;
 R.story = (el, s) => {
-  el.innerHTML = `${s.tag ? `<span class="tag">${s.tag}</span>` : ""}<div class="art${/shepherd|carry/.test(s.art) ? " tall" : ""}">${s.icon ? iconArt(s.icon) : (ART[s.art] || ART.lamb)()}</div><p class="say ${s.sm ? "sm" : ""}">${esc(s.text)}</p>${s.ref ? `<p class="ref">${esc(s.ref)}</p>` : ""}`;
+  el.innerHTML = `${s.tag ? `<span class="tag">${s.tag}</span>` : ""}<div class="art${/shepherd|carry/.test(s.art) ? " tall" : ""}">${s.photo ? `<div class="sc"><img class="ph kb" src="assets/img/${s.photo}.jpg" alt="" draggable="false"></div>` : s.icon ? iconArt(s.icon) : (ART[s.art] || ART.lamb)()}</div><p class="say ${s.sm ? "sm" : ""}">${esc(s.text)}</p>${s.ref ? `<p class="ref">${esc(s.ref)}</p>` : ""}`;
 };
 // fair random order (Fisher-Yates), so the right answer lands in any spot
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const LAMBS = [{"id": "made", "title": "God Made Everything", "photo": "lamb_free", "icon": "sun", "bg": "#DCF3E4", "scenes": [{"t": "story", "text": "In the very beginning, God made everything: the sun, the moon, and all the stars.", "photo": "night_sky", "ref": "Genesis 1"}, {"t": "story", "text": "God made the flowers, the birds, the fish, and every animal. And God saw that it was good!", "photo": "lamb_free"}, {"t": "taps", "q": "Tap the flowers to make them grow!", "icon": "daisy", "n": 5, "done": "God made them all!", "hint": "Tap them all!"}, {"t": "story", "text": "Then God made the best thing of all: people. God made you, and He loves you so much!", "photo": "boy"}, {"t": "quiz", "q": "Who made the beautiful world?", "opts": [["God", 1, "sun"], ["Nobody", 0, "cloud"]], "yes": "Yes! God made everything."}, {"t": "story", "text": "Thank you, God, for making the world, and for making me! Amen.", "icon": "pray", "tag": "Let's pray"}, {"t": "story", "text": "Go outside and find three things God made. Say “Thank you, God!” for each one.", "icon": "house", "tag": "Do it together"}, {"t": "done", "practice": 1, "msg": "You're one of God's little lambs!"}]}, {"id": "shepherd", "title": "The Good Shepherd", "photo": "shepherd", "icon": "staff", "bg": "#DCEFFF", "scenes": [{"t": "story", "text": "Jesus says: “I am the Good Shepherd.”", "photo": "shepherd", "ref": "John 10:11"}, {"t": "story", "text": "A shepherd takes care of his sheep. He gives them food and water, and keeps them safe.", "photo": "hero"}, {"t": "story", "text": "The Good Shepherd calls each sheep by name, and the sheep know His voice. Jesus knows your name too!", "photo": "shepherd", "ref": "John 10:3–4"}, {"t": "taps", "q": "Tap each sheep. The Shepherd calls them by name!", "icon": "pip", "n": 4, "done": "The sheep know His voice!", "hint": "Tap them all!"}, {"t": "quiz", "q": "Who is the Good Shepherd?", "opts": [["Jesus", 1, "staff"], ["The moon", 0, "moon2"]], "yes": "Yes! Jesus is our Good Shepherd."}, {"t": "story", "text": "Jesus, my Good Shepherd, thank you for taking care of me. Amen.", "icon": "pray", "tag": "Let's pray"}, {"t": "story", "text": "At bedtime, say your child's name and whisper: “Jesus knows your name, and He loves you.”", "icon": "house", "tag": "Do it together"}, {"t": "done", "practice": 1, "msg": "You're one of God's little lambs!"}]}, {"id": "found", "title": "The Lost Sheep Is Found", "photo": "shepherd_carry", "icon": "heart", "bg": "#FFF1C9", "scenes": [{"t": "story", "text": "The Good Shepherd had one hundred sheep. One day, one little sheep wandered away and got lost.", "photo": "lostlamb", "ref": "Luke 15:4–7"}, {"t": "story", "text": "The shepherd went looking, and looking, and looking for his lost sheep.", "photo": "lostlamb"}, {"t": "taps", "q": "Help the shepherd look! Tap the bushes.", "icon": "daisy", "n": 3, "done": "You found it!", "hint": "Tap them all!"}, {"t": "story", "text": "When he found it, he was so happy! He carried it home on his shoulders.", "photo": "shepherd_carry"}, {"t": "story", "text": "That's how much Jesus loves you. If you ever feel lost, Jesus comes to find you.", "photo": "shepherd_carry"}, {"t": "story", "text": "Jesus, thank you for always finding me. Amen.", "icon": "pray", "tag": "Let's pray"}, {"t": "story", "text": "Play hide-and-seek. When you find your child, hug them and say: “Jesus is so happy when He finds us, too!”", "icon": "house", "tag": "Do it together"}, {"t": "done", "practice": 1, "msg": "You're one of God's little lambs!"}]}, {"id": "baptism", "title": "You Are God's Child", "photo": "font", "icon": "shell", "bg": "#E6E1FF", "scenes": [{"t": "story", "text": "When you were baptized, the priest or deacon poured water on your head.", "photo": "font"}, {"t": "story", "text": "He said your name and: “I baptize you in the name of the Father, and of the Son, and of the Holy Spirit.”", "photo": "font"}, {"t": "taps", "q": "Tap to pour the water three times!", "icon": "shell", "n": 3, "done": "Father, Son, and Holy Spirit!", "hint": "Tap them all!"}, {"t": "story", "text": "The water means God made you His very own child. You joined God's big family, the Church!", "photo": "font"}, {"t": "story", "text": "You got a white garment and a candle that shines, because Jesus is the Light of the world.", "photo": "candle"}, {"t": "story", "text": "Thank you, God, for making me your child. Amen.", "icon": "pray", "tag": "Let's pray"}, {"t": "story", "text": "Show your child their baptism photos, candle or gown. Tell them the date, and celebrate it every year!", "icon": "house", "tag": "Do it together"}, {"t": "done", "practice": 1, "msg": "You're one of God's little lambs!"}]}, {"id": "cross", "title": "The Sign of the Cross", "photo": "crosshill", "icon": "cross", "bg": "#FFE3EA", "scenes": [{"t": "story", "text": "We start our prayers with the Sign of the Cross. It's how we say hello to God!", "photo": "crosshill"}, {"t": "signx"}, {"t": "story", "text": "The cross reminds us that Jesus loves us so much. He died on the cross for us, and then He rose again!", "photo": "crosshill"}, {"t": "story", "text": "In the name of the Father, and of the Son, and of the Holy Spirit. Amen.", "icon": "pray", "tag": "Let's pray"}, {"t": "story", "text": "Make the Sign of the Cross together before meals and at bedtime. Gently guide your child's hand at first.", "icon": "house", "tag": "Do it together"}, {"t": "done", "practice": 1, "msg": "You're one of God's little lambs!"}]}, {"id": "angel", "title": "My Guardian Angel", "photo": "lamb_angel", "icon": "dove", "bg": "#E3E8FF", "scenes": [{"t": "story", "text": "God gives every person a guardian angel to watch over them.", "photo": "lamb_angel", "ref": "Matthew 18:10"}, {"t": "story", "text": "Your angel is with you all the time: at home, at school, at the park, and while you sleep.", "photo": "lamb_angel"}, {"t": "story", "text": "You can't see your angel, but you can talk to your angel any time!", "photo": "lamb_angel"}, {"t": "taps", "q": "Tap the stars to say goodnight to your angel.", "icon": "star", "n": 3, "done": "Goodnight, angel!", "hint": "Tap them all!"}, {"t": "story", "text": "Angel of God, my guardian dear, to whom God's love commits me here, ever this day be at my side, to light and guard, to rule and guide. Amen.", "icon": "pray", "tag": "Let's pray"}, {"t": "story", "text": "Pray the Angel of God prayer together every night at bedtime.", "icon": "house", "tag": "Do it together"}, {"t": "done", "practice": 1, "msg": "You're one of God's little lambs!"}]}, {"id": "mary", "title": "Mary, Our Mother", "photo": "pray_hailmary", "icon": "lily", "bg": "#DCEBFF", "scenes": [{"t": "story", "text": "God chose a young woman named Mary to be the mother of Jesus.", "photo": "pray_hailmary"}, {"t": "story", "text": "The angel Gabriel came and said: “Hail, Mary, full of grace!” And Mary said yes to God.", "photo": "pray_hailmary", "ref": "Luke 1:26–38"}, {"t": "story", "text": "Jesus gave His mother to us, too. Mary is our mother in heaven, and she loves us.", "photo": "pray_hailmary", "ref": "John 19:26–27"}, {"t": "taps", "q": "Give Mary some flowers!", "icon": "lily", "n": 3, "done": "Mary loves flowers, and she loves you!", "hint": "Tap them all!"}, {"t": "story", "text": "Hail Mary, full of grace, the Lord is with thee. Amen.", "icon": "pray", "tag": "Let's pray"}, {"t": "story", "text": "Pick a flower for Mary, or set one beside a picture of her at home.", "icon": "house", "tag": "Do it together"}, {"t": "done", "practice": 1, "msg": "You're one of God's little lambs!"}]}, {"id": "born", "title": "Jesus Is Born", "photo": "lamb_nativity", "icon": "star", "bg": "#FFE9C9", "scenes": [{"t": "story", "text": "Mary and Joseph went to a little town called Bethlehem. There was no room for them at the inn.", "photo": "lamb_nativity", "ref": "Luke 2:1–20"}, {"t": "story", "text": "So baby Jesus was born in a stable, and Mary laid Him in a manger, where the animals eat.", "photo": "lamb_nativity"}, {"t": "story", "text": "Angels sang, and shepherds came to see the baby. Jesus is God's Son, who came to be with us!", "photo": "lamb_nativity"}, {"t": "taps", "q": "Tap the stars to light up the sky!", "icon": "star", "n": 5, "done": "Glory to God!", "hint": "Tap them all!"}, {"t": "quiz", "q": "Where did Mary lay baby Jesus?", "opts": [["In a manger", 1, "house"], ["In a boat", 0, "canoe"]], "yes": "Yes! In a manger full of hay."}, {"t": "story", "text": "Happy birthday, Jesus! Thank you for coming to be with us. Amen.", "icon": "pray", "tag": "Let's pray"}, {"t": "story", "text": "Set up a Nativity scene, and let your child place baby Jesus in the manger on Christmas.", "icon": "house", "tag": "Do it together"}, {"t": "done", "practice": 1, "msg": "You're one of God's little lambs!"}]}, {"id": "mass", "title": "Jesus Is Here at Mass", "photo": "mass_altar", "icon": "church", "bg": "#FFF3C4", "scenes": [{"t": "story", "text": "Church is God's house. At Mass, we come together to be with Jesus and His whole family.", "photo": "mass_church"}, {"t": "story", "text": "The altar is a special table. The priest says the words Jesus said, and the bread and wine become Jesus.", "photo": "mass_altar"}, {"t": "story", "text": "That's why we bow and kneel. Jesus is really, truly there!", "photo": "mass_kneel"}, {"t": "story", "text": "Look for the little red candle by the tabernacle. It tells us Jesus is there.", "icon": "candle"}, {"t": "taps", "q": "Light the candles on the altar!", "icon": "candle", "n": 2, "done": "Jesus is here!", "hint": "Tap them all!"}, {"t": "story", "text": "Jesus, I believe you are here. I love you! Amen.", "icon": "pray", "tag": "Let's pray"}, {"t": "story", "text": "At church, genuflect together toward the tabernacle and whisper: “Hi, Jesus!”", "icon": "house", "tag": "Do it together"}, {"t": "done", "practice": 1, "msg": "You're one of God's little lambs!"}]}, {"id": "easter", "title": "Jesus Is Alive!", "photo": "lamb_tomb", "icon": "sun", "bg": "#DCF3E4", "scenes": [{"t": "story", "text": "Jesus loves us so much that He died on the cross for us.", "photo": "crosshill"}, {"t": "story", "text": "His friends laid Him in a tomb, a cave with a big stone door. They were very sad.", "photo": "lamb_tomb"}, {"t": "story", "text": "But on Sunday morning, the stone was rolled away. The tomb was empty. Jesus is alive!", "photo": "lamb_tomb", "ref": "Mark 16:1–7"}, {"t": "taps", "q": "Make the Easter flowers bloom!", "icon": "lily", "n": 4, "done": "Alleluia!", "hint": "Tap them all!"}, {"t": "quiz", "q": "What happened on Easter morning?", "opts": [["Jesus rose!", 1, "sun"], ["It snowed", 0, "cloud"]], "yes": "Yes! Jesus is alive!"}, {"t": "story", "text": "Alleluia! Jesus, you are alive! Amen.", "icon": "pray", "tag": "Let's pray"}, {"t": "story", "text": "Every morning in the Easter season, say “Alleluia!” together as loud as you can.", "icon": "house", "tag": "Do it together"}, {"t": "done", "practice": 1, "msg": "You're one of God's little lambs!"}]}];
+const LAMB_TOGETHER = id => (LAMBS.find(x => x.id === id) || { scenes: [] }).scenes.find(x => x.tag === "Do it together")?.text || "";
+// little lambs: tap each picture until they all light up
+R.taps = (el, s) => {
+  el.innerHTML = `<p class="say">${esc(s.q)}</p><div class="fp-taps">${Array.from({ length: s.n }, (_, i) => `<button type="button" class="fp-tap" aria-label="${i + 1} of ${s.n}"><img src="${A(s.icon)}" alt=""></button>`).join("")}</div>`;
+  let k = 0; setReady(false, s.hint || "Tap them all!");
+  el.querySelectorAll(".fp-tap").forEach(b => b.onclick = () => {
+    if (b.classList.contains("on")) return; b.classList.add("on"); k++; sfx.sparkle(); burstAt(b, 18);
+    if (k === s.n) { sfx.win(); setReady(true, s.done || "You did it!"); if (Q && Q.read) speak(s.done || "You did it!"); }
+  });
+};
+// the Sign of the Cross, one touch at a time: forehead, heart, left shoulder, right shoulder
+R.signx = el => {
+  const P = [["In the name of the Father,", "Forehead", "1 / 2"], ["and of the Son,", "Heart", "3 / 2"], ["and of the Holy", "Left shoulder", "2 / 1"], ["Spirit. Amen.", "Right shoulder", "2 / 3"]];
+  el.innerHTML = `<p class="say">Let's make the Sign of the Cross. Tap each spot, the way your hand moves.</p><div class="fp-signx">${P.map(([w, part, area], i) => `<button type="button" class="fp-sx${i ? "" : " next"}" style="grid-area:${area}" data-i="${i}"><b>${esc(part)}</b><span>${esc(w)}</span></button>`).join("")}<div class="fp-sxc"><img src="${A("cross")}" alt=""></div></div>`;
+  let k = 0; setReady(false, "Start with your forehead");
+  el.querySelectorAll(".fp-sx").forEach(b => b.onclick = () => {
+    if (+b.dataset.i !== k) { sfx.no(); b.classList.remove("wig"); void b.offsetWidth; b.classList.add("wig"); return; }
+    b.classList.remove("next"); b.classList.add("on"); sfx.place(); if (Q && Q.read) speak(P[k][0]); k++;
+    const nx = el.querySelector(`.fp-sx[data-i="${k}"]`); if (nx) { nx.classList.add("next"); setReady(false, `Now your ${P[k][1].toLowerCase()}`); }
+    else { sfx.win(); burstAt(el.querySelector(".fp-sxc"), 50, true); setReady(true, "Amen! You did it!"); }
+  });
+};
+function nextLamb() { const d = pget("lambs.done", []); return (LAMBS.find(x => !d.includes(x.id)) || null)?.id || null; }
+function openLamb(id) {
+  if (!S.pid) { askPlayer(); return; }
+  const L = LAMBS.find(x => x.id === id); if (!L) return;
+  Q = { title: L.title, bg: L.bg, practice: 1, saint: null, key: "lamb." + id, course: "lambs", read: 1, lid: id }; qi = -1; newRun();
+  scenes = L.scenes; si = 0;
+  $("#qTitle").innerHTML = `<small>Little Lambs${S.name ? " · " + esc(S.name) : ""}</small>${esc(L.title)}`;
+  $("#quest").style.setProperty("--qbg", `color-mix(in srgb, ${L.bg} 55%, var(--sky))`); $("#quest").style.setProperty("--qtint", L.bg);
+  $("#qDots").innerHTML = scenes.map(() => "<i></i>").join("");
+  $("#quest").hidden = false; document.body.style.overflow = "hidden";
+  sfx.whoosh(); show(false);
+}
+function renderLambs() {
+  const g = $("#lambsGrid"); if (!g) return;
+  const d = pget("lambs.done", []), nx = nextLamb();
+  $("#lambsCount").textContent = `${d.length} of ${LAMBS.length} wonder moments`;
+  g.innerHTML = LAMBS.map((L, i) => `<button type="button" class="fp-lamb${d.includes(L.id) ? " done" : ""}${L.id === nx ? " next" : ""}" data-id="${L.id}"><span class="fp-lph"><img src="assets/img/${L.photo}.jpg" alt="" loading="lazy" draggable="false"></span><span class="fp-lt"><small>${i + 1}</small><b>${esc(L.title)}</b><i>${d.includes(L.id) ? "Done ✓ · Again" : L.id === nx ? "Start ›" : "Open ›"}</i></span></button>`).join("");
+  g.querySelectorAll(".fp-lamb").forEach(b => b.onclick = () => { sfx.tap(); openLamb(b.dataset.id); });
+}
 R.quiz = (el, s) => {
   const keys = "ABCD";
   const order = shuffle(s.opts);
-  el.innerHTML = `${s.tag ? `<span class="tag">${s.tag}</span>` : ""}${s.art ? `<div class="art" style="width:min(100%,240px)">${ART[s.art]()}</div>` : ""}<p class="say">${esc(s.q)}</p><div class="opts">${order.map((o, k) => `<button class="opt" type="button" data-ok="${o[1]}"><span class="k">${keys[k]}</span>${esc(o[0])}</button>`).join("")}</div>${s.ref ? `<p class="ref">${esc(s.ref)}</p>` : ""}`;
+  el.innerHTML = `${s.tag ? `<span class="tag">${s.tag}</span>` : ""}${s.art ? `<div class="art" style="width:min(100%,240px)">${ART[s.art]()}</div>` : ""}<p class="say">${esc(s.q)}</p><div class="opts">${order.map((o, k) => `<button class="opt${o[2] ? " pic" : ""}" type="button" data-ok="${o[1]}">${o[2] ? `<img class="opt-ic" src="${A(o[2])}" alt="">` : `<span class="k">${keys[k]}</span>`}${esc(o[0])}</button>`).join("")}</div>${s.ref ? `<p class="ref">${esc(s.ref)}</p>` : ""}`;
   setReady(false, "Tap an answer");
   el.querySelectorAll(".opt").forEach(b => b.onclick = () => {
     if (ready) return;
@@ -3856,6 +3953,8 @@ function openPractice(k, start = 0) {
   sfx.whoosh(); show(false);
 }
 R.done = (el, s) => {
+  hush();
+  if (Q && Q.course === "lambs" && S.pid) { const d = pget("lambs.done", []); if (!d.includes(Q.lid)) pset("lambs.done", [...d, Q.lid]); }
   if (Q && Q.learn) { const L = pget("learned", []); if (!L.includes(Q.learn)) { L.push(Q.learn); pset("learned", L); } renderLearned(); }
   let earned = 0;
   if (!run.scored) {
@@ -3870,7 +3969,7 @@ R.done = (el, s) => {
   }
   earned = run.earned || 0;
   const msg = s.final ? `You're ready, ${kid()}!` : s.practice ? "Great practice!" : "Lesson complete!";
-  el.innerHTML = `<div class="art">${s.final ? ART.carry() : `<div class="sc">${ground}${img("trophy", "", "left:4%;top:4%;width:30%")}${img("stars", "float", "right:6%;top:2%;width:22%")}${pip("idle", "left:50%;bottom:12%;width:54%;translate:-50% 0").replace('class="pip', 'id="dp" class="pip')}</div>`}</div><div class="stamp">${esc(msg)}</div>${earned ? `<div class="starrow" aria-label="${earned} of 3 stars">${[1, 2, 3].map(k => `<img src="${A("stars")}" alt="" class="${k <= earned ? "on" : ""}">`).join("")}</div><p class="ref">${run.total ? `${run.right} of ${run.total} answers right the first time. ` : ""}${earned === 3 ? "All 3 stars!" : "Play it again to win all 3 stars."}</p>` : ""}<p class="say sm">${s.final ? "Pip is home on the Shepherd's shoulders. On your big day, you'll feel just like you've been hugged by God!" : s.practice ? `Practice makes prayer feel like home. Keep it up, ${esc(kid())}!` : `You worked hard and learned so much. ${esc(kid())}, Pip is one step closer to home.`}</p>`;
+  el.innerHTML = `<div class="art">${s.final ? ART.carry() : `<div class="sc">${ground}${img("trophy", "", "left:4%;top:4%;width:30%")}${img("stars", "float", "right:6%;top:2%;width:22%")}${pip("idle", "left:50%;bottom:12%;width:54%;translate:-50% 0").replace('class="pip', 'id="dp" class="pip')}</div>`}</div><div class="stamp">${esc(msg)}</div>${earned ? `<div class="starrow" aria-label="${earned} of 3 stars">${[1, 2, 3].map(k => `<img src="${A("stars")}" alt="" class="${k <= earned ? "on" : ""}">`).join("")}</div><p class="ref">${run.total ? `${run.right} of ${run.total} answers right the first time. ` : ""}${earned === 3 ? "All 3 stars!" : "Play it again to win all 3 stars."}</p>` : ""}<p class="say sm">${s.final ? "Pip is home on the Shepherd's shoulders. On your big day, you'll feel just like you've been hugged by God!" : s.msg ? `${esc(s.msg)}${Q && Q.lid && LAMB_TOGETHER(Q.lid) ? `</p><p class="ref"><b>Grown-up:</b> ${esc(LAMB_TOGETHER(Q.lid))}` : ""}` : s.practice ? `Practice makes prayer feel like home. Keep it up, ${esc(kid())}!` : `You worked hard and learned so much. ${esc(kid())}, Pip is one step closer to home.`}</p>`;
   setTimeout(() => { burst(innerWidth / 2, innerHeight * .35, s.final ? 200 : 110, true); s.final ? sfx.bless() : sfx.done(); el.querySelectorAll(".starrow img.on").forEach((st, k) => setTimeout(() => { st.classList.add("pop"); sfx.pop(); }, 500 + k * 380)); const dp = el.querySelector("#dp"); if (G && dp) { const tl = G.timeline(); tl.add(hop(dp, { h: 50 })).add(hop(dp, { h: 30 })); } }, 300);
 };
 /* ---------- page wiring ---------- */
@@ -4315,6 +4414,7 @@ function renderToday() {
   el.dataset.color = L.color;
   // the First Reconciliation tile is for the First Sacraments years (and for families who haven't set a grade)
   const fr = $("#frTile"); if (fr) fr.hidden = !!band() && band() !== "first";
+  document.body.dataset.band = band() || ""; renderLambs();
   el.innerHTML = `<div class="fp-band"><span class="fp-dot"></span><span>${esc(day)}</span><span class="fp-col">${L.color === "rose" ? "Rose" : L.color[0].toUpperCase() + L.color.slice(1)}</span></div>
     <p class="t-eyebrow dark">Today in the Church${L.feast ? ` · ${esc(L.label)}` : ""}</p><h2>${esc(L.feast || L.label)}.</h2><p class="t-sub">${esc(L.feast ? `${L.name}: ${SEASON[L.k].line[0].toLowerCase() + SEASON[L.k].line.slice(1)}` : SEASON[L.k].line)}.</p>
     ${feast && !L.feast ? `<p class="fp-feast">${img(c.icon)}<span>${esc(feast)}</span></p>` : ""}
