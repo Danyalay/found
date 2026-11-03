@@ -1821,11 +1821,11 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
 .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.land-frame{transform:none}}
 /* ---------- companions: Rosary, Mass follow-along, Bible guide ---------- */
-.comp{position:fixed;inset:0;z-index:96;display:flex;flex-direction:column;--cbg:#16123A;--cink:#F6F1FF;--csub:rgba(246,241,255,.78);--ccard:#241E55;--cline:rgba(255,255,255,.14);--cacc:#FFD98A;--cbtn1:#FFE6A6;--cbtn2:#FFC85C;--cbtnink:#2A1E00;background:var(--cbg);color:var(--cink);font-family:var(--round,"Nunito",ui-rounded,system-ui,sans-serif)}
+.comp{position:fixed;inset:0;z-index:96;display:flex;flex-direction:column;--cbg:#16123A;--cfoot:#1A1442;--cink:#F6F1FF;--csub:rgba(246,241,255,.78);--ccard:#241E55;--cline:rgba(255,255,255,.14);--cacc:#FFD98A;--cbtn1:#FFE6A6;--cbtn2:#FFC85C;--cbtnink:#2A1E00;background:var(--cbg);color:var(--cink);font-family:var(--round,"Nunito",ui-rounded,system-ui,sans-serif)}
 .comp[hidden]{display:none}
-.comp.rosary{--cbg:linear-gradient(180deg,#1C1446 0%,#2A1650 60%,#3A1A52 100%);--ccard:#2B2160;--cacc:#FFC6D9}
-.comp.massgo{--cbg:#0B0B12;--cink:#E9E2D0;--csub:rgba(233,226,208,.72);--ccard:#16161F;--cline:rgba(233,226,208,.12);--cacc:#C9B27A;--cbtn1:#3A3424;--cbtn2:#2E291C;--cbtnink:#F1E7C8}
-.comp.bible{--cbg:#FBF6EC;--cink:#2B2218;--csub:#5E5245;--ccard:#FFFFFF;--cline:rgba(43,34,24,.12);--cacc:#9A5B13;--cbtn1:#B8742A;--cbtn2:#9A5B13;--cbtnink:#fff}
+.comp.rosary{--cbg:linear-gradient(180deg,#1C1446 0%,#2A1650 60%,#3A1A52 100%);--cfoot:#2A1650;--ccard:#2B2160;--cacc:#FFC6D9}
+.comp.massgo{--cbg:#0B0B12;--cfoot:#0B0B12;--cink:#E9E2D0;--csub:rgba(233,226,208,.72);--ccard:#16161F;--cline:rgba(233,226,208,.12);--cacc:#C9B27A;--cbtn1:#3A3424;--cbtn2:#2E291C;--cbtnink:#F1E7C8}
+.comp.bible{--cbg:#FBF6EC;--cfoot:#FBF6EC;--cink:#2B2218;--csub:#5E5245;--ccard:#FFFFFF;--cline:rgba(43,34,24,.12);--cacc:#8A4F0F;--cbtn1:#93560F;--cbtn2:#7A450B;--cbtnink:#fff}
 .cp-top{flex:none;display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top,0px)) 14px 10px;border-bottom:1px solid var(--cline);background:inherit}
 .comp.bible .cp-top{background:#FBF6EC}
 .cp-title{flex:1;min-width:0;font-weight:800;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -1833,7 +1833,10 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
 .cp-read{font-size:18px}.cp-read[aria-pressed="true"]{background:var(--cacc);color:#1a1a1a}
 .cp-x{order:3}
 .cp-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
-.cp-body{max-width:620px;margin:0 auto;padding:20px 18px calc(40px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px}
+.cp-body{max-width:620px;margin:0 auto;padding:20px 18px 0;min-height:100%;}
+.cp-body::after{content:"";flex:none;height:calc(28px + env(safe-area-inset-bottom,0px))}
+.cp-body:has(> .cp-nav:last-child)::after,.cp-body:has(> .mg-foot:last-child)::after{display:none}
+.cp-body{display:flex;flex-direction:column;gap:14px}
 .cp-hero{border-radius:22px;overflow:hidden;aspect-ratio:16/9;background:var(--ccard)}
 .cp-hero img{width:100%;height:100%;object-fit:cover;display:block}
 .cp-k{margin:0;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--cacc)}
@@ -1856,7 +1859,7 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
 .cp-btn.sm{min-height:48px;padding:10px 18px;font-size:16px}
 .cp-btn:active{transform:scale(.97)}
 .cp-btn[disabled]{opacity:.35}
-.cp-nav{display:flex;gap:10px;margin-top:6px}.cp-nav .cp-btn{flex:1;min-width:0}.cp-nav .cp-btn.ghost{flex:0 1 auto}
+.cp-nav{position:sticky;bottom:0;z-index:2;display:flex;gap:10px;margin:6px -18px 0;padding:12px 18px calc(10px + env(safe-area-inset-bottom,0px));background:var(--cfoot);border-top:1px solid var(--cline)}.cp-nav .cp-btn{flex:1;min-width:0}.cp-nav .cp-btn.ghost{flex:0 1 auto}
 .cp-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .cp-chips button{min-height:44px;padding:8px 14px;border-radius:999px;background:transparent;border:1.5px solid var(--cline);color:var(--cink);font:inherit;font-weight:700;font-size:15px}
 .cp-chips button[aria-checked="true"]{background:var(--cacc);border-color:var(--cacc);color:#1E1430}
@@ -1944,7 +1947,7 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
 .bb-books{display:block;height:12px;width:var(--w);border-radius:4px;margin-bottom:6px;background:repeating-linear-gradient(90deg,#B8742A 0 6px,#D9A15A 6px 8px)}
 .bb-ref .bb-big{font-size:34px;font-weight:800;text-align:center;margin-bottom:2px}
 .bb-ref p:nth-child(2){text-align:center;font-weight:800}
-.b1{color:#2C6EAA}.b2{color:#B8742A}.b3{color:#2E8B57}
+.b1{color:#245C91}.b2{color:#8A4F0F}.b3{color:#22704A}
 .bb-q{color:var(--cacc)}
 .comp.bible .cp-opts button.right{color:#fff}
 .lx-steps{display:flex;gap:6px}.lx-steps i{flex:1;height:6px;border-radius:6px;background:var(--cline)}.lx-steps i.did,.lx-steps i.now{background:var(--cacc)}
@@ -2557,7 +2560,7 @@ const SAINTS = [
    fact: "He was the first Black saint of the Americas. Pope John XXIII made him a saint in 1962.",
    story: "Martin's father was a Spanish nobleman and his mother was a freed Black woman from Panama. Some people looked down on Martin because of his skin color, but he served everyone. He joined the Dominicans, swept floors, cared for the sick, and fed the poor of Lima. He even took care of stray cats and dogs. His broom became his symbol: no job is too small when you do it for Jesus." },
  { name: "St. Teresa of Calcutta", lv: "1910–1997", hm: "Skopje, then Kolkata, India", fun: "She won the Nobel Peace Prize.", pic: "saint_teresa", vid: 0, c1: "#1D5FA8", c2: "#CFE3FA", sym: "heart", power: "Love in action",
-   lived: "1910 to 1997", home: "Born in Skopje, served in Kolkata (Calcutta), India", feast: "September 5", patron: "World Youth Day (with St. John Paul II)",
+   lived: "1910 to 1997", home: "Born in Skopje, served in Kolkata (Calcutta), India", feast: "September 5", patron: "A patron of World Youth Day 2016, and of the sisters she founded",
    fact: "She started the Missionaries of Charity, sisters who still serve the poorest of the poor in more than 100 countries.",
    story: "As a young sister teaching in India, Teresa felt Jesus call her to serve the poorest of the poor. She put on a simple white sari with blue stripes and went into the streets of Calcutta to care for people who were sick, hungry and alone. She taught that we can all do small things with great love. Every day she prayed before Jesus in the Eucharist, and that gave her strength." },
  { name: "St. Carlo Acutis", lv: "1991–2006", hm: "London, then Milan, Italy", fun: "He loved video games and coding.", pic: "saint_carlo", vid: 0, c1: "#C0392B", c2: "#F7B7A3", sym: "chalice", power: "Digital apostle",
@@ -4341,6 +4344,8 @@ const cpLink = (ref, url, label = "Read it in the Bible") => url ? `<a class="cp
 const pic = n => `assets/img/${n}.jpg`;
 // a chapter of the Bible on the bishops' own site (New American Bible)
 const BOOKS = { Genesis: "genesis", Exodus: "exodus", Ruth: "ruth", "1 Samuel": "1samuel", "2 Samuel": "2samuel", "1 Kings": "1kings", Esther: "esther", Psalm: "psalms", Isaiah: "isaiah", Daniel: "daniel", Jonah: "jonah", Matthew: "matthew", Mark: "mark", Luke: "luke", John: "john", Acts: "acts", Romans: "romans", "1 Corinthians": "1corinthians", Galatians: "galatians", Ephesians: "ephesians", Revelation: "revelation" };
+// the readings for today if it's Sunday, otherwise the coming Sunday (the bishops' site names each day MMDDYY)
+const sundayURL = (d = new Date()) => { const s = new Date(d.getFullYear(), d.getMonth(), d.getDate() + (7 - d.getDay()) % 7), p = n => String(n).padStart(2, "0"); return `https://bible.usccb.org/bible/readings/${p(s.getMonth() + 1)}${p(s.getDate())}${p(s.getFullYear() % 100)}.cfm`; };
 const bibleURL = ref => { const m = String(ref).match(/^(\d?\s?[A-Za-z]+)\s(\d+)/); return m && BOOKS[m[1]] ? `https://bible.usccb.org/bible/${BOOKS[m[1]]}/${m[2]}` : ""; };
 
 /* ---------- the Rosary ---------- */
@@ -4421,7 +4426,8 @@ function rosFor(full, one) {
   sfx.tap();
   cpShow(`<p class="cp-k">Before we begin</p><h2 class="cp-h sm">Who are we praying for?</h2><p class="cp-p">Offering the Rosary for someone is a gift of love. Pick one, or skip.</p>
     <div class="cp-chips big">${FOR.map(f => `<button type="button" data-f="${esc(f)}">${esc(f)}</button>`).join("")}</div>
-    <button type="button" class="cp-btn ghost" id="rsSkip">Skip</button>`, b => {
+    <div class="cp-nav"><button type="button" class="cp-btn ghost sm" id="rsHome">Back</button><button type="button" class="cp-btn" id="rsSkip">Skip</button></div>`, b => {
+      b.querySelector("#rsHome").onclick = () => { sfx.tap(); rosHome(); };
       const go = f => { sfx.tap(); CP.r = { full, one, steps: rosSteps(CP.set, full, one), i: 0, forWho: f }; rosStep(); };
       b.querySelectorAll("[data-f]").forEach(c => c.onclick = () => go(c.dataset.f)); b.querySelector("#rsSkip").onclick = () => go("");
     }, "Who are we praying for?");
@@ -4437,7 +4443,7 @@ function rosStep() {
   const r = CP.r, s = r.steps[r.i], M = MYST[CP.set], little = band() === "lambs";
   if (!s) { rosEnd(); return; }
   const m = s.d != null ? M.list[r.full ? s.d : r.one] : null, P = RP[s.k];
-  const pct = Math.round(r.i / r.steps.length * 100), back = r.i > 0 ? `<button type="button" class="cp-btn ghost sm" id="rsBack">Back</button>` : "";
+  const pct = Math.round(r.i / r.steps.length * 100), back = `<button type="button" class="cp-btn ghost sm" id="rsBack">Back</button>`;
   const top = `<div class="rs-bar" role="progressbar" aria-label="Rosary progress" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"><i style="width:${pct}%"></i></div>${r.forWho ? `<p class="rs-for">Praying for: ${esc(r.forWho)}</p>` : ""}`;
   if (s.k === "myst") {
     const say = `The ${ORD[r.full ? s.d : r.one]} ${M.name.replace(/ies$/, "y")}: ${m.t}. ${m.kid}`;
@@ -4464,7 +4470,7 @@ function rosStep() {
 }
 function rosWire(b) {
   b.querySelector("#rsNext").onclick = () => { const r = CP.r, s = r.steps[r.i]; s.k === "hm" ? sfx.pop() : sfx.tap(); r.i++; rosStep(); };
-  const bk = b.querySelector("#rsBack"); if (bk) bk.onclick = () => { sfx.tap(); CP.r.i = Math.max(0, CP.r.i - 1); rosStep(); };
+  const bk = b.querySelector("#rsBack"); if (bk) bk.onclick = () => { sfx.tap(); if (CP.r.i === 0) { rosFor(CP.r.full, CP.r.one); return; } CP.r.i--; rosStep(); };
 }
 function rosEnd() {
   const r = CP.r, n = r.full ? 5 : 1, M = MYST[CP.set];
@@ -4475,7 +4481,7 @@ function rosEnd() {
   }
   CP.items = activityDone("pr.rosary");
   sfx.bless(); burst(innerWidth / 2, innerHeight * .35, 90, true);
-  const nx = !r.full ? M.list[(r.one + 1) % 5] : null;
+  const nx = !r.full && S.pid ? M.list[(r.one + 1) % 5] : null;
   cpShow(`<img class="cp-icon" src="${A("ic_rosary")}" alt=""><h2 class="cp-h">${r.full ? "You prayed the whole Rosary!" : "You prayed a decade with Mary!"}</h2>
     <p class="cp-p">Every Hail Mary is like a rose for Mary, and she brings each one to Jesus${r.forWho ? `, for ${esc(r.forWho.toLowerCase().replace(/^the pope$/, "the Pope"))}` : ""}.</p>
     ${nx ? `<div class="cp-card"><p><b>Next time:</b> ${esc(nx.t)}. Pray one decade a day to walk through all five ${esc(M.name)}.</p></div>` : ""}
@@ -4533,11 +4539,11 @@ const MASS_LOOK = [
   { look: "Look for the cross carried high at the front, candles, and the Book of the Gospels held up. When the priest reaches the altar, he kisses it: the altar stands for Jesus. Check the color the priest wears: green for Ordinary Time, purple for Advent and Lent, white or gold for Christmas and Easter, red for the Holy Spirit and martyrs.", heart: "Here I am, Lord." },
   { look: "Watch the priest open his arms to greet everyone. All of us together are one family.", heart: "Thank you for my family and my parish." },
   { look: "Listen for the middle line: “Christ, have mercy.” Sometimes everyone says “I confess” and taps their chest at “through my fault.”", heart: "Jesus, I'm sorry. Help me do better this week." },
-  { look: "Listen for the words the angels sang over Bethlehem: “Glory to God in the highest, and on earth peace.”", heart: "Glory to You, God!" },
+  { look: "Listen for the words the angels sang over Bethlehem: “Glory to God in the highest, and on earth peace.” In Advent and Lent, and at most weekday Masses, this song is skipped, so tap Next if it doesn't come.", heart: "Glory to You, God!" },
   { look: "The readings are read from the ambo, the reading stand. Usually the first is from the Old Testament, then a sung psalm (try to remember its short answer line), then a letter from an apostle.", heart: "Speak, Lord, I'm listening." },
   { look: "Look for the Book of the Gospels carried to the ambo, maybe with candles and incense. When we trace three small crosses on forehead, lips and heart, we pray: “Lord, be in my mind, on my lips, and in my heart.” Listen for who Jesus talks to or helps today.", heart: "Jesus, be in my mind, on my lips, and in my heart." },
   { look: "Try to catch one sentence to remember. You'll tell your family later.", heart: "Help me live what I hear today." },
-  { look: "Watch everyone bow at the words “and by the Holy Spirit was incarnate of the Virgin Mary, and became man.” (On Christmas, we kneel!)", heart: "Jesus, I believe in You." },
+  { look: "Watch everyone bow at the words “and by the Holy Spirit was incarnate of the Virgin Mary, and became man.” (On Christmas, we kneel!) At most weekday Masses the Creed is skipped.", heart: "Jesus, I believe in You." },
   { look: "Listen for the people being prayed for. Silently add someone of your own.", heart: "Lord, please help ______ (someone you love)." },
   { look: "Watch the altar being set: a white cloth, the chalice, the bread. The priest adds a drop of water to the wine and washes his hands. You can give God your week, your worries, and your joys along with the gifts.", heart: "Jesus, I give You my whole self." },
   { look: "“Hosanna” is what the crowds shouted when Jesus rode into Jerusalem on Palm Sunday.", heart: "Holy, holy, holy Lord!" },
@@ -4555,6 +4561,7 @@ function openMassGo() {
   cpOpen("massgo", "Follow along at Mass"); QUIET = true; hush();
   CP.i = -1; mgShow();
 }
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && CP && CP.kind === "massgo" && CP.i >= 0) { wakeL = null; mgWake(); } });
 function mgWake() { try { if ("wakeLock" in navigator && !wakeL) navigator.wakeLock.request("screen").then(l => { wakeL = l; }).catch(() => {}); } catch (e) {} }
 function mgShow() {
   const i = CP.i, N = MASS.length;
@@ -4678,13 +4685,13 @@ function bibleTab() {
     <div class="cp-band" role="tablist" aria-label="Age group">${BAND_ORDER.map(k => `<button type="button" role="tab" aria-selected="${k === CP.band}" data-band="${k}">${BANDS[k].name}${k === band() ? " ★" : ""}</button>`).join("")}</div>
     <div class="bb-prog"><i style="width:${Math.round(got / B.list.length * 100)}%"></i></div><p class="cp-hint">${got} of ${B.list.length} read${got === B.list.length ? ". The whole path! ✓" : ""}</p>
     <div class="bb-list">${B.list.map((x, j) => `<div class="bb-story${read.includes(x.id) ? " read" : ""}"><button type="button" class="bb-head" aria-expanded="false" data-i="${j}"><img src="${A(x.icon)}" alt=""><span><b>${esc(x.t)}</b><small>${esc(x.ref)}</small></span><i aria-hidden="true">${read.includes(x.id) ? "✓" : "›"}</i></button>
-      <div class="bb-more" hidden><p>${esc(x.s)}</p><p class="bb-w"><b>Wonder together:</b> ${esc(x.w)}</p><div class="bb-act">${cpLink(x.ref, bibleURL(x.ref), "Read it")}<button type="button" class="cp-btn sm${read.includes(x.id) ? " ghost" : ""}" data-read="${x.id}">${read.includes(x.id) ? "Read ✓" : "We read it"}</button></div></div></div>`).join("")}</div>
-    <a class="cp-card bb-sun" href="https://bible.usccb.org/daily-bible-reading" target="_blank" rel="noopener"><b>This Sunday's readings &#8599;</b><small>Read the Gospel before Mass, and listen for it at church.</small></a>`, b => {
+      <div class="bb-more" hidden><p>${esc(x.s)}</p><p class="bb-w"><b>Wonder together:</b> ${esc(x.w)}</p><div class="bb-act">${cpLink(x.ref, bibleURL(x.ref), "Read it")}<button type="button" class="cp-btn sm${read.includes(x.id) ? " ghost" : ""}" data-read="${x.id}" aria-pressed="${read.includes(x.id)}">${read.includes(x.id) ? "Read ✓" : "We read it"}</button></div></div></div>`).join("")}</div>
+    <a class="cp-card bb-sun" href="${sundayURL()}" target="_blank" rel="noopener"><b>${new Date().getDay() === 0 ? "Today's" : "This Sunday's"} readings &#8599;</b><small>Read the Gospel before Mass, and listen for it at church.</small></a>`, b => {
       bibleWireTabs(b);
       b.querySelectorAll("[data-band]").forEach(t => t.onclick = () => { sfx.tap(); CP.band = t.dataset.band; bibleTab(); $("#cpBody").querySelector(`[data-band="${CP.band}"]`)?.focus(); });
       b.querySelectorAll(".bb-head").forEach(h => h.onclick = () => { sfx.tap(); const m = h.nextElementSibling, open = m.hidden; m.hidden = !open; h.setAttribute("aria-expanded", open); h.parentElement.classList.toggle("open", open); CP.say = open ? sayJoin([h.querySelector("b").textContent, ...[...m.querySelectorAll("p")].map(p => p.textContent)]) : CP.say; });
       b.querySelectorAll("[data-read]").forEach(c => c.onclick = () => {
-        if (!S.pid) { askPlayer(); return; }
+        if (!S.pid) { cpClose(); askPlayer(); return; }
         const L = pget("bible.read", []), id = c.dataset.read, on = !L.includes(id);
         pset("bible.read", on ? [...L, id] : L.filter(x => x !== id));
         if (on) { sfx.win(); burstAt(c, 40); const it = activityDone("bible"); if (it.length) CP.items = [...(CP.items || []), ...it]; } else sfx.tap();
@@ -5139,9 +5146,10 @@ $("#cvPrev").onclick = () => { const o = SAINTS.map((_, k) => k).filter(isCollec
 $("#cvNext").onclick = () => { const o = SAINTS.map((_, k) => k).filter(isCollected).filter(k => k > viewI); if (o.length) openCard(o[0]); };
 $("#cardView .cv-card").addEventListener("click", e => { if (e.target.closest(".tcard")) flipCard(e.target.closest(".tcard")); });
 addEventListener("keydown", e => { if ($("#cardView").hidden) return; if (e.key === "Escape") { if (!$("#cvSheet").hidden) { $("#cvSheetClose").click(); return; } closeCard(); } if (e.key === "ArrowLeft") $("#cvPrev").click(); if (e.key === "ArrowRight") $("#cvNext").click(); if (e.key === " " || e.key === "Enter") { e.preventDefault(); $("#cvFlip").click(); } });
-document.querySelectorAll("[data-practice]").forEach(b => b.onclick = () => { sfx.tap(); openPractice(b.dataset.practice); });
+document.querySelectorAll("[data-practice]").forEach(b => b.onclick = () => { if (b.dataset.practice !== "massGo") sfx.tap(); openPractice(b.dataset.practice); });
 /* ---------- videos: play while on screen, pause when scrolled away (saves battery, keeps scrolling smooth) ---------- */
-const VIDS = ["mass_church", "mass_entrance", "mass_readings", "mass_gospel", "mass_gifts", "mass_altar", "mass_peace", "mass_blessing", "mass_sent", "mass_kneel", "mass_font", "mass_ourfather", "mass_creed", "mass_sanctus"];
+// mass_peace, mass_kneel and mass_ourfather show their still until their clips are remade: in the old ones the group moved in lockstep
+const VIDS = ["mass_church", "mass_entrance", "mass_readings", "mass_gospel", "mass_gifts", "mass_altar", "mass_blessing", "mass_sent", "mass_font", "mass_creed", "mass_sanctus"];
 const autoIO = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => { const v = e.target; if (e.isIntersecting) { if (v.dataset.poster) { v.poster = v.dataset.poster; v.removeAttribute("data-poster"); } if (v.preload !== "auto") { v.preload = "auto"; v.load(); } v.play().catch(() => {}); } else v.pause(); }), { threshold: .2 }) : null;
 $("#skip").onclick = () => { const h = [...document.querySelectorAll("[data-view].on h1, [data-view].on h2")].find(x => x.offsetParent); if (h) { h.tabIndex = -1; h.focus(); } };
 addEventListener("storage", e => { if (S.pid && e.key && e.key.startsWith(`found.p.${S.pid}.`) && $("#quest").hidden) { loadPlayer(S.pid); refreshPlayer(); } });
