@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="A Catholic faith app for kids 6 to 8: prayers, the Mass, saint cards, a bedtime talk with Jesus, and 13 First Reconciliation lessons.">
+<meta name="description" content="A Catholic faith companion for kids from age 3 to Confirmation and their grown-ups: prayers, the Mass, saints, a bedtime talk with God, and lessons for First Reconciliation, First Communion, the Big Story of the Bible, and Confirmation.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -15,7 +15,7 @@
 <script>if ("serviceWorker" in navigator && /^https:|^http:\/\/localhost/.test(location.href)) addEventListener("load", () => navigator.serviceWorker.register("sw.js"));</script>
 <meta property="og:type" content="website">
 <meta property="og:title" content="Found! Catholic faith for kids">
-<meta property="og:description" content="Prayers, the Mass, saints, bedtime prayer, and First Reconciliation lessons for kids 6 to 8. Tap to open in your browser.">
+<meta property="og:description" content="Prayers, the Mass, saints, bedtime prayer, and lessons from age 3 to Confirmation, for Holy Family families. Tap to open in your browser.">
 <meta property="og:image" content="https://foundlamb.pages.dev/share.jpg">
 <meta property="og:url" content="https://foundlamb.pages.dev/">
 <meta name="twitter:card" content="summary_large_image">
@@ -1757,7 +1757,7 @@ body[data-band="grow"]:not([data-showmap="1"]) #map{display:none!important}
 .fp-ch.next{box-shadow:0 0 0 3px #8E7CF0,0 8px 20px rgba(142,124,240,.3)}
 @media (hover:hover){.fp-ch{transition:transform .25s}.fp-ch:hover{transform:translateX(3px)}}
 
-body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="confirm"] #fcSec{display:none!important}
+body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="confirm"] #fcSec,body[data-band="lambs"] #fcTile,body[data-band="grow"] #fcTile,body[data-band="confirm"] #fcTile,body[data-band="lambs"] .fp-frg,body[data-band="grow"] .fp-frg,body[data-band="confirm"] .fp-frg{display:none!important}
 .fp-fcsec{background:color-mix(in srgb,#FFF3C4 35%,var(--bg))}
 :root[data-theme="dark"] .fp-fcsec{background:var(--bg)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .fp-fcsec{background:var(--bg)}}
@@ -1851,7 +1851,7 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
       <p class="eyebrow" id="season" hidden></p>
       <h1 id="heroH"><span class="mask"><span class="w">A</span></span> <span class="mask"><span class="w">little</span></span> <span class="mask"><span class="w">closer</span></span> <span class="mask"><span class="w">to</span></span> <span class="mask"><span class="w hl">Jesus,</span></span> <span class="mask"><span class="w">every</span></span> <span class="mask"><span class="w">day.</span></span></h1>
       <p class="lede">A Catholic faith companion for kids from age 3 to Confirmation, and the grown-ups who love them.</p>
-      <p class="t-call">Prayers, the Mass, saints, a bedtime talk with Jesus, and lessons for First Reconciliation.</p>
+      <p class="t-call">Prayers, the Mass, saints, a bedtime talk with Jesus, and lessons for every stage, from wonder moments to Confirmation.</p>
       <div class="ctas">
         <button class="btn btn-go" id="heroGo" type="button">Today's mission</button>
         <a class="btn btn-soft" href="#/grownups">How it works</a>
@@ -1904,6 +1904,14 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
     <div class="ctas"><a class="btn btn-go" href="#/quests">Open Confirmation</a></div>
     <div class="t-media wide"><img loading="lazy" decoding="async" src="assets/img/conf_anoint.jpg" alt="A bishop anoints a teen at Confirmation while the sponsor stands behind" draggable="false"></div>
   </div>
+  <div class="tile tile-light rv fp-fctile" id="fcTile">
+    <p class="t-eyebrow dark">The next sacrament</p>
+    <h2>First Communion.</h2>
+    <p class="t-sub">Jesus gives us Himself.</p>
+    <p class="t-call">Eight short lessons: the Last Supper, how the bread and wine become Jesus, how to receive Him, and why we come back every Sunday.</p>
+    <div class="ctas"><a class="btn btn-go" href="#/quests" data-jump="fcSec">Open First Communion</a></div>
+    <div class="t-media wide"><img loading="lazy" decoding="async" src="assets/img/mass_altar.jpg" alt="The priest at the altar during Mass" draggable="false"></div>
+  </div>
   <div class="tile tile-dark rv" id="frTile">
     <p class="t-eyebrow">Getting ready for a sacrament</p>
     <h2>First Reconciliation.</h2>
@@ -1933,7 +1941,7 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
     <p class="t-sub">What it means, and what you do.</p>
     <p class="t-call">Every part of the Mass, from the holy water to “Go in peace.” When to stand, sit, and kneel, and what to say.</p>
     <div class="ctas"><a class="btn btn-go" href="#/mass">Explore the Mass</a></div>
-    <div class="t-media wide"><video data-auto src="assets/vid/mass_church.mp4" poster="assets/img/mass_church.jpg" muted loop playsinline preload="none" aria-label="Families at Sunday Mass"></video></div>
+    <div class="t-media wide"><video data-auto src="assets/vid/mass_church.mp4" data-poster="assets/img/mass_church.jpg" muted loop playsinline preload="none" aria-label="Families at Sunday Mass"></video></div>
   </div>
   <div class="tile tile-night rv">
     <p class="t-eyebrow">Every night</p>
@@ -1945,8 +1953,8 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
   </div>
   <div class="tile tile-white rv">
     <h2>Made for families.</h2>
-    <p class="t-sub">Lesson by lesson, from the parish workbook.</p>
-    <p class="t-call">Same lessons, saints, prayers, Scripture, and reviews. Pages work offline after your first visit; videos need internet. Nothing is collected.</p>
+    <p class="t-sub">Made with Holy Family parish families in mind.</p>
+    <p class="t-call">Lessons for every age, saints, prayers, Scripture, and reviews. Pages work offline after your first visit; videos need internet. Nothing is collected.</p>
     <div class="ctas"><a class="btn btn-soft" href="#/grownups">Read the grown-ups guide</a></div>
     <div class="t-media wide"><img loading="lazy" decoding="async" src="assets/img/mass_peace.jpg" alt="A family sharing the sign of peace at Mass" draggable="false"></div>
   </div>
@@ -2052,7 +2060,7 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
       <h2>Prayers and games.</h2>
       <p>Learn the prayers every Catholic knows, then say them by heart. There are prayers for every age, and quick games to practice for Mass.</p>
     </div>
-    <button type="button" class="nightcard" data-practice="bedtime"><img loading="lazy" decoding="async" src="assets/img/night_sky.jpg" alt=""><span class="nc-copy"><small>Every night</small><b>Bedtime Heart Check</b><span>Talk to Jesus about your day, then pray together before sleep.</span><i>Start tonight &rsaquo;</i></span></button>
+    <button type="button" class="nightcard" data-practice="bedtime"><img loading="lazy" decoding="async" src="assets/img/night_sky.jpg" alt=""><span class="nc-copy"><small>Every night</small><b class="bedName">Bedtime Heart Check</b><span>Talk to Jesus about your day, then pray together before sleep.</span><i>Start tonight &rsaquo;</i></span></button>
     <h3 class="pp-h" id="studioH">Prayers</h3>
     <div class="pgrid big pray4" id="studioGrid">
       <button type="button" class="ptile" data-practice="ourfather" data-learn="ourfather"><img loading="lazy" decoding="async" class="ph" src="assets/img/pray_ourfather.jpg" alt=""><b>Our Father</b><small>The prayer Jesus taught us.</small><i class="go">Start &rsaquo;</i></button>
@@ -2075,7 +2083,7 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
 <section class="masspage2" id="mass" data-view="mass">
   <div class="mhero" id="mHero">
     <div class="mhero-sticky">
-      <div class="mhero-media"><video class="mvid" data-auto src="assets/vid/mass_hero.mp4" data-poster="assets/img/mass_church.jpg" muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
+      <div class="mhero-media"><video class="mvid" data-auto src="assets/vid/mass_hero.mp4" data-poster="assets/img/mass_church.jpg" muted loop playsinline preload="none" aria-hidden="true"></video></div>
       <div class="mhero-copy">
         <p class="mh-eyebrow">Every Sunday</p>
         <h2>Come to Mass.</h2>
@@ -2099,11 +2107,11 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
   <div class="wrap sec">
     <div class="sec-head">
       <h2>For grown-ups.</h2>
-      <p>Found grows with your child, from age 3 to Confirmation: wonder moments for little ones, the First Reconciliation lessons from the parish workbook, the Big Story of the Bible, and Confirmation preparation, with prayers, the Mass and a bedtime talk with God for every age. Below is guidance for the child playing now, then details about the First Reconciliation lessons.</p>
+      <p>Found grows with your child, from age 3 to Confirmation: wonder moments for little ones, the First Reconciliation lessons from the parish workbook, First Communion, the Big Story of the Bible, and Confirmation preparation, with prayers, the Mass and a bedtime talk with God for every age. Below is guidance for the child playing now, then details about the First Reconciliation lessons.</p>
     </div>
 
     <div class="gsec fp-gband" id="gBand"></div>
-    <div class="gsec">
+    <div class="gsec fp-frg">
       <h3>A 15-minute lesson.</h3>
       <div class="session" id="session"></div>
       <p class="session-note">Follow your parish's schedule, or do about one lesson a week, so all 13 are done before First Reconciliation. Your child can stop partway through a lesson and pick up there next time. Stop while your child still wants more. If attention drops, switch to the off-screen mission instead of pushing through.</p>
@@ -2399,7 +2407,7 @@ function flipCard(c) {
 function renderAlbum() {
   const n = SAINTS.filter((_, i) => isCollected(i)).length;
   $("#albumTitle").textContent = `${whose(1)} Saint Album.`;
-  const ah = $("#albumHow"); if (ah) ah.textContent = band() === "grow" ? "Every Big Story chapter you finish brings a new saint card." : band() === "lambs" ? "Every wonder moment you finish brings a new saint card." : band() === "confirm" ? "Every Confirmation session you finish brings a new saint card. Maybe your Confirmation saint is here!" : "These saints needed God's forgiveness too. Finish a lesson to open a card pack.";
+  const ah = $("#albumHow"); if (ah) ah.textContent = n === SAINTS.length ? "Your album is full! Every lesson you finish now brings a visit from one of your saint friends." : band() === "grow" ? "Every Big Story chapter you finish brings a new saint card." : band() === "lambs" ? "Every wonder moment you finish brings a new saint card." : band() === "confirm" ? "Every Confirmation session you finish brings a new saint card. Maybe your Confirmation saint is here!" : "These saints needed God's forgiveness too. Finish a lesson to open a card pack.";
   $("#albumCount").innerHTML = n === SAINTS.length ? `<b>Complete collection!</b> All ${SAINTS.length} saints are home.` : `<b>${n}</b> of ${SAINTS.length} saints collected`;
   $("#album .album-book").classList.toggle("complete", n === SAINTS.length);
   $("#albumBar").style.setProperty("--p", n / SAINTS.length);
@@ -3064,8 +3072,8 @@ function buildMap() {
   $("#mapBox").style.aspectRatio = `${W} / ${H}`;
   $("#mapBox").innerHTML = `<svg viewBox="0 0 ${W} ${H}" aria-hidden="true">
     <defs>
-      <pattern id="grass" patternUnits="userSpaceOnUse" width="220" height="220"><image href="assets/img/tex_grass.jpg" width="220" height="220"/></pattern>
-      <pattern id="dirt" patternUnits="userSpaceOnUse" width="120" height="120"><image href="assets/img/tex_dirt.jpg" width="120" height="120"/></pattern>
+      <pattern id="grass" patternUnits="userSpaceOnUse" width="220" height="220"><image data-href="assets/img/tex_grass.jpg" width="220" height="220"/></pattern>
+      <pattern id="dirt" patternUnits="userSpaceOnUse" width="120" height="120"><image data-href="assets/img/tex_dirt.jpg" width="120" height="120"/></pattern>
       <radialGradient id="mlight" cx="30%" cy="12%" r="85%"><stop offset="0" stop-color="#fff8dc" stop-opacity=".38"/><stop offset=".55" stop-color="#fff8dc" stop-opacity="0"/><stop offset="1" stop-color="#0b2a14" stop-opacity=".06"/></radialGradient>
       <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5"/></filter>
       <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
@@ -3137,7 +3145,7 @@ function renderSide() {
   if (S.bigDay) {
     const d = Math.round((new Date(S.bigDay + "T12:00:00") - new Date(new Date().toDateString() + " 12:00:00")) / 864e5);
     cd.hidden = false;
-    cd.innerHTML = `${img("calendar")}<div><b>${d > 1 ? d + " days" : d === 1 ? "1 day" : d === 0 ? "Today is the day!" : "You did it!"}</b><span>${d > 0 ? "until First Reconciliation" : d === 0 ? "Your First Reconciliation is today" : "First Reconciliation is done"}</span></div>`;
+    cd.innerHTML = `${img("calendar")}<div><b>${d > 1 ? d + " days" : d === 1 ? "1 day" : d === 0 ? "Today is the day!" : "You did it!"}</b><span>${(sac => d > 0 ? `until ${sac}` : d === 0 ? `Your ${sac} is today` : `${sac} is done`)(band() === "confirm" || band() === "grow" ? "Confirmation" : "First Reconciliation")}</span></div>`;
   } else cd.hidden = true;
   $("#mapTitle").textContent = `${whose(1)} path home.`;
 }
@@ -4002,7 +4010,7 @@ function renderPrayList() {
   const isKnown = id => known.includes(id) || (PRAY[id].studio && learned.includes(PRAY[id].studio === "prayer" ? "contrition" : PRAY[id].studio));
   el.innerHTML = `<div class="fp-tabs" role="tablist">${BAND_ORDER.map(b => `<button type="button" role="tab" aria-selected="${b === sel}" data-b="${b}">${BANDS[b].name}${b === mine ? " ★" : ""}</button>`).join("")}</div>
     <p class="fp-bl">${esc(BANDS[sel].ages)}${sel === mine && named() ? ` · ${esc(named())}'s prayers this year` : ""}</p>
-    <div class="fp-list">${Object.entries(PRAY).filter(([, P]) => P.band === sel).map(([id, P]) => `<button type="button" class="fp-pr${isKnown(id) ? " known" : ""}" data-id="${id}"><img loading="lazy" decoding="async" src="${A(P.icon)}" alt=""><span><b>${esc(P.name)}</b><small>${esc(P.when)}</small></span><i>${isKnown(id) ? "By heart ✓" : "Pray &rsaquo;"}</i></button>`).join("")}</div>`;
+    <div class="fp-list">${Object.entries(PRAY).filter(([, P]) => P.band === sel && !(P.studio && !onlyList && sel === "first")).map(([id, P]) => `<button type="button" class="fp-pr${isKnown(id) ? " known" : ""}" data-id="${id}"><img loading="lazy" decoding="async" src="${A(P.icon)}" alt=""><span><b>${esc(P.name)}</b><small>${esc(P.when)}</small></span><i>${isKnown(id) ? "By heart ✓" : "Pray &rsaquo;"}</i></button>`).join("")}</div>`;
   el.querySelectorAll(".fp-tabs button").forEach(t => { t.tabIndex = t.getAttribute("aria-selected") === "true" ? 0 : -1; t.onclick = () => { sfx.tap(); prayBand = t.dataset.b; renderPrayList(); el.querySelector(`.fp-tabs [data-b="${prayBand}"]`)?.focus(); }; });
   el.querySelector(".fp-tabs").onkeydown = e => { const i = BAND_ORDER.indexOf(sel), n = e.key === "ArrowRight" || e.key === "ArrowDown" ? 1 : e.key === "ArrowLeft" || e.key === "ArrowUp" ? -1 : 0; if (!n && e.key !== "Home" && e.key !== "End") return; e.preventDefault(); prayBand = e.key === "Home" ? BAND_ORDER[0] : e.key === "End" ? BAND_ORDER[3] : BAND_ORDER[(i + n + 4) % 4]; renderPrayList(); el.querySelector(`.fp-tabs [data-b="${prayBand}"]`)?.focus(); };
   el.querySelectorAll(".fp-pr").forEach(t => t.onclick = () => openPrayer(t.dataset.id));
@@ -4206,7 +4214,7 @@ R.done = (el, s) => {
   hush();
   // little ones meet the gentlest stories first (no martyrdom or illness until they're older)
   const order = Q && Q.course === "lambs" ? [1, 8, 9, 11, 12, 3, 4, 5, 10, 7, 0, 2, 6] : SAINTS.map((x, j) => j);
-  const newCard = () => { const i = order.find(j => !S.cards.includes(j)); if (i == null) return; S.cards.push(i); pset("cards", S.cards); pendingAwards.push({ kicker: "New saint card", title: SAINTS[i].name, text: "A new friend in heaven for your Saint Album!", src: `assets/img/${SAINTS[i].pic}.jpg` }); renderAlbum(); };
+  const newCard = () => { const i = order.find(j => !S.cards.includes(j)); if (i == null) { const k = S.cards[Math.floor(Math.random() * S.cards.length)]; if (SAINTS[k]) pendingAwards.push({ kicker: "A saint friend is cheering", title: SAINTS[k].name, text: `Your album is full! Ask ${SAINTS[k].name} to pray for you today.`, src: `assets/img/${SAINTS[k].pic}.jpg` }); return; } S.cards.push(i); pset("cards", S.cards); pendingAwards.push({ kicker: "New saint card", title: SAINTS[i].name, text: "A new friend in heaven for your Saint Album!", src: `assets/img/${SAINTS[i].pic}.jpg` }); renderAlbum(); };
   if (Q && Q.course === "fc" && S.pid) { const d = pget("fc.done", []); if (!d.includes(Q.fid)) { pset("fc.done", [...d, Q.fid]); newCard(); } }
   if (Q && Q.course === "grow" && S.pid) { const d = pget("grow.done", []); if (!d.includes(Q.gid)) { pset("grow.done", [...d, Q.gid]); newCard(); } }
   if (Q && Q.course === "conf" && S.pid) { const d = pget("conf.done", []); if (!d.includes(Q.cid)) { pset("conf.done", [...d, Q.cid]); newCard(); } }
@@ -4264,7 +4272,8 @@ function renderPlayers() {
     : `<div class="trow"><span>No players yet</span><button class="tbtn" type="button" data-act="add">Add a child</button></div>`;
   $("#plSettings").querySelectorAll(".fp-grade").forEach(sel => sel.onchange = () => { const id = sel.closest("[data-id]").dataset.id; if (sel.value === "") return; setGrade(+sel.value, id); sfx.tap(); toast("Grade saved"); refreshPlayer(); });
   $("#resetLbl").textContent = S.pid ? `Erase ${S.name}'s progress` : "Erase progress";
-  $("#dayLbl").textContent = S.pid ? `${S.name}'s First Reconciliation` : "First Reconciliation date";
+  const sac = band() === "confirm" || band() === "grow" ? "Confirmation" : "First Reconciliation";
+  $("#dayLbl").textContent = S.pid ? `${S.name}'s ${sac}` : `${sac} date`;
 }
 function switchPlayer(id) { if (id === S.pid) return; loadPlayer(id); refreshPlayer(); toast(`Hi, ${S.name}!`); }
 // progress lives in this browser; ask it to keep the data, even when storage gets tight or the site isn't opened for a while
@@ -4420,8 +4429,10 @@ addEventListener("keydown", e => { if ($("#cardView").hidden) return; if (e.key 
 document.querySelectorAll("[data-practice]").forEach(b => b.onclick = () => { sfx.tap(); openPractice(b.dataset.practice); });
 /* ---------- videos: play while on screen, pause when scrolled away (saves battery, keeps scrolling smooth) ---------- */
 const VIDS = ["mass_church", "mass_entrance", "mass_readings", "mass_gospel", "mass_gifts", "mass_altar", "mass_peace", "mass_blessing", "mass_sent", "mass_kneel", "mass_font", "mass_ourfather", "mass_creed", "mass_sanctus"];
-const autoIO = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => { const v = e.target; if (e.isIntersecting) { if (v.preload !== "auto") { v.preload = "auto"; v.load(); } v.play().catch(() => {}); } else v.pause(); }), { threshold: .2 }) : null;
-function autoVideos(root = document) { if (reduce) return; root.querySelectorAll("video[data-auto]").forEach(v => { if (v.dataset.on) return; v.dataset.on = 1; v.muted = true; autoIO ? autoIO.observe(v) : v.play().catch(() => {}); }); }
+const autoIO = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => { const v = e.target; if (e.isIntersecting) { if (v.dataset.poster) { v.poster = v.dataset.poster; v.removeAttribute("data-poster"); } if (v.preload !== "auto") { v.preload = "auto"; v.load(); } v.play().catch(() => {}); } else v.pause(); }), { threshold: .2 }) : null;
+// a Home button that opens a tab partway down, at its own section
+document.querySelectorAll("[data-jump]").forEach(a => a.addEventListener("click", () => setTimeout(() => { const t = document.getElementById(a.dataset.jump); if (t) scrollTo({ top: t.getBoundingClientRect().top + scrollY - 64, behavior: reduce ? "auto" : "smooth" }); }, 450)));
+function autoVideos(root = document) { if (reduce) { root.querySelectorAll("video[data-auto][data-poster]").forEach(v => { if (!v.closest("#mass")) { v.poster = v.dataset.poster; v.removeAttribute("data-poster"); } }); return; } root.querySelectorAll("video[data-auto]").forEach(v => { if (v.dataset.on) return; v.dataset.on = 1; v.muted = true; autoIO ? autoIO.observe(v) : v.play().catch(() => {}); }); }
 // the Mass as a scroll story: each chapter keeps a video pinned while its parts scroll past, and the video follows the part you're reading
 const MASS_MEDIA = ["mass_font", "mass_entrance", "mass_church", "mass_kneel", "mass_church", "mass_readings", "mass_gospel", "mass_church", "mass_creed", "mass_kneel", "mass_gifts", "mass_sanctus", "mass_altar", "mass_altar", "mass_ourfather", "mass_peace", "mass_altar", "mass_blessing", "mass_kneel", "mass_sent"];
 const MASS_CH = { "Before Mass": "We come into God's house and remember our Baptism.", "We gather": "Jesus' family comes together and gets our hearts ready.", "The Word of God": "God speaks to us through the Bible.", "Jesus in the Eucharist": "The bread and wine become Jesus.", "Communion": "Jesus comes to us, and we share His peace.", "We go out": "We take Jesus' love home with us." };
@@ -4539,6 +4550,14 @@ function churchDay(when) {
     [add(pentecost, -1), "Tomorrow is Pentecost!", "dove", 1],
   ];
   feasts.push([joseph, "Today is the feast of St. Joseph, Jesus' foster father.", "house"]);
+  const dec26 = D(12, 26), hfSun = add(dec26, (7 - dec26.getDay()) % 7), holyFamily = hfSun.getDate() <= 31 && hfSun.getMonth() === 11 ? hfSun : D(12, 30);
+  feasts.push([xmas.getDay() === 0 ? D(12, 30) : holyFamily, "Today is the feast of the Holy Family: Jesus, Mary, and Joseph, our parish's own feast!", "house"]);
+  if (D(12, 12).getDay() !== 0) feasts.push([D(12, 12), "Today is Our Lady of Guadalupe, patroness of the Americas.", "lily"]);
+  feasts.push([baptism, "Today is the Baptism of the Lord. Jesus was baptized in the Jordan River.", "water"]);
+  feasts.push([add(E, 42), "Today we celebrate the Ascension: Jesus went up to heaven.", "cloud"]);
+  feasts.push([add(pentecost, 7), "Today is Trinity Sunday: one God, Father, Son, and Holy Spirit.", "sparkles"]);
+  feasts.push([add(pentecost, 14), "Today is Corpus Christi, the feast of the Body and Blood of Jesus.", "chalice"]);
+  feasts.push([D(6, 29), "Today is the feast of Sts. Peter and Paul, the great apostles.", "church"]);
   feasts.push([annunciation, "Today is the Annunciation: the angel told Mary she would be Jesus' mother.", "lily"]);
   const hit = feasts.find(f => same(f[0], t));
   if (hit) return { msg: hit[1], icon: hit[2], lesson: hit[3] };
@@ -4695,7 +4714,7 @@ function renderToday() {
   // the First Reconciliation tile is for the First Sacraments years (and for families who haven't set a grade)
   const fr = $("#frTile"); if (fr) fr.hidden = !!band() && band() !== "first";
   document.body.dataset.band = band() || ""; renderLambs(); renderConf(); renderGrow(); renderFc(); renderGuide();
-  const bt = $("#bedTileH"); if (bt) bt.textContent = band() === "grow" || band() === "confirm" ? "Night examen." : "Bedtime Heart Check.";
+  const bt = $("#bedTileH"), bn = band() === "grow" || band() === "confirm" ? "Night examen" : "Bedtime Heart Check"; if (bt) bt.textContent = bn + "."; document.querySelectorAll(".bedName").forEach(x => x.textContent = bn);
   el.innerHTML = `<div class="fp-band"><span class="fp-dot"></span><span>${esc(day)}</span><span class="fp-col">${L.color === "rose" ? "Rose" : L.color[0].toUpperCase() + L.color.slice(1)}</span></div>
     <p class="t-eyebrow dark">Today in the Church${L.feast ? ` · ${esc(L.label)}` : ""}</p><h2>${esc(L.feast || L.label)}.</h2><p class="t-sub">${esc(L.feast ? `${L.name}: ${SEASON[L.k].line[0].toLowerCase() + SEASON[L.k].line.slice(1)}` : SEASON[L.k].line)}.</p>
     ${feast && !L.feast ? `<p class="fp-feast">${img(c.icon)}<span>${esc(feast)}</span></p>` : ""}
@@ -4745,7 +4764,7 @@ renderToday(); renderPrayList();
     document.querySelectorAll("[data-view]").forEach(sec => sec.classList.toggle("on", sec.dataset.view === v));
     tabs.forEach(t => t.toggleAttribute("aria-current", t.dataset.tab === v));
     document.body.dataset.page = v;
-    scrollTo(0, 0);
+    scrollTo({ top: 0, behavior: "instant" });
     if (v === "cards") markSeen();
     // heavy pictures for a page load only when that page opens
     if (v === "mass") document.querySelectorAll("#mass video[data-poster]").forEach(x => { x.poster = x.dataset.poster; x.removeAttribute("data-poster"); });
