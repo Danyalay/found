@@ -537,7 +537,7 @@ button.slot-btn:hover{transform:translateY(-6px) rotate(-1.5deg)}
 .stamp{font-family:var(--display);font-weight:800;font-size:clamp(54px,10vw,110px);line-height:.95;color:var(--berry);transform:rotate(-6deg);animation:stamp .7s cubic-bezier(.3,1.6,.5,1) both}
 
 #fx{position:fixed;inset:0;pointer-events:none;z-index:80;width:100%;height:100%}
-.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));translate:-50% 0;width:max-content;max-width:calc(100vw - 32px);text-align:center;background:var(--ink);color:var(--sky);padding:14px 22px;border-radius:999px;font-weight:700;z-index:90;animation:sin .3s both}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));translate:-50% 0;width:max-content;max-width:calc(100vw - 32px);text-align:center;background:var(--ink);color:var(--sky);padding:14px 22px;border-radius:999px;font-weight:700;z-index:130;animation:sin .3s both}
 
 /* keyframes */
 @keyframes wordin{0%{transform:translateY(.35em) scale(.85) rotate(-4deg)}100%{transform:none}}
@@ -1831,7 +1831,7 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
 .cp-title{flex:1;min-width:0;font-weight:800;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cp-x,.cp-read{flex:none;width:44px;height:44px;border-radius:50%;background:var(--ccard);color:var(--cink);font-size:26px;line-height:44px;text-align:center;border:1px solid var(--cline)}
 .cp-read{font-size:18px}.cp-read[aria-pressed="true"]{background:var(--cacc);color:#1a1a1a}
-.cp-x{order:3}
+.cp-x{order:3}.cp-read{order:2}.cp-h:focus{outline:none}.comp:focus{outline:none}
 .cp-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 .cp-body{max-width:620px;margin:0 auto;padding:20px 18px 0;min-height:100%;}
 .cp-body::after{content:"";flex:none;height:calc(28px + env(safe-area-inset-bottom,0px))}
@@ -1986,8 +1986,8 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
   <div class="night-stage" id="nStage" aria-live="polite"></div>
 </div>
 <div class="comp" id="comp" hidden role="dialog" aria-modal="true" aria-label="Companion">
-  <div class="cp-top"><div class="cp-title" id="cpTitle"></div><button type="button" class="cp-read" id="cpRead" aria-pressed="false" aria-label="Read this to me" hidden><span aria-hidden="true">🔊</span></button><button type="button" class="cp-x" id="cpX" aria-label="Close">&times;</button></div>
-  <div class="cp-scroll" id="cpScroll"><div class="cp-body" id="cpBody" aria-live="polite"></div></div>
+  <div class="cp-top"><div class="cp-title" id="cpTitle"></div><button type="button" class="cp-x" id="cpX" aria-label="Close">&times;</button><button type="button" class="cp-read" id="cpRead" aria-pressed="false" aria-label="Read this to me" hidden><span aria-hidden="true">🔊</span></button></div>
+  <div class="cp-scroll" id="cpScroll"><div class="cp-body" id="cpBody"></div></div>
 </div>
 <div class="pstudio" id="pstudio" hidden role="dialog" aria-modal="true" aria-label="Prayer">
   <div class="ps-top"><button type="button" class="ps-x" id="psX" aria-label="Close">&times;</button><div class="ps-tabs" role="tablist"><button type="button" role="tab" data-tab="learn">Learn</button><button type="button" role="tab" data-tab="practice">Practice</button><button type="button" role="tab" data-tab="heart">By heart</button></div></div>
@@ -3231,7 +3231,7 @@ function todayMission() {
   else if (left && since >= 6) k = "lesson";
   else {
     const nl = b === "lambs" ? nextLamb() : null, nc = b === "confirm" ? nextConf() : null, ng = b === "grow" ? nextGrow() : null, nf = (!b || b === "first") && S.done.length >= 4 ? nextFc() : null;
-    const pool = BAND_POOL[b] ? [...BAND_POOL[b], ...(nl ? ["lamb." + nl, "lamb." + nl, "lamb." + nl] : []), ...(nc ? ["conf." + nc, "conf." + nc, "conf." + nc] : []), ...(ng ? ["grow." + ng, "grow." + ng, "grow." + ng] : []), ...(nf ? ["fc." + nf, "fc." + nf] : []), ...(S.done.length && b === "grow" ? ["review"] : [])] : ["ourfather", "hailmary", "glorybe", "prayer", "bedtime", "massPose", "massSay", "pr.morning", "pr.apostles", ...(S.done.length ? ["review", "review"] : []), ...(S.done.length >= 7 ? ["steps"] : []), ...(nf ? ["fc." + nf, "fc." + nf] : [])];
+    const pool = BAND_POOL[b] ? [...BAND_POOL[b], ...(nl ? ["lamb." + nl, "lamb." + nl, "lamb." + nl] : []), ...(nc ? ["conf." + nc, "conf." + nc, "conf." + nc] : []), ...(ng ? ["grow." + ng, "grow." + ng, "grow." + ng] : []), ...(nf ? ["fc." + nf, "fc." + nf] : []), ...(S.done.length && b === "grow" ? ["review"] : [])] : ["ourfather", "hailmary", "glorybe", "prayer", "bedtime", "massPose", "massSay", "pr.morning", "pr.apostles", "bible", "pr.rosary", ...(S.done.length ? ["review", "review"] : []), ...(S.done.length >= 7 ? ["steps"] : []), ...(nf ? ["fc." + nf, "fc." + nf] : [])];
     const seed = [...(t + S.pid)].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7);
     k = pool[seed % pool.length];
   }
@@ -3434,7 +3434,7 @@ function openQuest(i) {
   sfx.whoosh(); show(false);
 }
 // while a lesson, studio, game, bedtime, or card is open, the page behind it can't be tabbed into or clicked
-const OVL = ["quest", "pstudio", "gshell", "night", "cardView", "pread"];
+const OVL = ["quest", "pstudio", "gshell", "night", "cardView", "pread", "comp"];
 function syncInert() {
   const open = OVL.map(id => document.getElementById(id)).filter(o => o && !o.hidden);
   [...document.body.children].forEach(c => { if (OVL.includes(c.id) || c.classList.contains("toast") || c.classList.contains("award") || c.tagName === "SCRIPT") return; c.inert = open.length > 0; });
@@ -4314,17 +4314,18 @@ function openPrayer(id) {
 }
 function closePrayer() { hush(); $("#pread").hidden = true; if ($("#quest").hidden) document.body.style.overflow = ""; }
 /* ---------- companions: the Rosary, Mass follow-along, and the Bible guide (one full-screen shell, three themes) ---------- */
-let CP = null, cpBack = null, wakeL = null;
+let CP = null, wakeL = null;
 function cpOpen(kind, title) {
-  cpBack = document.activeElement;
   CP = { kind }; const c = $("#comp"); c.className = "comp " + kind; c.setAttribute("aria-label", title);
   $("#cpTitle").textContent = title; $("#cpRead").hidden = kind === "massgo" || !canSpeak; $("#cpRead").setAttribute("aria-pressed", "false");
-  c.hidden = false; document.body.style.overflow = "hidden"; setTimeout(() => $("#cpX").focus({ preventScroll: true }), 30);
+  c.hidden = false; document.body.style.overflow = "hidden";
 }
 function cpShow(html, after, say) {
   hush(); const b = $("#cpBody"); b.innerHTML = html; $("#cpScroll").scrollTop = 0; CP.say = say || "";
   $("#cpRead").setAttribute("aria-pressed", "false");
   after && after(b);
+  b.querySelectorAll('[role="tablist"],[role="radiogroup"]').forEach(g => { const it = [...g.children], on = it.find(x => x.getAttribute("aria-selected") === "true" || x.getAttribute("aria-checked") === "true") || it[0]; it.forEach(x => { x.tabIndex = x === on ? 0 : -1; }); });
+  if (!$("#comp").contains(document.activeElement) || document.activeElement === $("#comp")) { const h = b.querySelector(".cp-h"); if (h) { h.tabIndex = -1; setTimeout(() => { if (!$("#comp").hidden && h.isConnected && (!$("#comp").contains(document.activeElement) || document.activeElement === $("#comp"))) h.focus({ preventScroll: true }); }, 70); } }
   if (G && CP.kind !== "massgo" && !reduce) { const kids = [...b.children]; G.from(kids, { y: 14, opacity: 0, duration: .5, ease: "power2.out", stagger: .05 });
     // animation frames pause in the background or on a busy phone; the content must show up regardless
     setTimeout(() => { if (kids[0] && kids[0].isConnected) { G.killTweensOf(kids); G.set(kids, { clearProps: "opacity,transform" }); } }, 1400); }
@@ -4334,12 +4335,18 @@ function cpClose() {
   hush(); const kind = CP && CP.kind, items = CP && CP.items; QUIET = false; try { wakeL && wakeL.release(); } catch (e) {} wakeL = null;
   $("#comp").hidden = true; if ($("#quest").hidden) document.body.style.overflow = "";
   if (kind !== "massgo") sfx.close();
-  CP = null; try { cpBack && cpBack.focus({ preventScroll: true }); } catch (e) {}
+  CP = null;
   if (items && items.length) setTimeout(() => celebrate(items), 350);
 }
 $("#cpX").onclick = cpClose;
 $("#cpRead").onclick = () => { if (!CP || !CP.say) return; sfx.tap(); speakToggle(CP.say, $("#cpRead")); };
 addEventListener("keydown", e => { if (!$("#comp").hidden && e.key === "Escape") cpClose(); });
+$("#cpBody").addEventListener("keydown", e => {
+  const g = e.target.closest('[role="tablist"],[role="radiogroup"]'); if (!g) return;
+  const it = [...g.children], i = it.indexOf(e.target), n = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+  const j = n ? (i + n + it.length) % it.length : e.key === "Home" ? 0 : e.key === "End" ? it.length - 1 : -1;
+  if (j < 0 || i < 0) return; e.preventDefault(); it[j].focus(); it[j].click();
+});
 const cpLink = (ref, url, label = "Read it in the Bible") => url ? `<a class="cp-link" href="${url}" target="_blank" rel="noopener">${esc(label)} <span aria-hidden="true">&#8599;</span><small>${esc(ref)}</small></a>` : "";
 const pic = n => `assets/img/${n}.jpg`;
 // a chapter of the Bible on the bishops' own site (New American Bible)
