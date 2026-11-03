@@ -1809,6 +1809,13 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
 /* wide screens: the lesson bar and footer stay with the scene */
 @media (min-width:1100px){.quest .qbar,.quest .qfoot,.quest .dots{width:min(100%,900px);margin-left:auto;margin-right:auto;box-sizing:border-box}}
 .skip{position:absolute;left:12px;top:-60px;z-index:100;padding:10px 16px;border-radius:12px;background:#0071E3;color:#fff;font-weight:700;text-decoration:none}.skip:focus{top:10px}
+
+/* QA round 18: dialogs scroll on short screens; the mission-done line reads clearly */
+.award{display:flex;overflow-y:auto;overscroll-behavior:contain}.award-card{margin:auto;flex:none}
+@media (orientation:landscape) and (max-height:500px){.award{padding:10px}.award-card{gap:6px;padding:14px 20px}.award-art{max-height:34vh}.award-art img{max-height:34vh;width:auto}}
+.mission.done .mtxt span{color:#3C4A41}
+:root[data-theme="dark"] .mission.done .mtxt span{color:#D6E8DC}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mission.done .mtxt span{color:#D6E8DC}}
 /* apple scroll reveal: fade + rise, staggered */
 .rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(0,0,.5,1),transform 1s cubic-bezier(0,0,.5,1);transition-delay:calc(var(--d,0) * 90ms)}
 .rv.in{opacity:1;transform:none}
@@ -1829,7 +1836,7 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
 <div class="night" id="night" hidden role="dialog" aria-modal="true" aria-label="Bedtime Heart Check">
   <div class="night-bg"><img loading="lazy" decoding="async" src="assets/img/night_sky.jpg" alt=""><video id="nightVid" src="assets/vid/night_sky.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
   <button type="button" class="night-x" id="nightX" aria-label="Close Bedtime Heart Check">&times;</button>
-  <button type="button" class="night-read" id="nightRead" aria-label="Read this to me" hidden><span aria-hidden="true">🔊</span></button>
+  <button type="button" class="night-read" id="nightRead" aria-pressed="false" aria-label="Read this to me" hidden><span aria-hidden="true">🔊</span></button>
   <div class="night-stage" id="nStage" aria-live="polite"></div>
 </div>
 <div class="pstudio" id="pstudio" hidden role="dialog" aria-modal="true" aria-label="Prayer">
@@ -2774,10 +2781,14 @@ const STEPS6 = ["Examination of Conscience","Welcome","Confession","Penance","Ac
 /* ---------- state ---------- */
 const store = {
   get(k, d) { try { const v = localStorage.getItem("found." + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
-  set(k, v) { try { localStorage.setItem("found." + k, JSON.stringify(v)); } catch (e) { saveFailed(); } },
+  set(k, v) { try { localStorage.setItem("found." + k, JSON.stringify(v)); return true; } catch (e) { saveFailed(e); return false; } },
 };
 let saveWarned = false;
-function saveFailed() { if (saveWarned) return; saveWarned = true; setTimeout(() => { if (typeof toast === "function") toast("This browser isn't saving progress. Try a normal (not private) window, or add Found! to your Home Screen."); }, 800); }
+function saveFailed(e) {
+  if (saveWarned) return; saveWarned = true;
+  const full = e && (e.name === "QuotaExceededError" || e.code === 22 || e.code === 1014);
+  setTimeout(() => { if (typeof toast === "function") toast(full ? "This device's storage is full, so new progress can't be saved. Make a backup link on the Grown-ups page, then free up some space." : "This browser isn't saving progress. Try a normal (not private) window, or add Found! to your Home Screen."); }, 800);
+}
 const SAVE_VERSION = 3;
 // before any upgrade runs, keep a copy of the saves exactly as they were (once per version; only the two newest are kept)
 (function safetyCopy() {
@@ -2791,12 +2802,12 @@ const SAVE_VERSION = 3;
   } catch (e) {}
 })();
 // every saved value must have the shape the app expects; anything else reads as the default
-const SHAPE = { "fc.done": "arr", "grow.done": "arr", "conf.confirmed": "bool", "conf.done": "arr", "conf.saint": "str", "conf.sponsor": "str", "conf.service": "num", "lambs.done": "arr", grade: "obj", known: "arr", done: "arr", cards: "arr", badges: "arr", days: "arr", learned: "arr", missed: "arr", stars: "obj", practiced: "obj", nightSeen: "obj", pos: "obj", mtoday: "obj", unlocked: "bool", bigDay: "str", missionDone: "str", lastLesson: "str", seen: "num", fixed: "num" };
+const SHAPE = { readAloud: "bool", readLambs: "bool", "fc.done": "arr", "grow.done": "arr", "conf.confirmed": "bool", "conf.done": "arr", "conf.saint": "str", "conf.sponsor": "str", "conf.service": "num", "lambs.done": "arr", grade: "obj", known: "arr", done: "arr", cards: "arr", badges: "arr", days: "arr", learned: "arr", missed: "arr", stars: "obj", practiced: "obj", nightSeen: "obj", pos: "obj", mtoday: "obj", unlocked: "bool", bigDay: "str", missionDone: "str", lastLesson: "str", seen: "num", fixed: "num" };
 const fits = (k, v) => { const t = SHAPE[k]; if (!t || v == null) return true; if (t === "arr") return Array.isArray(v); if (t === "obj") return typeof v === "object" && !Array.isArray(v); return typeof v === { bool: "boolean", str: "string", num: "number" }[t]; };
 const okId = id => typeof id === "string" && /^[\w-]{1,40}$/.test(id);
 let speakT = 0, speakBtn = null, speakU = null;   // the pending scene read, and the speaker button that is on
 // read-aloud in lessons: Little Lambs reads by itself unless turned off; every other course when "Read to me" is on
-const readNow = () => !!Q && (Q.course === "lambs" ? store.get("readLambs", true) : store.get("readAloud", false));
+const readNow = () => !!Q && (Q.course === "lambs" ? pget("readLambs", S.pid ? true : store.get("readLambs", true)) : pget("readAloud", S.pid ? false : store.get("readAloud", false)));
 const S = { pid: null, name: "", done: [], cards: [], unlocked: false, sound: store.get("sound", true), bigDay: "" };
 if (store.get("v", 1) < 2) { ["done", "cards"].forEach(k => store.set(k, [])); store.set("pos", null); store.set("seen", 0); store.set("v", 2); }
 
@@ -2874,8 +2885,10 @@ const BANDS = {
 const gradeFor = id => { const v = store.get(`p.${id}.grade`, null); return v && typeof v.g === "number" ? Math.max(-2, Math.min(12, v.g + (schoolYear() - (+v.sy || schoolYear())))) : null; };
 // First Sacraments runs through the year after First Communion; Confirmation starts the year before Confirmation
 const bandOf = g => { if (g == null) return null; const P = PARISH(), f = Math.max(2, P.fc + 1), c = Math.max(f + 2, P.conf); return g <= 0 ? "lambs" : g <= f ? "first" : g < c - 1 ? "grow" : "confirm"; };
-const pget = (k, d) => { if (!S.pid) return d; const v = store.get(`p.${S.pid}.${k}`, d); return fits(k, v) ? v : d; };
-const pset = (k, v) => { if (S.pid) store.set(`p.${S.pid}.${k}`, v); };
+const pget = (k, d) => { if (!S.pid) return d; const v = store.get(`p.${S.pid}.${k}`, d); return v != null && fits(k, v) ? v : d; };
+const pset = (k, v) => S.pid ? store.set(`p.${S.pid}.${k}`, v) : false;
+// lessons and cards may have been saved by this child in another tab since this one loaded: keep both
+const mergeSaved = k => { S[k] = [...new Set([...pget(k, []), ...S[k]])]; };
 const pdrop = (id, keys) => keys.forEach(k => { try { localStorage.removeItem(`found.p.${id}.${k}`); } catch (e) {} });
 function loadPlayer(id) {
   const pl = PL.find(x => x.id === id) || null;
@@ -2905,7 +2918,7 @@ const today = () => ymd(new Date());
 function weekDays() { const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() - d.getDay()); return Array.from({ length: 7 }, (_, k) => { const x = new Date(d); x.setDate(d.getDate() + k); return ymd(x); }); }
 const starsOf = i => pget("stars", {})[i] || 0;
 const totalStars = () => Object.values(pget("stars", {})).reduce((a, b) => a + b, 0);
-const litThisWeek = () => { const D = pget("days", []); return weekDays().filter(d => D.includes(d)).length; };
+const litThisWeek = () => { const D = pget("days", []), t = today(); return weekDays().filter(d => d <= t && D.includes(d)).length; };
 const learnedAll = ks => ks.every(k => pget("learned", []).includes(k));
 const BADGES = [
   { id: "first", icon: "staff", name: "First step", how: "Finish Lesson 1" },
@@ -3008,7 +3021,7 @@ function missionHTML() {
 function startMission(k) { sfx.tap(); if (/^pr\./.test(k)) { openPrayer(k.slice(3)); return; } if (/^lamb\./.test(k)) { openLamb(k.slice(5)); return; } if (/^conf\./.test(k)) { openConf(k.slice(5)); return; } if (/^grow\./.test(k)) { openGrow(k.slice(5)); return; } if (/^fc\./.test(k)) { openFc(k.slice(3)); return; } if (k === "lesson") openQuest(Math.min(current(), QUESTS.length - 1)); else openPractice(k); }
 function weekHTML() {
   const D = pget("days", []), t = today(), n = litThisWeek();
-  return `<div class="week" role="img" aria-label="${n} of 7 candles lit this week">${weekDays().map((d, k) => `<span class="wkd${D.includes(d) ? " lit" : ""}${d === t ? " today" : ""}"><img loading="lazy" decoding="async" src="${A("candle")}" alt=""><small>${"SMTWTFS"[k]}</small></span>`).join("")}</div><p class="week-t">${n ? `<b>${n} of 7</b> candles lit this week` : "Do one lesson or prayer to light today's candle"}</p>`;
+  return `<div class="week" role="img" aria-label="${n} of 7 candles lit this week">${weekDays().map((d, k) => `<span class="wkd${d <= t && D.includes(d) ? " lit" : ""}${d === t ? " today" : ""}"><img loading="lazy" decoding="async" src="${A("candle")}" alt=""><small>${"SMTWTFS"[k]}</small></span>`).join("")}</div><p class="week-t">${n ? `<b>${n} of 7</b> candles lit this week` : "Do one lesson or prayer to light today's candle"}</p>`;
 }
 function renderBadges() {
   const have = pget("badges", []), g = $("#badgeGrid"); if (!g) return;
@@ -3249,13 +3262,13 @@ nextBtn.onclick = () => {
 };
 $("#qBack").onclick = () => { if (si) { si--; show(true); } };
 $("#qClose").onclick = () => { if (Q && scenes[si] && scenes[si].t === "done") { sfx.tap(); finishQuest(); return; } closeQuest(); if (pendingAwards.length) { const a = pendingAwards; pendingAwards = []; renderGame(); setTimeout(() => celebrate(a), 350); } };
-addEventListener("keydown", e => { if ($("#quest").hidden) return; if (e.key === "Escape") $("#qClose").click(); });
+addEventListener("keydown", e => { if (e.key === "Escape") { const aw = document.querySelector(".award"); if (aw) { e.preventDefault(); (aw.querySelector("#rsNo") || [...aw.querySelectorAll("button")].pop())?.click(); return; } } if ($("#quest").hidden) return; if (e.key === "Escape") $("#qClose").click(); });
 
 function finishQuest() {
   const awards = () => { const a = [...pendingAwards, ...checkBadges().map(badgeAward)]; pendingAwards = []; renderGame(); return a; };
   if (Q && Q.practice) { closeQuest(); const a = awards(); a.length ? setTimeout(() => celebrate(a), 350) : toast(Q.course === "lambs" ? "Wonderful!" : Q.course === "conf" ? "Session complete" : Q.course === "grow" ? "Chapter complete!" : Q.course === "fc" ? "Lesson complete!" : "Great practice!"); return; }
   const first = !isDone(qi), from = current();
-  if (first) { S.done.push(qi); pset("done", S.done); }
+  if (first) { mergeSaved("done"); if (!S.done.includes(qi)) S.done.push(qi); pset("done", S.done); }
   if (location.hash !== "#/quests") goView("quests");
   pset("pos", null);
   closeQuest();
@@ -3774,7 +3787,7 @@ R.saint = el => {
   attachTilt(card);
   const done = () => {
     if (!Q || $("#quest").hidden) return;
-    if (!S.cards.includes(i)) { S.cards.push(i); pset("cards", S.cards); }
+    mergeSaved("cards"); if (!S.cards.includes(i)) { S.cards.push(i); pset("cards", S.cards); }
     renderAlbum();
     st.textContent = `${s.name} joined your Saint Album!`;
     el.querySelector("#cardBtns").hidden = false;
@@ -4056,7 +4069,7 @@ const hush = () => { clearTimeout(speakT); endSpeak(); try { canSpeak && speechS
 const sayJoin = a => a.map(t => String(t).trim()).filter(Boolean).map(t => /[.!?…:,;]$/.test(t) ? t : t + ".").join(" ");
 // tap once to listen, tap again to stop
 const speakToggle = (t, btn) => { try { if (canSpeak && (speechSynthesis.speaking || speechSynthesis.pending)) { hush(); return; } } catch (e) {} speak(t, btn); };
-$("#qRead").onclick = () => { sfx.tap(); const k = Q && Q.course === "lambs" ? "readLambs" : "readAloud", on = !readNow(); store.set(k, on); $("#qRead").setAttribute("aria-pressed", on ? "true" : "false");
+$("#qRead").onclick = () => { sfx.tap(); const k = Q && Q.course === "lambs" ? "readLambs" : "readAloud", on = !readNow(); S.pid ? pset(k, on) : store.set(k, on); $("#qRead").setAttribute("aria-pressed", on ? "true" : "false");
   if (on) { const sc = $("#stage .scene"); if (sc) speak(sayJoin([...sc.querySelectorAll(".stamp, .say, .opt")].map(e => e.textContent))); } else hush(); };
 function openPrayer(id) {
   const P = PRAY[id]; if (!P) return;
@@ -4245,7 +4258,7 @@ R.done = (el, s) => {
   hush();
   // little ones meet the gentlest stories first (no martyrdom or illness until they're older)
   const order = Q && Q.course === "lambs" ? [1, 8, 9, 11, 12, 3, 4, 5, 10, 7, 0, 2, 6] : SAINTS.map((x, j) => j);
-  const newCard = () => { const i = order.find(j => !S.cards.includes(j)); if (i == null) { const k = S.cards[Math.floor(Math.random() * S.cards.length)]; if (SAINTS[k]) pendingAwards.push({ kicker: "A saint friend is cheering", title: SAINTS[k].name, text: `Your album is full! Ask ${SAINTS[k].name} to pray for you today.`, src: `assets/img/${SAINTS[k].pic}.jpg` }); return; } S.cards.push(i); pset("cards", S.cards); pendingAwards.push({ kicker: "New saint card", title: SAINTS[i].name, text: "A new friend in heaven for your Saint Album!", src: `assets/img/${SAINTS[i].pic}.jpg` }); renderAlbum(); };
+  const newCard = () => { mergeSaved("cards"); const i = order.find(j => !S.cards.includes(j)); if (i == null) { const k = S.cards[Math.floor(Math.random() * S.cards.length)]; if (SAINTS[k]) pendingAwards.push({ kicker: "A saint friend is cheering", title: SAINTS[k].name, text: `Your album is full! Ask ${SAINTS[k].name} to pray for you today.`, src: `assets/img/${SAINTS[k].pic}.jpg` }); return; } S.cards.push(i); if (!pset("cards", S.cards)) { S.cards.pop(); return; } pendingAwards.push({ kicker: "New saint card", title: SAINTS[i].name, text: "A new friend in heaven for your Saint Album!", src: `assets/img/${SAINTS[i].pic}.jpg` }); renderAlbum(); };
   if (Q && Q.course === "fc" && S.pid) { const d = pget("fc.done", []); if (!d.includes(Q.fid)) { pset("fc.done", [...d, Q.fid]); newCard(); } }
   if (Q && Q.course === "grow" && S.pid) { const d = pget("grow.done", []); if (!d.includes(Q.gid)) { pset("grow.done", [...d, Q.gid]); newCard(); } }
   if (Q && Q.course === "conf" && S.pid) { const d = pget("conf.done", []); if (!d.includes(Q.cid)) { pset("conf.done", [...d, Q.cid]); newCard(); } }
@@ -4462,6 +4475,11 @@ document.querySelectorAll("[data-practice]").forEach(b => b.onclick = () => { sf
 const VIDS = ["mass_church", "mass_entrance", "mass_readings", "mass_gospel", "mass_gifts", "mass_altar", "mass_peace", "mass_blessing", "mass_sent", "mass_kneel", "mass_font", "mass_ourfather", "mass_creed", "mass_sanctus"];
 const autoIO = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => { const v = e.target; if (e.isIntersecting) { if (v.dataset.poster) { v.poster = v.dataset.poster; v.removeAttribute("data-poster"); } if (v.preload !== "auto") { v.preload = "auto"; v.load(); } v.play().catch(() => {}); } else v.pause(); }), { threshold: .2 }) : null;
 $("#skip").onclick = () => { const h = [...document.querySelectorAll("[data-view].on h1, [data-view].on h2")].find(x => x.offsetParent); if (h) { h.tabIndex = -1; h.focus(); } };
+addEventListener("storage", e => { if (S.pid && e.key && e.key.startsWith(`found.p.${S.pid}.`) && $("#quest").hidden) { loadPlayer(S.pid); refreshPlayer(); } });
+// a new day while the app stays open (an iPad left on overnight): Home catches up
+let shownDay = today();
+const dayCheck = () => { if (today() !== shownDay) { shownDay = today(); if (S.pid) { loadPlayer(S.pid); refreshPlayer(); } } };
+document.addEventListener("visibilitychange", () => { if (!document.hidden) dayCheck(); }); setInterval(dayCheck, 60000);
 // a Home button that opens a tab partway down, at its own section
 document.querySelectorAll("[data-jump]").forEach(a => a.addEventListener("click", () => setTimeout(() => { const t = document.getElementById(a.dataset.jump); if (t) scrollTo({ top: t.getBoundingClientRect().top + scrollY - 64, behavior: reduce ? "auto" : "smooth" }); }, 450)));
 function autoVideos(root = document) { if (reduce) { root.querySelectorAll("video[data-auto][data-poster]").forEach(v => { if (!v.closest("#mass")) { v.poster = v.dataset.poster; v.removeAttribute("data-poster"); } }); return; } root.querySelectorAll("video[data-auto]").forEach(v => { if (v.dataset.on) return; v.dataset.on = 1; v.muted = true; autoIO ? autoIO.observe(v) : v.play().catch(() => {}); }); }
