@@ -1686,6 +1686,44 @@ body[data-band="lambs"] #map{display:none!important}
 .fp-sxc img{width:70%;max-width:90px}
 .opt.pic{display:flex;align-items:center;gap:12px}
 .opt-ic{width:44px;height:44px;object-fit:contain;flex:none}
+
+/* ---------- Confirmation ---------- */
+#confSec,#confTile{display:none!important}
+body[data-band="confirm"] #confSec.on{display:block!important}
+body[data-band="confirm"] #confTile{display:flex!important}
+body[data-band="confirm"]:not([data-showmap="1"]) #map{display:none!important}
+.fp-confsec{background:#0F1118;color:#F5F5F7}
+.fp-confsec .sec-head p{color:#C7C7CC}
+.fp-confsec .t-eyebrow.dark{color:#FF8A80}
+.fp-confs{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.fp-conf{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:12px;padding:14px 16px;border-radius:20px;background:#1C1F2B;border:1px solid rgba(255,255,255,.08);color:#F5F5F7;text-align:left}
+.fp-conf img{width:44px;height:44px;object-fit:contain}
+.fp-conf small{display:block;font-size:12.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#A1A1A6}
+.fp-conf b{display:block;font-size:17px}
+.fp-conf i{font-style:normal;font-weight:800;font-size:14px;color:#7CC0FF}
+.fp-conf.done i{color:#5BE37D}
+.fp-conf.next{border-color:#FF8A80;box-shadow:0 0 0 2px rgba(255,138,128,.5)}
+@media (hover:hover){.fp-conf{transition:transform .25s}.fp-conf:hover{transform:translateY(-2px)}}
+.fp-check{margin-top:22px;display:grid;gap:8px;padding:18px;border-radius:22px;background:#1C1F2B;border:1px solid rgba(255,255,255,.08);max-width:560px}
+.fp-check h3{margin:0;font-size:20px}
+.fp-cn{margin:0 0 6px;font-size:13px;color:#A1A1A6}
+.fp-check label{font-size:14px;font-weight:700;color:#C7C7CC}
+.fp-check input{font:inherit;font-size:16px;padding:11px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:#12141C;color:#F5F5F7}
+.fp-hrs{display:flex;align-items:center;gap:10px;margin-top:4px}
+.fp-hrs span{flex:1;font-size:14px;font-weight:700;color:#C7C7CC}
+.fp-hrs b{min-width:36px;text-align:center;font-size:20px}
+.fp-more{margin-top:18px}
+.fp-confsec .tbtn{background:#2A2E3D;color:#F5F5F7}
+/* the lesson player in the teen style */
+.quest.teen{--card:#1C1F2B;--ink:#F5F5F7;--ink-soft:#B4B4BB;--line:rgba(255,255,255,.12);--sky:#12141C;--bg:#12141C;background:#12141C!important;color:#F5F5F7}
+.quest.teen .reactor{display:none}
+.quest.teen .qtitle,.quest.teen .say{color:#F5F5F7}
+.quest.teen .tag{background:#2A2E3D;color:#FFB3AB}
+.quest.teen .fullprayer,.quest.teen .readbox{background:#1C1F2B;color:#F5F5F7}
+.quest.teen .opt,.quest.teen .chip{background:#1C1F2B;color:#F5F5F7;border-color:rgba(255,255,255,.14)}
+.quest.teen .ref{color:#A1A1A6}
+.quest.teen #qBack{color:#7CC0FF;border-color:#7CC0FF}
+.fp-refl{width:min(100%,560px);font:inherit;font-size:16px;line-height:1.45;padding:14px;border-radius:16px;border:1px solid var(--line);background:var(--card);color:var(--ink);resize:vertical}
 /* apple scroll reveal: fade + rise, staggered */
 .rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(0,0,.5,1),transform 1s cubic-bezier(0,0,.5,1);transition-delay:calc(var(--d,0) * 90ms)}
 .rv.in{opacity:1;transform:none}
@@ -1786,6 +1824,14 @@ body[data-band="lambs"] #map{display:none!important}
     <div class="ctas"><a class="btn btn-go" href="#/quests">Open Little Lambs</a></div>
     <div class="t-media wide"><img src="assets/img/shepherd_carry.jpg" alt="The Good Shepherd carrying a lamb home" draggable="false"></div>
   </div>
+  <div class="tile tile-dark rv fp-conftile" id="confTile">
+    <p class="t-eyebrow">Confirmation</p>
+    <h2>Be sealed with the Spirit.</h2>
+    <p class="t-sub">Ten sessions for your Confirmation years.</p>
+    <p class="t-call">The Holy Spirit and His gifts, choosing your saint, your sponsor, the rite, and honest answers to hard questions.</p>
+    <div class="ctas"><a class="btn btn-go" href="#/quests">Open Confirmation</a></div>
+    <div class="t-media wide"><img src="assets/img/conf_anoint.jpg" alt="A bishop anoints a teen at Confirmation while the sponsor stands behind" draggable="false"></div>
+  </div>
   <div class="tile tile-dark rv" id="frTile">
     <p class="t-eyebrow">Getting ready for a sacrament</p>
     <h2>First Reconciliation.</h2>
@@ -1843,6 +1889,25 @@ body[data-band="lambs"] #map{display:none!important}
       <p class="fp-lc" id="lambsCount"></p>
     </div>
     <div class="fp-lambs" id="lambsGrid"></div>
+  </div>
+</section>
+<section class="sec fp-confsec" id="confSec" data-view="quests">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="t-eyebrow dark">Confirmation</p>
+      <h2>Be sealed with the Spirit.</h2>
+      <p id="confWhen"></p>
+      <p class="fp-lc" id="confCount"></p>
+    </div>
+    <div class="fp-confs" id="confGrid"></div>
+    <div class="fp-check">
+      <h3>Your Confirmation checklist</h3>
+      <p class="fp-cn">Saved only on this device.</p>
+      <label for="confSaint">My Confirmation saint</label><input id="confSaint" maxlength="60" autocomplete="off" placeholder="Who are you thinking of?">
+      <label for="confSponsor">My sponsor</label><input id="confSponsor" maxlength="60" autocomplete="off" placeholder="Name">
+      <div class="fp-hrs"><span>Service hours</span><button type="button" class="tbtn" id="confMinus" aria-label="One hour less">−</button><b id="confHrs">0</b><button type="button" class="tbtn" id="confPlus" aria-label="One hour more">+</button></div>
+    </div>
+    <p class="fp-more"><button type="button" class="tbtn" id="confReview">Review the First Reconciliation lessons</button></p>
   </div>
 </section>
 <section class="sec" id="map" data-view="quests">
@@ -2597,7 +2662,7 @@ const SAVE_VERSION = 3;
   } catch (e) {}
 })();
 // every saved value must have the shape the app expects; anything else reads as the default
-const SHAPE = { "lambs.done": "arr", grade: "obj", known: "arr", done: "arr", cards: "arr", badges: "arr", days: "arr", learned: "arr", missed: "arr", stars: "obj", practiced: "obj", nightSeen: "obj", pos: "obj", mtoday: "obj", unlocked: "bool", bigDay: "str", missionDone: "str", lastLesson: "str", seen: "num", fixed: "num" };
+const SHAPE = { "conf.done": "arr", "conf.saint": "str", "conf.sponsor": "str", "conf.service": "num", "lambs.done": "arr", grade: "obj", known: "arr", done: "arr", cards: "arr", badges: "arr", days: "arr", learned: "arr", missed: "arr", stars: "obj", practiced: "obj", nightSeen: "obj", pos: "obj", mtoday: "obj", unlocked: "bool", bigDay: "str", missionDone: "str", lastLesson: "str", seen: "num", fixed: "num" };
 const fits = (k, v) => { const t = SHAPE[k]; if (!t || v == null) return true; if (t === "arr") return Array.isArray(v); if (t === "obj") return typeof v === "object" && !Array.isArray(v); return typeof v === { bool: "boolean", str: "string", num: "number" }[t]; };
 const okId = id => typeof id === "string" && /^[\w-]{1,40}$/.test(id);
 const S = { pid: null, name: "", done: [], cards: [], unlocked: false, sound: store.get("sound", true), bigDay: "" };
@@ -2778,10 +2843,10 @@ const MISSIONS = {
   massPose: { t: () => "Stand, sit, or kneel?", d: () => new Date().getDay() === 0 ? "It's Sunday! Know when to stand, sit and kneel." : "Get ready for Mass this weekend.", src: () => "assets/g/ic_kneel.webp" },
   massSay: { t: () => "What do we say at Mass?", d: () => new Date().getDay() === 0 ? "It's Sunday! Know your answers at Mass today." : "Learn your answers before Sunday.", src: () => "assets/img/mass_church.jpg" },
   steps: { t: () => "Reconciliation practice", d: "Put the six parts in order and play the whole script.", src: () => A("door") },
-  bedtime: { t: () => "Bedtime Heart Check", d: "Three quiet minutes with Jesus before sleep.", src: () => A("moon2") },
+  bedtime: { t: () => band() === "confirm" || band() === "grow" ? "Night examen" : "Bedtime Heart Check", d: "A few quiet minutes with God before sleep.", src: () => A("moon2") },
 };
 const prayTitle = P => P.mt || `Pray the ${P.name.replace(/^The /, "")}`;
-const missionInfo = k => MISSIONS[k] || (/^lamb\./.test(k) && typeof LAMBS !== "undefined" && LAMBS.find(x => x.id === k.slice(5)) ? (L => ({ t: () => L.title, d: "A wonder moment. About 5 minutes with a grown-up.", src: () => `assets/img/${L.photo}.jpg` }))(LAMBS.find(x => x.id === k.slice(5))) : null) || (/^pr\./.test(k) && PRAY[k.slice(3)] ? { t: () => prayTitle(PRAY[k.slice(3)]), d: PRAY[k.slice(3)].when, src: () => A(PRAY[k.slice(3)].icon) } : null);
+const missionInfo = k => MISSIONS[k] || (/^conf\./.test(k) && typeof CONF !== "undefined" && CONF.find(x => x.id === k.slice(5)) ? (C => ({ t: () => `Confirmation: ${C.title}`, d: "About 10 minutes. Your next session.", src: () => A(C.icon) }))(CONF.find(x => x.id === k.slice(5))) : null) || (/^lamb\./.test(k) && typeof LAMBS !== "undefined" && LAMBS.find(x => x.id === k.slice(5)) ? (L => ({ t: () => L.title, d: "A wonder moment. About 5 minutes with a grown-up.", src: () => `assets/img/${L.photo}.jpg` }))(LAMBS.find(x => x.id === k.slice(5))) : null) || (/^pr\./.test(k) && PRAY[k.slice(3)] ? { t: () => prayTitle(PRAY[k.slice(3)]), d: PRAY[k.slice(3)].when, src: () => A(PRAY[k.slice(3)].icon) } : null);
 const BAND_POOL = {
   lambs: ["pr.signcross", "pr.angel", "pr.grace", "bedtime", "bedtime"],
   grow: ["pr.rosary", "pr.faith", "pr.hope", "pr.love", "pr.holyqueen", "bedtime", "massSay", "massPose"],
@@ -2796,8 +2861,8 @@ function todayMission() {
   if (left && (dow === 0 || dow === 6) && S.done.length) k = dow === 6 ? "massPose" : "massSay";
   else if (left && since >= 6) k = "lesson";
   else {
-    const nl = b === "lambs" ? nextLamb() : null;
-    const pool = BAND_POOL[b] ? [...BAND_POOL[b], ...(nl ? ["lamb." + nl, "lamb." + nl, "lamb." + nl] : []), ...(S.done.length && b === "grow" ? ["review"] : [])] : ["ourfather", "hailmary", "glorybe", "prayer", "bedtime", "massPose", "massSay", "pr.morning", "pr.apostles", ...(S.done.length ? ["review", "review"] : []), ...(S.done.length >= 7 ? ["steps"] : [])];
+    const nl = b === "lambs" ? nextLamb() : null, nc = b === "confirm" ? nextConf() : null;
+    const pool = BAND_POOL[b] ? [...BAND_POOL[b], ...(nl ? ["lamb." + nl, "lamb." + nl, "lamb." + nl] : []), ...(nc ? ["conf." + nc, "conf." + nc, "conf." + nc] : []), ...(S.done.length && b === "grow" ? ["review"] : [])] : ["ourfather", "hailmary", "glorybe", "prayer", "bedtime", "massPose", "massSay", "pr.morning", "pr.apostles", ...(S.done.length ? ["review", "review"] : []), ...(S.done.length >= 7 ? ["steps"] : [])];
     const seed = [...(t + S.pid)].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7);
     k = pool[seed % pool.length];
   }
@@ -2808,7 +2873,7 @@ function missionHTML() {
   const k = todayMission(), M = missionInfo(k), done = pget("missionDone", "") === today();
   return `<button type="button" class="mission${done ? " done" : ""}" id="${"m" + Math.random().toString(36).slice(2, 7)}" data-mission="${k}"><span class="mimg"><img src="${M.src()}" alt=""></span><span class="mtxt"><small>${done ? "Today's mission: done!" : "Today's mission"}</small><b>${esc(M.t())}</b><span>${done ? "Your candle is lit. A new mission comes tomorrow. Tap to play again." : esc(typeof M.d === "function" ? M.d() : M.d)}</span></span><i class="go">${done ? "Again" : "Start"} &rsaquo;</i></button>`;
 }
-function startMission(k) { sfx.tap(); if (/^pr\./.test(k)) { openPrayer(k.slice(3)); return; } if (/^lamb\./.test(k)) { openLamb(k.slice(5)); return; } if (k === "lesson") openQuest(Math.min(current(), QUESTS.length - 1)); else openPractice(k); }
+function startMission(k) { sfx.tap(); if (/^pr\./.test(k)) { openPrayer(k.slice(3)); return; } if (/^lamb\./.test(k)) { openLamb(k.slice(5)); return; } if (/^conf\./.test(k)) { openConf(k.slice(5)); return; } if (k === "lesson") openQuest(Math.min(current(), QUESTS.length - 1)); else openPractice(k); }
 function weekHTML() {
   const D = pget("days", []), t = today(), n = litThisWeek();
   return `<div class="week" role="img" aria-label="${n} of 7 candles lit this week">${weekDays().map((d, k) => `<span class="wkd${D.includes(d) ? " lit" : ""}${d === t ? " today" : ""}"><img src="${A("candle")}" alt=""><small>${"SMTWTFS"[k]}</small></span>`).join("")}</div><p class="week-t">${n ? `<b>${n} of 7</b> candles lit this week` : "Do one lesson or prayer to light today's candle"}</p>`;
@@ -2985,7 +3050,7 @@ let run = { seen: new Set(), right: 0, total: 0, combo: 0, scored: false };
 const newRun = () => { run = { seen: new Set(), right: 0, total: 0, combo: 0, scored: false }; };
 const stage = $("#stage"), nextBtn = $("#qNext"), hint = $("#hint");
 function openQuest(i) {
-  if (!S.pid) { askPlayer(); return; }
+  if (!S.pid) { askPlayer(); return; } $("#quest").classList.remove("teen");
   Q = QUESTS[i]; qi = i; newRun();
   scenes = [...(Q.remember || []).map((r, k) => ({ t: "quiz", tag: "Remember?", q: r.q, opts: r.opts, yes: "You remembered!" })), ...Q.scenes];
   const pos = pget("pos", null);
@@ -3009,7 +3074,7 @@ function syncInert() {
   if (top && !top.contains(document.activeElement)) { top.tabIndex = -1; setTimeout(() => top.focus({ preventScroll: true }), 60); }
 }
 OVL.forEach(id => { const o = document.getElementById(id); if (o) new MutationObserver(syncInert).observe(o, { attributes: true, attributeFilter: ["hidden"] }); });
-function closeQuest() { hush(); renderLambs(); sfx.close(); $("#quest").hidden = true; document.body.style.overflow = ""; }
+function closeQuest() { hush(); renderLambs(); renderConf(); setTimeout(() => $("#quest").classList.remove("teen"), 400); sfx.close(); $("#quest").hidden = true; document.body.style.overflow = ""; }
 function fitScene(el) {
   if (!el || !el.isConnected) return;
   el.style.marginTop = "0px";
@@ -3108,9 +3173,40 @@ R.signx = el => {
     else { sfx.win(); burstAt(el.querySelector(".fp-sxc"), 50, true); setReady(true, "Amen! You did it!"); }
   });
 };
+const CONF = [{"id": "what", "title": "What Confirmation Is", "photo": "conf_anoint", "icon": "fire", "scenes": [{"t": "story", "text": "Confirmation completes what began at your Baptism. The Holy Spirit seals you, strengthens you, and sends you out as a witness for Christ.", "sm": 1, "photo": "conf_anoint", "ref": "Catechism 1285, 1303"}, {"t": "read", "tag": "The sacraments of initiation", "lines": ["Baptism: You became God's child and a member of the Church.", "Eucharist: Jesus feeds you with His own Body and Blood, again and again.", "Confirmation: The Holy Spirit seals you and strengthens you for your mission."], "icon": "church"}, {"t": "story", "text": "Confirmation leaves a permanent spiritual mark, a seal. Like Baptism, you receive it only once, and it never wears off.", "sm": 1, "icon": "fire", "ref": "Catechism 1304"}, {"t": "quiz", "q": "What does Confirmation do?", "opts": [["Completes Baptism and strengthens you with the Holy Spirit", 1], ["Ends your religious education", 0], ["Means you no longer need Mass", 0]], "yes": "Right. It's a beginning and a sending, not a graduation."}, {"t": "reflect", "q": "What's one part of your life where you'd want God's strength right now?", "tag": "Think about it"}, {"t": "done", "practice": 1, "msg": "Session 1 complete."}]}, {"id": "spirit", "title": "Who the Holy Spirit Is", "photo": "conf_pentecost", "icon": "dove", "scenes": [{"t": "story", "text": "Fifty days after Easter, the apostles were hiding, afraid. Then a sound like a mighty wind filled the house, and tongues of fire rested on each of them.", "sm": 1, "photo": "conf_pentecost", "ref": "Acts 2:1–4"}, {"t": "story", "text": "Peter, who had denied Jesus three times, walked outside and preached to the crowd. About three thousand people were baptized that day.", "sm": 1, "photo": "conf_pentecost", "ref": "Acts 2:14–41"}, {"t": "story", "text": "The Holy Spirit is the third Person of the Trinity: truly God, with the Father and the Son. Not a force or a feeling, but Someone, who lives in you.", "sm": 1, "icon": "dove", "ref": "Catechism 685, 733"}, {"t": "match", "tag": "Signs of the Spirit", "prompt": "Match each sign to what it shows about the Holy Spirit.", "pairs": [["Wind", "Power you can't see, but you can feel it move"], ["Fire", "Love that warms, lights the way, and makes things new"], ["Dove", "Peace, and the Spirit coming upon Jesus at His baptism"], ["Oil", "Being chosen, strengthened, and set apart for God"]]}, {"t": "reflect", "q": "When have you felt afraid to show your faith? What would change if you really believed the Spirit was with you?", "tag": "Think about it"}, {"t": "done", "practice": 1, "msg": "Session 2 complete."}]}, {"id": "gifts", "title": "The Seven Gifts", "photo": "conf_pentecost", "icon": "gift", "scenes": [{"t": "story", "text": "At Confirmation, the Holy Spirit pours out seven gifts. They are like instincts that help you hear God and follow Him.", "sm": 1, "icon": "gift", "ref": "Isaiah 11:2–3; Catechism 1831"}, {"t": "match", "tag": "The seven gifts", "prompt": "Match each gift to what it helps you do.", "pairs": [["Wisdom", "See life the way God sees it"], ["Understanding", "Grasp the truths of the faith more deeply"], ["Counsel", "Know the right thing to do, and help others choose well"], ["Fortitude", "Have courage to do what's right, even when it's hard"], ["Knowledge", "See God's hand in creation and in your own life"], ["Piety", "Love God the way a child loves a good father"], ["Fear of the Lord", "Stand in awe of God, and never want to lose Him"]]}, {"t": "reflect", "q": "Which gift do you need most this year? Ask the Holy Spirit for it by name tonight.", "tag": "Think about it"}, {"t": "done", "practice": 1, "msg": "Session 3 complete."}]}, {"id": "fruits", "title": "The Fruits of the Spirit", "photo": "lamb_free", "icon": "daisy", "scenes": [{"t": "story", "text": "You can tell a tree by its fruit. When the Holy Spirit is at work in you, it shows in how you live.", "sm": 1, "icon": "daisy", "ref": "Galatians 5:22–23; Catechism 1832"}, {"t": "read", "tag": "The twelve fruits", "lines": ["Charity, joy, peace, patience, kindness, goodness, generosity, gentleness, faithfulness, modesty, self-control, and chastity."], "icon": "daisy"}, {"t": "pick", "prompt": "Tap the fruits of the Holy Spirit.", "items": [["Joy", 1], ["Patience", 1], ["Kindness", 1], ["Self-control", 1], ["Peace", 1], ["Popularity", 0], ["Revenge", 0], ["Bragging", 0]]}, {"t": "reflect", "q": "Which fruit do people around you see in you? Which one would you like to grow?", "tag": "Think about it"}, {"t": "done", "practice": 1, "msg": "Session 4 complete."}]}, {"id": "saint", "title": "Choosing Your Saint", "photo": "saint6", "icon": "sparkles", "scenes": [{"t": "story", "text": "At Confirmation you take a saint's name. That saint becomes your patron: a friend in heaven who prays for you and shows you how to follow Jesus.", "sm": 1, "icon": "sparkles", "ref": "Catechism 2156"}, {"t": "read", "tag": "Ways to choose", "lines": ["Their story: someone whose life inspires you, or who struggled the way you do.", "Your gifts: a patron of something you love, like music, sports, science, or serving others.", "A virtue: a saint known for the courage, patience, or joy you want to grow in.", "Family: a saint whose name connects you to someone you love."], "icon": "sparkles"}, {"t": "story", "text": "Many parishes ask for a short letter or report about your saint. Start early, and talk about your choice with your sponsor.", "sm": 1, "icon": "book"}, {"t": "reflect", "q": "Write down three saints you're thinking about, and one reason for each.", "tag": "Your shortlist"}, {"t": "done", "practice": 1, "msg": "Session 5 complete."}]}, {"id": "sponsor", "title": "Your Sponsor", "photo": "conf_anoint", "icon": "house", "scenes": [{"t": "story", "text": "At Confirmation your sponsor stands behind you with a hand on your shoulder, and promises to help you live as a disciple of Christ.", "sm": 1, "photo": "conf_anoint", "ref": "Catechism 1311"}, {"t": "read", "tag": "Who can be a sponsor", "lines": ["At least 16 years old.", "A confirmed Catholic who has received the Eucharist.", "Living a life of faith that fits the role.", "Not your mom or dad.", "Often one of your godparents, to show how Baptism and Confirmation belong together."], "icon": "house", "ref": "Code of Canon Law 874. Your parish may add its own steps, like a sponsor form."}, {"t": "reflect", "q": "Who in your life lives their faith in a way you admire? What would you want to ask them?", "tag": "Think about it"}, {"t": "story", "text": "Before Confirmation, talk with your sponsor about your saint, your questions, and how they pray.", "sm": 1, "icon": "heart"}, {"t": "done", "practice": 1, "msg": "Session 6 complete."}]}, {"id": "rite", "title": "The Rite of Confirmation", "photo": "conf_anoint", "icon": "oil", "scenes": [{"t": "story", "text": "Confirmation usually happens at Mass, with the bishop. Here's what will happen, so you're ready.", "sm": 1, "photo": "conf_anoint"}, {"t": "order", "tag": "The rite, in order", "prompt": "Put the parts of the rite in order. Tap the first one!", "steps": ["Renewing your baptismal promises", "The bishop extends his hands and prays for the Holy Spirit", "Anointing with chrism on your forehead", "The sign of peace with the bishop"], "done": "That's the rite!"}, {"t": "read", "tag": "What you'll hear and say", "lines": ["The bishop: “N., be sealed with the Gift of the Holy Spirit.”", "You: “Amen.”", "The bishop: “Peace be with you.”", "You: “And with your spirit.”"], "icon": "oil"}, {"t": "story", "text": "Chrism is olive oil mixed with balsam, blessed by the bishop at the Chrism Mass in Holy Week. It's the same holy oil used at your Baptism.", "sm": 1, "icon": "oil", "ref": "Catechism 1289, 1297"}, {"t": "quiz", "q": "When the bishop says, “Be sealed with the Gift of the Holy Spirit,” you answer:", "opts": [["Amen.", 1], ["And with your spirit.", 0], ["Thanks be to God.", 0]], "yes": "Yes: “Amen” means “I believe it. Let it be so.”"}, {"t": "done", "practice": 1, "msg": "Session 7 complete."}]}, {"id": "why", "title": "Why Be Catholic?", "photo": "mass_church", "icon": "brain", "scenes": [{"t": "story", "text": "Questions don't mean your faith is failing. The saints asked hard questions too, and the Church has been thinking about them for 2,000 years.", "sm": 1, "icon": "brain"}, {"t": "read", "tag": "Is God real?", "lines": ["The universe had a beginning and is full of order, beauty, and laws. Something can't come from nothing, so many great thinkers concluded there is a Creator.", "Your own longing for truth, goodness, and a love that never runs out points to Someone who is all of these."], "icon": "sparkles", "ref": "Catechism 31–36"}, {"t": "read", "tag": "Why do bad things happen?", "lines": ["God made us free, and freedom means people can choose evil. Much suffering comes from human choices.", "God doesn't cause evil, but He can bring good out of it. Jesus didn't explain suffering away: He entered it on the cross, and rose."], "icon": "cross", "ref": "Catechism 309–314"}, {"t": "read", "tag": "Science or faith?", "lines": ["They don't compete. Science asks how the world works; faith asks why it exists and what it's for.", "The Big Bang theory was first proposed by a Catholic priest, Fr. Georges Lemaître."], "icon": "star", "ref": "Catechism 159"}, {"t": "read", "tag": "Why confess to a priest?", "lines": ["Jesus gave His apostles the power to forgive sins in His name. The priest acts in the person of Christ, and he can never tell anyone what you confess."], "icon": "door", "ref": "John 20:22–23; Catechism 1461, 1467"}, {"t": "read", "tag": "Is Jesus really in the Eucharist?", "lines": ["Jesus said, “This is my body,” and “Unless you eat the flesh of the Son of Man… you do not have life within you.” Many followers walked away, and He let them go rather than soften His words. The Church has believed it ever since."], "icon": "chalice", "ref": "John 6:53–69; Catechism 1374–1376"}, {"t": "reflect", "q": "What's a question you've never asked out loud? Bring it to your sponsor, a parent, or a priest.", "tag": "Think about it"}, {"t": "done", "practice": 1, "msg": "Session 8 complete."}]}, {"id": "mission", "title": "Living Your Mission", "photo": "mass_sent", "icon": "heart", "scenes": [{"t": "story", "text": "Confirmation sends you out. Jesus said: “Whatever you did for one of the least of these, you did for me.”", "sm": 1, "photo": "mass_sent", "ref": "Matthew 25:40"}, {"t": "match", "tag": "Works of mercy", "prompt": "Match each work of mercy to a way you could do it.", "pairs": [["Feed the hungry", "Help at a food pantry, or share your lunch"], ["Visit the sick", "Spend time with someone who is sick or lonely"], ["Clothe the naked", "Donate clothes you've outgrown"], ["Comfort the sorrowful", "Sit with a friend who's going through something hard"]]}, {"t": "read", "tag": "All fourteen", "lines": ["Corporal: feed the hungry, give drink to the thirsty, clothe the naked, shelter the homeless, visit the sick, visit the imprisoned, bury the dead.", "Spiritual: counsel the doubtful, instruct the ignorant, admonish sinners, comfort the sorrowful, forgive offenses, bear wrongs patiently, pray for the living and the dead."], "icon": "heart", "ref": "Catechism 2447"}, {"t": "reflect", "q": "Plan one act of service this month: who will you serve, when, and with whom?", "tag": "Your plan"}, {"t": "done", "practice": 1, "msg": "Session 9 complete."}]}, {"id": "prayer", "title": "A Life of Prayer", "photo": "mass_kneel", "icon": "pray", "scenes": [{"t": "story", "text": "Prayer is a conversation with God, not a performance. The Church describes three ways to pray: vocal prayer, meditation, and contemplation.", "sm": 1, "icon": "pray", "ref": "Catechism 2700–2724"}, {"t": "read", "tag": "Lectio divina", "lines": ["Read: slowly read a short Gospel passage, maybe twice.", "Meditate: notice a word or line that stands out to you. Why that one?", "Pray: talk to God about it, honestly.", "Contemplate: rest quietly with God for a minute. No words needed."], "icon": "book"}, {"t": "story", "text": "Try it now with Mark 10:46–52. Jesus asks blind Bartimaeus: “What do you want me to do for you?” Imagine Jesus asking you.", "sm": 1, "icon": "book", "ref": "Mark 10:51"}, {"t": "reflect", "q": "If Jesus asked you, “What do you want me to do for you?”, what would you say?", "tag": "Think about it"}, {"t": "story", "text": "Many parishes have Eucharistic adoration. Sitting quietly with Jesus for even ten minutes can change your week.", "sm": 1, "icon": "church"}, {"t": "done", "practice": 1, "msg": "Session 10 complete. You're ready. Come, Holy Spirit!"}]}];
+// a teen reflection: written for yourself, never saved or sent
+R.reflect = (el, s) => {
+  el.innerHTML = `<span class="tag">${esc(s.tag || "Think about it")}</span><p class="say sm">${esc(s.q)}</p><textarea class="fp-refl" rows="4" aria-label="${esc(s.q)}" placeholder="Write here, or just think it through."></textarea><p class="ref">Nothing you type here is saved or sent anywhere.</p>`;
+};
+function nextConf() { const d = pget("conf.done", []); return (CONF.find(x => !d.includes(x.id)) || null)?.id || null; }
+function openConf(id) {
+  if (!S.pid) { askPlayer(); return; }
+  const C = CONF.find(x => x.id === id); if (!C) return;
+  const n = CONF.indexOf(C) + 1;
+  Q = { title: C.title, bg: "#1C2340", practice: 1, saint: null, key: "conf." + id, course: "conf", cid: id, teen: 1 }; qi = -1; newRun();
+  scenes = C.scenes; si = 0;
+  $("#qTitle").innerHTML = `<small>Confirmation · Session ${n} of ${CONF.length}</small>${esc(C.title)}`;
+  $("#quest").classList.add("teen");
+  $("#quest").style.setProperty("--qbg", "#12141C"); $("#quest").style.setProperty("--qtint", "#1C2340");
+  $("#qDots").innerHTML = scenes.map(() => "<i></i>").join("");
+  $("#quest").hidden = false; document.body.style.overflow = "hidden";
+  sfx.whoosh(); show(false);
+}
+function renderConf() {
+  const g = $("#confGrid"); if (!g) return;
+  const d = pget("conf.done", []), nx = nextConf(), P = PARISH(), gr = gradeOf();
+  const left = gr != null ? P.conf - gr : null;
+  $("#confWhen").textContent = left == null ? `Your parish confirms in ${gradeName(P.conf)}.` : left > 0 ? `Your parish confirms in ${gradeName(P.conf)}: ${left === 1 ? "next year" : `in ${left} years`}. This is your preparation year.` : left === 0 ? `This is your Confirmation year (${gradeName(P.conf)}).` : "You've been confirmed. Keep these close: the Spirit's work in you keeps going.";
+  $("#confCount").textContent = `${d.length} of ${CONF.length} sessions`;
+  g.innerHTML = CONF.map((C, i) => `<button type="button" class="fp-conf${d.includes(C.id) ? " done" : ""}${C.id === nx ? " next" : ""}" data-id="${C.id}"><img src="${A(C.icon)}" alt=""><span><small>Session ${i + 1}</small><b>${esc(C.title)}</b></span><i>${d.includes(C.id) ? "Done ✓" : C.id === nx ? "Start ›" : "Open ›"}</i></button>`).join("");
+  g.querySelectorAll(".fp-conf").forEach(b => b.onclick = () => { sfx.tap(); openConf(b.dataset.id); });
+  // a personal checklist that stays on this device
+  const sv = pget("conf.saint", ""), sp = pget("conf.sponsor", ""), hrs = pget("conf.service", 0);
+  $("#confSaint").value = sv; $("#confSponsor").value = sp; $("#confHrs").textContent = hrs;
+}
 function nextLamb() { const d = pget("lambs.done", []); return (LAMBS.find(x => !d.includes(x.id)) || null)?.id || null; }
 function openLamb(id) {
-  if (!S.pid) { askPlayer(); return; }
+  if (!S.pid) { askPlayer(); return; } $("#quest").classList.remove("teen");
   const L = LAMBS.find(x => x.id === id); if (!L) return;
   Q = { title: L.title, bg: L.bg, practice: 1, saint: null, key: "lamb." + id, course: "lambs", read: 1, lid: id }; qi = -1; newRun();
   scenes = L.scenes; si = 0;
@@ -3944,6 +4040,7 @@ function openPractice(k, start = 0) {
   const P = PRACTICE[k];
   const sc = typeof P.scenes === "function" ? P.scenes() : P.scenes;
   if (sc.length < 2) { sfx.no(); toast("Finish a lesson first, then come back to play!"); return; }
+  $("#quest").classList.remove("teen");
   Q = { title: P.title, bg: P.bg, practice: 1, saint: null, learn: P.learn, key: k }; qi = -1; newRun();
   scenes = sc; si = Math.max(0, Math.min(start, scenes.length - 1));
   $("#qTitle").innerHTML = `<small>${k.startsWith("mass") ? "Come to Mass" : "Prayers and practice"}${S.name ? " · " + esc(S.name) : ""}</small>${esc(P.title)}`;
@@ -3954,6 +4051,7 @@ function openPractice(k, start = 0) {
 }
 R.done = (el, s) => {
   hush();
+  if (Q && Q.course === "conf" && S.pid) { const d = pget("conf.done", []); if (!d.includes(Q.cid)) pset("conf.done", [...d, Q.cid]); }
   if (Q && Q.course === "lambs" && S.pid) { const d = pget("lambs.done", []); if (!d.includes(Q.lid)) pset("lambs.done", [...d, Q.lid]); }
   if (Q && Q.learn) { const L = pget("learned", []); if (!L.includes(Q.learn)) { L.push(Q.learn); pset("learned", L); } renderLearned(); }
   let earned = 0;
@@ -4128,6 +4226,12 @@ $("#resetAll").onclick = e => {
   if (b.dataset.sure) { pdrop(S.pid, childKeys(S.pid).filter(k => k !== "bigDay")); loadPlayer(S.pid); refreshPlayer(); renderGame(); b.textContent = "Start over"; delete b.dataset.sure; toast(`${S.name}'s progress is cleared`); }
   else { b.dataset.sure = 1; b.textContent = "Tap again to clear progress"; setTimeout(() => { b.textContent = "Start over"; delete b.dataset.sure; }, 4000); }
 };
+// the Confirmation checklist saves as the teen types
+$("#confSaint").oninput = e => pset("conf.saint", e.target.value.slice(0, 60));
+$("#confSponsor").oninput = e => pset("conf.sponsor", e.target.value.slice(0, 60));
+const confHrs = n => { const v = Math.max(0, Math.min(999, pget("conf.service", 0) + n)); pset("conf.service", v); $("#confHrs").textContent = v; sfx.tap(); };
+$("#confPlus").onclick = () => confHrs(1); $("#confMinus").onclick = () => confHrs(-1);
+$("#confReview").onclick = () => { sfx.tap(); document.body.dataset.showmap = document.body.dataset.showmap ? "" : "1"; $("#confReview").textContent = document.body.dataset.showmap ? "Hide the First Reconciliation lessons" : "Review the First Reconciliation lessons"; if (document.body.dataset.showmap) setTimeout(() => $("#map").scrollIntoView({ behavior: reduce ? "auto" : "smooth" }), 60); };
 (function parishSettings() {
   const P = PARISH(), fc = $("#fpFc"), cf = $("#fpConf"); fc.value = P.fc; cf.value = P.conf;
   const save = () => { store.set("parish", { fc: +fc.value, conf: +cf.value }); PL.forEach(pl => { if (store.get(`p.${pl.id}.missionDone`, "") !== today()) store.set(`p.${pl.id}.mtoday`, null); }); sfx.tap(); toast("Parish settings saved"); refreshPlayer(); };
@@ -4414,7 +4518,7 @@ function renderToday() {
   el.dataset.color = L.color;
   // the First Reconciliation tile is for the First Sacraments years (and for families who haven't set a grade)
   const fr = $("#frTile"); if (fr) fr.hidden = !!band() && band() !== "first";
-  document.body.dataset.band = band() || ""; renderLambs();
+  document.body.dataset.band = band() || ""; renderLambs(); renderConf();
   el.innerHTML = `<div class="fp-band"><span class="fp-dot"></span><span>${esc(day)}</span><span class="fp-col">${L.color === "rose" ? "Rose" : L.color[0].toUpperCase() + L.color.slice(1)}</span></div>
     <p class="t-eyebrow dark">Today in the Church${L.feast ? ` · ${esc(L.label)}` : ""}</p><h2>${esc(L.feast || L.label)}.</h2><p class="t-sub">${esc(L.feast ? `${L.name}: ${SEASON[L.k].line[0].toLowerCase() + SEASON[L.k].line.slice(1)}` : SEASON[L.k].line)}.</p>
     ${feast && !L.feast ? `<p class="fp-feast">${img(c.icon)}<span>${esc(feast)}</span></p>` : ""}
