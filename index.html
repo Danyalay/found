@@ -1563,13 +1563,13 @@ body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0p
   .gs-card{padding:12px 14px;gap:6px}
   .gs-q{font-size:19px}
   .gs-img{max-height:36vh;width:auto;max-width:100%}
-  .gs-poses{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gs-poses{grid-template-columns:repeat(3,minmax(0,1fr))}.gs-poses img{max-width:64px}.gs-poses button{padding:8px 4px}
   .gs-slots li{min-height:30px;padding:4px 10px;font-size:14px}
   .gs-chips button{padding:8px 12px;font-size:14px}
   .gs-next{padding:10px 22px}
   /* bedtime: smaller heading, the moon steps aside, more themes per row */
   .night-stage{padding-top:calc(14px + env(safe-area-inset-top,0px));padding-bottom:12px}
-  .nscene{width:min(100%,820px);gap:8px}
+  .nscene{width:min(100%,820px);gap:8px}.breathe{width:96px;height:96px;margin:0}.breathe span{width:56px;height:56px}
   .n-h{font-size:26px}
   .n-moon{width:64px;height:64px}
   .n-themes{grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -1766,21 +1766,27 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
 @media (max-width:600px) and (orientation:portrait){.slots:has(>:nth-child(5)){gap:8px}.slots:has(>:nth-child(5)) .slot{min-height:44px}.scene:has(>.slots:has(>:nth-child(5)))>.chips{gap:8px}.scene:has(>.slots:has(>:nth-child(5)))>.chips .chip{padding-top:10px;padding-bottom:10px}}
 /* QA round 13: tinted player backgrounds need a darker reference line */
 .quest .ref{color:color-mix(in srgb,var(--ink) 76%,transparent)}
-/* phone held sideways: question on the left, the things to tap on the right; story art beside its words */
+/* phone held sideways: quiz, order and match put the question (and the words to place) on the left, the targets on
+   the right; story art sits beside its words. Every other scene keeps the single column. */
 @media (orientation:landscape) and (max-height:500px){
-  .scene:has(>.slots,>.opts,>.chips){display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);grid-template-rows:auto auto auto 1fr;column-gap:22px;row-gap:8px;align-items:start;align-content:start;width:100%;max-width:880px;text-align:left}
-  .scene:has(>.slots,>.opts,>.chips)>:is(.tag,.say,.art,.ref){grid-column:1;justify-self:start;margin-left:0;margin-right:0}
-  .scene:has(>.slots,>.opts,>.chips)>.tag{grid-row:1}.scene:has(>.slots,>.opts,>.chips)>.say{grid-row:2}.scene:has(>.slots,>.opts,>.chips)>.art{grid-row:3;max-height:30vh}
-  .scene>.slots,.scene>.chips.mw{grid-column:2;grid-row:1/span 2;margin:0}
-  .scene>.slots~.chips,.scene>.opts.mm{grid-column:2;grid-row:3/span 2;margin:0}
-  .scene>.opts:not(.mm){grid-column:2;grid-row:1/span 4;margin:0;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
-  .scene>.slots{grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:6px}.scene>.slots .slot{min-height:34px;padding:4px 6px}
-  .scene>.chips{justify-content:flex-start}
-  .scene>.opts:not(.mm){grid-template-columns:1fr!important;gap:8px}.scene>.opts.mm{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px}
-  .scene>.opts .opt{flex-direction:row;justify-content:flex-start;text-align:left;min-height:0;padding:8px 12px;gap:10px;font-size:15px}
+  .scene:is(:has(>.slots),:has(>.chips.mw),:has(>.opts):not(:has(>.chips))){display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);row-gap:0;column-gap:22px;align-items:start;align-content:start;width:100%;max-width:880px;text-align:left}
+  .scene:is(:has(>.slots),:has(>.chips.mw),:has(>.opts):not(:has(>.chips)))>*{grid-column:1;justify-self:start;margin:0 0 8px}
+  .scene:is(:has(>.slots),:has(>.chips.mw),:has(>.opts):not(:has(>.chips)))>.art{width:min(100%,calc(30vh * 4 / 3));max-height:none}
+  .scene:is(:has(>.slots),:has(>.chips.mw),:has(>.opts):not(:has(>.chips)))>.chips{justify-content:flex-start;gap:6px}.scene:is(:has(>.slots),:has(>.chips.mw),:has(>.opts):not(:has(>.chips)))>.chips .chip{padding:8px 14px;font-size:15px}
+  .scene:is(:has(>.slots),:has(>.chips.mw),:has(>.opts):not(:has(>.chips)))>.opts,.scene:is(:has(>.slots),:has(>.chips.mw),:has(>.opts):not(:has(>.chips)))>.chips:not(.mw){grid-column:2;grid-row:1/span 12;margin:0;justify-self:stretch;width:100%}.scene:is(:has(>.slots),:has(>.chips.mw),:has(>.opts):not(:has(>.chips)))>.slots{width:100%;justify-self:stretch}
+  .scene:is(:has(>.slots),:has(>.chips.mw),:has(>.opts):not(:has(>.chips)))>.opts{grid-template-columns:1fr!important;gap:8px}
+  .scene:is(:has(>.slots),:has(>.chips.mw),:has(>.opts):not(:has(>.chips)))>.opts.mm{gap:6px}.scene:is(:has(>.slots),:has(>.chips.mw),:has(>.opts):not(:has(>.chips)))>.opts.mm:has(>:nth-child(5)){grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .scene:is(:has(>.slots),:has(>.chips.mw),:has(>.opts):not(:has(>.chips)))>.opts .opt{flex-direction:row;justify-content:flex-start;text-align:left;min-height:0;padding:8px 12px;gap:10px;font-size:15px}
+  .scene:is(:has(>.slots),:has(>.chips.mw),:has(>.opts):not(:has(>.chips)))>.slots{grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px}.scene:is(:has(>.slots),:has(>.chips.mw),:has(>.opts):not(:has(>.chips)))>.slots .slot{min-height:34px;padding:4px 8px;font-size:14px}
   .scene:has(>.art,>.sc):not(:has(>.slots,>.opts,>.chips)):has(>.say){display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);column-gap:24px;align-items:center;width:100%;max-width:880px}
   .scene:has(>.art,>.sc):not(:has(>.slots,>.opts,>.chips))>:is(.art,.sc){grid-column:1;grid-row:1/span 3;max-height:62vh;margin:0}
   .scene:has(>.art,>.sc):not(:has(>.slots,>.opts,>.chips))>:not(.art,.sc){grid-column:2;margin-left:0;margin-right:0}
+}
+/* QA round 15: sideways, the prayer line and the sorting game fit without scrolling */
+@media (orientation:landscape) and (max-height:500px){
+  .pline{font-size:21px;line-height:1.3;max-width:44ch}.scene:has(>.pline)>.gesture{padding-top:4px;padding-bottom:4px}
+  .scene:has(>.sortcard){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:20px;row-gap:10px;align-items:center;width:100%;max-width:820px}
+  .scene:has(>.sortcard)>:not(.sortcard,.bins){grid-column:1/-1}.sortcard{min-height:80px;font-size:20px}.bins .bin{min-height:80px;font-size:17px}
 }
 /* apple scroll reveal: fade + rise, staggered */
 .rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(0,0,.5,1),transform 1s cubic-bezier(0,0,.5,1);transition-delay:calc(var(--d,0) * 90ms)}
@@ -2222,15 +2228,15 @@ const ART = {
   tablets: () => tablets(),
   hearts: () => `<div class="sc">${img("heart", "float", "left:6%;top:12%;width:42%;filter:hue-rotate(48deg) saturate(1.7) brightness(1.25) drop-shadow(0 8px 10px rgba(27,37,89,.16))")}${img("heart", "float", "right:6%;top:12%;width:42%;animation-delay:.5s")}<b class="hlbl" style="left:27%;top:36%">Love<br>God</b><b class="hlbl" style="left:73%;top:36%">Love<br>others</b>${img("sparkles", "", "left:44%;top:0;width:14%")}</div>`,
   brain: () => `<div class="sc">${img("brain", "float", "left:50%;top:6%;width:44%;translate:-50% 0")}${img("check", "", "left:6%;bottom:8%;width:26%")}${img("noentry", "", "right:6%;bottom:8%;width:26%")}</div>`,
-  sun: () => `<div class="sc">${img("sun", "spin", "left:50%;top:50%;width:62%;translate:-50% -50%")}${img("cloud", "drift", "left:0;bottom:6%;width:34%")}</div>`,
-  dove: () => `<div class="sc">${img("dove", "float", "left:50%;top:50%;width:62%;translate:-50% -50%")}${img("sparkles", "", "right:10%;top:4%;width:18%")}</div>`,
-  book: () => `<div class="sc">${img("bible", "float", "left:50%;top:50%;width:70%;translate:-50% -50%")}</div>`,
+  sun: () => `<div class="sc">${img("sun", "spin", "left:19%;top:8.67%;width:62%")}${img("cloud", "drift", "left:0;bottom:6%;width:34%")}</div>`,
+  dove: () => `<div class="sc">${img("dove", "float", "left:19%;top:8.67%;width:62%")}${img("sparkles", "", "right:10%;top:4%;width:18%")}</div>`,
+  book: () => `<div class="sc">${img("bible", "float", "left:15%;top:3.33%;width:70%")}</div>`,
   stole: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/confession.jpg" alt="" draggable="false"></div>`,
   lock: () => `<div class="sc">${img("lock", "float", "left:50%;top:50%;width:52%;translate:-62% -50%")}${img("zip", "", "right:8%;bottom:6%;width:28%")}</div>`,
   hug: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/prodigal.jpg" alt="" draggable="false"></div>`,
   prodigal: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/prodigal_away.jpg" alt="A young man walks away down a country road while his father watches from the gate" draggable="false"></div>`,
-  heart: () => `<div class="sc">${img("heartmend", "beat", "left:50%;top:50%;width:62%;translate:-50% -50%")}</div>`,
-  heartsp: () => `<div class="sc">${img("heartsp", "beat", "left:50%;top:50%;width:60%;translate:-50% -50%")}${img("pray", "", "right:4%;bottom:4%;width:26%")}</div>`,
+  heart: () => `<div class="sc">${img("heartmend", "beat", "left:19%;top:8.67%;width:62%")}</div>`,
+  heartsp: () => `<div class="sc">${img("heartsp", "beat", "left:20%;top:10%;width:60%")}${img("pray", "", "right:4%;bottom:4%;width:26%")}</div>`,
   rays: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/mercy.jpg" alt="" draggable="false"></div>`,
   pray_ourfather: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/pray_ourfather.jpg" alt="" draggable="false"></div>`,
   pray_hailmary: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/pray_hailmary.jpg" alt="" draggable="false"></div>`,
