@@ -2243,6 +2243,7 @@ body[data-sub="practice"] #mass .mplay>h3,body[data-sub="practice"] #mass .mplay
 #toBadges{background:#2C2C2E;color:#F5F5F7}
 .badge.got small{color:#7A5400}
 .fp-lt small{background:#FFD66B;color:#1D1D1F}
+.cmp-t img.nv-ico{object-fit:contain;padding:24px;background:#1C1446}
 .album .nv-wrap{padding-top:clamp(28px,5vw,48px)}
 </style>
 
@@ -2628,8 +2629,8 @@ body[data-sub="practice"] #mass .mplay>h3,body[data-sub="practice"] #mass .mplay
     <button type="button" class="nightcard" data-subin="_ ways" data-practice="bedtime"><img loading="lazy" decoding="async" src="assets/img/night_sky.jpg" alt=""><span class="nc-copy"><small>Every night</small><b class="bedName">Bedtime Heart Check</b><span>Talk to Jesus about your day, then pray together before sleep.</span><i>Start tonight &rsaquo;</i></span></button>
     <div class="nv-doors" data-subin="_">
       <a class="cmp-t" href="#/practice/prayers"><img loading="lazy" decoding="async" src="assets/img/pray_ourfather.jpg" alt=""><span><small>Learn by heart</small><b>Prayers to know</b><em>The Our Father, the Hail Mary, and prayers for every age.</em></span></a>
-      <a class="cmp-t" href="#/practice/ways"><img loading="lazy" decoding="async" src="assets/img/rosary_hero.jpg" alt=""><span><small>Every day and every season</small><b>Ways to pray</b><em>The Rosary, the Bible, the Stations, Advent and Lent, and getting ready for confession.</em></span></a>
-      <a class="cmp-t" href="#/practice/games"><img loading="lazy" decoding="async" src="assets/img/mass_church.jpg" alt=""><span><small>Practice</small><b>Games</b><em>Stand, sit, or kneel? What do we say? A review quiz, and confession practice.</em></span></a>
+      <a class="cmp-t" href="#/practice/ways"><img loading="lazy" decoding="async" src="assets/img/bible_hero.jpg" alt=""><span><small>Every day and every season</small><b>Ways to pray</b><em>The Rosary, the Bible, the Stations, Advent and Lent, and getting ready for confession.</em></span></a>
+      <a class="cmp-t" href="#/practice/games"><img loading="lazy" decoding="async" class="nv-ico" src="assets/g/star.webp" alt=""><span><small>Practice</small><b>Games</b><em>Stand, sit, or kneel? What do we say? A review quiz, and confession practice.</em></span></a>
     </div>
     <div class="cmp-row" data-subin="ways">
       <button type="button" class="cmp-t" data-practice="rosary"><img loading="lazy" decoding="async" src="assets/img/rosary_hero.jpg" alt=""><span><small>Pray with Mary</small><b>The Rosary</b><em>Learn it, then pray it together, one bead at a time.</em></span></button>
@@ -2696,9 +2697,9 @@ body[data-sub="practice"] #mass .mplay>h3,body[data-sub="practice"] #mass .mplay
 
     <div class="gsec fp-gband" id="gBand" data-subin="_"></div>
     <div class="nv-doors" data-subin="_">
-      <a class="cmp-t" href="#/grownups/asks"><img loading="lazy" decoding="async" src="assets/img/night_sky.jpg" alt=""><span><small>Big questions</small><b>When your child asks</b><em id="guAskN">Honest, simple answers, with words to try.</em></span></a>
+      <a class="cmp-t" href="#/grownups/asks"><img loading="lazy" decoding="async" src="assets/img/bible_hero.jpg" alt=""><span><small>Big questions</small><b>When your child asks</b><em id="guAskN">Honest, simple answers, with words to try.</em></span></a>
       <a class="cmp-t" href="#/grownups/reconciliation"><img loading="lazy" decoding="async" src="assets/img/confession.jpg" alt=""><span><small>First Reconciliation</small><b>The lesson guide</b><em>A 15-minute lesson plan, off-screen missions, lesson-by-lesson notes, and tips for the big day.</em></span></a>
-      <a class="cmp-t" href="#/grownups/settings"><img loading="lazy" decoding="async" src="assets/img/lamb_free.jpg" alt=""><span><small>Settings</small><b>Players and this device</b><em>Grades, your parish's sacrament years, sounds, and a backup of every child's progress.</em></span></a>
+      <a class="cmp-t" href="#/grownups/settings"><img loading="lazy" decoding="async" class="nv-ico" src="assets/g/pip.webp" alt=""><span><small>Settings</small><b>Players and this device</b><em>Grades, your parish's sacrament years, sounds, and a backup of every child's progress.</em></span></a>
     </div>
     <div class="sec-head" data-subin="reconciliation"><h2>First Reconciliation guide.</h2><p>Everything for the grown-up who sits beside a child preparing for their first confession.</p></div>
     <div class="gsec fp-asks" data-subin="asks">
@@ -3847,7 +3848,7 @@ function syncInert() {
   if (top && !top.contains(document.activeElement)) { top.tabIndex = -1; setTimeout(() => top.focus({ preventScroll: true }), 60); }
 }
 OVL.forEach(id => { const o = document.getElementById(id); if (o) new MutationObserver(syncInert).observe(o, { attributes: true, attributeFilter: ["hidden"] }); });
-function closeQuest() { hush(); fxClear(); renderLambs(); renderConf(); renderGrow(); renderFc(); setTimeout(() => $("#quest").classList.remove("teen"), 400); sfx.close(); $("#quest").hidden = true; document.body.style.overflow = ""; }
+function closeQuest() { hush(); fxClear(); renderLambs(); renderConf(); renderGrow(); renderFc(); if (NAV_OK) { renderLessonsHub(); PATHS.forEach(renderCourse); } setTimeout(() => $("#quest").classList.remove("teen"), 400); sfx.close(); $("#quest").hidden = true; document.body.style.overflow = ""; }
 function fitScene(el) {
   if (!el || !el.isConnected) return;
   el.style.marginTop = "0px";
@@ -5841,7 +5842,7 @@ R.done = (el, s) => {
   }
   earned = run.earned || 0;
   const msg = s.final ? `You're ready, ${kid()}!` : Q && Q.course === "lambs" ? "Wonderful!" : Q && Q.course === "conf" ? "Session complete." : Q && Q.course === "grow" ? "Chapter complete!" : Q && Q.course === "fc" ? "Lesson complete!" : s.practice ? "Great practice!" : "Lesson complete!";
-  el.innerHTML = `<div class="art">${Q && Q.teen ? `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/conf_pentecost.jpg" alt="" draggable="false"></div>` : s.final ? ART.carry() : `<div class="sc">${ground}${img("trophy", "", "left:4%;top:4%;width:30%")}${img("stars", "float", "right:6%;top:2%;width:22%")}${pip("idle", "left:50%;bottom:12%;width:54%;translate:-50% 0").replace('class="pip', 'id="dp" class="pip')}</div>`}</div><div class="stamp">${esc(msg)}</div>${earned ? `<div class="starrow" aria-label="${earned} of 3 stars">${[1, 2, 3].map(k => `<img loading="lazy" decoding="async" src="${A("stars")}" alt="" class="${k <= earned ? "on" : ""}">`).join("")}</div><p class="ref">${run.total ? `${run.right} of ${run.total} answers right the first time. ` : ""}${earned === 3 ? "All 3 stars!" : "Play it again to win all 3 stars."}</p>` : ""}<p class="say sm">${s.final ? "Pip is home on the Shepherd's shoulders. On your big day, Jesus will carry you home too!" : s.msg ? esc(s.msg) : s.practice ? `Practice makes prayer feel like home. Keep it up, ${esc(kid())}!` : `You worked hard and learned so much. ${esc(kid())}, Pip is one step closer to home.`}</p>`;
+  el.innerHTML = `<div class="art">${Q && Q.teen ? `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/candle.jpg" alt="" draggable="false"></div>` : s.final ? ART.carry() : `<div class="sc">${ground}${img("trophy", "", "left:4%;top:4%;width:30%")}${img("stars", "float", "right:6%;top:2%;width:22%")}${pip("idle", "left:50%;bottom:12%;width:54%;translate:-50% 0").replace('class="pip', 'id="dp" class="pip')}</div>`}</div><div class="stamp">${esc(msg)}</div>${earned ? `<div class="starrow" aria-label="${earned} of 3 stars">${[1, 2, 3].map(k => `<img loading="lazy" decoding="async" src="${A("stars")}" alt="" class="${k <= earned ? "on" : ""}">`).join("")}</div><p class="ref">${run.total ? `${run.right} of ${run.total} answers right the first time. ` : ""}${earned === 3 ? "All 3 stars!" : "Play it again to win all 3 stars."}</p>` : ""}<p class="say sm">${s.final ? "Pip is home on the Shepherd's shoulders. On your big day, Jesus will carry you home too!" : s.msg ? esc(s.msg) : s.practice ? `Practice makes prayer feel like home. Keep it up, ${esc(kid())}!` : `You worked hard and learned so much. ${esc(kid())}, Pip is one step closer to home.`}</p>`;
   setTimeout(() => { burst(innerWidth / 2, innerHeight * .35, s.final ? 200 : 110, true); s.final ? sfx.bless() : sfx.done(); el.querySelectorAll(".starrow img.on").forEach((st, k) => setTimeout(() => { st.classList.add("pop"); sfx.pop(); }, 500 + k * 380)); const dp = el.querySelector("#dp"); if (G && dp) { const tl = G.timeline(); tl.add(hop(dp, { h: 50 })).add(hop(dp, { h: 30 })); } }, 300);
 };
 /* ---------- page wiring ---------- */
@@ -5902,7 +5903,7 @@ function renderHomeAges() {
   const A = [["lambs", "lamb_free", "Little Lambs", "Ten wonder moments with the Good Shepherd, read aloud."],
     ["first", "confession", "First Sacraments", "Get ready for First Reconciliation and First Communion."],
     ["grow", "grow_david", "Growing Disciples", "The Big Story: the whole Bible, from Creation to Jesus to you."],
-    ["confirm", "conf_pentecost", "Confirmation", "The Holy Spirit, His gifts, your saint and your sponsor."]];
+    ["confirm", "candle", "Confirmation", "The Holy Spirit, His gifts, your saint and your sponsor."]];
   const me = band(), who = esc(named());
   el.innerHTML = A.map(([k, pic, t, line]) => `<button type="button" class="hm-age hm-p-${k}${k === me ? " mine" : ""}" data-hband="${k}"><img loading="lazy" decoding="async" src="assets/img/${pic}.jpg" alt="" draggable="false"><span class="hm-at"><span class="hm-ak">${bandAges(k)}</span><b>${t}</b><span>${line}</span><i>${k === me ? `${who}'s path · Continue` : S.pid && gradeOf() == null ? `Choose ${who}'s grade` : PL.length ? "Add a child for this path" : "Start"} &rsaquo;</i></span></button>`).join("");
   el.querySelectorAll(".hm-age").forEach(b => b.onclick = () => { sfx.tap(); hmPath(b.dataset.hband, b.querySelector("b").textContent); });
@@ -6179,7 +6180,7 @@ const PATHS = [
   { k: "reconciliation", band: "first", title: "First Reconciliation", photo: "confession", eb: "Getting ready for a sacrament", what: "Thirteen lessons with Pip the lamb, to get ready for a first confession.", unit: ["lesson", "lessons"], list: () => QUESTS, done: () => QUESTS.filter((_, i) => isDone(i)).length, next: () => { const i = current(); return i < QUESTS.length ? { t: QUESTS[i].title, go: () => openQuest(i) } : null; } },
   { k: "communion", band: "first", title: "First Communion", photo: "mass_altar", eb: "The next sacrament", what: "Eight lessons about Jesus in the Eucharist and how to receive Him.", unit: ["lesson", "lessons"], list: () => FC, done: () => pget("fc.done", []).length, next: () => { const id = nextFc(); return id ? { t: FC.find(x => x.id === id).title, go: () => openFc(id) } : null; } },
   { k: "story", band: "grow", title: "The Big Story", photo: "grow_david", eb: "Growing Disciples", what: "The whole Bible in ten chapters, from Creation to Jesus to you.", unit: ["chapter", "chapters"], list: () => GROW, done: () => pget("grow.done", []).length, next: () => { const id = nextGrow(); return id ? { t: GROW.find(x => x.id === id).title, go: () => openGrow(id) } : null; } },
-  { k: "confirmation", band: "confirm", title: "Confirmation", photo: "conf_pentecost", eb: "Confirmation years", what: "Ten sessions on the Holy Spirit, your saint, your sponsor, and the rite.", unit: ["session", "sessions"], list: () => CONF, done: () => pget("conf.done", []).length, next: () => { const id = nextConf(); return id ? { t: CONF.find(x => x.id === id).title, go: () => openConf(id) } : null; } },
+  { k: "confirmation", band: "confirm", title: "Confirmation", photo: "candle", eb: "Confirmation years", what: "Ten sessions on the Holy Spirit, your saint, your sponsor, and the rite.", unit: ["session", "sessions"], list: () => CONF, done: () => pget("conf.done", []).length, next: () => { const id = nextConf(); return id ? { t: CONF.find(x => x.id === id).title, go: () => openConf(id) } : null; } },
 ];
 const pathByK = k => PATHS.find(p => p.k === k);
 const GUIDE_FC = { h: "First Communion: Jesus gives us Himself.", p: ["Read the Last Supper together, and Jesus' words: “This is my body, which will be given for you” (Luke 22:19).", "At Mass, point out when the priest raises the Host and then the chalice. Whisper, “That's Jesus.”", "Practice the walk up at home: a bow of the head, then “Amen” to “The Body of Christ,” receiving on an open hand (one hand resting on the other, like a throne) or on the tongue.", "Explain the Communion fast: nothing to eat or drink for one hour before Communion, except water and medicine.", "After the big day, keep the Sunday habit, and keep going to confession, so their heart stays ready for Jesus."], t: "Try asking: “What will you say to Jesus right after you receive Him?”" };
@@ -6193,11 +6194,16 @@ function renderLessonsHub() {
     const n = me.list().length, d = me.done(), nx = me.next();
     c.innerHTML = `<div class="lx-cont"><img src="assets/img/${me.photo}.jpg" alt="" loading="lazy"><div class="lx-cb"><small>${esc(named())}'s path</small><h3>${esc(me.title)}</h3><p>${nx ? `Next: ${esc(nx.t)}` : `Every one of these ${me.unit[1]} is done. Well done!`}</p>
       <span class="cx-bar" aria-hidden="true"><i style="width:${Math.round(d / n * 100)}%"></i></span><p>${d} of ${plural(n, me.unit)}</p>
-      <div class="ctas">${nx ? `<button type="button" class="btn btn-go" id="lxGo">Continue</button>` : ""}<a class="btn btn-soft" href="#/quests/${me.k}">See the whole path</a></div></div></div>`;
+      <div class="ctas">${nx ? `<button type="button" class="btn btn-go" id="lxGo">${d ? "Continue" : "Start"}</button>` : ""}<a class="btn btn-soft" href="#/quests/${me.k}">See the whole path</a></div></div></div>`;
     const b = $("#lxGo"); if (b) b.onclick = () => { sfx.tap(); me.next()?.go(); };
   } else c.innerHTML = `<p class="lx-none">${S.pid ? `Set ${esc(named())}'s grade on <a href="#/home">Home</a> and Found! will show the path for this stage.` : `Choose any path below, or <a href="#/home">add your child on Home</a> so Found! can suggest the right one.`}</p>`;
+  renderLessonBtn();
   g.innerHTML = PATHS.map(p => { const n = p.list().length, d = S.pid ? p.done() : 0;
     return `<a class="cmp-t" href="#/quests/${p.k}"><img loading="lazy" decoding="async" src="assets/img/${p.photo}.jpg" alt="">${me && me.k === p.k ? `<i class="nv-tag">${esc(named())}'s path</i>` : ""}<span><small>${esc(p.k === "lambs" ? "Ages 3 to 5" : bandAges(p.band) || p.eb)}</small><b>${esc(p.title)}</b><em>${esc(p.what)}</em>${d ? `<i class="nv-bar" aria-hidden="true"><i style="width:${Math.round(d / n * 100)}%"></i></i><em class="nv-count">${d} of ${plural(n, p.unit)} done</em>` : `<em class="nv-count">${plural(n, p.unit)}</em>`}</span></a>`; }).join("");
+}
+function renderLessonBtn() {
+  const sb = document.body.dataset.sub || "", sg = $("#snLessonGo"), pp = pathByK(sb) || myPath(), nx = S.pid && pp && pp.next(); if (!sg) return;
+  sg.classList.toggle("sn-off", !nx); sg.tabIndex = nx ? 0 : -1; sg.setAttribute("aria-hidden", !nx); sg.textContent = S.pid && pp && pp.done() ? "Continue" : "Start"; sg.onclick = () => { sfx.tap(); pp.next()?.go(); };
 }
 function renderCourse(p) {
   const el = document.querySelector(`.cx[data-path="${p.k}"]`); if (!el) return;
@@ -6227,7 +6233,7 @@ function renderFeasts() {
       return `<li${t ? ' class="today"' : ""}><span class="fd-d"><small>${M[m - 1]}</small><b>${d}</b></span><div><h4>${esc(n)}</h4><p>${esc(l[0].toUpperCase() + l.slice(1))}.</p></div></li>`; }).join("")}</ul>`; }).join("");
 }
 function renderMassNav() {
-  const groups = [...new Set(MASS.map(m => m.g))], first = g => MASS.findIndex(m => m.g === g);
+  const groups = [...new Set(MASS.map(m => m.g))], COVER = { "Jesus in the Eucharist": "The bread becomes Jesus", "Communion": "Holy Communion" }, first = g => MASS.findIndex(m => COVER[g] ? m.name === COVER[g] : m.g === g);
   const ch = $("#mxChs"); if (ch) ch.innerHTML = groups.map((g, i) => { const n = MASS.filter(m => m.g === g).length;
     return `<a class="cmp-t" href="#/mass/walk/${i + 1}"><img loading="lazy" decoding="async" src="assets/img/${MASS_MEDIA[first(g)]}.jpg" alt=""><span><small>Part ${i + 1} of ${groups.length}</small><b>${esc(g)}</b><em>${esc(MASS_CH[g] || "")}</em><em class="nv-count">${plural(n, ["step", "steps"])}</em></span></a>`; }).join("");
 }
@@ -6235,9 +6241,7 @@ function navRoute(v, sb, sb2) {
   document.querySelectorAll(".subnav").forEach(n => { if (n.dataset.view !== v) return;
     n.querySelectorAll(".sn-links a").forEach(a => { const on = a.dataset.sub === sb; a.toggleAttribute("aria-current", on); if (on) a.setAttribute("aria-current", "page");
       if (on) { const L = a.parentElement, l = a.offsetLeft - L.offsetLeft, r = l + a.offsetWidth; if (l < L.scrollLeft) L.scrollLeft = Math.max(0, l - 16); else if (r > L.scrollLeft + L.clientWidth) L.scrollLeft = r - L.clientWidth + 16; } }); });
-  if (v === "quests") { document.querySelectorAll(".cx").forEach(c => delete c.dataset.tab); renderLessonsHub(); PATHS.forEach(renderCourse);
-    const sg = $("#snLessonGo"), pp = (sb && pathByK(sb)) || myPath(), nx = S.pid && pp && pp.next();
-    sg.hidden = false; sg.classList.toggle("sn-off", !nx); sg.tabIndex = nx ? 0 : -1; sg.setAttribute("aria-hidden", !nx); sg.textContent = pp && pp.done() ? "Continue" : "Start"; sg.onclick = () => { sfx.tap(); pp.next()?.go(); }; }
+  if (v === "quests") { document.querySelectorAll(".cx").forEach(c => delete c.dataset.tab); renderLessonsHub(); PATHS.forEach(renderCourse); }
   if (v === "cards" && sb === "feasts") renderFeasts();
   if (v === "mass" && sb === "walk") {
     const groups = [...new Set(MASS.map(m => m.g))], k = Math.min(Math.max(parseInt(sb2) || 1, 1), groups.length);
