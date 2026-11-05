@@ -2087,6 +2087,20 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
 .cp-body>.cp-nav{margin-top:auto}
 .cp-chips.big button[aria-checked="true"],.cp-chips.big button[aria-pressed="true"]{background:var(--cacc);border-color:var(--cacc);color:#1E1430}
 .pa-hd b{color:var(--cink)}
+/* polish from the UI sweep */
+.award-art img[src$=".jpg"]{width:84%;height:84%;object-fit:cover;border-radius:50%;filter:none;animation:none}
+.ps-hero img{object-position:50% 18%}
+.side .mission{grid-template-columns:52px minmax(0,1fr);width:100%}
+.side .mission .mimg{width:52px;height:52px;border-radius:14px}
+.side .mission .go{grid-column:2;justify-self:start}
+.album-grid .tc-plate b{min-height:2.08em;display:flex;align-items:center;justify-content:center}
+.peek{transform:translateX(calc(var(--k) * 84px)) rotate(calc(var(--k) * 6deg)) translateY(calc(var(--k) * var(--k) * 6px))}
+.tile.fp-today>*{width:min(100%,640px)}
+.peek{z-index:1}.peek.front{z-index:3}.peek:not(.front) .tc-plate{visibility:hidden}
+.peek-names{display:block;font-size:13.5px;font-weight:500;color:var(--gray);margin-top:4px;text-wrap:balance}
+@media (orientation:landscape) and (max-height:500px){.cv-card{height:calc(100svh - 54px)}.cv-card .tcard.big{width:auto}.cv-count{top:auto;bottom:8px}.award-art{width:34vh;height:34vh;max-height:none}}
+
+.tcard.big{width:min(86vw,520px,calc(66vh * 5 / 7))}
 /* first-visit home: how it works, paths by age, everything inside */
 .tile.hm-how,.tile.hm-ages,.tile.hm-inside{min-height:0;padding:52px 20px 48px}
 .hm-steps{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;width:100%;max-width:980px;counter-reset:hs}
@@ -3633,9 +3647,10 @@ function renderSide() {
   if (c >= QUESTS.length) box.innerHTML = `<h3>${named() ? esc(named()) + " made" : "You made"} it home!</h3><p>All ${QUESTS.length} lessons done. Pip is safe with the Good Shepherd, and ${named() ? esc(named()) + " is" : "you are"} ready for First Reconciliation.</p><div class="prog">${QUESTS.map(() => `<i class="on"></i>`).join("")}</div><button class="btn btn-go" type="button" id="sideGo">Play the last lesson again</button>`;
   else box.innerHTML = `<h3>${n ? "Next up" : (named() ? "Ready, " + esc(named()) + "?" : "Ready to start?")}</h3><div class="prog">${QUESTS.map((_, i) => `<i class="${isDone(i) ? "on" : ""}"></i>`).join("")}</div><p>${n} of ${QUESTS.length} lessons done. Lesson ${c + 1} is <b>${esc(QUESTS[c].title)}</b>.</p><button class="btn btn-go" type="button" id="sideGo">${n ? "Keep going" : "Start Lesson 1"}</button>`;
   $("#sideGo").onclick = () => openQuest(Math.min(c, QUESTS.length - 1));
-  const got = SAINTS.map((_, i) => i).filter(isCollected), show3 = (got.length ? got.slice(-3) : [0, 1, 2]);
-  $("#albumPeek").innerHTML = show3.map((k, j) => `<div class="peek" style="--k:${j - (show3.length - 1) / 2}">${got.length ? cardHTML(k, "mini") : lockedCardHTML(k)}</div>`).join("");
-  $("#albumPeekText").innerHTML = `<b>${got.length} of ${SAINTS.length}</b> saints collected`;
+  const got = SAINTS.map((_, i) => i).filter(isCollected), last = got.slice(-3), show3 = got.length ? (last.length === 3 ? [last[0], last[2], last[1]] : last) : [0, 1, 2];
+  const front = Math.floor(show3.length / 2);
+  $("#albumPeek").innerHTML = show3.map((k, j) => `<div class="peek${j === front ? " front" : ""}" style="--k:${j - (show3.length - 1) / 2}">${got.length ? cardHTML(k, "mini") : lockedCardHTML(k)}</div>`).join("");
+  $("#albumPeekText").innerHTML = `<b>${got.length} of ${SAINTS.length}</b> saints collected${got.length ? `<span class="peek-names">Newest: ${last.slice().reverse().map(k => esc(SAINTS[k].name)).join(", ")}</span>` : ""}`;
   const cd = $("#countdown");
   if (S.bigDay) {
     const d = Math.round((new Date(S.bigDay + "T12:00:00") - new Date(new Date().toDateString() + " 12:00:00")) / 864e5);
@@ -5650,7 +5665,7 @@ R.done = (el, s) => {
   hush();
   // little ones meet the gentlest stories first (no martyrdom or illness until they're older)
   const order = Q && Q.course === "lambs" ? [1, 8, 9, 11, 12, 3, 4, 5, 10, 7, 0, 2, 6, ...SAINTS.map((x, j) => j).slice(13)] : SAINTS.map((x, j) => j);
-  const newCard = () => { mergeSaved("cards"); const i = order.find(j => !S.cards.includes(j)); if (i == null) { const k = S.cards[Math.floor(Math.random() * S.cards.length)]; if (SAINTS[k]) pendingAwards.push({ kicker: "A saint friend is cheering", title: SAINTS[k].name, text: `Your album is full! Ask ${SAINTS[k].name} to pray for you today.`, src: `assets/img/${SAINTS[k].pic}.jpg` }); return; } S.cards.push(i); if (!pset("cards", S.cards)) { S.cards.pop(); return; } pendingAwards.push({ kicker: "New saint card", title: SAINTS[i].name, text: "A new friend in heaven for your Saint Album!", src: `assets/img/${SAINTS[i].pic}.jpg` }); renderAlbum(); };
+  const newCard = () => { mergeSaved("cards"); const i = order.find(j => !S.cards.includes(j)); if (i == null) { const k = S.cards[Math.floor(Math.random() * S.cards.length)]; if (SAINTS[k]) pendingAwards.push({ kicker: "A saint friend is cheering", title: SAINTS[k].name, text: `Your album is full! Ask ${SAINTS[k].name} to pray for you today.`, src: `assets/img/${SAINTS[k].pic}.jpg` }); return; } S.cards.push(i); if (!pset("cards", S.cards)) { S.cards.pop(); return; } pendingAwards.push({ kicker: "New saint card", title: SAINTS[i].name, text: "A new friend in heaven for your Saint Album!", src: `assets/img/${SAINTS[i].pic}.jpg` }); renderAlbum(); renderSeason(); renderSide(); };
   if (Q && Q.course === "fc" && S.pid) { const d = pget("fc.done", []); if (!d.includes(Q.fid)) { pset("fc.done", [...d, Q.fid]); newCard(); } }
   if (Q && Q.course === "grow" && S.pid) { const d = pget("grow.done", []); if (!d.includes(Q.gid)) { pset("grow.done", [...d, Q.gid]); newCard(); } }
   if (Q && Q.course === "conf" && S.pid) { const d = pget("conf.done", []); if (!d.includes(Q.cid)) { pset("conf.done", [...d, Q.cid]); newCard(); } }
@@ -5690,7 +5705,7 @@ const AVC = ["#1F6FC4", "#C2532B", "#25804B", "#6A55D6", "#C23F5B", "#8F6A00"];
 const avatar = (pl, k) => `<span class="av" style="--c:${AVC[k % AVC.length]}" aria-hidden="true">${esc((firstChar(pl.name) || "?").toUpperCase())}</span>`;
 const savePlayers = () => store.set("players", PL);
 function refreshPlayer() {
-  renderPlayers(); renderSide(); renderAlbum(); if (doneEl) refreshMap(true); if (typeof renderLearned === "function") renderLearned(); renderGame();
+  renderPlayers(); renderSeason(); renderSide(); renderAlbum(); if (doneEl) refreshMap(true); if (typeof renderLearned === "function") renderLearned(); renderGame();
   dayIn.value = S.bigDay || "";
 }
 function renderPlayers() {
@@ -5899,7 +5914,7 @@ function showStory() {
   const sh = $("#cvSheet"), st = SAINTS[viewI].story || (QUESTS[viewI] && QUESTS[viewI].saint && QUESTS[viewI].saint.story) || SAINTS[viewI].fact;
   $("#cvSheetName").textContent = SAINTS[viewI].name; $("#cvSheet .cv-sheet-k").textContent = viewI < QUESTS.length ? "Forgiveness story" : "Their story"; $("#cvSheetText").textContent = st;
   sh.hidden = false; sfx.tap(); 
-  if (G) G.fromTo(".cv-sheet-in", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: .45, ease: "power3.out" });
+  if (G) G.fromTo(".cv-sheet-in", { y: 60 }, { y: 0, duration: .4, ease: "power3.out" });
 }
 $("#cvRead").onclick = showStory;
 $("#cvSheetClose").onclick = () => { $("#cvSheet").hidden = true; };
@@ -6086,7 +6101,8 @@ function churchDay(when) {
   if (within(D(12, 26), D(12, 31)) || within(D(1, 2), baptism)) return { msg: "It's the Christmas season! Jesus is born.", icon: "star", lesson: 1 };
   if (within(add(E, 8), add(pentecost, -2))) return { msg: "It's the Easter season. Jesus is risen!", icon: "sun", lesson: 11 };
   if (near.d <= 7) return { msg: `${near.s.name}'s feast day is in ${near.d} days.`, icon: "sparkles", lesson: near.i < QUESTS.length ? near.i + 1 : "album" };
-  return { msg: `${SAINTS.length} saint cards to collect`, icon: "album", lesson: "album" };
+  const have = S.pid ? SAINTS.filter((_, i) => isCollected(i)).length : 0;
+  return { msg: S.pid ? `${have} of ${SAINTS.length} saint cards collected` : `${SAINTS.length} saint cards to collect`, icon: "album", lesson: "album" };
 }
 window.__churchDay = churchDay;
 // the liturgical season, color and week for any date (U.S. calendar), worked out from Easter
@@ -6261,14 +6277,14 @@ renderAsks();
 function renderToday() {
   const el = $("#fpToday"); if (!el) return;
   const L = litDay(), c = churchDay(new Date()), b = band() || "first", fam = FAMILY[L.k === "christmas" || L.k === "advent" || L.k === "lent" || L.k === "easter" || L.k === "holyweek" ? L.k : "ordinary"][b];
-  const g = gradeOf(), feast = c && !/^13 saint/.test(c.msg) ? c.msg : "";
+  const g = gradeOf(), feast = c && !/saint cards (to collect|collected)/.test(c.msg) ? c.msg : "";
   const day = new Date().toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
   const ask = S.pid && g == null ? `<div class="fp-ask"><b>What grade is ${esc(named())} in?</b><span>Prayers, bedtime and paths will fit ${esc(named())}'s age.</span><select id="fpAskG" aria-label="${esc(named())}'s grade"><option value="">Choose a grade</option>${gradeOpts(null)}</select></div>` : "";
   const who = S.pid && g != null ? `<p class="fp-who"><b>${esc(named())}</b> · ${gradeName(g)} · ${BANDS[bandOf(g)].name}</p>` : "";
   el.dataset.color = L.color;
   // the First Reconciliation tile is for the First Sacraments years (and for families who haven't set a grade)
   const fr = $("#frTile"); if (fr) fr.hidden = !!band() && band() !== "first";
-  document.body.dataset.band = band() || ""; renderLambs(); renderConf(); renderGrow(); renderFc(); renderGuide();
+  document.body.dataset.band = band() || ""; document.querySelectorAll("#lambTile img,#growTile img,#confTile img,#fcTile img,#frTile img").forEach(i => { if (i.offsetParent) i.loading = "eager"; }); renderLambs(); renderConf(); renderGrow(); renderFc(); renderGuide();
   const bt = $("#bedTileH"), bn = band() === "grow" || band() === "confirm" ? "Night examen" : "Bedtime Heart Check"; if (bt) bt.textContent = bn + "."; document.querySelectorAll(".bedName").forEach(x => x.textContent = bn);
   el.innerHTML = `<div class="fp-band"><span class="fp-dot"></span><span>${esc(day)}</span><span class="fp-col">${L.color === "rose" ? "Rose" : L.color[0].toUpperCase() + L.color.slice(1)}</span></div>
     <p class="t-eyebrow dark">Today in the Church${L.feast ? ` · ${esc(L.label)}` : ""}</p><h2>${esc(L.feast || L.label)}.</h2><p class="t-sub">${esc(L.feast ? `${L.name}: ${SEASON[L.k].line[0].toLowerCase() + SEASON[L.k].line.slice(1)}` : SEASON[L.k].line)}.</p>
@@ -6280,13 +6296,13 @@ function renderToday() {
   const sel = el.querySelector("#fpAskG"); if (sel) sel.onchange = () => { if (sel.value === "all") { sel.innerHTML = `<option value="">Choose a grade</option>${gradeOpts(null)}`; return; } if (sel.value === "") return; setGrade(+sel.value); sfx.yes(); toast(`Got it: ${gradeName(+sel.value)}`); refreshPlayer(); };
 }
 renderToday(); renderPrayList();
-(function season() {
-  const c = churchDay(new Date()), el = $("#season");
+function renderSeason() {
+  const c = churchDay(new Date()), el = $("#season"); if (!el) return;
   const go = c.lesson === "album" ? "See the album" : c.lesson ? `Lesson ${c.lesson}` : "";
   el.innerHTML = `${img(c.icon)}<span>${esc(c.msg)}</span>${go ? `<b class="eb-go">${go} &rsaquo;</b>` : ""}`;
-  el.hidden = false;
-  if (!go) return;
-  el.classList.add("tap"); el.setAttribute("role", "button"); el.tabIndex = 0;
+  el.hidden = false; el.classList.toggle("tap", !!go);
+  if (!go) { el.removeAttribute("role"); el.removeAttribute("tabindex"); el.onclick = el.onkeydown = null; return; }
+  el.setAttribute("role", "button"); el.tabIndex = 0;
   const open = () => {
     sfx.tap();
     if (c.lesson === "album") { goView("cards"); return; }
@@ -6295,7 +6311,8 @@ renderToday(); renderPrayList();
     else { goView("quests"); toast(`Lesson ${c.lesson} opens after you finish Lesson ${current() + 1}.`); }
   };
   el.onclick = open; el.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } };
-})();
+}
+renderSeason();
 /* ---------- apple.com motion: scroll reveals + hero image settles to full size as it scrolls up ---------- */
 (function motion() {
   const groups = [[".sec-head"], [".mapgrid .map"], [".side > .panel", true], [".album-head"], [".album-grid"], [".grown .gsec", true], [".mplay"]];
@@ -6316,6 +6333,8 @@ renderToday(); renderPrayList();
   tabs.forEach(t => t.addEventListener("click", () => sfx.tap()));
   const route = () => {
     let v = (location.hash.match(/^#\/(\w+)/) || [])[1];
+    const AKA = { prayers: "practice", pray: "practice", lessons: "quests", saints: "cards", album: "cards", parents: "grownups", grownup: "grownups" };
+    if (v && AKA[v.toLowerCase()]) { history.replaceState(null, "", "#/" + AKA[v.toLowerCase()]); v = AKA[v.toLowerCase()]; }
     if (!VIEWS.includes(v)) v = "home";
     document.querySelectorAll("[data-view]").forEach(sec => sec.classList.toggle("on", sec.dataset.view === v));
     tabs.forEach(t => t.toggleAttribute("aria-current", t.dataset.tab === v));
