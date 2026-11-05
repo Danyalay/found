@@ -258,7 +258,7 @@ img.flip{transform:scaleX(-1)}
 .heaven.open{background:var(--sun);color:#1B2559;box-shadow:0 0 0 8px color-mix(in srgb,var(--sun) 35%,transparent),0 0 40px var(--sun)}
 .mud{position:absolute;width:15%;aspect-ratio:1.15;translate:-50% -50%;border-radius:46% 54% 50% 50%/55% 45% 55% 45%;background:radial-gradient(circle at 35% 30%,#A7764B,#6E4523 60%,#4D2E15);box-shadow:inset -3px -4px 6px rgba(0,0,0,.25),inset 3px 3px 5px rgba(255,255,255,.18);transition:scale .4s cubic-bezier(.5,-.5,.5,1),opacity .4s}
 .mud.gone{scale:0;opacity:0;pointer-events:none}
-.bub{position:absolute;width:16%;translate:-50% -50%;animation:bubble 1.2s ease-out both;filter:none!important}
+.gscene .bub{position:absolute;width:16%;translate:-50% -50%;animation:bubble 1.2s ease-out both;filter:none!important}
 #pk{transition:none}
 #pk>.pip{transform-origin:50% 100%;transition:transform .5s cubic-bezier(.3,1.6,.5,1);transform:scale(calc(1 + (1 - var(--load,1)) * .05), calc(.82 + (1 - var(--load,1)) * .18))}
 #pk:not(.heavy)>.pip{transform:none}
@@ -2040,6 +2040,23 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
 .fp-act{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:10px 16px;border-radius:999px;background:var(--bg);color:var(--ink);font:inherit;font-weight:800;font-size:15px;text-decoration:none;border:1px solid rgba(0,0,0,.08)}
 .fp-act.go{background:color-mix(in srgb,var(--lit) 72%,#000);color:#fff;border-color:transparent}
 .fp-today[data-color="white"] .fp-act.go{background:#6E5510}
+/* grown-ups: when your child asks */
+@media (min-width:700px){.journal.three{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.ask-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
+.ask-tabs button{min-height:44px;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-weight:600;font-size:15px;cursor:pointer}
+.ask-tabs button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ask-list{display:grid;gap:10px;max-width:820px}
+.ask{background:var(--bg);border-radius:18px;border:1px solid var(--line)}
+.ask-h{margin:0;font:inherit}
+.ask-q{display:flex;width:100%;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:16px 20px;border:0;background:none;border-radius:18px;color:var(--ink);font:inherit;font-weight:600;font-size:18px;line-height:1.3;text-align:left;cursor:pointer}
+.ask-q i{flex:none;font-style:normal;font-size:26px;line-height:1;font-weight:400;color:var(--accent);transition:transform .2s}
+.ask-q[aria-expanded="true"] i{transform:rotate(45deg)}
+.ask-q:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.ask-b{padding:0 20px 18px}
+.ask-b p{margin:0 0 12px;font-size:17px;line-height:1.5;color:var(--ink)}
+.ask-say{padding:12px 14px;border-radius:14px;background:var(--card)}
+.ask-say b{display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.ask-b .ask-ref{font-size:14px;color:var(--ink-soft);margin:0}
 .cp-body>.cp-nav{margin-top:auto}
 .cp-chips.big button[aria-checked="true"],.cp-chips.big button[aria-pressed="true"]{background:var(--cacc);border-color:var(--cacc);color:#1E1430}
 .pa-hd b{color:var(--cink)}
@@ -2171,7 +2188,7 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
   <div class="tile tile-dark rv" id="frTile">
     <p class="t-eyebrow">Getting ready for a sacrament</p>
     <h2>First Reconciliation.</h2>
-    <p class="t-sub">13 lessons from the parish workbook.</p>
+    <p class="t-sub">13 lessons to get ready for your first confession.</p>
     <p class="t-call">Stories, games, and prayers that get you ready for your first confession, one step at a time.</p>
     <div class="ctas"><a class="btn btn-go" href="#/quests">Open the lessons</a><button type="button" class="btn btn-soft" data-practice="exam">Examine your conscience</button></div>
     <div class="t-media wide"><img loading="lazy" decoding="async" src="assets/img/shepherd_carry.jpg" alt="The Good Shepherd carrying a lamb home" draggable="false"></div>
@@ -2296,7 +2313,7 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
     <div class="sec-head">
       <p class="t-eyebrow dark">First Reconciliation</p>
       <h2 id="mapTitle">Your path home.</h2>
-      <p>Help Pip the lamb find the way home to the Good Shepherd. Each stop is one lesson from the workbook. Finish a lesson to move Pip along the path and win a saint card.</p>
+      <p>Help Pip the lamb find the way home to the Good Shepherd. Each stop is one lesson. Finish a lesson to move Pip along the path and win a saint card.</p>
     </div>
     <div class="mapgrid">
       <div class="map" id="mapBox"></div>
@@ -2404,10 +2421,15 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
   <div class="wrap sec">
     <div class="sec-head">
       <h2>For grown-ups.</h2>
-      <p>Found grows with your child, from age 3 to Confirmation: wonder moments for little ones, the First Reconciliation lessons from the parish workbook, First Communion, the Big Story of the Bible, and Confirmation preparation, with prayers, the Rosary, a Bible guide, the Mass (plus a silent follow-along for church) and a bedtime talk with God for every age. Below is guidance for the child playing now, then details about the First Reconciliation lessons.</p>
+      <p>Found grows with your child, from age 3 to Confirmation: wonder moments for little ones, the First Reconciliation lessons, First Communion, the Big Story of the Bible, and Confirmation preparation, with prayers, the Rosary, a Bible guide, the Mass (plus a silent follow-along for church) and a bedtime talk with God for every age. Below is guidance for the child playing now, then details about the First Reconciliation lessons.</p>
     </div>
 
     <div class="gsec fp-gband" id="gBand"></div>
+    <div class="gsec fp-asks">
+      <h3>When your child asks.</h3>
+      <p class="gsub">Honest, simple answers to the big questions kids ask, with words to try and where to read more.</p>
+      <div id="gAsks"></div>
+    </div>
     <div class="gsec fp-frg">
       <h3>A 15-minute lesson.</h3>
       <div class="session" id="session"></div>
@@ -2422,7 +2444,7 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
 
     <div class="gsec">
       <h3>Lesson by lesson.</h3>
-      <p class="gsub">What each lesson covers, so you can match it to the parish workbook.</p>
+      <p class="gsub">What each lesson covers, so you can follow along with your parish program.</p>
       <div class="maptable-wrap"><table class="maptable" id="maptable"></table></div>
     </div>
 
@@ -2434,7 +2456,7 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
           <button type="button" id="pvB" aria-pressed="false">Version B</button>
         </div>
         <p id="pvText"></p>
-        <p class="ref">Version A is the prayer printed in the workbook, and Lesson 9 teaches it line by line. Version B comes from the new English translation of the Order of Penance, used in U.S. parishes since April 2023; the traditional prayer is still fine. Any sincere act of contrition is valid, even in a child's own words. Ask your parish's faith formation office which one your child should memorize.</p>
+        <p class="ref">Version A is the traditional prayer most families know, and Lesson 9 teaches it line by line. Version B comes from the new English translation of the Order of Penance, used in U.S. parishes since April 2023; the traditional prayer is still fine. Any sincere act of contrition is valid, even in a child's own words. Ask your parish's faith formation office which one your child should memorize.</p>
       </div>
     </div>
 
@@ -2468,7 +2490,7 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
     </div>
   </div>
 </section>
-<footer><div class="wrap"><b>Found!</b><p>Built from "First Reconciliation, Second Bilingual Edition" by Family Formation, Church of Saint Paul, Ham Lake, Minnesota. Scripture and prayer text follow the workbook. The words of absolution follow the current Order of Penance (2023). Progress is saved on this device only. Pictures, icons and the card pack made with Grok Imagine. Sound effects from Mixkit. Motion by GSAP.</p></div></footer>
+<footer><div class="wrap"><b>Found!</b><p>Written for families of Holy Family Catholic Church, Orlando. Teaching follows the Catechism of the Catholic Church. Scripture quotations are from the New American Bible, revised edition © 2010, 1991, 1986, 1970 Confraternity of Christian Doctrine, Washington, D.C.; Psalm 23 is from the Lectionary for Mass for Use in the Dioceses of the United States, © Confraternity of Christian Doctrine. Excerpts from the English translation of the Catechism of the Catholic Church for use in the United States of America © 1994, United States Catholic Conference, Inc.—Libreria Editrice Vaticana. Excerpts from the English translation of The Order of Penance © 2019, International Commission on English in the Liturgy Corporation. All rights reserved. Progress is saved on this device only. Pictures, icons and the card pack made with Grok Imagine. Sound effects from Mixkit. Motion by GSAP.</p></div></footer>
 
 <div class="quest" id="quest" role="dialog" aria-modal="true" aria-labelledby="qTitle" hidden>
   <div class="qbar">
@@ -2523,7 +2545,7 @@ const ART = {
   beach: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/beach.jpg" alt="" draggable="false"></div>`,
   crosshill: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/crosshill.jpg" alt="" draggable="false"></div>`,
   eden: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/eden.jpg" alt="" draggable="false"></div>`,
-  lucy: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/lucy.jpg" alt="" draggable="false"></div>`,
+  story_vase: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/${(window.ART_WAIT || { story_vase: "boy" }).story_vase || "story_vase"}.jpg" alt="" draggable="false"></div>`,
   font: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/font.jpg" alt="" draggable="false"></div>`,
   keys: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/keys.jpg" alt="" draggable="false"></div>`,
   lostlamb: () => `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/lostlamb.jpg" alt="" draggable="false"></div>`,
@@ -2760,114 +2782,112 @@ function markSeen() { const n = SAINTS.filter((_, i) => isCollected(i)).length; 
 
 /* ---------- content ---------- */
 const QUESTS = [
- { id:"recon-01", title:"The Good Shepherd", lesson:"Lesson 1", icon:"staff", bg:"#DCEFFF",
-  covers:"Everyone needs forgiveness (1 John 1:8), God is holy and all-powerful, the Holy Trinity and each Person's role, St. Augustine on the beach, the Good Shepherd (John 10:11, 14–15), Jesus died for our sins, Jesus feeds us in the Eucharist, Psalm 23, the Sign of the Cross, Act of Contrition part 1",
-  saint:{name:"St. Damien of Molokai", story:"Father Damien served very sick people on the island of Molokai. No other priest could come there, so he had no one to hear his confession. One day a ship brought his bishop, but the captain would not let anyone on or off. So Damien rowed his little boat close and shouted his confession across the water! He knew God's forgiveness is worth it."},
-  mission:["Make a prayer corner","Set up a small table with a cross and a candle. Light it at the start of every lesson and pray together. Practice the Sign of the Cross before meals, read Psalm 23 at bedtime, and start practicing part 1 of the Act of Contrition."],
+ { id:"recon-01", title:"The Shepherd Who Finds Us", lesson:"Lesson 1", icon:"staff", bg:"#DCEFFF",
+  covers:"Why everybody needs forgiveness (1 John 1:8), wonder at who God is (Luke 12:7, Psalm 121:4), the Holy Trinity, St. Augustine and the seashell legend, Jesus the Good Shepherd who calls each sheep by name (John 10:3, 11, 14–15), the Cross as love, Psalm 23 as prayed at Mass with its hard words, the Sign of the Cross, Act of Contrition part 1",
+  saint:{name:"St. Damien of Molokai", story:"Father Damien went to live on Molokai, a Hawaiian island where people with a sickness called leprosy were sent away from everyone else. He built houses, cared for the sick, and was their priest. But there was no other priest nearby to hear his own confession! Once, a boat came with his bishop, but nobody was allowed off. So Damien paddled out and called his confession up to the deck. Being forgiven mattered that much to him."},
+  mission:["A family prayer spot","Pick one small spot at home: a shelf or a corner of a table. Put a cross there, and maybe a candle or a picture of Jesus. Start each lesson there with the Sign of the Cross. This week, try praying Psalm 23 at bedtime and start learning part 1 of the Act of Contrition."],
   scenes:[
-   {t:"story",art:"lostlamb",text:"Meet Pip. Pip is a little lamb who wandered away and got lost."},
-   {t:"story",icon:"heartmend",text:"St. John wrote: “If we say, ‘We are without sin,’ we deceive ourselves, and the truth is not in us.” Everyone sins sometimes, even grown-ups. That's why we all need God's forgiveness.",ref:"1 John 1:8",sm:1},
-   {t:"story",art:"sun",text:"God is holy and perfect. He is strong and loving. He knows everything, He can do anything, and He is everywhere. And He is your Father in heaven!"},
-   {t:"story",art:"trinity",text:"There is one God in three Persons: the Father, the Son, and the Holy Spirit. We call this the Holy Trinity. They are equally one God, and they can never be separated."},
-   {t:"read",tag:"Who is who?",lines:["God the Father: He made everything. He loves you perfectly, cares for you, and teaches you.","God the Son: Jesus. He became a man to save us.","God the Holy Spirit: our Helper. He came to the apostles at the first Pentecost and gave them wisdom and courage. He came to live in you at your Baptism, and He gives you all you need to please God."],ref:"Acts 2"},
-   {t:"story",art:"beach",text:"An old story says St. Augustine once saw a boy pouring the ocean into a little hole in the sand. “You can never do that!” said Augustine. The boy said, “And you can never figure out the Holy Trinity.” Then the boy, an angel, disappeared!",sm:1},
-   {t:"quiz",q:"The Holy Trinity is…",opts:[["One God in three Persons",1],["Three different gods",0],["Three apostles",0]],yes:"Yes! It is a mystery of faith: true, even though we can't fully understand it."},
-   {t:"story",art:"shepherd",text:"Jesus said: “I am the good shepherd. A good shepherd lays down his life for the sheep. I know mine and mine know me, just as the Father knows me and I know the Father; and I will lay down my life for the sheep.”",ref:"John 10:11, 14–15",sm:1},
-   {t:"story",art:"carry",text:"We are the sheep. When we wander off and sin, Jesus is sad, but He comes looking for us and welcomes us back when we ask forgiveness."},
+   {t:"story",art:"lostlamb",text:"This is Pip, a little lamb. One day Pip wandered off, looking at flowers, and ended up far from home."},
+   {t:"story",icon:"heartmend",text:"Pip isn't the only one who wanders. The Bible says: “If we say, ‘We are without sin,’ we deceive ourselves, and the truth is not in us.” Kids, moms, dads, even priests: we all need God's forgiveness.",ref:"1 John 1:8",sm:1},
+   {t:"read",tag:"Wonder about God",art:"sun",lines:["God is bigger than the whole universe.","God is closer to you than your own heartbeat.","God knows how many hairs are on your head.","God never sleeps, so He is always watching over you.","And this great big God calls you His child!"],ref:"Luke 12:7; Psalm 121:4"},
+   {t:"story",art:"trinity",text:"There is only one God, and He is three Persons: the Father, the Son, and the Holy Spirit. This is the Holy Trinity. Three Persons, one God, always together."},
+   {t:"read",tag:"What the Trinity does for you",lines:["The Father dreamed you up and made you.","The Son, Jesus, came to rescue you from sin.","The Holy Spirit came to live inside you at your Baptism, and He helps you choose what's good. At Pentecost He made the apostles brave!"],ref:"Acts 2"},
+   {t:"story",art:"beach",text:"There's a legend about St. Augustine walking on the beach, trying to figure out the Trinity. He saw a child scooping seawater into a little hole. “The whole ocean won't fit in there!” he said. The child answered, “And God won't fit in your head.” God is bigger than we can understand, and that's wonderful.",sm:1},
+   {t:"quiz",q:"The Holy Trinity is…",opts:[["One God in three Persons",1],["Three different gods",0],["Three apostles",0]],yes:"Yes! It's a mystery: true, even though it's bigger than our minds."},
+   {t:"story",art:"shepherd",text:"Jesus said: “I am the good shepherd. A good shepherd lays down his life for the sheep. … I know mine and mine know me, just as the Father knows me and I know the Father; and I will lay down my life for the sheep.”",ref:"John 10:11, 14–15",sm:1},
+   {t:"story",art:"carry",text:"A real shepherd knows every sheep by name, and Jesus knows yours. When you wander away by sinning, He doesn't shrug and forget you. He comes after you, and He is glad to carry you home.",ref:"John 10:3"},
    {t:"quiz",q:"When Pip got lost, what did the Good Shepherd do?",opts:[["Went looking for Pip",1],["Stayed home grumpy",0],["Forgot about Pip",0]],yes:"Yes! Jesus always comes looking for us."},
-   {t:"story",art:"crosshill",text:"“A good shepherd lays down his life for the sheep.” Jesus died on the cross to pay for our sins. That makes heaven possible for us!",ref:"John 10:11"},
-   {t:"story",icon:"chalice",text:"A shepherd gives his sheep food and water. Jesus feeds us with His own Body and Blood in the Eucharist."},
-   {t:"read",tag:"Psalm 23",art:"sun",lines:["The Lord is my shepherd. I have everything I need.","He gives me rest in green pastures. He leads me to calm water. He gives me new strength.","For the good of His name, He leads me on paths that are right.","Even if I walk through a very dark valley, I will not be afraid because you are with me. Your rod and staff comfort me.","You prepare a meal for me in front of my enemies. You give me great blessings. You give me more than I can hold.","Surely your goodness and love will be with me all my life. And I will live in the house of the Lord forever."],ref:"Psalm 23 (International Children's Version, as printed in the workbook)"},
+   {t:"story",art:"crosshill",text:"Jesus showed how much He loves His sheep on the cross. He gave His life out of love, to take away our sins and open heaven for us."},
+   {t:"read",tag:"Psalm 23",art:"sun",lines:["The LORD is my shepherd; I shall not want.","In verdant pastures he gives me repose; beside restful waters he leads me; he refreshes my soul.","He guides me in right paths for his name's sake.","Even though I walk in the dark valley I fear no evil; for you are at my side with your rod and your staff that give me courage.","You spread the table before me in the sight of my foes; you anoint my head with oil; my cup overflows.","Only goodness and kindness follow me all the days of my life; and I shall dwell in the house of the LORD for years to come."],ref:"Psalm 23, as prayed at Mass"},
+   {t:"read",tag:"Psalm words",icon:"book",lines:["I shall not want: I have everything I need.","Verdant pastures: green fields.","Repose: rest.","Foes: enemies.","Anoint: pour oil on, a sign of God's blessing."]},
    {t:"cross"},
    {t:"pray",i:0,tag:"Memory prayer: part 1 of the Act of Contrition"},
    {t:"saint"},{t:"done"}]},
 
- { id:"recon-02", title:"The Ten Commandments", lesson:"Lesson 2", icon:"tablets", bg:"#FFF1C9",
-  covers:"God gave Moses the Ten Commandments (Exodus 20, Deuteronomy 5), all ten in order with a question for each, Jesus' two great commandments (Matthew 22:37–39), Matthew 5:17, the envelope activity, CCC 2059, Act of Contrition parts 1–2",
-  saint:{name:"St. Dominic Savio", story:"When Dominic was 12, he knew he wanted to be a priest more than anything, and he loved the sacraments. At his school, he helped other boys turn away from sin. Once he saw two boys fighting, so he held up a crucifix between them. They realized what they were doing, made up, and went to confession. Dominic went to confession every week with his teacher, St. John Bosco."},
-  mission:["Mail a love letter","Fold a paper envelope. On the front write Jesus' two great commandments: love God, and love your neighbor. Put the Ten Commandments inside, because the two great commandments wrap around all ten. Keep practicing parts 1 and 2 of the Act of Contrition."],
+ { id:"recon-02", title:"Ten Ways to Love", lesson:"Lesson 2", icon:"tablets", bg:"#FFF1C9",
+  covers:"The Ten Commandments given to Moses (Exodus 20, Deuteronomy 5), each commandment with a question to ask yourself, CCC 2059, Jesus' Great Commandment (Matthew 22:37–39), Jesus fulfills the Law (Matthew 5:17), sorting the commandments into love of God and love of neighbor, Act of Contrition parts 1–2",
+  saint:{name:"St. Dominic Savio", story:"Dominic was a student at St. John Bosco's school in Italy. He was only a boy, but he loved Jesus with his whole heart and wanted to become a priest. One day two classmates were about to fight with rocks. Dominic stepped between them holding a small cross and said, “Throw the first stone at me.” They put the rocks down and made peace. Dominic went to confession every week with Don Bosco, and he died when he was just 14."},
+  mission:["Two-hands rule","Trace both of your child's hands on paper. On one hand write “Love God” and the first three commandments. On the other write “Love others” and the last seven. Hang it on the fridge. When a choice is hard this week, ask: which hand does this belong to? Keep practicing parts 1 and 2 of the Act of Contrition."],
   remember:[{q:"Who is the Good Shepherd?",opts:[["Jesus",1],["Pip",0],["The farmer next door",0]]},{q:"The Holy Trinity is…",opts:[["One God in three Persons",1],["Three gods",0]]}],
   scenes:[
-   {t:"story",art:"tablets",text:"God gave Moses ten rules to pass on to His people: the Ten Commandments. They are not rules to spoil fun. Like a good Father, God gave them to keep us out of trouble and lead us to heaven.",ref:"Exodus 20:2–17; Deuteronomy 5:6–21"},
+   {t:"story",art:"tablets",text:"On a mountain called Sinai, God gave Moses ten commandments for His people. They aren't there to spoil the fun. They're like guardrails on a mountain road: they keep us safe and point us toward heaven.",ref:"Exodus 20:2–17; Deuteronomy 5:6–21"},
    {t:"cmds"},
    {t:"story",icon:"tablets",text:"The Church teaches: “The gift of the Commandments is the gift of God himself and his holy will. In making his will known, God reveals himself to his people.”",ref:"Catechism of the Catholic Church 2059",sm:1},
-   {t:"story",icon:"heart",text:"That means: God's rules show us who He is, and how much He loves us. He gave them because He is a good Father."},
+   {t:"story",icon:"heart",text:"In other words: when God tells us how to live, He's also showing us what He is like. His commandments are a present from a Father who loves us."},
    {t:"quiz",q:"Which commandment says to honor your father and your mother?",opts:[["The 4th",1],["The 7th",0],["The 10th",0]],yes:"Yes! The 4th Commandment."},
    {t:"quiz",q:"“You shall not steal” is the…",opts:[["7th Commandment",1],["1st Commandment",0],["3rd Commandment",0]],yes:"Right! The 7th Commandment."},
-   {t:"story",art:"hearts",text:"Jesus gave two great commandments that hold all ten together: “You shall love the Lord, your God, with all your heart, with all your soul, and with all your mind.” And “You shall love your neighbor as yourself.”",ref:"Matthew 22:37–39; Mark 12:28–31"},
-   {t:"sort",prompt:"Is this commandment about loving God or loving others?",bins:[["Loving God","#FFE3A3"],["Loving others","#FFD6DF"]],items:[["1. Put God first",0],["2. Say God's name with love",0],["3. Keep the Lord's Day holy",0],["4. Honor your mom and dad",1],["5. Don't hurt anyone",1],["6. Be faithful in marriage",1],["7. Don't steal",1],["8. Tell the truth",1],["9. Keep your thoughts pure",1],["10. Be happy with what you have",1]]},
-   {t:"story",icon:"tablets",text:"Jesus said: “Do not think that I have come to abolish the law or the prophets. I have come not to abolish but to fulfill.” Jesus didn't get rid of the Ten Commandments. He showed us how to live them with love.",ref:"Matthew 5:17",sm:1},
-   {t:"quiz",q:"If you love God and love your neighbor, then you…",opts:[["Keep all Ten Commandments",1],["Don't need to go to Mass",0],["Can break the rules sometimes",0]],yes:"Yes! Loving God means wanting to be at Mass. Loving people means not stealing or hurting them."},
+   {t:"story",art:"hearts",text:"Someone asked Jesus which commandment is the greatest. He answered: “You shall love the Lord, your God, with all your heart, with all your soul, and with all your mind.” And the second is like it: “You shall love your neighbor as yourself.” All ten fit inside those two.",ref:"Matthew 22:37–39; Mark 12:28–31"},
+   {t:"sort",prompt:"Is this commandment about loving God or loving others?",bins:[["Loving God","#FFE3A3"],["Loving others","#FFD6DF"]],items:[["1. Put God first",0],["2. Say God's name with love",0],["3. Keep the Lord's Day holy",0],["4. Honor your mom and dad",1],["5. Don't hurt anyone",1],["6. Be faithful in marriage",1],["7. Don't steal",1],["8. Tell the truth",1],["9. Keep your thoughts pure",1],["10. Don't be jealous of what others have",1]]},
+   {t:"story",icon:"tablets",text:"Jesus said: “Do not think that I have come to abolish the law or the prophets. I have come not to abolish but to fulfill.” He didn't throw the commandments away. He lived them perfectly, and He shows us how to keep them out of love.",ref:"Matthew 5:17",sm:1},
+   {t:"quiz",q:"Mia says, “I love God, but I don't need His rules.” What would you tell her?",opts:[["Loving God means wanting to do what He asks",1],["She's right, rules don't matter",0],["Only grown-ups follow rules",0]],yes:"Yes! When we love someone, we want to make them happy. Keeping the commandments is how we love God back."},
    {t:"quiz",q:"Your little brother knocks over your Lego tower. Which choice follows God's commandments?",opts:[["Use kind words and get a grown-up",1],["Knock over his tower",0],["Call him a mean name",0]],yes:"That's loving your neighbor, even when it's hard."},
    {t:"pray",i:1,tag:"Memory prayer: part 2 of the Act of Contrition"},
    {t:"prayall",upto:2},
    {t:"saint"},{t:"done"}]},
 
- { id:"recon-03", title:"Free Will and Sin", lesson:"Lesson 3", icon:"candle", bg:"#FFE2E8",
-  covers:"Made in God's image with a soul, free will, the definition of sin, Matthew 25:40, original sin, accident vs. sin, the candle demonstration, venial and mortal sin and the three conditions, the devil and hell, Act of Contrition parts 1–3",
-  saint:{name:"St. Maria Goretti", story:"Maria loved Jesus and went to confession as often as she could. An older boy, Alessandro, wanted to do something very wrong. Maria said no, and he hurt her badly. Maria forgave him before she died. Years later, in prison, Alessandro saw Maria offering him flowers. He asked for a priest, made a good confession, and spent his life doing penance."},
-  mission:["The candle lesson","Have your child write their name on a paper “scroll.” With a grown-up right there, light several candles, close the shades, and turn off the lights. Name a wrong choice and blow out one candle for each. When it's dark, ask: can you still see your scroll? Sin makes it hard to see God's way, and harder to say no next time. Then talk about how Reconciliation brings the light back. Keep practicing parts 1 to 3 of the Act of Contrition."],
+ { id:"recon-03", title:"Choosing Good", lesson:"Lesson 3", icon:"candle", bg:"#FFE2E8",
+  covers:"Everyday choices, made in God's image, freedom and love, what sin is (including the good we fail to do), Matthew 25:40, Adam, Eve, and original sin, accident or sin, the fading-candle game, venial and mortal sin and the three conditions (CCC 1854–1864), heaven, hell, and the devil, Act of Contrition parts 1–3",
+  saint:{name:"St. Maria Goretti", story:"Maria was a poor farm girl in Italy who loved Jesus very much. When she was 11, a young man named Alessandro tried to make her do something seriously wrong. She refused, and he attacked her. Before she died, Maria said she forgave him and wanted him in heaven. In prison, Alessandro dreamed of Maria handing him lilies. He changed his heart, confessed his sins, and later even asked Maria's mother to forgive him. She did."},
+  mission:["Shine a flashlight","Turn off the lights in a room and shine a flashlight on the floor. Walk the path together. Then put a sock over the flashlight, then another, then another, naming a wrong choice for each one. Can you still see the path? Sin makes it harder to see God's way. Pull all the socks off at once: that's what confession does. A heads-up: this lesson's saint story (St. Maria Goretti) mentions that she was attacked, so you may want to read it together. Keep practicing parts 1 to 3 of the Act of Contrition."],
   remember:[{q:"How many commandments did God give Moses?",opts:[["Ten",1],["Three",0],["A hundred",0]]},{q:"Jesus' two great commandments are: love God and…",opts:[["Love your neighbor as yourself",1],["Love candy",0],["Win every game",0]]}],
   scenes:[
-   {t:"story",art:"brain",text:"God made you in His image. You have a mind to think, imagine, and reason. You have feelings. You have a free will to choose good or bad. And you have a soul that lives forever! That makes people different from animals."},
-   {t:"story",icon:"heart",text:"Love has to be given freely. God never forces anyone to love Him. When we choose what's right, we choose to love God."},
-   {t:"story",icon:"noentry",text:"A sin is something we choose to say, do, or desire that is against God's law. Choosing sin is choosing to love God less than we should. Not sure if something is a sin? Ask your parents or the priest."},
-   {t:"story",art:"hearts",text:"Jesus said: “Whatever you did for one of these least brothers of mine, you did for me.” When we hurt other people, we hurt Jesus too.",ref:"Matthew 25:40"},
-   {t:"story",art:"eden",text:"The first people, Adam and Eve, disobeyed God. Their first sin is called original sin. Because of it, everyone except Jesus and Mary is born without God's special life inside, called sanctifying grace, and with a pull toward doing wrong. Baptism washes original sin away and fills us with God's life.",sm:1},
+   {t:"story",icon:"heart",text:"Every day you make hundreds of choices: what to say, how to play, whether to share. God trusts you with all of them! He wants you to choose freely, because love that's forced isn't really love."},
+   {t:"story",art:"brain",text:"That's part of being made in God's image. You can think, wonder, and choose. And you have a soul that will live forever."},
+   {t:"story",icon:"noentry",text:"Sin is when we choose to think, say, or do something we know God doesn't want, or when we choose not to do something good we know we should. Not sure if something is a sin? Ask your mom, your dad, or a priest."},
+   {t:"story",art:"hearts",text:"Jesus said: “Whatever you did for one of these least brothers of mine, you did for me.” So when we are unkind to someone, we're being unkind to Jesus, too.",ref:"Matthew 25:40"},
+   {t:"story",art:"eden",text:"Adam and Eve, the very first people, chose to disobey God. Their sin is called original sin, and it touched every person born after them.",sm:1},
+   {t:"story",art:"font",text:"Because of original sin, we're born without God's life in our souls (called grace), and with a tug toward wrong choices. Only Jesus and His mother, Mary, were free of it. Baptism washes original sin away and fills us with God's life.",sm:1},
    {t:"quiz",q:"Who was born without original sin?",opts:[["Jesus and Mary",1],["Everyone",0],["Only grown-ups",0]],yes:"Right! Everyone else is born with it, and Baptism washes it away."},
-   {t:"sort",prompt:"Accident or sin?",bins:[["Accident: not a sin","#D3E8FF"],["Sin: I chose wrong","#FFD6DF"]],items:[["Spilled milk by accident",0],["Threw my milk on the floor because I was mad",1],["Tripped and bumped a friend",0],["Said I brushed my teeth when I didn't",1],["Forgot my lunch at school",0],["Hit my sister because I was mad",1]],done:"An accident is something you didn't mean to do. A sin is something you choose to do that you know is wrong."},
+   {t:"sort",prompt:"Accident or sin?",bins:[["Accident: not a sin","#D3E8FF"],["Sin: I chose wrong","#FFD6DF"]],items:[["My cup tipped over at lunch",0],["I broke my sister's crayon on purpose",1],["I tripped and bumped a friend",0],["I said I fed the dog when I didn't",1],["I forgot my lunch at school",0],["I didn't help when Mom asked, because I wanted to keep playing",1]],done:"Accidents just happen. A sin is a choice: you knew it was wrong and did it anyway."},
    {t:"candle"},
-   {t:"read",tag:"Two kinds of sin",lines:["Venial sin: a less serious sin. It hurts our friendship with God.","Mortal sin: a very serious sin. It breaks our friendship with God completely. Reconciliation restores it.","A sin is mortal only when all three are true: it is very serious, you know it is very wrong, and you choose to do it on purpose.","You can never sin by accident."],ref:"Catechism of the Catholic Church 1854–1864"},
+   {t:"read",tag:"Two kinds of sin",lines:["Venial sin: a smaller sin. It weakens our friendship with God.","Mortal sin: a very big sin. It cuts off our friendship with God. Confession brings it back.","For a sin to be mortal, three things must all be true: it's something very serious, you know it's very serious, and you freely choose it anyway.","Nobody ever sins by accident."],ref:"Catechism of the Catholic Church 1854–1864"},
    {t:"quiz",q:"Which kind of sin breaks our friendship with God completely?",opts:[["Mortal sin",1],["Venial sin",0],["An accident",0]],yes:"Yes. And the sacrament of Reconciliation restores that friendship!"},
-   {t:"quiz",q:"Which kind of sin hurts our friendship with God, but doesn't break it?",opts:[["Venial sin",1],["Mortal sin",0],["Original sin",0]],yes:"Right! A venial sin is less serious, but it still hurts our friendship with God."},
-   {t:"story",icon:"noentry",text:"Evil begins in the heart. The devil is happy when we sin. And if we don't ask forgiveness, sin keeps us from being close to God.",sm:1},
-   {t:"story",icon:"heartmend",text:"Someone who chooses to turn away from God completely, and won't ask His forgiveness before they die, chooses to be apart from God forever. That is called hell. God wants every one of us with Him in heaven, and He always forgives us when we're truly sorry.",sm:1},
+   {t:"quiz",q:"Which kind of sin hurts our friendship with God, but doesn't break it?",opts:[["Venial sin",1],["Mortal sin",0],["Original sin",0]],yes:"Right! A venial sin is smaller, but it still hurts our friendship with God."},
+   {t:"story",icon:"heartmend",text:"God made us for heaven, and He wants every single person there with Him. He always forgives when we are truly sorry. But He never forces us. Someone who turns away from God for good, and refuses His mercy to the very end, chooses to be apart from Him forever. That is hell.",sm:1},
+   {t:"story",icon:"noentry",text:"The devil is a fallen angel who wants to pull us away from God. But he is no match for Jesus. Every time we say sorry and come back, the devil loses.",sm:1},
    {t:"pray",i:2,tag:"Memory prayer: part 3 of the Act of Contrition"},
    {t:"prayall",upto:3},
    {t:"saint"},{t:"done"}]},
 
- { id:"recon-04", title:"Sacraments, the Bible, and Prayer", lesson:"Lesson 4", icon:"stones", bg:"#E2F7E8",
-  covers:"What a sacrament is and what sacraments do, the seven sacraments (with a recall game for the stepping-stones sheet), Baptism (Acts 2:38), receiving Reconciliation and Eucharist again and again, a clean heart before First Communion, the Bible (2 Timothy 3:16), prayer and the Psalms, the ways God helps us, Act of Contrition parts 1–4, Review of Lessons 1–4 (all ten questions)",
-  saint:{name:"St. Ignatius of Loyola", story:"Ignatius was a proud soldier until a cannonball hurt his leg. While he got better, he read about Jesus and the saints. He turned away from pride and money to follow Christ. He went to confession and promised to do penance and serve God. Later he became a priest and started the Jesuits."},
-  mission:["Baptism treasure hunt","Get out your child's baptism photos, gown, and candle. Tell them the story of that day: they became a child of God. Then talk about why we wash our hands before a special dinner. Keep practicing parts 1 to 4 of the Act of Contrition."],
-  remember:[{q:"A sin is something we choose to say, do, or desire that is…",opts:[["Against God's law",1],["An accident",0],["Silly",0]]},{q:"Spilling milk by accident is…",opts:[["Not a sin",1],["A mortal sin",0]]}],
+ { id:"recon-04", title:"Signs of God's Love", lesson:"Lesson 4", icon:"stones", bg:"#E2F7E8",
+  covers:"What a sacrament is and what sacraments do, the seven sacraments (stepping-stones game), Baptism (Acts 2:38), which sacraments we receive once and which again and again, getting our hearts ready for Jesus, the Bible (2 Timothy 3:16), prayer, Act of Contrition parts 1–4, Check-in on Lessons 1–4",
+  saint:{name:"St. Ignatius of Loyola", story:"Ignatius was a Spanish soldier who dreamed of fame. In a battle, a cannonball smashed his leg. Stuck in bed for months, he asked for adventure books, but the only books in the castle were about Jesus and the saints. Reading them changed him. He made a long, honest confession, gave away his fancy clothes, and decided to serve Jesus instead. He became a priest and started the Jesuits, a group of priests who still teach all over the world."},
+  mission:["Your Baptism day","Find your child's Baptism photos, candle, or white garment. Tell the story: who was there, which church, what the priest said. That was the day they became God's child. Light the candle (or any candle) and pray a thank-you together. Keep practicing parts 1 to 4 of the Act of Contrition."],
+  remember:[{q:"Sin is when we choose to do something we know is…",opts:[["Against what God wants",1],["An accident",0],["Silly",0]]},{q:"A cup tipping over by accident is…",opts:[["Not a sin",1],["A mortal sin",0]]}],
   scenes:[
-   {t:"story",art:"dove",text:"The Commandments guide us to be holy. Sacraments are another way God helps us. Jesus began the seven sacraments and asked us to continue them. They are signs and actions we can see, touch, taste, hear, and smell that give us God's blessings and grace. Jesus used simple things: water, oil, bread and wine, and simple prayers.",sm:1},
-   {t:"read",tag:"What sacraments do",icon:"gift",lines:["They make us holy.","They build up the Church, the Body of Christ.","They give worship to God."]},
+   {t:"story",art:"dove",text:"Jesus knew we're not just souls: we have eyes, ears, and hands too. So He gave His Church seven sacraments, holy signs we can see and hear. Through each one, God really gives us His grace, His own life.",sm:1},
+   {t:"read",tag:"What happens in a sacrament",icon:"gift",lines:["Water, oil, bread, wine, a hand on the head, and holy words are the signs.","Jesus is the one working through them.","They make us holy, build up the Church, and give glory to God."]},
    {t:"stones"},
-   {t:"pick",prompt:"Find all seven sacraments!",items:[["Baptism",1],["Reconciliation",1],["Eucharist",1],["Confirmation",1],["Marriage",1],["Holy Orders",1],["Anointing of the Sick",1],["Birthday party",0],["Christmas",0],["Field trip",0]],done:"All seven! God gave the sacraments as smooth stepping stones on our path to heaven, built on the firm foundation of the Catholic Church."},
-   {t:"story",art:"font",text:"Baptism is the first sacrament. It washes away original sin and all sins, makes you a child of God, brings you into the Church, and gives you the promise of heaven. The white gown shows you are a new creation in Christ.",ref:"Acts 2:38"},
-   {t:"quiz",q:"Which sacrament do you receive only once?",opts:[["Baptism",1],["Reconciliation",0],["Eucharist",0]],yes:"Right! Baptism happens only once (so do Confirmation and Holy Orders). But you can receive Reconciliation and the Eucharist again and again. Going to Reconciliation often is a great habit!"},
-   {t:"story",icon:"heart",text:"This year you're getting ready for two sacraments: Reconciliation, also called Penance or Confession, and Holy Eucharist, your First Communion. Reconciliation comes first, so your heart is clean for Jesus."},
+   {t:"pick",prompt:"Find all seven sacraments!",items:[["Baptism",1],["Reconciliation",1],["Eucharist",1],["Confirmation",1],["Marriage",1],["Holy Orders",1],["Anointing of the Sick",1],["Birthday party",0],["Christmas",0],["Field trip",0]],done:"All seven! Think of them as stepping stones God placed across the river, so we can cross safely to Him."},
+   {t:"story",art:"font",text:"Baptism comes first. It washes away original sin and every other sin, makes you God's own child, and welcomes you into the Church. The white garment shows your soul shining clean and new.",ref:"Acts 2:38"},
+   {t:"quiz",q:"Which sacrament do you receive only once?",opts:[["Baptism",1],["Reconciliation",0],["Eucharist",0]],yes:"Right! Baptism happens just once (so do Confirmation and Holy Orders). But you can go to Reconciliation and receive the Eucharist again and again. Going to confession often is a great habit!"},
+   {t:"story",icon:"heart",text:"Which sacraments are you getting ready for? Two! First Reconciliation, then First Communion. When a special guest is coming, you tidy up the house. Confession gets your heart ready for Jesus."},
    {t:"wash"},
-   {t:"quiz",art:"book",q:"The Bible is…",opts:[["God's Word, written with the Holy Spirit's help",1],["A comic book",0],["Just old stories",0]],yes:"Right. Reading it often helps us know God.",ref:"2 Timothy 3:16"},
-   {t:"quiz",q:"Prayer is…",opts:[["Talking to God",1],["Only for church",0],["A magic spell",0]],yes:"Yes! Whole books of the Bible are prayers, like the Psalms."},
-   {t:"read",tag:"Ways God helps us stay close",icon:"heart",lines:["1. The Ten Commandments.","2. Jesus' two great commandments.","3. The sacraments.","4. The Bible, God's Word.","5. Prayer, talking to God.","We love God by obeying and pleasing Him in our thoughts, words, and actions."]},
+   {t:"quiz",art:"book",q:"The Bible is…",opts:[["God's Word, written with the Holy Spirit's help",1],["A comic book",0],["Just old stories",0]],yes:"Right. The more we read it, the better we know God.",ref:"2 Timothy 3:16"},
+   {t:"quiz",q:"Prayer is…",opts:[["Talking with God",1],["Only for church",0],["A magic spell",0]],yes:"Yes! You can pray anywhere: in the car, at bedtime, on the playground."},
    {t:"pray",i:3,tag:"Memory prayer: part 4 of the Act of Contrition"},
    {t:"prayall",upto:4},
-   {t:"quiz",tag:"Review: Lessons 1–4",q:"The rules God gave to His people in the Old Testament are the…",opts:[["Ten Commandments",1],["Beatitudes",0],["Lord's Prayer",0]]},
-   {t:"quiz",tag:"Review: Lessons 1–4",q:"Jesus wants you to love the Lord with all your heart, soul, and mind, and to love ___ as yourself.",opts:[["your neighbor",1],["your pet",0],["your school",0]]},
-   {t:"quiz",tag:"Review: Lessons 1–4",q:"___ are outward signs and actions that give God's blessings and grace.",opts:[["Sacraments",1],["Prayers",0],["Songs",0]]},
-   {t:"quiz",tag:"Review: Lessons 1–4",q:"We know God's will better by following the Commandments, receiving the sacraments, reading the Bible, and…",opts:[["praying",1],["going for walks",0],["watching TV",0]]},
-   {t:"quiz",tag:"Review: Lessons 1–4",q:"___ is something we say, do, or desire that is against God's law.",opts:[["Sin",1],["A goof-up",0],["An accident",0]]},
-   {t:"quiz",tag:"Review: Lessons 1–4",q:"True or false: God always loves you.",opts:[["True",1],["False",0]]},
-   {t:"quiz",tag:"Review: Lessons 1–4",q:"True or false: The Bible is God's Word.",opts:[["True",1],["False",0]]},
-   {t:"quiz",tag:"Review: Lessons 1–4",q:"True or false: The three Persons in one God are called the apostles.",opts:[["False. They are the Holy Trinity.",1],["True. They are the apostles.",0]]},
-   {t:"quiz",tag:"Review: Lessons 1–4",q:"True or false: Mortal sin breaks our friendship with God completely.",opts:[["True",1],["False",0]]},
-   {t:"quiz",tag:"Review: Lessons 1–4",q:"This year we are preparing for which two sacraments?",opts:[["Reconciliation and Holy Eucharist",1],["Confirmation and Marriage",0],["Baptism and Holy Orders",0]]},
+   {t:"quiz",tag:"Check-in: Lessons 1–4",q:"Pip the lamb got lost. Who came to find him?",opts:[["The Good Shepherd, Jesus",1],["A wolf",0],["Nobody",0]]},
+   {t:"quiz",tag:"Check-in: Lessons 1–4",q:"How many Persons are in the one God?",opts:[["Three",1],["One",0],["Seven",0]]},
+   {t:"quiz",tag:"Check-in: Lessons 1–4",q:"Which commandment is about telling the truth?",opts:[["The 8th",1],["The 2nd",0],["The 5th",0]]},
+   {t:"quiz",tag:"Check-in: Lessons 1–4",q:"Your friend drops your snack by accident. Is that a sin?",opts:[["No, it was an accident",1],["Yes, a big one",0]]},
+   {t:"quiz",tag:"Check-in: Lessons 1–4",q:"Which sacrament made you God's child?",opts:[["Baptism",1],["Marriage",0],["Holy Orders",0]]},
+   {t:"quiz",tag:"Check-in: Lessons 1–4",q:"Which sin is very serious and cuts off our friendship with God?",opts:[["Mortal sin",1],["Venial sin",0]]},
+   {t:"quiz",tag:"Check-in: Lessons 1–4",q:"What washes away original sin?",opts:[["Baptism",1],["A bubble bath",0],["Saying sorry to a friend",0]]},
+   {t:"quiz",tag:"Check-in: Lessons 1–4",q:"Which two sacraments are you getting ready for this year?",opts:[["First Reconciliation and First Communion",1],["Confirmation and Marriage",0],["Baptism and Holy Orders",0]]},
    {t:"saint"},{t:"done"}]},
 
- { id:"recon-05", title:"Examination of Conscience", lesson:"Lesson 5", icon:"glass", bg:"#EDE6FF",
-  covers:"Reconcile means come together again, only God forgives sins, through the priest acting in Jesus' name, the six parts of the sacrament, individual confession is the ordinary way, conscience, Step 1: examination of conscience with the Holy Spirit, the nightly journal, the whole Act of Contrition",
-  saint:{name:"St. Augustine", story:"Augustine was very smart, but he made many wrong choices. His mother, St. Monica, prayed for him every day. One day he felt God calling him to read Romans 13, where St. Paul says to stop doing wrong and live like Jesus. Augustine was sorry for his sins. St. Ambrose baptized him, and he began a new life. He became a priest, a bishop, and a great teacher about God."},
-  mission:["Start the nightly journal","Each night, write two things your child did that pleased God and two things they're sorry for. Tell them that you sin and stumble too, and that God always forgives when we ask. Practice the whole Act of Contrition, parts 1 to 5."],
+ { id:"recon-05", title:"Looking at My Heart", lesson:"Lesson 5", icon:"glass", bg:"#EDE6FF",
+  covers:"What “reconcile” means, only God forgives sins, through the priest, why we go to confession, the six steps of confession, conscience, Step 1: examining your conscience with the Holy Spirit's help, a bedtime examen, the whole Act of Contrition",
+  saint:{name:"St. Augustine", story:"Augustine was brilliant, but for years he chased fun and fame instead of God. His mother, St. Monica, never stopped praying for him. One day, sitting in a garden, he heard a child's voice singing, “Pick it up and read!” He opened the Bible to St. Paul's letter to the Romans, chapter 13, and felt God speaking right to him. He turned his life around, was baptized by St. Ambrose, and became one of the Church's greatest bishops and teachers."},
+  mission:["Thank you, sorry, please","Try a three-word prayer at bedtime this week. Thank you: what was one good thing God gave you today? Sorry: what's one thing you wish you'd done differently? Please: what help do you need tomorrow? Go first yourself, so your child hears that grown-ups need God too. Then pray the whole Act of Contrition together, parts 1 to 5."],
   remember:[{q:"How many sacraments are there?",opts:[["Seven",1],["Three",0],["Ten",0]]},{q:"Baptism washes away…",opts:[["Original sin and all sins",1],["Only dirt",0]]}],
   scenes:[
-   {t:"story",art:"hug",text:"When we sin, Jesus gives us a wonderful way to heal our friendship with Him: the sacrament of Reconciliation. To reconcile means to come together again after being apart."},
-   {t:"story",art:"stole",text:"Only God can forgive sins. He does it through a priest, who received this power in the sacrament of Holy Orders. The priest is there in the place of Jesus. Confessing our sins to a priest, especially serious sins, followed by absolution, is the ordinary way for all Catholics to be forgiven and brought back to God.",sm:1},
-   {t:"read",tag:"The six parts of Reconciliation",lines:["1. Examination of Conscience: remembering the sins you've committed.","2. Welcome: a greeting and prayer by the priest.","3. Confession: telling the priest your sins.","4. Penance: something the priest gives you to do, to help repair the harm your sin caused.","5. Act of Contrition: a prayer asking for God's forgiveness.","6. Absolution: God forgives your sins."]},
-   {t:"story",icon:"glass",text:"Step 1: Examine your conscience. To examine something is to look very closely at it, like a bug under a magnifying glass."},
-   {t:"story",art:"brain",text:"Your conscience is the part of your mind that judges what you have done: was it right or wrong? It helps you know what pleases God and what doesn't."},
+   {t:"story",art:"hug",text:"Have you ever had a fight with a friend, and then made up? That's what reconcile means: to make up and be close again. In the sacrament of Reconciliation, we make up with God."},
+   {t:"story",art:"stole",text:"Only God can forgive sins, and He chose to do it through His priests. In confession, the priest stands in for Jesus. For big sins, confession is the way Jesus gave us to be forgiven. Small sins can be forgiven in other ways too, like at Mass, but confession helps us most.",sm:1},
+   {t:"read",tag:"Confession in six steps",lines:["1. Examination of Conscience: I look at my heart.","2. Welcome: the priest and I say hello.","3. Confession: I tell my sins.","4. Penance: the priest gives me a prayer or good deed to do.","5. Act of Contrition: I tell God I'm sorry.","6. Absolution: God forgives me through the priest's prayer."]},
+   {t:"story",icon:"glass",text:"Step 1 is the examination of conscience. To examine means to look at something carefully, the way a detective looks for clues."},
+   {t:"story",art:"brain",text:"Your conscience is like a quiet voice inside that tells you, “That was good,” or “That was wrong.” God gave it to you to help you choose well."},
    {t:"quiz",q:"Your conscience helps you…",opts:[["Know right from wrong",1],["Do math faster",0],["Run faster",0]],yes:"Yes! Listen to it."},
    {t:"quiz",q:"Who will help you remember your sins, if you ask?",opts:[["The Holy Spirit",1],["The tooth fairy",0],["Nobody",0]],yes:"Yes! Just pray: Holy Spirit, help me remember."},
    {t:"magnify"},
@@ -2876,166 +2896,166 @@ const QUESTS = [
    {t:"prayall",upto:5},
    {t:"saint"},{t:"done"}]},
 
- { id:"recon-06", title:"Welcome", lesson:"Lesson 6", icon:"door", bg:"#DCEFFF",
-  covers:"Step 2: the welcome, why we tell sins to a priest, the stole, screen or face to face, the priest may read Scripture, “Bless me, Father…”, telling how long since your last confession, Isaiah 1:18, the burden of sin experiment, visiting the confessional, Act of Contrition memory drill",
-  saint:{name:"St. Dominic", story:"An old story says that one day St. Dominic found the devil sneaking around the monastery. The devil bragged about tempting the monks to oversleep, overeat, and gossip. But when Dominic asked about the chapter house, where the monks examined their consciences and made their confessions, the devil screamed: “I hate that spot, for I lose there whatever I have gained elsewhere! It is there they are told of their faults, correct one another in charity, do penance, and are absolved of their sins.”"},
-  mission:["Visit the confessional","After Mass this week, show your child the confessional. Let them sit in the chair or kneel at the screen. Take them along next time you go to confession. Try the burden-of-sin bag: a zip bag of sand tied loosely to the wrist or ankle for an hour or two (take it off if it bothers them). Then ask: Was it heavy or tiring? Did you get used to it? Did anyone notice? Were you embarrassed, or did you want to hide it? Did you want to take it off?"],
+ { id:"recon-06", title:"Hello, Father", lesson:"Lesson 6", icon:"door", bg:"#DCEFFF",
+  covers:"Step 2: the Welcome, Jesus gave the apostles the power to forgive (John 20:23), the stole, kneeling at a screen or sitting face to face, how to begin your confession, Isaiah 1:18, the heavy-backpack game, finding your parish's confession times, Act of Contrition memory drill",
+  saint:{name:"St. Dominic", story:"St. Dominic started a family of preachers called the Dominicans, about 800 years ago. An old legend says he once caught the devil prowling around his friars' house and made him explain himself. The devil happily pointed out the places where he tempted the brothers. But when they came to the room where the brothers confessed their faults and were forgiven, the devil howled and ran, because every sin he'd won was lost there. That's how powerful forgiveness is!"},
+  mission:["Put it on the calendar","Look up your parish's confession times together (in the bulletin or on the parish website). Pick a day for the whole family to go in the coming weeks and let your child write it on the calendar. Kids are much braver when they see their parents go too."],
   remember:[{q:"What is Step 1 of Reconciliation?",opts:[["Examination of Conscience",1],["Absolution",0],["Penance",0]]},{q:"Your conscience helps you know…",opts:[["Right from wrong",1],["What's for dinner",0]]}],
   scenes:[
-   {t:"story",art:"stole",text:"Step 2: Welcome. Why do we tell our sins to a priest? Because Jesus told us to! He gave His very first priests the power to forgive sins. Telling the priest is just like telling Jesus Himself.",ref:"John 20:23"},
-   {t:"story",icon:"stole",text:"The priest wears a stole, a long band of cloth around his neck. It is a sign of his special power to act in Jesus' name during a sacrament."},
-   {t:"story",icon:"door",text:"You can sit in a chair face to face with the priest, or kneel behind a screen. Some people like the screen, some like to talk face to face. You choose!"},
-   {t:"read",tag:"What happens",art:"stole",lines:["The priest greets you. He might say a prayer, or read a short Bible passage to get your heart ready.","Then you say: “Bless me, Father, for I have sinned. This is my first confession.”","Next time, you'll tell him how long it has been since your last confession."]},
+   {t:"story",art:"stole",text:"Step 2 is the Welcome. On the night He rose from the dead, Jesus gave His apostles the power to forgive sins. Priests carry on that work today. So in confession, Jesus is the one who really listens and forgives.",ref:"John 20:23"},
+   {t:"story",icon:"stole",text:"Spot the stole! It's the long, colorful strip of cloth over the priest's shoulders. It's a sign that he's acting with Jesus' authority."},
+   {t:"story",icon:"door",text:"In most churches you can choose: kneel behind a screen, or sit in a chair across from the priest. There's no wrong choice. Pick the one that helps you feel calm."},
+   {t:"read",tag:"How it starts",art:"stole",lines:["Father greets you, and together you make the Sign of the Cross.","Sometimes he shares a short Bible verse.","Then you begin: “Bless me, Father, for I have sinned. This is my first confession.”","Next time, you'll also say how long it's been since your last confession."]},
    {t:"quiz",q:"What do you say first, at your first confession?",opts:[["Bless me, Father, for I have sinned. This is my first confession.",1],["Hi, what's up?",0],["I'm done!",0]],yes:"Perfect!"},
-   {t:"quiz",q:"The next time you go to confession, what will you tell the priest at the start?",opts:[["How long it has been since my last confession",1],["My favorite color",0],["My phone number",0]],yes:"Yes! For example: “It has been one month since my last confession.”"},
-   {t:"story",icon:"cloud",text:"God says: “Though your sins be like scarlet, they may become white as snow.”",ref:"Isaiah 1:18"},
+   {t:"quiz",q:"At your second confession, what new thing will you tell the priest at the start?",opts:[["How long it's been since my last confession",1],["My favorite color",0],["My phone number",0]],yes:"Yes! For example: “It has been one month since my last confession.”"},
+   {t:"story",icon:"cloud",text:"God promises: “Though your sins be like scarlet, they may become white as snow.”",ref:"Isaiah 1:18"},
    {t:"backpack"},
    {t:"recall",level:1},
    {t:"saint"},{t:"done"}]},
 
- { id:"recon-07", title:"Confession", lesson:"Lesson 7", icon:"lock", bg:"#E9E2FF",
-  covers:"Step 3: confession, St. Clement of Rome, the five names of the sacrament (CCC 1423–1424), accident vs. sin, writing sins on paper, the priest won't be angry, the seal of confession, “Please forgive me for all of these sins…”, Act of Contrition memory drill, Review of Lessons 5–7",
-  saint:{name:"St. John Nepomucene", story:"An old story tells about Father John, a priest in Prague. The queen went to him for confession. The king wanted to know what she had said, but Father John said no, even when the king threatened him. He was thrown into the river and died rather than tell. People call him the martyr of the confessional."},
-  mission:["Practice the parts","Make the Sign of the Cross together. Ask: what will you say first? What happens next? (Tell your sins: only sins, not accidents.) What do you say when you've told them all? If it helps, let your child write their sins on a paper to bring along."],
-  remember:[{q:"What does the priest wear as a sign of his power to act in Jesus' name?",opts:[["A stole",1],["A crown",0],["A cape",0]]}],
+ { id:"recon-07", title:"Telling My Sins", lesson:"Lesson 7", icon:"lock", bg:"#E9E2FF",
+  covers:"Step 3: Confession, the five names of the sacrament (CCC 1423–1424), confess sins, not accidents, bringing a note, Jesus won our forgiveness (CCC 1432), the Seal of Confession, how to finish, Act of Contrition memory drill, Check-in on Lessons 5–7",
+  saint:{name:"St. John Nepomucene", story:"John was a priest in Prague, long ago. The story is told that the queen came to him for confession, and the king grew suspicious and demanded to know what she had said. John refused. The king threatened him, then had him thrown from a bridge into the river. John chose to die rather than break the Seal of Confession. Today there are statues of him on bridges all over Europe."},
+  mission:["Teddy bear confession","Let your child play the priest, and have a stuffed animal come to confession (with a pretend sin, like eating all the honey). Your child guides the teddy: how does it start? What does it say at the end? Then swap. Teaching it is the best way to learn it."],
+  remember:[{q:"What does the priest wear around his neck when he forgives sins?",opts:[["A stole",1],["A crown",0],["A cape",0]]}],
   scenes:[
-   {t:"story",art:"stole",text:"Step 3: Confession means telling the priest your sins. Some people call the whole sacrament “confession,” but it's only one of the six parts."},
-   {t:"match",tag:"Five names, one sacrament",prompt:"Tap a name, then tap what it means.",ref:"Catechism of the Catholic Church 1423–1424",pairs:[["Reconciliation","We come back together with God, and our friendship is restored"],["Confession","We tell our sins to the priest"],["Penance","We do something to show we're sorry and grow in love"],["Conversion","We change our mind about sin and turn back to God"],["Forgiveness","Through the priest, God gives us pardon and peace"]]},
+   {t:"story",art:"stole",text:"Step 3 is the Confession: you tell the priest your sins. People sometimes call the whole sacrament “confession,” but telling is just one of the six steps."},
+   {t:"match",tag:"Five names, one sacrament",prompt:"Tap a name, then tap what it means.",ref:"Catechism of the Catholic Church 1423–1424",pairs:[["Reconciliation","God and I are friends again"],["Confession","I say my sins out loud to the priest"],["Penance","I do something to make up for my sin and grow in love"],["Conversion","I turn away from sin and back toward God"],["Forgiveness","God takes my sins away and gives me peace"]]},
    {t:"quiz",q:"Do you need to confess accidents?",opts:[["No, only sins",1],["Yes, every one",0]],yes:"Right! An accident isn't a sin, so you don't confess it."},
-   {t:"story",icon:"book",text:"Some people write their sins on a piece of paper and take it with them. Your nightly journal will help you remember."},
-   {t:"story",art:"crosshill",text:"St. Clement of Rome wrote: “Let us fix our eyes on Christ's blood and understand how precious it is to His Father, for, poured out for our salvation it has brought to the whole world the grace of repentance.” Jesus died so that we could be sorry and be forgiven.",sm:1},
-   {t:"story",art:"lock",text:"Never worry: the priest will not yell or be angry. He is there in place of Jesus, who loves you. And the Church's strictest rule says he can never tell anyone what you say, ever. Not your parents, not your teacher, not anybody. He won't even talk about it with you outside of confession. It's called the Seal of Confession. Your confession is between you and God.",sm:1},
-   {t:"read",tag:"When you're finished",icon:"pray",lines:["Tell Father you're finished. You can say: “Please forgive me for all of these sins and any others I can't remember.”"]},
-   {t:"quiz",q:"“___ me for all of these sins and any others I can't remember.”",opts:[["Please forgive",1],["Hurry up",0],["Don't tell",0]],yes:"Yes! God forgives the ones you forgot, too."},
+   {t:"story",icon:"book",text:"Worried you'll forget? Jot your sins on a small card and hold it while you talk. Afterward, tear it up and toss it. God has already thrown those sins away!"},
+   {t:"story",art:"crosshill",text:"Why does God forgive us so freely? Because Jesus already won our forgiveness on the cross. An early Christian named St. Clement said Jesus' blood brought “the grace of repentance” to the whole world: the gift of being able to turn back to God.",ref:"Catechism of the Catholic Church 1432",sm:1},
+   {t:"story",art:"lock",text:"What you say stays there. The priest can never repeat it to anyone, for any reason, ever. This promise is called the Seal of Confession, and priests have even died rather than break it. And priests aren't shocked by sins: they're happy you came.",sm:1},
+   {t:"read",tag:"When you're finished",icon:"pray",lines:["When you've told all your sins, finish with: “For these and all my sins, I am sorry.”"]},
+   {t:"quiz",q:"“For these and all my sins, I am ___.”",opts:[["sorry",1],["done",0],["hungry",0]],yes:"Yes! That includes the ones you forgot, and God forgives those, too."},
    {t:"recall",level:2},
-   {t:"match",tag:"Review: Lessons 5–7",prompt:"Match each word to its meaning.",pairs:[["Accident","Something you do wrong that you didn't mean to do"],["Sin","Something you do wrong, on purpose"],["Penance","What the priest gives you to do, to change your ways and show you're sorry"],["Absolution","When God forgives your sins"],["Act of Contrition","A prayer asking for God's forgiveness"],["Confession","When you tell the priest your sins"],["Reconciliation","The sacrament that reunites us with God"]]},
-   {t:"quiz",tag:"Review: Lessons 5–7",q:"Before you confess, you say: “___, Father, for I have sinned. This is my first confession.”",opts:[["Bless me",1],["Hello",0],["Excuse me",0]]},
+   {t:"quiz",tag:"Check-in: Lessons 5–7",q:"True or false: the priest can tell your parents what you confessed.",opts:[["False. Never!",1],["True",0]]},
+   {t:"quiz",tag:"Check-in: Lessons 5–7",q:"What is your conscience?",opts:[["The quiet voice inside that helps me know right from wrong",1],["A kind of prayer",0],["A part of the church building",0]]},
+   {t:"quiz",tag:"Check-in: Lessons 5–7",q:"Which of these do you need to confess?",opts:[["Telling a lie on purpose",1],["Sneezing during Mass",0],["Forgetting my homework at home",0]]},
+   {t:"quiz",tag:"Check-in: Lessons 5–7",q:"Which step comes right before you tell your sins?",opts:[["The Welcome",1],["Absolution",0],["Penance",0]]},
+   {t:"quiz",tag:"Check-in: Lessons 5–7",q:"Your first words to the priest are: “___, Father, for I have sinned.”",opts:[["Bless me",1],["Hello",0],["Excuse me",0]]},
    {t:"saint"},{t:"done"}]},
 
- { id:"recon-08", title:"Penance", lesson:"Lesson 8", icon:"heartmend", bg:"#FFE6D8",
-  covers:"Review of the six parts, Step 4: penance, the priest's advice, do your penance right away, Lucy's story and its discussion questions (making things right with others), Act of Contrition memory drill",
-  saint:{name:"St. Padre Pio", story:"Francesco grew up in a loving Catholic family in Italy. At 15 he joined the Capuchin friars and took the name Pio. At 23 he became a priest, so people called him Padre Pio: “Padre” means father. He was often sick, and he had wounds like Jesus' wounds on the cross, called the stigmata. He heard confessions for hours every day. People said God gave him a special gift: he knew when someone was hiding a sin on purpose. Thousands came to make a good confession. Some who doubted him ended up confessing too!"},
-  mission:["Talk about Lucy","Read Lucy's story again together. Ask: how did going to confession change how Lucy felt? What will she do if she finds someone else's toy again? Why did Father tell her to ask Mike to forgive her, even though God had already forgiven her?"],
-  remember:[{q:"After you confess all your sins, you say…",opts:[["Please forgive me for all of these sins and any others I can't remember",1],["See you later",0]]},{q:"Can the priest tell anyone your sins?",opts:[["Never",1],["Only your teacher",0]]}],
+ { id:"recon-08", title:"Making It Right", lesson:"Lesson 8", icon:"heartmend", bg:"#FFE6D8",
+  covers:"Putting the six steps in order, Step 4: Penance and the priest's advice, Sam's story (sorting his sins from the accident, confessing, and making things right at home), why a penance matters, Act of Contrition memory drill",
+  saint:{name:"St. Padre Pio", story:"Francesco was a farm boy in Italy who loved to pray. He became a Capuchin friar (a brother who wears a brown robe) and a priest named Padre Pio, which means “Father Pio.” God gave him wounds like Jesus' on his hands, feet, and side, and he spent most of every day in the confessional. People said he could tell when someone was hiding a sin. Huge crowds traveled to him, and many who came just out of curiosity left forgiven."},
+  mission:["Repair kit","Make a family “repair kit”: a box with a few ideas inside, like a hug, a handwritten sorry note, doing someone's chore, or fixing what got broken. This week, when someone in the family hurts someone else, pull a card from the kit together. That's what a penance is like: love that repairs."],
+  remember:[{q:"When you've told all your sins, you say…",opts:[["For these and all my sins, I am sorry",1],["See you later",0]]},{q:"Can the priest tell anyone your sins?",opts:[["Never",1],["Only your teacher",0]]}],
   scenes:[
-   {t:"story",art:"carry",text:"Remember: Jesus is your Good Shepherd. If you wander into sin, you can be forgiven and brought back by saying you're sorry and changing your ways. The sacrament of Reconciliation is the best way."},
-   {t:"order",tag:"The six parts",prompt:"Put the six parts in order. Tap the first one!"},
-   {t:"story",icon:"heartmend",text:"Step 4: Penance. After you confess, the priest talks with you about your sins and how to do better. Then he gives you a penance: maybe a special prayer, or something nice to do for someone you hurt."},
-   {t:"story",art:"lucy",text:"Lucy found her friend Mike's toy dolphin at recess and kept it. “Finders keepers, losers weepers!” But at home she felt sad and heavy inside. She knew she should have given it back. She knew she had sinned.",sm:1},
-   {t:"story",art:"lucy",text:"Lucy went to confession and told the priest. He said God would forgive her, and gave her a penance: give the toy back to Mike, ask him to forgive her, and pray every morning for help to resist temptation. Lucy prayed the Act of Contrition with her whole heart, and Father gave her absolution. She left happy and clean, and did her penance right away!",sm:1},
-   {t:"quiz",q:"Why did Father tell Lucy to give the toy back and ask Mike to forgive her?",opts:[["To make things right with Mike, too",1],["So Mike would give her candy",0],["Because God didn't forgive her",0]],yes:"Yes! A penance helps repair the harm our sin caused."},
-   {t:"quiz",q:"If Lucy finds someone else's toy again, what will she do?",opts:[["Give it back",1],["Keep it",0],["Hide it",0]],yes:"Right!"},
-   {t:"quiz",q:"When should you do your penance?",opts:[["Right away",1],["Next year",0],["Never",0]],yes:"Yes! Doing it right away shows Jesus you're sorry and want to change."},
+   {t:"order",tag:"The six steps",prompt:"You know a lot already! Put the six steps in order. Tap the first one!"},
+   {t:"story",icon:"heartmend",text:"Step 4 is the Penance. Father may give you a tip for doing better. Then he gives you a penance: a prayer to say or a kind thing to do. It helps heal the hurt sin causes."},
+   {t:"story",art:"story_vase",text:"Mom said, “No ball in the house.” Sam played catch in the living room anyway. CRASH! Grandma's blue vase broke. When Mom ran in, Sam said, “The cat did it.”",sm:1},
+   {t:"pick",prompt:"Which of these were sins? Tap them.",items:[["Playing ball inside after Mom said no",1],["Blaming the cat",1],["The vase breaking",0]],done:"Right! Sam didn't mean to break the vase, so the breaking wasn't a sin by itself. But it happened because he disobeyed, so he helps make it right."},
+   {t:"story",art:"story_vase",text:"At confession, Sam told Father he disobeyed and lied. For his penance, Father asked him to tell Mom the truth, do an extra chore to help pay for a new vase, and pray one Hail Mary.",sm:1},
+   {t:"quiz",q:"God already forgave Sam. Why did Father still ask him to tell Mom the truth?",opts:[["A lie hurts people, and telling the truth repairs it",1],["So Sam would get in trouble",0],["Because God was still mad",0]],yes:"Yes! God's forgiveness is complete. A penance helps us fix the harm and grow."},
+   {t:"quiz",q:"When should you do your penance?",opts:[["As soon as I can",1],["Next year",0],["Never",0]],yes:"Yes! Doing it soon shows Jesus you mean it."},
    {t:"recall",level:3},
    {t:"saint"},{t:"done"}]},
 
- { id:"recon-09", title:"The Act of Contrition", lesson:"Lesson 9", icon:"hands", bg:"#FFF1C9",
-  covers:"Step 5: the Act of Contrition, its three parts, Version A line by line with the workbook's simple meanings, hard words explained, the word-search words, putting the prayer in order, saying it from memory, using your own words, Version B and its word-search words",
-  saint:{name:"St. John Paul II", story:"As a young priest, Karol Wojtyła visited the church of St. John Vianney in Ars, France. He wanted to be a “prisoner of the confessional” like him, always ready to hear confessions. Even as Pope, he heard confessions in St. Peter's Basilica on Good Friday, and he went to confession often himself. Even a pope needs Jesus' forgiveness. He was made a saint on April 27, 2014."},
-  mission:["Say it every night","Practice the Act of Contrition every night with the hand motions. Knowing it by heart is one less worry on the big day. Ask your parish whether they use Version A or Version B."],
-  remember:[{q:"A penance can be…",opts:[["A prayer, a kind action, or both",1],["Only a prayer",0],["A punishment",0]]}],
+ { id:"recon-09", title:"Saying Sorry to God", lesson:"Lesson 9", icon:"hands", bg:"#FFF1C9",
+  covers:"Step 5: the Act of Contrition, the traditional prayer line by line with kid-sized meanings, its hard words, putting it in order, saying it from memory, praying in your own words, the newer prayer from the Order of Penance",
+  saint:{name:"St. John Paul II", story:"Right after he became a priest, Karol Wojtyła was sent from Poland to study in Rome. On a trip, he visited Ars, in France, to see the church of St. John Vianney, the priest who spent his life hearing confessions. Karol never forgot it. Even after he became Pope, he heard confessions himself in St. Peter's Basilica on Good Friday, and he went to confession every week. If a pope needs Jesus' mercy, we all do! He was declared a saint in 2014."},
+  mission:["Prayer with motions","Pray the Act of Contrition each night this week, using the hand motions from the app. Let your child lead it some nights. Check with your parish whether they teach the traditional prayer or the newer one."],
+  remember:[{q:"A penance can be…",opts:[["A prayer, a kind action, or both",1],["Only a prayer",0],["Something to make me feel bad",0]]}],
   scenes:[
-   {t:"story",art:"heart",text:"Step 5: the Act of Contrition, a prayer asking God to forgive your sins. Every version has three parts: I know my sins are wrong. I'm sorry. With God's help, I'll do better."},
-   {t:"read",tag:"Big words, simple meanings",icon:"book",lines:["Heartily: with all my heart.","Offended: hurt, or went against.","Detest: hate.","Dread: am afraid of.","Grace: God's own life and help inside me.","Resolve: promise, decide for sure.","Penance: something good that shows I'm sorry.","Amend: change and make better."]},
+   {t:"story",art:"heart",text:"Step 5 is the Act of Contrition. Contrition means being truly sorry. In this prayer you tell God: I did wrong, I'm sorry, and with Your help I'll change."},
+   {t:"read",tag:"Hard words, easy meanings",icon:"book",lines:["Heartily: with my whole heart.","Offended: hurt.","Detest: hate.","Dread: am afraid of.","Grace: God's life in me.","Resolve: decide for sure.","Amend: fix and improve."]},
    {t:"pray",i:0,mean:1},{t:"pray",i:1,mean:1},{t:"pray",i:2,mean:1},{t:"pray",i:3,mean:1},{t:"pray",i:4,mean:1},
    {t:"order",tag:"Put the prayer in order",prompt:"Tap the parts of the prayer in order.",prayer:1},
-   {t:"pick",prompt:"Tap every word that is in the Act of Contrition.",items:[["God",1],["sorry",1],["heaven",1],["hell",1],["offend",1],["love",1],["grace",1],["confess",1],["penance",1],["amend",1],["pizza",0],["soccer",0],["birthday",0]],done:"You found all ten prayer words!"},
+   {t:"pick",prompt:"Tap the hard words that are in the Act of Contrition.",items:[["heartily",1],["offended",1],["detest",1],["dread",1],["resolve",1],["grace",1],["amend",1],["volcano",0],["spaghetti",0],["trampoline",0]],done:"You found all seven hard words, and you know what they mean!"},
    {t:"recall",level:3,final:1},
    {t:"prayall"},
-   {t:"story",icon:"pray",text:"In the confessional, you can pray the Act of Contrition, or tell God you're sorry in your own words."},
-   {t:"read",tag:"Version B: from the Order of Penance (2023)",lines:["O my God, I am sorry and repent with all my heart for all the wrong I have done and for the good I have failed to do,","because by sinning I have offended you, who are all good and worthy to be loved above all things.","I firmly resolve, with the help of your grace, to do penance, to sin no more, and to avoid the occasions of sin.","Through the merits of the Passion of our Savior Jesus Christ, Lord, have mercy."],ref:"One of the prayers in the Order of Penance (2023). Both versions are approved; ask which one your parish teaches."},
-   {t:"pick",prompt:"Version B words: tap every word that is in Version B.",items:[["God",1],["sorry",1],["repent",1],["wrong",1],["good",1],["offended",1],["grace",1],["penance",1],["Jesus",1],["mercy",1],["recess",0],["dinosaur",0],["vacation",0]],done:"You found all ten Version B words!"},
+   {t:"story",icon:"pray",text:"If you get nervous and the words fly away, that's okay! You can tell God you're sorry in your own words, and Father can help you too."},
+   {t:"read",tag:"The newer prayer, from the Order of Penance",lines:["O my God, I am sorry and repent with all my heart for all the wrong I have done and for the good I have failed to do,","because by sinning I have offended you, who are all good and worthy to be loved above all things.","I firmly resolve, with the help of your grace, to do penance, to sin no more, and to avoid the occasions of sin.","Through the merits of the Passion of our Savior Jesus Christ, Lord, have mercy."],ref:"From the Order of Penance (2023). Both prayers are approved; ask which one your parish teaches."},
+   {t:"quiz",q:"The newer prayer says sorry for the wrong I have done and for…",opts:[["the good I have failed to do",1],["the games I lost",0],["the homework I forgot",0]],yes:"Yes! Not doing a good thing we should do can be a sin too."},
    {t:"saint"},{t:"done"}]},
 
- { id:"recon-10", title:"Absolution", lesson:"Lesson 10", icon:"heart", bg:"#FFE2E8",
-  covers:"Step 6: absolution, only God forgives and the priest acts in Jesus' place, the power passed down to bishops and priests (John 20:21–23), the full prayer of absolution, the Sign of the Cross at the last line, thank the priest and do your penance, the paper-clip (chain) activity, Act of Contrition from memory, Review of Lessons 8–10",
-  saint:{name:"St. Faustina", story:"When Helen was 7, she heard God calling her. She became Sister Faustina, known for her kind heart. On February 22, 1931, Jesus appeared to her and asked her to paint the image she saw: Jesus with His hand raised in blessing and red and pale rays shining from His heart. It shows Jesus as He appeared to His disciples on Easter night, the very night He gave them the power to forgive sins (John 20:19–23). His raised hand is like the priest's hand when he gives absolution. She was made a saint on April 30, 2000."},
-  mission:["The paper-clip trick","Keep practicing the Act of Contrition every night. Then fold a paper strip with your child's name into an S and clip two paper clips across the folds. The clips are like sins that knot us up. Pull the ends quickly: the clips jump off and link together. That's absolution: God grabs our sins and sets us free!"],
-  remember:[{q:"The Act of Contrition has three parts: I know my sins are wrong, I'm sorry, and…",opts:[["With God's help, I'll do better",1],["I'll do it again",0]]}],
+ { id:"recon-10", title:"Forgiven!", lesson:"Lesson 10", icon:"heart", bg:"#FFE2E8",
+  covers:"Step 6: Absolution, only God forgives and the priest acts for Jesus, the apostles' power handed on (John 20:21–23), the words of absolution, the Sign of the Cross, “Thank you, Father,” the broken-chain game, Act of Contrition from memory, Check-in on Lessons 8–10",
+  saint:{name:"St. Faustina", story:"Helen Kowalska grew up poor in Poland and became Sister Faustina. In 1931 Jesus appeared to her, dressed in white, with one hand raised in blessing and two rays, one red and one pale, streaming from His heart. He asked her to have the picture painted with the words “Jesus, I trust in You.” Today it's called the Divine Mercy image, and it reminds us that Jesus' mercy is bigger than any sin. She was made a saint in 2000."},
+  mission:["Wipe the slate","Write a few pretend wrong choices on a foggy bathroom mirror, a whiteboard, or a dusty car window. Then wipe it completely clean with one swipe. That's absolution: God doesn't just cover sins up, He takes them away. Keep praying the Act of Contrition every night."],
+  remember:[{q:"In the Act of Contrition I tell God: I did wrong, I'm sorry, and…",opts:[["With Your help I'll change",1],["I'll do it again",0]]}],
   scenes:[
-   {t:"story",art:"rays",text:"Step 6: Absolution. Absolution means God forgives your sins. Only God can forgive sins, but the priest acts in the place of Jesus."},
-   {t:"story",art:"keys",text:"Jesus gave His apostles the power to forgive sins. That power has been passed down, in an unbroken line, to every Catholic bishop and priest today.",ref:"John 20:21–23"},
-   {t:"read",tag:"The prayer of absolution",art:"stole",lines:["The priest holds his hand out over your head and prays:","“God, the Father of mercies, through the death and the Resurrection of His Son, has reconciled the world to Himself and poured out the Holy Spirit for the forgiveness of sins.","Through the ministry of the Church, may God grant you pardon and peace, and I absolve you from your sins in the name of the Father, and of the Son, and of the Holy Spirit.”","Make the Sign of the Cross as Father says the last line. Then you say: “Amen.”"],ref:"Order of Penance (2023 translation)"},
-   {t:"quiz",q:"When do you make the Sign of the Cross?",opts:[["As Father says the last line of the absolution",1],["When you walk in",0],["Never",0]],yes:"Yes! Then say “Amen.”"},
-   {t:"story",art:"hug",text:"That's it! You are washed clean. You are back together with Jesus and His Church."},
+   {t:"story",art:"rays",text:"Step 6 is Absolution, the best part! Absolution means your sins are taken away. Only God can forgive sins, and He uses the priest's voice and hands to do it."},
+   {t:"story",art:"keys",text:"How did the priest get this power? Jesus gave it to the apostles. They handed it on to the bishops who came after them, and bishops hand it on to every priest they ordain. It goes all the way back to Jesus!",ref:"John 20:21–23"},
+   {t:"read",tag:"The words of absolution",art:"stole",lines:["Father holds his hand over your head and prays:","“God, the Father of mercies, through the Death and Resurrection of His Son, has reconciled the world to Himself and poured out the Holy Spirit for the forgiveness of sins.","Through the ministry of the Church, may God grant you pardon and peace, and I absolve you from your sins in the name of the Father, and of the Son, and of the Holy Spirit.”","When he says “in the name of the Father,” make the Sign of the Cross. Then answer: “Amen.”"],ref:"Order of Penance (2023 translation)"},
+   {t:"quiz",q:"When do you make the Sign of the Cross?",opts:[["When the priest says “in the name of the Father”",1],["When you walk in",0],["Never",0]],yes:"Yes! Then answer “Amen.”"},
+   {t:"story",art:"hug",ref:"Hebrews 8:12",text:"Gone! All your sins are forgiven, even ones you forgot. God promises: “I will forgive their evildoing and remember their sins no more.” Your soul is clean and shining again."},
    {t:"chain"},
-   {t:"story",icon:"pray",text:"Say “Thank you, Father.” Then leave and do your penance right away. Keep living for Jesus and keep your heart clean."},
+   {t:"story",icon:"pray",text:"Before you leave, tell Father, “Thank you!” Then do your penance soon, and say a little thank-you prayer to Jesus."},
    {t:"recall",level:3},
-   {t:"quiz",tag:"Review: Lessons 8–10",q:"A penance can be…",opts:[["A prayer, a kind action, or both",1],["Only a prayer",0],["A punishment",0]]},
-   {t:"quiz",tag:"Review: Lessons 8–10",q:"We say the Act of Contrition…",opts:[["Because we are filled with sorrow and hate sin",1],["So the priest will like us",0],["To tell the priest we're done",0]]},
-   {t:"quiz",tag:"Review: Lessons 8–10",q:"When you receive ___, God forgives your sins.",opts:[["absolution",1],["penance",0],["Communion",0]]},
-   {t:"match",tag:"Review: Lessons 8–10",prompt:"Match each part to its meaning.",pairs:[["Examination of Conscience","To think, with sorrow, of all the sins we have committed"],["Welcome","When the priest welcomes you"],["Confession","To tell the priest your sins"],["Penance","A prayer or action that shows we are sorry"],["Act of Contrition","A prayer asking God's forgiveness"],["Absolution","God forgives your sins"]]},
+   {t:"quiz",tag:"Check-in: Lessons 8–10",q:"What did Sam do for his penance?",opts:[["Told the truth, did an extra chore, and prayed",1],["Hid in his room",0],["Nothing",0]]},
+   {t:"quiz",tag:"Check-in: Lessons 8–10",q:"What does “contrition” mean?",opts:[["Being truly sorry",1],["Being very quiet",0],["Being first in line",0]]},
+   {t:"quiz",tag:"Check-in: Lessons 8–10",q:"When the priest prays the words of ___, God forgives your sins.",opts:[["absolution",1],["a birthday song",0],["the weather report",0]]},
+   {t:"quiz",tag:"Check-in: Lessons 8–10",q:"Who gave priests the power to forgive sins?",opts:[["Jesus",1],["The mayor",0],["They gave it to themselves",0]]},
+   {t:"quiz",tag:"Check-in: Lessons 8–10",q:"What do you say after the absolution?",opts:[["Amen",1],["Goodbye",0],["Huh?",0]]},
    {t:"saint"},{t:"done"}]},
 
- { id:"recon-11", title:"Reconciliation in the Early Church", lesson:"Lesson 11", icon:"church", bg:"#DFF3F1",
-  covers:"How and why Jesus began the sacrament: Mark 2:7, Matthew 16:19 (bind and loose), Matthew 18:18, John 20:22–23, 2 Corinthians 5:18, Psalm 51:3–4, coming back to God and the Church community",
-  saint:{name:"St. John Vianney", story:"John Vianney was not a good student, but he studied hard and became a priest at 29. He lived simply and prayed for hours before Jesus in the Eucharist. So many people came to him that he heard confessions up to 16 hours a day! The devil tried to tempt him to stop him from helping people, but he kept going. He is the patron saint of parish priests."},
-  mission:["Look it up together","Find these in a Bible together: Mark 2:7, Matthew 16:19, Matthew 18:18, John 20:22–23, and 2 Corinthians 5:18. Pray Psalm 51:3–4 together at bedtime."],
+ { id:"recon-11", title:"Where Confession Came From", lesson:"Lesson 11", icon:"church", bg:"#DFF3F1",
+  covers:"Jesus forgives sins as God (Mark 2:7), keys and authority for Peter and the apostles (Matthew 16:19, 18:18), Easter night (John 20:22–23), the ministry of reconciliation (2 Corinthians 5:18), Psalm 51:3–4, the first Christians coming back to God and the Church",
+  saint:{name:"St. John Vianney", story:"John Vianney struggled so much with school that he almost wasn't allowed to become a priest. He was sent to Ars, a tiny French village where few people went to church. He prayed, fasted, and simply loved them. Soon people came from all over France to confess to him, so many that he spent up to 16 hours a day in the confessional. He's the patron saint of parish priests."},
+  mission:["Bible detectives","Look up these verses together in a Bible: Mark 2:7, Matthew 16:19, Matthew 18:18, John 20:22–23, and 2 Corinthians 5:18. Who is speaking in each one? Then pray Psalm 51:3–4 together at bedtime."],
   remember:[{q:"Absolution means…",opts:[["God forgives your sins",1],["You get a prize",0],["You clean your room",0]]}],
   scenes:[
-   {t:"story",art:"away",text:"When Jesus forgave people's sins, some were shocked. They said: “Who but God alone can forgive sins?” They didn't know Jesus IS God the Son!",ref:"Mark 2:7"},
-   {t:"story",art:"keys",text:"Jesus said to Peter: “Whatever you bind on earth shall be bound in heaven; and whatever you loose on earth shall be loosed in heaven.” He wasn't talking about tying up animals! He meant, among other things, forgiving sins: the sins Peter forgave in Jesus' name would be forgiven in heaven.",ref:"Matthew 16:19",sm:1},
-   {t:"story",icon:"church",text:"Later, Jesus gave all the apostles the power to forgive sins. Jesus wants all of us to forgive each other, but He gave His apostles, like our priests today, a special power to forgive sins in His name.",ref:"Matthew 18:18"},
-   {t:"read",tag:"Jesus' words",icon:"dove",lines:["On Easter night, Jesus breathed on His apostles and said:","“Receive the holy Spirit. Whose sins you forgive are forgiven them, and whose sins you retain are retained.”"],ref:"John 20:22–23"},
-   {t:"story",art:"hug",text:"St. Paul wrote that God “has reconciled us to himself through Christ and given us the ministry of reconciliation.” From the very beginning, people came to be forgiven and brought back to God and to the Church family.",ref:"2 Corinthians 5:18",sm:1},
+   {t:"story",art:"away",text:"Long ago, friends lowered a man who couldn't walk through a roof to reach Jesus. Jesus said, “Child, your sins are forgiven.” Some people grumbled: “Who but God alone can forgive sins?” Exactly! Jesus can forgive sins because He is God.",ref:"Mark 2:5–7"},
+   {t:"story",art:"keys",text:"Jesus told Peter: “Whatever you bind on earth shall be bound in heaven; and whatever you loose on earth shall be loosed in heaven.” Bind means hold on to, and loose means let go. Jesus was handing Peter the keys of His Church, with real power to let sins go.",ref:"Matthew 16:19",sm:1},
+   {t:"story",icon:"church",text:"Later, Jesus said the same thing to all the apostles. Everybody should forgive the people who hurt them. But forgiving sins in God's name is a special job Jesus gave to the apostles, and to the bishops and priests who came after them.",ref:"Matthew 18:18"},
+   {t:"read",tag:"Jesus' words",icon:"dove",lines:["On the night He rose from the dead, Jesus breathed on His apostles and said:","“Receive the holy Spirit. Whose sins you forgive are forgiven them, and whose sins you retain are retained.”","(Retain means hold back.)"],ref:"John 20:22–23"},
+   {t:"story",art:"hug",text:"St. Paul wrote that God “has reconciled us to himself through Christ and given us the ministry of reconciliation.” Since the very first Christians, people have come to the Church to be forgiven and welcomed home.",ref:"2 Corinthians 5:18",sm:1},
    {t:"quiz",q:"Who did Jesus give the power to forgive sins in His name?",opts:[["His apostles, and the bishops and priests after them",1],["Anyone at all",0],["Only kings",0]],yes:"Yes! That's why we go to a priest."},
-   {t:"read",tag:"A prayer from the Bible",icon:"pray",lines:["“Have mercy on me, God, in your goodness; in your abundant compassion blot out my offense.","Wash away all my guilt; from my sin cleanse me.”"],ref:"Psalm 51:3–4"},
+   {t:"read",tag:"A prayer from the Bible",icon:"pray",lines:["“Have mercy on me, God, in accord with your merciful love; in your abundant compassion blot out my transgressions.","Thoroughly wash away my guilt; and from my sin cleanse me.”","(Blot out means erase. Transgressions means sins.)"],ref:"Psalm 51:3–4"},
    {t:"recall",level:3},
    {t:"saint"},{t:"done"}]},
 
- { id:"recon-12", title:"Father Tim's Teaching on Reconciliation", lesson:"Lesson 12", icon:"book", bg:"#FFF3C7",
-  covers:"Bringing all the steps together, the Father Tim audio (parents), common questions, the whole confession role-play, the six parts in order",
-  saint:{name:"St. Francis de Sales", story:"Francis de Sales was born in a castle, and his father wanted him to be important. Instead, he became a priest who loved preaching and hearing confessions. He went to dangerous places to bring people back to the Church, became the bishop of Geneva, and wrote books about becoming holy that people still read 400 years later. He taught people to have great sorrow for their sins and make a good confession every week."},
-  mission:["Listen to Father Tim","Sit down together and listen to “Questions and Answers About Reconciliation With Father Tim” using the QR code in the workbook (Lesson 12). Then answer any questions your child has."],
+ { id:"recon-12", title:"Questions Kids Ask", lesson:"Lesson 12", icon:"book", bg:"#FFF3C7",
+  covers:"Answers to the questions kids worry about most (forgetting a sin, forgetting the words, feeling nervous, the priest's reaction, the Seal, how often to go, what if I can't think of any sins), the six steps in order, a full practice confession",
+  saint:{name:"St. Francis de Sales", story:"Francis grew up in a castle in the mountains of Savoy (now part of France), and his father planned a big career for him as a lawyer. Francis chose to be a priest instead. He walked through snow and danger to bring people back to the Church, slipping little handwritten papers under doors when they wouldn't listen to him. He became bishop of Geneva and wrote books about holiness for ordinary people, which are still read today. He's the patron saint of writers."},
+  mission:["Question time","Tap the speaker button on each card and listen to the answers together. Then ask: what's one thing you still wonder about confession? If you don't know the answer, write it down and ask the priest or your child's catechist together."],
   remember:[{q:"Who did Jesus give the power to forgive sins?",opts:[["His apostles, and priests today",1],["Anyone",0]]}],
   scenes:[
-   {t:"story",art:"stole",text:"In this lesson, listen to Father Tim with your grown-up. He answers kids' questions about confession. Your grown-up can play it with the code in your workbook."},
-   {t:"quiz",tag:"Questions kids often ask",q:"What if I forget one of my sins?",opts:[["Say “and any others I can't remember.” God forgives those too.",1],["I have to start over",0]]},
-   {t:"quiz",tag:"Questions kids often ask",q:"What if I forget the words?",opts:[["The priest will help me",1],["I'll get in trouble",0]]},
-   {t:"quiz",tag:"Questions kids often ask",q:"Will the priest be mad at me?",opts:[["No. He's there in Jesus' place, and he's happy I came.",1],["Yes, very mad",0]]},
+   {t:"story",art:"stole",text:"Lots of kids have questions before their first confession. That's normal! Let's answer the big ones. Tap the speaker to hear each answer read aloud."},
+   {t:"quiz",tag:"Questions kids often ask",q:"What if I forget one of my sins?",opts:[["God forgives it too, as long as I didn't hide it on purpose",1],["I have to start over",0]],yes:"Right! If it was a big sin, tell it at your next confession."},
+   {t:"quiz",tag:"Questions kids often ask",q:"What if I forget what to say?",opts:[["The priest will help me",1],["I'll get in trouble",0]],yes:"Yes! Priests help kids all the time. You can even bring a card with the words."},
+   {t:"quiz",tag:"Questions kids often ask",q:"What if I feel nervous?",opts:[["That's okay. Take a breath and say a quick prayer.",1],["I can't go",0]],yes:"Almost everyone feels a little nervous the first time. Afterward, most people feel happy and free!"},
+   {t:"quiz",tag:"Questions kids often ask",q:"Will the priest be mad at me?",opts:[["No. He's there for Jesus, and he's glad I came.",1],["Yes, very mad",0]]},
    {t:"quiz",tag:"Questions kids often ask",q:"Will the priest tell anyone?",opts:[["Never. That's the Seal of Confession.",1],["Only my parents",0]]},
-   {t:"order",tag:"The six parts",prompt:"Put the six parts in order. Tap the first one!"},
+   {t:"quiz",tag:"Questions kids often ask",q:"Will he treat me differently after?",opts:[["No. He'll never bring it up or treat me differently.",1],["Yes, forever",0]]},
+   {t:"quiz",tag:"Questions kids often ask",q:"How often should I go?",opts:[["Often! Many families go about once a month.",1],["Only once in my life",0]],yes:"The Church asks Catholics to confess serious sins at least once a year, and before Communion after a mortal sin. Going often, even with small sins, helps us grow closer to Jesus."},
+   {t:"quiz",tag:"Questions kids often ask",q:"What if I can't think of any sins?",opts:[["Ask the Holy Spirit and look at the commandments",1],["Make one up",0]],yes:"Yes! Never make one up. The Holy Spirit will help you see."},
+   {t:"order",tag:"The six steps",prompt:"Put the six steps in order. Tap the first one!"},
    {t:"script"},
    {t:"recall",level:3},
    {t:"saint"},{t:"done"}]},
 
- { id:"recon-13", title:"My “Sacrament of Reconciliation” Workbook", lesson:"Lesson 13", icon:"star", bg:"#FFE3EA",
-  covers:"The child's workbook pages with every fill-in (God and me and others, free, the priest and I, sorry, Jesus, forgiveness, brothers and sisters, forgives, friendship, why and how, Father), the ten steps of the celebration, the Prodigal Son, Final Review",
-  saint:{name:"Blessed Christina", story:"Christina lived in Italy about 500 years ago. She became an Augustinian sister and lived a quiet, hidden life. She noticed people's troubles and sufferings, and she prayed and offered penances for them. Jesus worked miracles through her. When we offer penances for others, Jesus can work through us too!"},
-  mission:["Plan the party","Go through the workbook pages together and fill in the blanks. Then plan a family celebration for after First Reconciliation: it's a time to celebrate!"],
-  remember:[{q:"What do you do as Father says the last line of the absolution?",opts:[["Make the Sign of the Cross",1],["Leave the room",0]]}],
+ { id:"recon-13", title:"Ready for My First Confession", lesson:"Lesson 13", icon:"star", bg:"#FFE3EA",
+  covers:"A walk through the big day (before, waiting, inside, after), the forgiving father and heaven's joy (Luke 15:7, 11–32), a full practice confession, the optional words of praise, planning a celebration, Final Review",
+  saint:{name:"Blessed Christina", story:"Christina Ciccarelli lived in Italy about 500 years ago and became an Augustinian sister. She lived quietly, prayed a lot, and paid attention to people who were hurting. She offered her prayers and little sacrifices for them, and many people said God answered her prayers with miracles. Our small penances and prayers can help other people, too!"},
+  mission:["Plan the party","Pick a way to celebrate after First Reconciliation: a favorite dinner, a special dessert, or a trip to the park. Jesus said heaven rejoices when someone comes back to God, so your family can too! Let your child help plan it."],
+  remember:[{q:"What do you do when the priest says “in the name of the Father”?",opts:[["Make the Sign of the Cross",1],["Leave the room",0]]}],
   scenes:[
-   {t:"quiz",tag:"My workbook",q:"The sacrament of Reconciliation is a sign of God's love for us. It brings together God and ___ and others.",opts:[["me",1],["money",0],["toys",0]]},
-   {t:"quiz",tag:"My workbook",q:"We tell God we're sorry and hear the words of forgiveness that make us all ___ again.",opts:[["free",1],["tired",0],["hungry",0]],yes:"Yes! And that is a time to celebrate!"},
-   {t:"quiz",tag:"My workbook",q:"Two people are especially important: the ___ and I.",opts:[["priest",1],["teacher",0],["coach",0]]},
-   {t:"quiz",tag:"My workbook",q:"I am ___ for my sins.",opts:[["sorry",1],["happy",0],["bored",0]]},
-   {t:"quiz",tag:"My workbook",q:"I am sorry for my sins. I want to be more like ___.",opts:[["Jesus",1],["a superhero",0],["my friend",0]]},
-   {t:"quiz",tag:"My workbook",q:"When I sin, I need God's ___.",opts:[["forgiveness",1],["a nap",0],["new shoes",0]]},
-   {t:"quiz",tag:"My workbook",q:"I need forgiveness and reconciliation with my ___.",opts:[["brothers and sisters",1],["toys",0],["video games",0]]},
-   {t:"quiz",tag:"My workbook",q:"The priest ___ me in the name of God and the Church.",opts:[["forgives",1],["scolds",0],["tests",0]]},
-   {t:"quiz",tag:"My workbook",q:"He brings all of us together again in peace and ___.",opts:[["friendship",1],["homework",0],["silence",0]]},
-   {t:"quiz",tag:"My workbook",q:"Before, I find a quiet time to think and pray. I think about times I was selfish and not like Jesus, and ask God to help me understand ___ I acted that way…",opts:[["why",1],["when",0],["where",0]]},
-   {t:"quiz",tag:"My workbook",q:"…and ___ I can be better.",opts:[["how",1],["when",0],["if",0]]},
-   {t:"story",art:"prodigal",text:"Jesus told a story about a son who ran away and wasted everything his father gave him.",ref:"Luke 15:11–32"},
-   {t:"story",art:"hug",text:"When the son came home to say sorry, his father RAN to him and hugged him. The priest who welcomes you is like that loving father."},
-   {t:"quiz",tag:"My workbook",q:"The priest is like the loving father in the story. We even call him “___.”",opts:[["Father",1],["Coach",0],["Captain",0]]},
+   {t:"story",art:"carry",text:"You're almost ready! Let's walk through the big day, from start to finish."},
+   {t:"read",tag:"Before you go",icon:"glass",lines:["Pray: “Holy Spirit, help me remember my sins.”","Look at your heart with the ten commandments.","Write your sins on a little card if it helps."]},
+   {t:"read",tag:"While you wait in line",icon:"pray",lines:["Sit quietly and talk to Jesus.","Practice your first words: “Bless me, Father, for I have sinned. This is my first confession.”","Feeling wiggly or nervous? That's normal. Take a slow breath."]},
+   {t:"quiz",tag:"The big day",q:"You're waiting in line and feel nervous. What could you do?",opts:[["Take a breath and ask Jesus to help me",1],["Run out of church",0],["Start a game of tag",0]],yes:"Yes! Jesus is right there with you, and He's happy you came."},
+   {t:"read",tag:"Inside",icon:"door",lines:["Welcome and the Sign of the Cross.","Tell your sins and finish with: “For these and all my sins, I am sorry.”","Listen to Father's advice and your penance.","Pray the Act of Contrition.","Make the Sign of the Cross at the absolution and answer “Amen.”"]},
+   {t:"story",art:"rays",text:"Father might also say: “Give thanks to the Lord, for He is good.” If he does, you answer: “For His mercy endures for ever.” Then he'll send you off with something like: “The Lord has forgiven your sins. Go in peace.”",sm:1},
+   {t:"read",tag:"After",icon:"heart",lines:["Say “Thank you, Father!”","Do your penance as soon as you can.","Thank Jesus for His gift of mercy.","Celebrate!"]},
+   {t:"story",art:"prodigal",text:"Jesus told about a son who ran away and wasted everything. When he walked home, his father ran to hug him and threw a feast!",ref:"Luke 15:11–32"},
+   {t:"story",art:"hug",text:"Jesus said “there will be more joy in heaven over one sinner who repents.” When you go to confession, heaven celebrates you!",ref:"Luke 15:7"},
    {t:"script"},
-   {t:"story",art:"rays",text:"When the priest says the words of forgiveness, you are very close to God and to your brothers and sisters. Then you both praise God. Father says: “Give thanks to the Lord, for He is good.” You answer: “For His mercy endures for ever.”",sm:1},
-   {t:"story",art:"hug",text:"Then your heart is glad again. You'll feel just like you've been hugged by God!"},
-   {t:"quiz",tag:"Final Review",q:"What are the six parts of Reconciliation, in order?",opts:[["Examination of Conscience, Welcome, Confession, Penance, Act of Contrition, Absolution",1],["Welcome, Absolution, Examination of Conscience, Penance, Confession, Act of Contrition",0]]},
+   {t:"quiz",tag:"Final Review",q:"What are the six steps of Reconciliation, in order?",opts:[["Examination of Conscience, Welcome, Confession, Penance, Act of Contrition, Absolution",1],["Welcome, Absolution, Examination of Conscience, Penance, Confession, Act of Contrition",0]]},
    {t:"quiz",tag:"Final Review",q:"Which kind of sin breaks our friendship with God completely?",opts:[["Mortal sin",1],["Venial sin",0]]},
    {t:"quiz",tag:"Final Review",q:"Who forgives your sins in Reconciliation?",opts:[["God, through the priest",1],["The priest by himself",0],["Nobody",0]]},
-   {t:"quiz",tag:"Final Review",q:"Is it a sin to spill your milk by accident?",opts:[["No. Sins are chosen on purpose.",1],["Yes",0]]},
+   {t:"quiz",tag:"Final Review",q:"You trip and knock over a chair by accident. Do you need to confess it?",opts:[["No. Accidents aren't sins.",1],["Yes",0]]},
    {t:"quiz",tag:"Final Review",q:"What happens to what you tell the priest?",opts:[["He keeps it secret forever: the Seal of Confession",1],["He tells your parents",0]]},
    {t:"recall",level:3,final:1},
    {t:"saint"},{t:"done",final:1}]},
 ];
 const PRAYER = [
-  {text:"O my God, I am heartily sorry for having offended You.",gap:"sorry",opts:["sorry","busy","ready"],g:"Hands on your heart",mean:"My Father, I wish with all my heart that I hadn't done what You said is wrong."},
-  {text:"I detest all my sins, because I dread the loss of heaven and the pains of hell,",gap:"heaven",opts:["home","heaven","school"],g:"Shake your head no to sin",mean:"I hate every one of my sins, because I know they separate me from You."},
-  {text:"but most of all because they offend You, O my God, Who art all-good and deserving of all my love.",gap:"love",opts:["time","help","love"],g:"Open your arms wide",mean:"But what I'm most sad about is that my sins hurt You, and don't show You how much I love You."},
-  {text:"I firmly resolve, with the help of Your grace,",gap:"grace",opts:["grace","friends","words"],g:"Make a strong fist",mean:"I promise, with Your loving help,"},
-  {text:"to confess my sins, to do penance, and to amend my life. Amen.",gap:"life",opts:["room","life","words"],g:"Fold your hands",mean:"to tell You my sins, to do something good to show You I'm sorry and want to change, and to start living the way I should."},
+  {text:"O my God, I am heartily sorry for having offended You.",gap:"sorry",opts:["sorry","busy","ready"],g:"Hands on your heart",mean:"God, I'm truly sorry, with my whole heart, that I hurt You."},
+  {text:"I detest all my sins, because I dread the loss of heaven and the pains of hell,",gap:"heaven",opts:["home","heaven","school"],g:"Shake your head no to sin",mean:"I really hate my sins, because I don't want to lose heaven or end up far away from You."},
+  {text:"but most of all because they offend You, O my God, Who art all-good and deserving of all my love.",gap:"love",opts:["time","help","love"],g:"Open your arms wide",mean:"But the biggest reason I'm sorry is this: You are so good, and You deserve all my love."},
+  {text:"I firmly resolve, with the help of Your grace,",gap:"grace",opts:["grace","friends","words"],g:"Make a strong fist",mean:"With Your help, I decide for sure…"},
+  {text:"to confess my sins, to do penance, and to amend my life. Amen.",gap:"life",opts:["room","life","words"],g:"Fold your hands",mean:"I'll tell my sins, do my penance, and work on being better. Amen."},
 ];
 const PRAYER_B = "O my God, I am sorry and repent with all my heart for all the wrong I have done and for the good I have failed to do, because by sinning I have offended you, who are all good and worthy to be loved above all things. I firmly resolve, with the help of your grace, to do penance, to sin no more, and to avoid the occasions of sin. Through the merits of the Passion of our Savior Jesus Christ, Lord, have mercy.";
 // every prayer the kids can practice; each part has a motion, a missing-word check and a kid-sized meaning
@@ -3063,7 +3083,7 @@ const setOf = s => PRAYERS[(s && s.set) || "contrition"];
 // the Mass, part by part: what it means, what a child does, and what we say (US practice)
 const POSE = { stand: { label: "Stand", icon: "stand" }, sit: { label: "Sit", icon: "sit" }, kneel: { label: "Kneel", icon: "kneel" }, genuflect: { label: "Genuflect", icon: "kneel" } };
 const MASS = [
-  { g: "Before Mass", name: "Holy water", img: "mass_font", pose: "genuflect", means: "The holy water reminds us of our Baptism, when we joined God's family.", doo: "Dip your fingers in the holy water and make the Sign of the Cross. Before you go into the pew, bend your right knee to the floor toward the tabernacle, where Jesus is." },
+  { g: "Before Mass", name: "Holy water", img: "font", pose: "genuflect", means: "The holy water reminds us of our Baptism, when we joined God's family.", doo: "Dip your fingers in the holy water and make the Sign of the Cross. Before you go into the pew, bend your right knee to the floor toward the tabernacle, where Jesus is." },
   { g: "We gather", name: "Entrance", img: "mass_entrance", pose: "stand", means: "Jesus' family comes together. The priest, servers and readers walk in behind the cross.", doo: "Stand up and sing along with everyone." },
   { g: "We gather", name: "Greeting", img: "mass_church", pose: "stand", means: "We start the way we start every prayer, in the name of the Father, and of the Son, and of the Holy Spirit.", doo: "Make the Sign of the Cross with the priest.", say: ["The Lord be with you.", "And with your spirit."] },
   { g: "We gather", name: "Lord, have mercy", icon: "heartmend", pose: "stand", means: "We tell God we're sorry for our sins and ask for His mercy, so our hearts are ready.", doo: "Think of something you're sorry for, and pray along.", say: ["Lord, have mercy.", "Lord, have mercy."] },
@@ -3118,7 +3138,7 @@ let speakT = 0, speakBtn = null, speakU = null;   // the pending scene read, and
 // read-aloud in lessons: Little Lambs reads by itself unless turned off; every other course when "Read to me" is on
 const readNow = () => !!Q && (Q.course === "lambs" ? pget("readLambs", S.pid ? true : store.get("readLambs", true)) : pget("readAloud", S.pid ? false : store.get("readAloud", false)));
 const S = { pid: null, name: "", done: [], cards: [], unlocked: false, sound: store.get("sound", true), bigDay: "" };
-// v1 had a different lesson set before the 13 workbook lessons, so its lesson numbers (and the cards and stars tied to
+// v1 had a different lesson set before the 13 lessons, so its lesson numbers (and the cards and stars tied to
 // them) can't be carried over; the name, days and prayers learned are kept
 if (store.get("v", 1) < 2) { ["done", "cards"].forEach(k => store.set(k, [])); store.set("stars", {}); store.set("pos", null); store.set("seen", 0); store.set("v", 2); }
 
@@ -3846,7 +3866,7 @@ R.stones = el => {
 };
 R.wash = el => {
   const spots = [[37, 58], [35, 34], [62, 58], [62, 34], [71, 55]];
-  el.innerHTML = `<p class="say sm">We wash our hands before a special dinner. Reconciliation washes our heart before First Communion. Tap the mud spots!</p>
+  el.innerHTML = `<p class="say sm">When a special guest is coming, we clean up. Reconciliation gets our hearts ready for First Communion. Tap the mud spots!</p>
   <div class="gscene" id="ws">${gimg("wash", "Two hands over a wash basin")}
   ${spots.map(([x, y]) => `<button type="button" class="mud" style="left:${x}%;top:${y}%" aria-label="Mud spot"></button>`).join("")}</div>`;
   let n = 0; setReady(false, "Tap the mud");
@@ -3858,7 +3878,7 @@ R.wash = el => {
   });
 };
 R.magnify = el => {
-  const qs = ["Is anything more important to me than God?", "Did I use God's name with love, never in a mean way?", "Did I go to Mass with a good attitude?", "Did I obey my parents, grandparents, and teachers?", "Did I hurt anyone with my words or my hands?", "Did I treat my body and other people with respect?", "Did I take anything without asking?", "Did I tell the truth, or blame someone else?", "Did I keep my thoughts kind and pure?", "Am I happy with what I have, or jealous of others?"];
+  const qs = ["Is anything more important to me than God?", "Did I use God's name with love, never in a mean way?", "Did I pay attention and pray at Mass?", "Did I listen to my parents and the grown-ups who care for me?", "Did I hurt anyone with my words or my hands?", "Did I treat my body and other people with respect?", "Did I take or break something that isn't mine?", "Did I lie, or let someone else get blamed?", "Did I keep my thoughts kind and pure?", "Was I jealous of what someone else has?"];
   el.innerHTML = `<p class="say sm">Tap the magnifying glass to look at your heart. Think quietly about each question.</p>
   <div class="qcard" id="qc"><span class="qn" id="qn">Heart Check</span><p class="qt" id="qt">Tap the magnifying glass to see the first question.</p></div>
   <button type="button" id="mg" class="bob" style="width:120px;border-radius:50%" aria-label="Show the next question">${ICON.glass}</button>
@@ -3880,10 +3900,10 @@ R.magnify = el => {
   };
 };
 R.journal = el => {
-  el.innerHTML = `<span class="tag">Tonight's mission</span><p class="say sm">Two things that made God happy. Two things I'm sorry for. Tell a grown-up, or type them here.</p>
-  <div class="journal"><div><b style="color:var(--meadow-2)">Made God happy</b><input id="j1" aria-label="First happy thing"><input id="j2" aria-label="Second happy thing"></div><div><b style="color:var(--berry)">I'm sorry for</b><input id="j3" aria-label="First sorry thing"><input id="j4" aria-label="Second sorry thing"></div></div><p class="ref">Nothing typed here is saved.</p>`;
+  el.innerHTML = `<span class="tag">Tonight's mission</span><p class="say sm">A three-word prayer: thank you, sorry, please. Tell a grown-up, or type them here.</p>
+  <div class="journal three"><div><b style="color:var(--meadow-2)">Thank you</b><input id="j1" aria-label="Thank you, God, for…"></div><div><b style="color:var(--berry)">Sorry</b><input id="j3" aria-label="I'm sorry for…"></div><div><b style="color:#5B5BD6">Please</b><input id="j4" aria-label="Please help me…"></div></div><p class="ref">Nothing typed here is saved.</p>`;
 };
-const SCRIPT = [["p", "The priest welcomes you with a smile. You both make the Sign of the Cross: In the name of the Father, and of the Son, and of the Holy Spirit. Amen."], ["p", "Sometimes the priest reads a few words from the Bible, like: “Rejoice with me because I have found my lost sheep.” (Luke 15:6)"], ["me", "Bless me, Father, for I have sinned. This is my first confession."], ["note", "Next time, say how long it has been since your last confession."], ["note", "Now tell the priest your sins, in your own words."], ["me", "Please forgive me for all of these sins and any others I can't remember."], ["p", "The priest talks with you about how to be more like Jesus, and gives you a penance."], ["me", "O my God, I am heartily sorry… (pray the Act of Contrition, or say sorry in your own words)"], ["p", "God, the Father of mercies, through the death and the Resurrection of His Son, has reconciled the world to Himself and poured out the Holy Spirit for the forgiveness of sins. Through the ministry of the Church, may God grant you pardon and peace, and I absolve you from your sins in the name of the Father, and of the Son, and of the Holy Spirit."], ["note", "Make the Sign of the Cross as Father says the last line."], ["me", "Amen!"], ["p", "Give thanks to the Lord, for He is good."], ["me", "For His mercy endures for ever."], ["p", "The Lord has forgiven your sins. Go in peace."], ["me", "Thank you, Father!"], ["note", "Now go and do your penance right away."]];
+const SCRIPT = [["p", "The priest welcomes you with a smile. You both make the Sign of the Cross: In the name of the Father, and of the Son, and of the Holy Spirit. Amen."], ["p", "Sometimes the priest reads a few words from the Bible, like: “Rejoice with me because I have found my lost sheep.” (Luke 15:6)"], ["me", "Bless me, Father, for I have sinned. This is my first confession."], ["note", "Next time, say how long it has been since your last confession."], ["note", "Now tell the priest your sins, in your own words."], ["me", "For these and all my sins, I am sorry."], ["p", "The priest talks with you about how to be more like Jesus, and gives you a penance."], ["me", "O my God, I am heartily sorry… (pray the Act of Contrition, or say sorry in your own words)"], ["p", "God, the Father of mercies, through the Death and Resurrection of His Son, has reconciled the world to Himself and poured out the Holy Spirit for the forgiveness of sins. Through the ministry of the Church, may God grant you pardon and peace, and I absolve you from your sins in the name of the Father, and of the Son, and of the Holy Spirit."], ["note", "Make the Sign of the Cross when Father says “in the name of the Father.”"], ["me", "Amen!"], ["p", "Give thanks to the Lord, for He is good."], ["me", "For His mercy endures for ever."], ["p", "The Lord has forgiven your sins. Go in peace."], ["me", "Thank you, Father!"], ["note", "Now go and do your penance right away."]];
 R.script = el => {
   const L = SCRIPT;
   el.innerHTML = `<p class="say sm">Let's practice! Read your yellow lines out loud.</p><div class="script" id="sl"></div><button class="chip big" type="button" id="say">Start</button>`;
@@ -3893,7 +3913,7 @@ R.script = el => {
     const [who, txt] = L[k];
     const d = document.createElement("div"); d.className = "line " + (who === "me" ? "me" : who === "note" ? "note" : "");
     d.innerHTML = who === "note" ? `<div class="bub">${esc(txt)}</div>` : `<span class="who" style="background:${who === "me" ? "#FF5C7A" : "#7B5CE0"}">${who === "me" ? (named() ? esc(firstChar(named()).toUpperCase()) : "Me") : "Fr"}</span><div class="bub">${esc(txt)}</div>`;
-    sl.appendChild(d); d.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "nearest" });
+    sl.appendChild(d); setTimeout(() => (btn.hidden ? d : btn).scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "nearest" }), 20);
     sfx.tap(); k++;
     if (k >= L.length) { btn.hidden = true; sfx.win(); burstAt(sl, 60, true); setReady(true, "You know the whole thing!"); }
     else { btn.textContent = who === "me" ? "I said my line" : "Next line"; setReady(false, ""); }
@@ -3997,16 +4017,16 @@ R.read = (el, s) => {
   el.innerHTML = `${s.tag ? `<span class="tag">${esc(s.tag)}</span>` : ""}${(s.art || s.icon) && !(Q && Q.teen) ? `<div class="art sm">${s.icon ? iconArt(s.icon) : ART[s.art]()}</div>` : ""}<div class="fullprayer readbox">${s.lines.map(line).join("")}</div>${s.ref ? `<p class="ref">${esc(s.ref)}</p>` : ""}`;
 };
 const CMDS = [
-  ["I am the Lord your God: you shall not have strange gods before me.", "Put God first, before anything else.", "Is anything more important to me than God, like money, power, or movie and sports stars?"],
-  ["You shall not take the name of the Lord your God in vain.", "Say God's name only with love and respect.", "Have I used God's name in a mean or careless way?"],
-  ["Remember to keep holy the Lord's Day.", "Keep Sunday special and go to Mass.", "Do I go to Mass with a good attitude?"],
-  ["Honor your father and your mother.", "Obey and respect your parents, grandparents, and teachers.", "Do I listen to the grown-ups who care for me?"],
-  ["You shall not kill.", "Life is God's gift. Don't hurt anyone, with your hands or your words.", "Have I hurt someone with my words or actions?"],
-  ["You shall not commit adultery.", "Married people stay faithful and love each other. Treat your body and others with respect.", "Do I treat my body and other people with respect?"],
-  ["You shall not steal.", "Don't take what isn't yours.", "Have I taken anything without asking?"],
-  ["You shall not bear false witness against your neighbor.", "Tell the truth.", "Have I lied, or blamed someone else for what I did? Do TV shows or movies make lying seem okay?"],
-  ["You shall not covet your neighbor's wife.", "Husbands and wives love only each other. Keep your heart and thoughts pure.", "Do I keep my thoughts kind and pure?"],
-  ["You shall not covet your neighbor's goods.", "Be happy with what you have.", "Am I jealous of my friends' things?"]];
+  ["I am the Lord your God: you shall not have strange gods before me.", "Love God more than anything else.", "Do I make time for God every day, even when I'm busy?"],
+  ["You shall not take the name of the Lord your God in vain.", "God's name is holy. Use it only to pray and to praise.", "Did I use God's or Jesus' name when I was mad or joking around?"],
+  ["Remember to keep holy the Lord's Day.", "Make Sunday God's day: go to Mass and rest.", "Do I pay attention and pray at Mass?"],
+  ["Honor your father and your mother.", "Listen to and respect your parents and the grown-ups who take care of you.", "Did I obey the first time I was asked?"],
+  ["You shall not kill.", "Every life is precious to God. Be gentle with others and with yourself.", "Did I hit, push, or say hurtful things to anyone?"],
+  ["You shall not commit adultery.", "Husbands and wives keep their promise to love only each other. We treat every body, ours and others', with respect.", "Do I treat my body and other people with respect?"],
+  ["You shall not steal.", "Respect other people's things.", "Did I take or break something that isn't mine?"],
+  ["You shall not bear false witness against your neighbor.", "Be honest.", "Did I tell a lie, or let someone else get blamed for what I did?"],
+  ["You shall not covet your neighbor's wife.", "Keep a pure heart: let your thoughts be good and loving.", "Do I keep my eyes and thoughts on good things?"],
+  ["You shall not covet your neighbor's goods.", "Be thankful for what you have, instead of wanting what others have.", "Did I feel jealous of what someone else has?"]];
 // a picture for each prayer motion
 const gIcon = g => /head no/i.test(g) ? "noentry" : /heart/i.test(g) ? "heart" : /heaven/i.test(g) ? "cloud" : /arms (wide|up)|whole world/i.test(g) ? "sun" : /angel|wave/i.test(g) ? "dove" : /baby/i.test(g) ? "star" : /fist/i.test(g) ? "fire" : "pray";
 const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
@@ -4460,6 +4480,8 @@ const ART_WAIT = {
   exam_hero: "confession", adv_hero: "candle", lent_hero: "crosshill",
 };
 const pic = n => `assets/img/${ART_WAIT[n] || n}.jpg`;
+ART_WAIT.story_vase = "boy"; // delete this line once assets/img/story_vase.jpg exists
+window.ART_WAIT = ART_WAIT;
 document.querySelectorAll("img[data-art]").forEach(i => { const p = pic(i.dataset.art); if (i.getAttribute("src") !== p) i.setAttribute("src", p); });
 // a chapter of the Bible on the bishops' own site (New American Bible)
 const BOOKS = { Micah: "micah", Genesis: "genesis", Exodus: "exodus", Ruth: "ruth", "1 Samuel": "1samuel", "2 Samuel": "2samuel", "1 Kings": "1kings", Esther: "esther", Psalm: "psalms", Isaiah: "isaiah", Daniel: "daniel", Jonah: "jonah", Matthew: "matthew", Mark: "mark", Luke: "luke", John: "john", Acts: "acts", Romans: "romans", "1 Corinthians": "1corinthians", Galatians: "galatians", Ephesians: "ephesians", Revelation: "revelation" };
@@ -4883,7 +4905,7 @@ const STUDIO = {
   ourfather: { set: "ourfather", pic: "pray_ourfather", intro: "Jesus Himself taught us this prayer, when His friends asked: “Lord, teach us to pray.” We pray it at every Mass.", ref: "Matthew 6:9–13" },
   hailmary: { set: "hailmary", pic: "pray_hailmary", intro: "The first words are the angel Gabriel's, when he told Mary she would be Jesus' mother. Then come her cousin Elizabeth's words, and then we ask Mary to pray for us.", ref: "Luke 1:28, 42" },
   glorybe: { set: "glorybe", pic: "pray_glorybe", intro: "A short prayer of praise to the Holy Trinity: the Father, the Son, and the Holy Spirit. Perfect any time of day.", ref: "" },
-  prayer: { set: "contrition", pic: "confession", intro: "The prayer we say in confession to tell God we're sorry and want to do better.", ref: "Version A, from the workbook" },
+  prayer: { set: "contrition", pic: "confession", intro: "The prayer we say in confession to tell God we're sorry and want to do better.", ref: "Version A, the traditional prayer" },
 };
 let PS_ = null;
 function openStudio(k) {
@@ -5538,7 +5560,7 @@ R.done = (el, s) => {
   }
   earned = run.earned || 0;
   const msg = s.final ? `You're ready, ${kid()}!` : Q && Q.course === "lambs" ? "Wonderful!" : Q && Q.course === "conf" ? "Session complete." : Q && Q.course === "grow" ? "Chapter complete!" : Q && Q.course === "fc" ? "Lesson complete!" : s.practice ? "Great practice!" : "Lesson complete!";
-  el.innerHTML = `<div class="art">${Q && Q.teen ? `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/conf_pentecost.jpg" alt="" draggable="false"></div>` : s.final ? ART.carry() : `<div class="sc">${ground}${img("trophy", "", "left:4%;top:4%;width:30%")}${img("stars", "float", "right:6%;top:2%;width:22%")}${pip("idle", "left:50%;bottom:12%;width:54%;translate:-50% 0").replace('class="pip', 'id="dp" class="pip')}</div>`}</div><div class="stamp">${esc(msg)}</div>${earned ? `<div class="starrow" aria-label="${earned} of 3 stars">${[1, 2, 3].map(k => `<img loading="lazy" decoding="async" src="${A("stars")}" alt="" class="${k <= earned ? "on" : ""}">`).join("")}</div><p class="ref">${run.total ? `${run.right} of ${run.total} answers right the first time. ` : ""}${earned === 3 ? "All 3 stars!" : "Play it again to win all 3 stars."}</p>` : ""}<p class="say sm">${s.final ? "Pip is home on the Shepherd's shoulders. On your big day, you'll feel just like you've been hugged by God!" : s.msg ? esc(s.msg) : s.practice ? `Practice makes prayer feel like home. Keep it up, ${esc(kid())}!` : `You worked hard and learned so much. ${esc(kid())}, Pip is one step closer to home.`}</p>`;
+  el.innerHTML = `<div class="art">${Q && Q.teen ? `<div class="sc"><img loading="lazy" decoding="async" class="ph kb" src="assets/img/conf_pentecost.jpg" alt="" draggable="false"></div>` : s.final ? ART.carry() : `<div class="sc">${ground}${img("trophy", "", "left:4%;top:4%;width:30%")}${img("stars", "float", "right:6%;top:2%;width:22%")}${pip("idle", "left:50%;bottom:12%;width:54%;translate:-50% 0").replace('class="pip', 'id="dp" class="pip')}</div>`}</div><div class="stamp">${esc(msg)}</div>${earned ? `<div class="starrow" aria-label="${earned} of 3 stars">${[1, 2, 3].map(k => `<img loading="lazy" decoding="async" src="${A("stars")}" alt="" class="${k <= earned ? "on" : ""}">`).join("")}</div><p class="ref">${run.total ? `${run.right} of ${run.total} answers right the first time. ` : ""}${earned === 3 ? "All 3 stars!" : "Play it again to win all 3 stars."}</p>` : ""}<p class="say sm">${s.final ? "Pip is home on the Shepherd's shoulders. On your big day, Jesus will carry you home too!" : s.msg ? esc(s.msg) : s.practice ? `Practice makes prayer feel like home. Keep it up, ${esc(kid())}!` : `You worked hard and learned so much. ${esc(kid())}, Pip is one step closer to home.`}</p>`;
   setTimeout(() => { burst(innerWidth / 2, innerHeight * .35, s.final ? 200 : 110, true); s.final ? sfx.bless() : sfx.done(); el.querySelectorAll(".starrow img.on").forEach((st, k) => setTimeout(() => { st.classList.add("pop"); sfx.pop(); }, 500 + k * 380)); const dp = el.querySelector("#dp"); if (G && dp) { const tl = G.timeline(); tl.add(hop(dp, { h: 50 })).add(hop(dp, { h: 30 })); } }, 300);
 };
 /* ---------- page wiring ---------- */
@@ -5733,8 +5755,9 @@ $("#cardView .cv-card").addEventListener("click", e => { if (e.target.closest(".
 addEventListener("keydown", e => { if ($("#cardView").hidden) return; if (e.key === "Escape" && !e.defaultPrevented) { if (!$("#cvSheet").hidden) { $("#cvSheetClose").click(); return; } closeCard(); } if (e.key === "ArrowLeft") $("#cvPrev").click(); if (e.key === "ArrowRight") $("#cvNext").click(); if (e.key === " " || e.key === "Enter") { e.preventDefault(); $("#cvFlip").click(); } });
 document.querySelectorAll("[data-practice]").forEach(b => b.onclick = () => { if (b.dataset.practice !== "massGo") sfx.tap(); openPractice(b.dataset.practice); });
 /* ---------- videos: play while on screen, pause when scrolled away (saves battery, keeps scrolling smooth) ---------- */
-// mass_peace, mass_kneel and mass_ourfather show their still until their clips are remade: in the old ones the group moved in lockstep
-const VIDS = ["mass_church", "mass_entrance", "mass_readings", "mass_gospel", "mass_gifts", "mass_altar", "mass_blessing", "mass_sent", "mass_font", "mass_creed", "mass_sanctus"];
+// Every Mass step shows its still for now: the old clips had people moving in unison, picture errors, and a different priest, church and family in each one.
+// The Mass series below (mx_01 to mx_20) replaces them. Holy water shows the baptismal font picture ("font") because the old one had a floating arm.
+const VIDS = [];
 const autoIO = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => { const v = e.target; if (e.isIntersecting) { if (v.dataset.poster) { v.poster = v.dataset.poster; v.removeAttribute("data-poster"); } if (v.preload !== "auto") { v.preload = "auto"; v.load(); } v.play().catch(() => {}); } else v.pause(); }), { threshold: .2 }) : null;
 $("#skip").onclick = () => { const h = [...document.querySelectorAll("[data-view].on h1, [data-view].on h2")].find(x => x.offsetParent); if (h) { h.tabIndex = -1; h.focus(); } };
 addEventListener("storage", e => { if (S.pid && e.key && e.key.startsWith(`found.p.${S.pid}.`) && $("#quest").hidden) { loadPlayer(S.pid); refreshPlayer(); } });
@@ -5746,7 +5769,12 @@ document.addEventListener("visibilitychange", () => { if (!document.hidden) dayC
 document.querySelectorAll("[data-jump]").forEach(a => a.addEventListener("click", () => setTimeout(() => { const t = document.getElementById(a.dataset.jump); if (t) scrollTo({ top: t.getBoundingClientRect().top + scrollY - 64, behavior: reduce ? "auto" : "smooth" }); }, 450)));
 function autoVideos(root = document) { if (reduce) { root.querySelectorAll("video[data-auto][data-poster]").forEach(v => { if (!v.closest("#mass")) { v.poster = v.dataset.poster; v.removeAttribute("data-poster"); } }); return; } root.querySelectorAll("video[data-auto]").forEach(v => { if (v.dataset.on) return; v.dataset.on = 1; v.muted = true; autoIO ? autoIO.observe(v) : v.play().catch(() => {}); }); }
 // the Mass as a scroll story: each chapter keeps a video pinned while its parts scroll past, and the video follows the part you're reading
-const MASS_MEDIA = ["mass_font", "mass_entrance", "mass_church", "mass_church", "mass_church", "mass_readings", "mass_gospel", "mass_church", "mass_creed", "mass_church", "mass_gifts", "mass_sanctus", "mass_altar", "mass_altar", "mass_ourfather", "mass_peace", "mass_altar", "mass_blessing", "mass_kneel", "mass_sent"];
+const MASS_MEDIA = ["font", "mass_entrance", "mass_church", "mass_church", "mass_church", "mass_readings", "mass_gospel", "mass_church", "mass_creed", "mass_church", "mass_gifts", "mass_sanctus", "mass_altar", "mass_altar", "mass_ourfather", "mass_peace", "mass_altar", "mass_blessing", "mass_kneel", "mass_sent"];
+// The Mass series (mx_01 to mx_20): one priest, one church, one family, a different scene for every step.
+// Turn MX_READY on only when all 20 stills exist (assets/img/mx_NN.jpg), so the page never mixes old and new people.
+// Add a name to MX_CLIPS once its clip (assets/vid/mx_NN.mp4) has passed the natural-motion check.
+const MX_READY = false, MX_CLIPS = [];
+if (MX_READY) { const mx = MASS.map((m, i) => `mx_${String(i + 1).padStart(2, "0")}`); MASS.forEach((m, i) => { m.img = mx[i]; }); MASS_MEDIA.splice(0, MASS_MEDIA.length, ...mx); VIDS.length = 0; VIDS.push(...MX_CLIPS); }
 const MASS_CH = { "Before Mass": "We come into God's house and remember our Baptism.", "We gather": "Jesus' family comes together and gets our hearts ready.", "The Word of God": "God speaks to us through the Bible.", "Jesus in the Eucharist": "The bread and wine become Jesus.", "Communion": "Jesus comes to us, and we share His peace.", "We go out": "We take Jesus' love home with us." };
 (() => {
   const groups = [...new Set(MASS.map(m => m.g))];
@@ -6022,6 +6050,50 @@ function renderGuide() {
   el.innerHTML = `<p class="t-eyebrow dark">For ${esc(named() || "your child")} · ${esc(BANDS[b].name)}</p><h3>${esc(G.h)}</h3><ul class="fp-glist">${G.p.map(x => `<li>${esc(x)}</li>`).join("")}</ul><p class="fp-gtry">${esc(G.t)}</p>
     <p class="fp-gnote">Research on families finds that parents' own lived faith is the strongest influence on whether children keep the faith (Smith and Adamczyk, <i>Handing Down the Faith</i>, 2021).</p>`;
 }
+
+/* ---------- Grown-ups: "When your child asks…" ---------- */
+// q: the child's question; a: background for the grown-up; say: words to use with a child; ref: where to read more
+const ASKS = [
+ { g: "God", q: "Who made God?", a: "Nobody. God has no beginning and no end. Everything else that exists was made by Him, but He simply is. That's what He told Moses: “I am who I am.”", say: "God was never made. He always was, and He always will be. He made everything else!", ref: "Exodus 3:14; CCC 202, 213" },
+ { g: "God", q: "Why can't I see God?", a: "God is pure spirit, so He has no body for our eyes to see. But He made Himself visible in Jesus, and we meet Jesus truly in the Eucharist, in the Bible, in creation, and in other people.", say: "God is a spirit, so we can't see Him with our eyes. But Jesus showed us exactly what God is like, and He is really with us at Mass.", ref: "John 14:9; CCC 370, 1374" },
+ { g: "God", q: "How can God be three and one?", a: "The Trinity is a mystery: something true that our minds can't fully hold. Every comparison (a shamrock, water, ice, and steam) falls short, so it's fine to say so. What matters most is that God is a family of love, and He invites us into it.", say: "There is one God, and He is three Persons: the Father, the Son, and the Holy Spirit. It's too big to understand all the way, and that's okay. We'll keep learning about it forever!", ref: "CCC 234, 253–256" },
+ { g: "Prayer", q: "Does God hear me if I pray in my head?", a: "Yes. God knows our hearts even before we speak. Silent prayer, spoken prayer, and sung prayer all reach Him. Teaching a child that they can talk to God anywhere, anytime, is one of the greatest gifts you can give.", say: "Yes! You can talk to God out loud or quietly in your heart. He always hears you.", ref: "Matthew 6:6–8; CCC 2559, 2700" },
+ { g: "Prayer", q: "Why didn't God give me what I prayed for?", a: "God always answers, but sometimes the answer is “not yet” or “I have something better.” A good parent doesn't give a child everything they ask for. Prayer is less about getting things and more about growing close to God.", say: "God always listens. Sometimes He says yes, sometimes wait, and sometimes He has a better plan, like a good dad does.", ref: "Luke 11:9–13; CCC 2735–2737" },
+ { g: "Prayer", q: "Why do we pray to Mary and the saints?", a: "We don't worship them; worship is for God alone. We ask them to pray for us, the same way we ask a friend or grandparent to pray for us. The saints are alive with God and still part of our Church family.", say: "We ask Mary and the saints to pray for us, like asking a friend to pray for you. They're in heaven, close to Jesus, and they love to help.", ref: "CCC 956, 971, 2683" },
+ { g: "Prayer", q: "Are statues and pictures in church like idols?", a: "No. An idol is something treated as a god. Catholic statues and images are like family photos: they help us remember Jesus, Mary, and the saints and turn our hearts to God. We honor the person, not the stone or paint.", say: "Statues are like family pictures. They help us remember Jesus and our saint friends. We pray to God, not to the statue.", ref: "CCC 1159–1162, 2131–2132" },
+ { g: "Mass", q: "Why do we have to go to Mass every Sunday?", a: "Sunday is the day Jesus rose from the dead, and God asks us to keep it holy. At Mass Jesus feeds us with Himself, and we worship together as His family. It's a gift and a promise we keep, even on busy weeks. Missing Mass on purpose without a serious reason (like illness) is a serious sin, so confess it before receiving Communion again. Holy days of obligation count too.", say: "Sunday is Jesus' special day, because He rose from the dead on a Sunday. At Mass, our whole Church family visits Him together.", ref: "Exodus 20:8; CCC 2174–2181, 2042" },
+ { g: "Mass", q: "Is the Host really Jesus?", a: "Yes. At the consecration, the bread and wine become the Body and Blood of Jesus, while still looking and tasting like bread and wine. Catholics call this the Real Presence. That's why we genuflect to the tabernacle and receive Communion with great care.", say: "Yes! It still looks like bread, but after the priest says Jesus' words, it is really Jesus. That's why we bow and are so careful.", ref: "John 6:51–58; CCC 1374–1377" },
+ { g: "Mass", q: "Why can't I receive Communion yet?", a: "The Church wants children to understand who they are receiving and to prepare their hearts, including a first confession. Until then, they can come forward for a blessing with arms crossed (if your parish does this), or make a spiritual communion in their pew.", say: "Jesus is the most special guest ever, so we get ready first. Soon you'll be ready! Until then, you can tell Him, “Jesus, come into my heart.”", ref: "CCC 1244, 1385; Code of Canon Law 914" },
+ { g: "Mass", q: "Why does the priest wear different colors?", a: "The colors follow the Church's year: green for Ordinary Time, violet for Advent and Lent, white or gold for Christmas, Easter, and many feasts, red for Pentecost and martyrs, and rose on two special Sundays.", say: "The colors tell us what time of year it is in the Church. Purple means get ready, white means celebrate, green means grow!", ref: "General Instruction of the Roman Missal 346" },
+ { g: "Jesus", q: "Why did Jesus have to die?", a: "Jesus freely gave His life out of love, to take away our sins and open heaven to us. Death couldn't hold Him: He rose on Easter, and He promises we can rise with Him.", say: "Jesus loved us so much that He gave His life to take away our sins. And then He came back to life on Easter! Now we can be with Him forever.", ref: "John 15:13; CCC 599–618, 638" },
+ { g: "Jesus", q: "Was Jesus ever a kid like me?", a: "Yes. Jesus is fully God and fully human. He was a baby, a child, a teenager, and He grew up in Nazareth with Mary and Joseph, learning and working. He knows exactly what it's like to be a kid.", say: "Yes! Jesus was a baby and a kid. He played, learned, and helped Joseph in the workshop. He understands you.", ref: "Luke 2:51–52; CCC 464, 531–533" },
+ { g: "Hard things", q: "Why do bad things happen if God is good?", a: "This is the hardest question, and it's okay to say so. God made people free, and some people choose evil; our world is also wounded by sin. God never stops working, and He can bring good out of even terrible things. Jesus Himself suffered, so we never suffer alone.", say: "Sometimes people make bad choices, and sometimes sad things just happen in our world. God is always with us when we're sad, and He can bring good out of hard things.", ref: "Romans 8:28; CCC 309–314" },
+ { g: "Hard things", q: "Why did Grandpa (or someone we love) die?", a: "Lead with comfort, not explanation. Everyone dies one day, but because of Jesus, death isn't the end. We hope our loved ones are with God, and we can keep loving them by praying for them. Let your child cry and ask questions.", say: "Everybody's body stops working someday. It's okay to feel sad. Jesus promised that death isn't the end, and we can still love Grandpa by praying for him.", ref: "John 11:25–26; CCC 1005–1014, 1032" },
+ { g: "Hard things", q: "Will my pet go to heaven?", a: "The Church hasn't taught a definite answer about animals in heaven, so be honest. We do know God made every creature and loves what He made, and that heaven will be complete happiness, with nothing missing that we truly need.", say: "We don't know for sure. We do know God made your pet and loved it, and that heaven will be the happiest place ever. We can trust Him.", ref: "Psalm 145:9; CCC 342, 1024" },
+ { g: "Hard things", q: "Is the devil real? I'm scared.", a: "Yes, the Church teaches that the devil is a real fallen angel. But be clear: he is nothing next to God. Jesus has already won, and the devil can't make us do anything. Prayer, the sacraments, and the Sign of the Cross keep us close to God.", say: "The devil is real, but he's way weaker than God, and Jesus already beat him. When you're scared, make the Sign of the Cross and say, “Jesus, I trust in You.”", ref: "1 John 3:8; CCC 391–395" },
+ { g: "Hard things", q: "Do I have a guardian angel?", a: "Yes. The Church teaches that every person has an angel watching over them from the beginning of life to death. Children love to know this, and the Angel of God prayer is a perfect bedtime habit.", say: "Yes! God gave you your very own angel to watch over you. You can talk to your angel every night.", ref: "Matthew 18:10; CCC 336" },
+ { g: "Heaven", q: "Where is heaven?", a: "Heaven isn't a spot above the clouds. It's being with God forever, perfectly happy, along with all the saints. Kids will picture it as a place, and that's fine; just add that it's even better than anything we can imagine.", say: "Heaven is being with God forever. It's happier than the best day you've ever had, times a million!", ref: "1 Corinthians 2:9; CCC 1023–1025" },
+ { g: "Heaven", q: "What happens when we die?", a: "Our soul meets God right away. Those who die in God's friendship go to heaven, some after a final cleansing called purgatory. Someone who completely refuses God's love chooses to be apart from Him forever. At the end of time, our bodies will rise again, too.", say: "When we die, we meet Jesus. If we love Him, He welcomes us home to heaven. And someday He'll even give us new bodies!", ref: "CCC 1021–1022, 1030–1033, 1038" },
+ { g: "Heaven", q: "What is purgatory?", a: "Purgatory is God's final cleaning for people who die as His friends but aren't completely ready for heaven yet. Everyone in purgatory will reach heaven. We can help them with our prayers, especially at Mass.", say: "Purgatory is like getting all washed up and ready before the biggest party ever. Everyone there gets to go to heaven, and our prayers help them.", ref: "CCC 1030–1032" },
+ { g: "Church", q: "Why can't priests get married?", a: "In the Latin (Roman) Church, priests promise not to marry so they can give their whole life to God and to their parish family, like Jesus did. It's a discipline, not a doctrine: Eastern Catholic Churches allow married men to become priests, and some married former Protestant ministers are priests too.", say: "Most priests give their whole life to God and to all of us, so the whole parish is like their family. That's why we call them “Father.”", ref: "Matthew 19:12; CCC 1579–1580" },
+ { g: "Church", q: "Why are only men priests?", a: "Jesus chose twelve men as His apostles, and the Church teaches that she has no authority to change what He established for this sacrament. It isn't about who is more important: Mary is the greatest of all the saints, and women have always led, taught, and served at the heart of the Church.", say: "Jesus chose men to be His first priests, and the Church follows what He did. Girls and women are just as important to Jesus, and the greatest saint of all is Mary!", ref: "CCC 1577–1578; St. John Paul II, Ordinatio Sacerdotalis 4" },
+ { g: "Church", q: "Why do my friends believe different things?", a: "Respect is the starting point. God loves every person, and other Christians and other religions hold much that is true and good. We believe the fullness of the truth Jesus gave is in the Catholic Church, and the best way to share it is by being kind, joyful, and honest about what we believe.", say: "God loves every single person, including friends who believe differently. We can be kind, pray for them, and share why we love Jesus.", ref: "CCC 817–822, 839–848" },
+ { g: "Church", q: "Does the Bible say how God made the world? What about dinosaurs?", a: "Genesis teaches the most important truths: God made everything, it's good, and humans are made in His image. It isn't a science textbook. Science studies how creation works, and faith tells us who made it and why. The Church teaches that real science and faith never contradict each other.", say: "God made everything, including dinosaurs! The Bible tells us who made the world and why. Scientists help us learn how He did it.", ref: "CCC 159, 283–289" },
+ { g: "Me", q: "Is it a sin to feel angry?", a: "No. Feelings themselves are not sins. Jesus felt sad, frustrated, and even angry. What we choose to do with a feeling can be good or bad. Help your child name the feeling, then choose a good next step.", say: "Feeling angry isn't a sin. Everybody feels mad sometimes, even Jesus did. What matters is what you choose to do next.", ref: "Mark 3:5; CCC 1767–1768" },
+ { g: "Me", q: "Will God still love me if I do something really bad?", a: "Always. Nothing we do can make God stop loving us. Sin hurts our friendship with Him, which is why He gave us confession, so we can always come home. Make sure your child hears that your love doesn't stop either.", say: "Yes! God will never, ever stop loving you. If you do something wrong, you can say sorry and He'll always forgive you.", ref: "Romans 8:38–39; Luke 15:20; CCC 1846–1848" },
+ { g: "Me", q: "What does God want me to be when I grow up?", a: "God has a plan for each of us, called a vocation: married life, priesthood, religious life, or a single life given to others. Right now, His plan for your child is simple: to love Him, to be kind, and to become the person He made them to be.", say: "God has a special plan just for you! Right now it's to love Him, love others, and do your best. When you're older, you can ask Him what's next.", ref: "Jeremiah 29:11; CCC 1533, 1604, 2392" },
+];
+const ASK_G = ["God", "Prayer", "Mass", "Jesus", "Hard things", "Heaven", "Church", "Me"];
+let askG = "All";
+function renderAsks() {
+  const el = $("#gAsks"); if (!el) return;
+  const list = ASKS.filter(x => askG === "All" || x.g === askG);
+  el.innerHTML = `<div class="ask-tabs" role="toolbar" aria-label="Show questions about">${["All", ...ASK_G].map(g => `<button type="button" data-g="${esc(g)}" aria-pressed="${g === askG}">${esc(g)}</button>`).join("")}</div>
+    <div class="ask-list">${list.map((x, i) => `<div class="ask"><h4 class="ask-h"><button type="button" class="ask-q" aria-expanded="false" aria-controls="askb${i}"><span>${esc(x.q)}</span><i aria-hidden="true">+</i></button></h4><div class="ask-b" id="askb${i}" hidden><p>${esc(x.a)}</p><p class="ask-say"><b>Try saying</b>${esc(x.say)}</p><p class="ask-ref">${esc(x.ref)}</p></div></div>`).join("")}</div>`;
+  el.querySelectorAll(".ask-tabs button").forEach(b => b.onclick = () => { askG = b.dataset.g; renderAsks(); el.querySelector(`.ask-tabs [data-g="${CSS.escape(askG)}"]`)?.focus(); });
+  el.querySelectorAll(".ask-q").forEach(b => b.onclick = () => { const open = b.getAttribute("aria-expanded") !== "true"; b.setAttribute("aria-expanded", open); document.getElementById(b.getAttribute("aria-controls")).hidden = !open; });
+}
+renderAsks();
 function renderToday() {
   const el = $("#fpToday"); if (!el) return;
   const L = litDay(), c = churchDay(new Date()), b = band() || "first", fam = FAMILY[L.k === "christmas" || L.k === "advent" || L.k === "lent" || L.k === "easter" || L.k === "holyweek" ? L.k : "ordinary"][b];
