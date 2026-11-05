@@ -1654,10 +1654,8 @@ body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0p
 .fp-read{margin-left:6px;width:34px;height:34px;border-radius:50%;background:var(--card);font-size:16px;line-height:34px;vertical-align:middle;box-shadow:0 2px 6px rgba(0,0,0,.08)}
 
 /* ---------- Little Lambs ---------- */
-#lambsSec,#lambTile{display:none!important}
-body[data-band="lambs"] #lambsSec.on{display:block!important}
+#lambTile{display:none!important}
 body[data-band="lambs"] #lambTile{display:flex!important}
-body[data-band="lambs"] #map{display:none!important}
 .fp-lc{font-weight:800;color:var(--ink-soft)}
 .fp-lambs{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
 .fp-lamb{display:grid;grid-template-rows:auto 1fr;border-radius:24px;overflow:hidden;background:var(--card);box-shadow:0 8px 22px rgba(0,0,0,.08);text-align:left;color:var(--ink)}
@@ -1695,10 +1693,8 @@ body[data-band="lambs"] #map{display:none!important}
 .opt-ic{width:44px;height:44px;object-fit:contain;flex:none}
 
 /* ---------- Confirmation ---------- */
-#confSec,#confTile{display:none!important}
-body[data-band="confirm"] #confSec.on{display:block!important}
+#confTile{display:none!important}
 body[data-band="confirm"] #confTile{display:flex!important}
-body[data-band="confirm"]:not([data-showmap="1"]) #map{display:none!important}
 .fp-confsec{background:#0F1118;color:#F5F5F7}
 .fp-confsec .sec-head p{color:#C7C7CC}
 .fp-confsec .t-eyebrow.dark{color:#FF8A80}
@@ -1734,7 +1730,6 @@ body[data-band="confirm"]:not([data-showmap="1"]) #map{display:none!important}
 .quest.teen #qBack{color:#7CC0FF;border-color:#7CC0FF}
 .fp-refl{width:min(100%,560px);font:inherit;font-size:16px;line-height:1.45;padding:14px;border-radius:16px;border:1px solid var(--line);background:var(--card);color:var(--ink);resize:vertical}
 
-body[data-band="lambs"] .fp-games,body[data-band="lambs"] .fp-games+.pgrid{display:none}
 @media (orientation:landscape) and (max-height:500px){.fp-signx{gap:6px;width:min(100%,520px)}.fp-sx{padding:6px 8px}.fp-sx span{font-size:14px}.fp-sxc img{max-width:52px}}
 
 .fp-glist{margin:6px 0 10px;padding-left:20px;display:grid;gap:8px;line-height:1.45;max-width:66ch}
@@ -1744,10 +1739,8 @@ body[data-band="lambs"] .fp-games,body[data-band="lambs"] .fp-games+.pgrid{displ
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .fp-lamb.done .fp-lt i{color:#5BE37D}}
 
 /* ---------- Growing Disciples: the Big Story timeline ---------- */
-#growSec,#growTile{display:none!important}
-body[data-band="grow"] #growSec.on{display:block!important}
+#growTile{display:none!important}
 body[data-band="grow"] #growTile{display:flex!important}
-body[data-band="grow"]:not([data-showmap="1"]) #map{display:none!important}
 .fp-tl{position:relative;display:grid;gap:10px;max-width:720px;padding-left:22px}
 .fp-tl::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:3px;border-radius:2px;background:linear-gradient(#8E7CF0,#F0A85D)}
 .fp-era{margin:8px 0 0;font-size:13px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft)}
@@ -1764,7 +1757,7 @@ body[data-band="grow"]:not([data-showmap="1"]) #map{display:none!important}
 .fp-ch.next{box-shadow:0 0 0 3px #8E7CF0,0 8px 20px rgba(142,124,240,.3)}
 @media (hover:hover){.fp-ch{transition:transform .25s}.fp-ch:hover{transform:translateX(3px)}}
 
-body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="confirm"] #fcSec,body[data-band="lambs"] #fcTile,body[data-band="grow"] #fcTile,body[data-band="confirm"] #fcTile,body[data-band="lambs"] .fp-frg,body[data-band="grow"] .fp-frg,body[data-band="confirm"] .fp-frg{display:none!important}
+body[data-band="lambs"] #fcTile,body[data-band="grow"] #fcTile,body[data-band="confirm"] #fcTile{display:none!important}
 .fp-fcsec{background:color-mix(in srgb,#FFF3C4 35%,var(--bg))}
 :root[data-theme="dark"] .fp-fcsec{background:var(--bg)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .fp-fcsec{background:var(--bg)}}
@@ -2144,6 +2137,110 @@ body:not(.hm-new) #homeHow{display:none}
 body.hm-new #fcTile,body.hm-new #frTile{display:none!important}
 .home>.tile-hero{order:-2}
 body:not(.hm-new) .home>#fpToday,body:not(.hm-new) .home>#lambTile,body:not(.hm-new) .home>#growTile,body:not(.hm-new) .home>#confTile,body:not(.hm-new) .home>#fcTile,body:not(.hm-new) .home>#frTile{order:-1}
+
+/* ---------- site map: section menus, area front pages, course pages (2026-11-05) ---------- */
+.sub-off{display:none!important}
+.subnav{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hdr,52px));z-index:19;background:var(--bg);border-bottom:1px solid var(--line)}
+.subnav .sn-in{display:flex;align-items:center;gap:18px;min-height:52px;max-width:1024px}
+.sn-t{flex:none;font-family:var(--sf);font-weight:600;font-size:21px;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.sn-links{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.sn-links::-webkit-scrollbar{display:none}
+.sn-links a{flex:none;display:flex;align-items:center;min-height:36px;padding:0 12px;border-radius:980px;font-family:var(--sf);font-size:14px;color:var(--ink);text-decoration:none;white-space:nowrap}
+.sn-links a:hover{background:color-mix(in srgb,var(--ink) 6%,transparent)}
+.sn-links a[aria-current]{background:var(--ink);color:var(--bg);font-weight:600}
+.sn-go[hidden],.cx-gpane[hidden]{display:none!important}
+.sn-go{flex:none;min-height:32px!important;padding:0 16px!important;font-size:14px!important}
+@media (max-width:820px){
+  .subnav .sn-in{gap:8px;min-height:50px}
+  .sn-t{display:none}
+  .sn-links{margin-left:0;flex:1;padding-block:7px}
+  .sn-go{display:none!important}
+}
+.nv-head{padding-top:clamp(28px,5vw,56px)}
+.nv-back{display:inline-flex;align-items:center;gap:4px;min-height:44px;margin:0 0 4px;font-family:var(--sf);font-size:15px;font-weight:600;color:var(--accent);text-decoration:none}
+.nv-h{font-family:var(--sf);font-size:clamp(22px,3vw,28px);font-weight:700;letter-spacing:-.02em;margin:34px 0 14px}
+.nv-doors{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px;margin:0 0 26px}
+a.cmp-t{text-decoration:none}
+.cmp-t .nv-tag{position:absolute;top:12px;left:12px;padding:5px 10px;border-radius:980px;background:#FFD98A;color:#3A2600;font-size:12px;font-weight:800;letter-spacing:.02em}
+.nv-bar{display:block;height:6px;margin-top:10px;border-radius:6px;background:rgba(255,255,255,.18);overflow:hidden}
+.nv-bar i{display:block;height:100%;background:#FFD98A;border-radius:6px}
+.nv-count{margin-top:6px;font-size:13px;color:#D8D4F0}
+/* continue card on the Lessons front page */
+.lx-cont{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:0;border-radius:28px;overflow:hidden;background:var(--card);box-shadow:var(--shadow);margin:0 0 10px}
+.lx-cont img{width:100%;height:100%;min-height:220px;object-fit:cover}
+.lx-cont .lx-cb{padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:6px;justify-content:center}
+.lx-cont small{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--eyebrow-ink)}
+.lx-cont h3{font-family:var(--sf);font-size:clamp(24px,3vw,32px);letter-spacing:-.02em;margin:0}
+.lx-cont p{margin:0;color:var(--ink-soft)}
+.lx-cont .cx-bar{margin:8px 0 2px}
+.lx-cont .ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.lx-none{padding:18px 20px;border-radius:20px;background:var(--card);color:var(--ink-soft);margin:0 0 10px}
+.lx-none a{color:var(--accent);font-weight:600}
+@media (max-width:640px){.lx-cont{grid-template-columns:1fr}.lx-cont img{min-height:0;aspect-ratio:16/9}}
+/* course page header */
+.cx{display:flex;flex-direction:column;gap:14px;margin:4px 0 22px}
+.cx-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px}
+.cx-prog{display:flex;flex-direction:column;gap:6px;min-width:200px;flex:1 1 220px;max-width:360px}
+.cx-prog span:last-child{font-size:14px;color:var(--ink-soft)}
+.cx-bar{display:block;height:8px;border-radius:8px;background:color-mix(in srgb,var(--ink) 10%,transparent);overflow:hidden}
+.cx-bar i{display:block;height:100%;border-radius:8px;background:var(--ok)}
+.cx .btn-go{max-width:100%;white-space:normal;text-align:left}
+.cx-tabs{display:flex;gap:6px;padding:4px;border-radius:980px;background:color-mix(in srgb,var(--ink) 6%,transparent);align-self:flex-start;max-width:100%;overflow-x:auto}
+.cx-tabs button{min-height:40px;padding:0 16px;border:0;border-radius:980px;background:none;color:var(--ink);font-family:var(--sf);font-size:15px;font-weight:600;white-space:nowrap;cursor:pointer}
+.cx-tabs button[aria-selected="true"]{background:var(--card);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.cx-gpane{max-width:760px;padding:22px clamp(18px,3vw,28px);border-radius:24px;background:var(--card);color:var(--ink);margin:0 0 24px}
+.cx-gpane h3{margin:0 0 10px;font-family:var(--sf);font-size:22px}
+.cx-gpane .fp-glist{margin:0 0 12px}
+.cx-gpane .nv-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.cx-gmode .wrap>:not(.nv-back):not(.sec-head):not(.cx):not(.cx-gpane){display:none!important}
+.sec-head .fp-lc{display:none}
+.fp-confsec .cx-tabs{background:#2A2E3D}.fp-confsec .cx-tabs button{color:#F5F5F7}.fp-confsec .cx-tabs button[aria-selected="true"]{background:#454B60}
+.fp-confsec .cx-prog span:last-child{color:#C7C7CC}.fp-confsec .cx-bar{background:#2A2E3D}
+.fp-confsec .cx-gpane{background:#1C1F2B;color:#F5F5F7}
+.fp-confsec .nv-back{color:#8FC2FF}
+/* Mass chapters */
+.mx-chs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px;max-width:1024px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left,0px)) 10px}
+.mx-wrap{max-width:1024px;margin:0 auto;padding:0 16px}
+.mx-step{position:relative;max-width:1024px;margin:0 auto;padding:22px 16px 0}
+.mx-step ol{display:flex;gap:6px;list-style:none;margin:10px 0 0;padding:0;overflow-x:auto;scrollbar-width:none}
+.mx-step ol::-webkit-scrollbar{display:none}
+.mx-step li a{display:flex;align-items:center;gap:6px;min-height:40px;padding:0 12px;border-radius:980px;background:var(--card);color:var(--ink);text-decoration:none;font-size:14px;font-weight:600;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.mx-step li a b{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:color-mix(in srgb,var(--ink) 10%,transparent);font-size:12px}
+.mx-step li a[aria-current]{background:var(--ink);color:var(--bg)}
+.mx-step li a[aria-current] b{background:var(--bg);color:var(--ink)}
+.mx-step p{margin:0;font-size:14px;color:var(--ink-soft)}
+.mx-next{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;max-width:1024px;margin:0 auto;padding:10px 16px 40px}
+.mx-next a{min-height:48px}
+/* feast days */
+.fd-list{display:grid;gap:10px;max-width:760px;margin:0 0 28px;padding:0;list-style:none}
+.fd-list li{display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:center;padding:14px 16px;border-radius:18px;background:var(--card)}
+.fd-list li.today{box-shadow:inset 0 0 0 2px var(--accent)}
+.fd-d{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:56px;border-radius:14px;background:color-mix(in srgb,var(--accent) 10%,var(--card));color:var(--ink);font-family:var(--sf)}
+.fd-d small{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
+.fd-d b{font-size:22px;line-height:1}
+.fd-list h4{margin:0;font-size:17px}.fd-list p{margin:2px 0 0;color:var(--ink-soft);font-size:15px}
+.fd-list li.today h4::after{content:" · Today";color:var(--accent)}
+#lxPaths{grid-template-columns:1fr}
+#lxPaths .cmp-t img{aspect-ratio:21/9}
+@media (min-width:560px){#lxPaths{grid-template-columns:repeat(3,minmax(0,1fr))}#lxPaths .cmp-t img{aspect-ratio:4/3}}
+@media (min-width:960px){#lxPaths{grid-template-columns:repeat(5,minmax(0,1fr))}#lxPaths .cmp-t b{font-size:19px}}
+#mass .mplay>h3,#mass .mplay>p{display:block}
+body[data-sub="practice"] #mass .mplay>h3,body[data-sub="practice"] #mass .mplay>p{display:none}
+.side.fits{top:calc(env(safe-area-inset-top,0px) + var(--hdr,62px) + var(--snh,0px) + 16px)}
+.mch-media{top:calc(env(safe-area-inset-top,0px) + var(--hdr,62px) + var(--snh,0px) + 8px)}
+@media (min-width:900px){.mch-media{top:calc(env(safe-area-inset-top,0px) + var(--hdr,62px) + var(--snh,0px) + 4svh);height:min(calc(96svh - var(--hdr,62px) - var(--snh,0px) - 8svh),620px)}}
+.mhero-sticky{top:calc(env(safe-area-inset-top,0px) + var(--hdr,62px) + var(--snh,0px))}
+@media (prefers-reduced-motion:no-preference){.mhero-sticky{height:calc(100svh - env(safe-area-inset-top,0px) - var(--hdr,62px) - var(--snh,0px))}}
+@media (max-width:820px){.sn-links a{min-height:44px}.sn-links{padding-block:3px}}
+.cx-tabs button,.mx-step li a{min-height:44px}
+.cx-bar{background:color-mix(in srgb,var(--ink) 18%,transparent)}
+@media (max-width:900px){.mx-step ol{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 32px),transparent)}}
+[tabindex="-1"]:focus{outline:none}
+.nv-jump{min-height:44px;margin-top:10px}
+#toBadges{background:#2C2C2E;color:#F5F5F7}
+.badge.got small{color:#7A5400}
+.fp-lt small{background:#FFD66B;color:#1D1D1F}
+.album .nv-wrap{padding-top:clamp(28px,5vw,48px)}
 </style>
 
 <div class="pread" id="pread" hidden role="dialog" aria-modal="true" aria-labelledby="prTitle">
@@ -2277,7 +2374,7 @@ body:not(.hm-new) .home>#fpToday,body:not(.hm-new) .home>#lambTile,body:not(.hm-
     <h2>Little Lambs.</h2>
     <p class="t-sub">Wonder moments with the Good Shepherd.</p>
     <p class="t-call">Ten short moments with big pictures, words read aloud, and something to do together.</p>
-    <div class="ctas"><a class="btn btn-go" href="#/quests">Open Little Lambs</a></div>
+    <div class="ctas"><a class="btn btn-go" href="#/quests/lambs">Open Little Lambs</a></div>
     <div class="t-media wide"><img loading="lazy" decoding="async" src="assets/img/shepherd_carry.jpg" alt="The Good Shepherd carrying a lamb home" draggable="false"></div>
   </div>
   <div class="tile tile-light rv fp-growtile" id="growTile">
@@ -2285,7 +2382,7 @@ body:not(.hm-new) .home>#fpToday,body:not(.hm-new) .home>#lambTile,body:not(.hm-
     <h2>The Big Story.</h2>
     <p class="t-sub">From Creation to Jesus to you.</p>
     <p class="t-call">Ten chapters through the whole Bible: Noah, Abraham, Moses, David, the prophets, Jesus, the Church, and your place in the story.</p>
-    <div class="ctas"><a class="btn btn-go" href="#/quests">Open the Big Story</a></div>
+    <div class="ctas"><a class="btn btn-go" href="#/quests/story">Open the Big Story</a></div>
     <div class="t-media wide"><img loading="lazy" decoding="async" src="assets/img/grow_moses.jpg" alt="Moses leads God's people through the Red Sea" draggable="false"></div>
   </div>
   <div class="tile tile-dark rv fp-conftile" id="confTile">
@@ -2293,7 +2390,7 @@ body:not(.hm-new) .home>#fpToday,body:not(.hm-new) .home>#lambTile,body:not(.hm-
     <h2>Be sealed with the Spirit.</h2>
     <p class="t-sub">Ten sessions for your Confirmation years.</p>
     <p class="t-call">The Holy Spirit and His gifts, choosing your saint, your sponsor, the rite, and honest answers to hard questions.</p>
-    <div class="ctas"><a class="btn btn-go" href="#/quests">Open Confirmation</a></div>
+    <div class="ctas"><a class="btn btn-go" href="#/quests/confirmation">Open Confirmation</a></div>
     <div class="t-media wide"><img loading="lazy" decoding="async" src="assets/img/conf_anoint.jpg" alt="A bishop anoints a teen at Confirmation while the sponsor stands behind" draggable="false"></div>
   </div>
   <div class="tile tile-light rv fp-fctile" id="fcTile">
@@ -2301,7 +2398,7 @@ body:not(.hm-new) .home>#fpToday,body:not(.hm-new) .home>#lambTile,body:not(.hm-
     <h2>First Communion.</h2>
     <p class="t-sub">Jesus gives us Himself.</p>
     <p class="t-call">Eight short lessons: the Last Supper, how the bread and wine become Jesus, how to receive Him, and why we come back every Sunday.</p>
-    <div class="ctas"><a class="btn btn-go" href="#/quests" data-jump="fcSec">Open First Communion</a></div>
+    <div class="ctas"><a class="btn btn-go" href="#/quests/communion">Open First Communion</a></div>
     <div class="t-media wide"><img loading="lazy" decoding="async" src="assets/img/mass_altar.jpg" alt="The priest at the altar during Mass" draggable="false"></div>
   </div>
   <div class="tile tile-dark rv" id="frTile">
@@ -2309,7 +2406,7 @@ body:not(.hm-new) .home>#fpToday,body:not(.hm-new) .home>#lambTile,body:not(.hm-
     <h2>First Reconciliation.</h2>
     <p class="t-sub">13 lessons to get ready for your first confession.</p>
     <p class="t-call">Stories, games, and prayers that get you ready for your first confession, one step at a time.</p>
-    <div class="ctas"><a class="btn btn-go" href="#/quests">Open the lessons</a><button type="button" class="btn btn-soft" data-practice="exam">Examine your conscience</button></div>
+    <div class="ctas"><a class="btn btn-go" href="#/quests/reconciliation">Open the lessons</a><button type="button" class="btn btn-soft" data-practice="exam">Examine your conscience</button></div>
     <div class="t-media wide"><img loading="lazy" decoding="async" src="assets/img/shepherd_carry.jpg" alt="The Good Shepherd carrying a lamb home" draggable="false"></div>
   </div>
   <div class="tile-grid hm-dup">
@@ -2324,7 +2421,7 @@ body:not(.hm-new) .home>#fpToday,body:not(.hm-new) .home>#lambTile,body:not(.hm-
       <h2>Prayers.</h2>
       <p class="t-sub">Learn them by heart.</p>
       <p class="t-call">The prayers every Catholic knows, for every age, from the Sign of the Cross to the Creed.</p>
-      <div class="ctas"><a class="btn btn-go" href="#/practice">Learn a prayer</a></div>
+      <div class="ctas"><a class="btn btn-go" href="#/practice/prayers">Learn a prayer</a></div>
       <div class="t-media fan"><img loading="lazy" decoding="async" src="assets/img/pray_ourfather.jpg" alt="" draggable="false"><img loading="lazy" decoding="async" src="assets/img/pray_hailmary.jpg" alt="" draggable="false"><img loading="lazy" decoding="async" src="assets/img/pray_glorybe.jpg" alt="" draggable="false"></div>
     </div>
   </div>
@@ -2384,37 +2481,63 @@ body:not(.hm-new) .home>#fpToday,body:not(.hm-new) .home>#lambTile,body:not(.hm-
   </div>
 </section>
 
-<section class="sec fp-lambsec" id="lambsSec" data-view="quests">
+<nav class="subnav" data-view="quests" aria-label="Lessons pages"><div class="wrap sn-in"><a class="sn-t" href="#/quests">Lessons</a><div class="sn-links"><a href="#/quests" data-sub="">Overview</a><a href="#/quests/lambs" data-sub="lambs">Little Lambs</a><a href="#/quests/reconciliation" data-sub="reconciliation">First Reconciliation</a><a href="#/quests/communion" data-sub="communion">First Communion</a><a href="#/quests/story" data-sub="story">The Big Story</a><a href="#/quests/confirmation" data-sub="confirmation">Confirmation</a></div><button type="button" class="btn btn-go sn-go" id="snLessonGo" hidden>Continue</button></div></nav>
+<section class="sec lx-hub" id="lessonsHub" data-view="quests" data-sub="">
   <div class="wrap">
+    <div class="sec-head nv-head">
+      <p class="t-eyebrow dark">From age 3 to Confirmation</p>
+      <h2>Lessons.</h2>
+      <p>Five paths, one for each stage of growing up in the faith. Pick up where you left off, or open any path to see every lesson in it.</p>
+    </div>
+    <div id="lxCont"></div>
+    <h3 class="nv-h">All paths</h3>
+    <div class="nv-doors" id="lxPaths"></div>
+    <h3 class="nv-h">Practice what you learned</h3>
+    <div class="pgrid big">
+      <button type="button" class="ptile review" data-practice="review"><img loading="lazy" decoding="async" src="assets/g/star.webp" alt=""><b>Review game</b><small>A quick quiz from your lessons.</small><i class="go">Play &rsaquo;</i></button>
+      <button type="button" class="ptile" data-practice="steps"><img loading="lazy" decoding="async" src="assets/g/door.webp" alt=""><b>Reconciliation practice</b><small>Put the six parts in order and role-play the whole script.</small><i class="go">Play &rsaquo;</i></button>
+    </div>
+  </div>
+</section>
+<section class="sec fp-lambsec" id="lambsSec" data-view="quests" data-sub="lambs">
+  <div class="wrap">
+    <a class="nv-back" href="#/quests">&lsaquo; All lessons</a>
     <div class="sec-head">
       <p class="t-eyebrow dark">Ages 3 to 5</p>
       <h2>Little Lambs.</h2>
       <p>Wonder moments with Jesus, the Good Shepherd. Each one takes about five minutes, with a grown-up close by: big pictures, words read aloud, a little game, a tiny prayer, and something to do together.</p>
       <p class="fp-lc" id="lambsCount"></p>
     </div>
+    <div class="cx" data-path="lambs"></div>
+    <div class="cx-gpane" data-gpath="lambs" hidden></div>
     <div class="fp-lambs" id="lambsGrid"></div>
   </div>
 </section>
-<section class="sec fp-growsec" id="growSec" data-view="quests">
+<section class="sec fp-growsec" id="growSec" data-view="quests" data-sub="story">
   <div class="wrap">
+    <a class="nv-back" href="#/quests">&lsaquo; All lessons</a>
     <div class="sec-head">
       <p class="t-eyebrow dark">Growing Disciples</p>
       <h2>The Big Story.</h2>
       <p>The whole story of the Bible in ten chapters, from Creation to Jesus to you. See how every promise God made comes true, and find your own place in the story.</p>
       <p class="fp-lc" id="growCount"></p>
     </div>
+    <div class="cx" data-path="story"></div>
+    <div class="cx-gpane" data-gpath="story" hidden></div>
     <div class="fp-tl" id="growGrid"></div>
-    <p class="fp-more"><button type="button" class="tbtn" id="growReview" aria-expanded="false" aria-controls="map">Review the First Reconciliation lessons</button></p>
   </div>
 </section>
-<section class="sec fp-confsec" id="confSec" data-view="quests">
+<section class="sec fp-confsec" id="confSec" data-view="quests" data-sub="confirmation">
   <div class="wrap">
+    <a class="nv-back" href="#/quests">&lsaquo; All lessons</a>
     <div class="sec-head">
       <p class="t-eyebrow dark">Confirmation</p>
       <h2>Be sealed with the Spirit.</h2>
       <p id="confWhen"></p>
       <p class="fp-lc" id="confCount"></p>
     </div>
+    <div class="cx" data-path="confirmation"></div>
+    <div class="cx-gpane" data-gpath="confirmation" hidden></div>
     <div class="fp-confs" id="confGrid"></div>
     <div class="fp-check">
       <h3>Your Confirmation checklist</h3>
@@ -2424,16 +2547,18 @@ body:not(.hm-new) .home>#fpToday,body:not(.hm-new) .home>#lambTile,body:not(.hm-
       <label class="fp-cdone"><input type="checkbox" id="confDone"> I've been confirmed</label>
       <div class="fp-hrs"><span>Service hours</span><button type="button" class="tbtn" id="confMinus" aria-label="One hour less">−</button><b id="confHrs" aria-live="polite">0</b><button type="button" class="tbtn" id="confPlus" aria-label="One hour more">+</button></div>
     </div>
-    <p class="fp-more"><button type="button" class="tbtn" id="confReview" aria-expanded="false" aria-controls="map">Review the First Reconciliation lessons</button></p>
   </div>
 </section>
-<section class="sec" id="map" data-view="quests">
+<section class="sec" id="map" data-view="quests" data-sub="reconciliation">
   <div class="wrap">
+    <a class="nv-back" href="#/quests">&lsaquo; All lessons</a>
     <div class="sec-head">
       <p class="t-eyebrow dark">First Reconciliation</p>
       <h2 id="mapTitle">Your path home.</h2>
       <p>Help Pip the lamb find the way home to the Good Shepherd. Each stop is one lesson. Finish a lesson to move Pip along the path and win a saint card.</p>
     </div>
+    <div class="cx" data-path="reconciliation"></div>
+    <div class="cx-gpane" data-gpath="reconciliation" hidden></div>
     <div class="mapgrid">
       <div class="map" id="mapBox"></div>
       <aside class="side">
@@ -2451,41 +2576,59 @@ body:not(.hm-new) .home>#fpToday,body:not(.hm-new) .home>#lambTile,body:not(.hm-
   </div>
 </section>
 
-<section class="sec fp-fcsec" id="fcSec" data-view="quests">
+<section class="sec fp-fcsec" id="fcSec" data-view="quests" data-sub="communion">
   <div class="wrap">
+    <a class="nv-back" href="#/quests">&lsaquo; All lessons</a>
     <div class="sec-head">
       <p class="t-eyebrow dark">The next sacrament</p>
       <h2>First Communion.</h2>
       <p>Eight short lessons about Jesus in the Eucharist: the Last Supper, how the bread and wine become Jesus, how to receive Him, and why we come back every Sunday. <span id="fcWhen">Children usually receive First Communion in 2nd grade</span>, after First Reconciliation.</p>
       <p class="fp-lc" id="fcCount"></p>
     </div>
+    <div class="cx" data-path="communion"></div>
+    <div class="cx-gpane" data-gpath="communion" hidden></div>
     <div class="fp-list" id="fcGrid"></div>
   </div>
 </section>
+<nav class="subnav" data-view="cards" aria-label="Saint Cards pages"><div class="wrap sn-in"><a class="sn-t" href="#/cards">Saint Cards</a><div class="sn-links"><a href="#/cards" data-sub="">Album and badges</a><a href="#/cards/feasts" data-sub="feasts">Feast days</a></div></div></nav>
 <section class="album" id="album" data-view="cards">
-  <div class="wrap">
-    <div class="album-book">
+  <div class="wrap nv-wrap">
+    <div class="album-book" data-subin="_">
       <div class="album-head">
         <div><h2 id="albumTitle">Your Saint Album.</h2><p><span id="albumHow">These saints needed God's forgiveness too. Finish a lesson to open a card pack.</span> Tap a card to see it big, then flip it to read about the saint.</p></div>
         <div class="album-meter"><span id="albumCount"></span><i id="albumBar"></i></div>
+        <button type="button" class="tbtn nv-jump" id="toBadges">Your badges &darr;</button>
       </div>
       <div class="album-grid" id="albumGrid"></div>
     </div>
-    <div class="badges-box">
+    <div class="badges-box" data-subin="_">
       <div class="badges-head"><h3>Badges</h3><p id="badgeCount"></p></div>
       <div class="badge-grid" id="badgeGrid"></div>
+    </div>
+    <div class="fd-box" data-subin="feasts">
+      <div class="sec-head"><h2>Feast days.</h2><p>Saints the Church remembers in the weeks ahead. On a saint's day, ask them to pray for your family.</p></div>
+      <div id="fdList"></div>
     </div>
   </div>
 </section>
 
+<nav class="subnav" data-view="practice" aria-label="Prayers pages"><div class="wrap sn-in"><a class="sn-t" href="#/practice">Prayers</a><div class="sn-links"><a href="#/practice" data-sub="">Overview</a><a href="#/practice/prayers" data-sub="prayers">Prayers to know</a><a href="#/practice/ways" data-sub="ways">Ways to pray</a><a href="#/practice/games" data-sub="games">Games</a></div></div></nav>
 <section class="sec practicepage" id="practice" data-view="practice">
   <div class="wrap">
-    <div class="sec-head">
-      <h2>Prayers and games.</h2>
-      <p>Learn the prayers every Catholic knows, then say them by heart. There are prayers for every age, and quick games to practice for Mass.</p>
+    <div class="sec-head nv-head" data-subin="_">
+      <h2>Prayers.</h2>
+      <p>Learn the prayers every Catholic knows and say them by heart, find a way to pray for every day and every season, and play quick games to practice for Mass.</p>
     </div>
-    <button type="button" class="nightcard" data-practice="bedtime"><img loading="lazy" decoding="async" src="assets/img/night_sky.jpg" alt=""><span class="nc-copy"><small>Every night</small><b class="bedName">Bedtime Heart Check</b><span>Talk to Jesus about your day, then pray together before sleep.</span><i>Start tonight &rsaquo;</i></span></button>
-    <div class="cmp-row">
+    <div class="sec-head nv-head" data-subin="ways"><h2>Ways to pray.</h2><p>A bedtime talk with Jesus, the Rosary, the Bible, and prayers for the Church's seasons and for confession.</p></div>
+    <div class="sec-head nv-head" data-subin="prayers"><h2>Prayers to know.</h2><p>The prayers every Catholic knows. Learn each one, practice it, then say it by heart.</p></div>
+    <div class="sec-head nv-head" data-subin="games"><h2>Games.</h2><p>Quick games to practice what to do and say at Mass and in confession.</p></div>
+    <button type="button" class="nightcard" data-subin="_ ways" data-practice="bedtime"><img loading="lazy" decoding="async" src="assets/img/night_sky.jpg" alt=""><span class="nc-copy"><small>Every night</small><b class="bedName">Bedtime Heart Check</b><span>Talk to Jesus about your day, then pray together before sleep.</span><i>Start tonight &rsaquo;</i></span></button>
+    <div class="nv-doors" data-subin="_">
+      <a class="cmp-t" href="#/practice/prayers"><img loading="lazy" decoding="async" src="assets/img/pray_ourfather.jpg" alt=""><span><small>Learn by heart</small><b>Prayers to know</b><em>The Our Father, the Hail Mary, and prayers for every age.</em></span></a>
+      <a class="cmp-t" href="#/practice/ways"><img loading="lazy" decoding="async" src="assets/img/rosary_hero.jpg" alt=""><span><small>Every day and every season</small><b>Ways to pray</b><em>The Rosary, the Bible, the Stations, Advent and Lent, and getting ready for confession.</em></span></a>
+      <a class="cmp-t" href="#/practice/games"><img loading="lazy" decoding="async" src="assets/img/mass_church.jpg" alt=""><span><small>Practice</small><b>Games</b><em>Stand, sit, or kneel? What do we say? A review quiz, and confession practice.</em></span></a>
+    </div>
+    <div class="cmp-row" data-subin="ways">
       <button type="button" class="cmp-t" data-practice="rosary"><img loading="lazy" decoding="async" src="assets/img/rosary_hero.jpg" alt=""><span><small>Pray with Mary</small><b>The Rosary</b><em>Learn it, then pray it together, one bead at a time.</em></span></button>
       <button type="button" class="cmp-t" data-practice="bible"><img loading="lazy" decoding="async" src="assets/img/bible_hero.jpg" alt=""><span><small>God's Word</small><b>The Bible guide</b><em>Stories for your age, how to find a verse, and how to pray with it.</em></span></button>
       <button type="button" class="cmp-t" data-practice="massGo"><img loading="lazy" decoding="async" src="assets/img/mass_kneel.jpg" alt=""><span><small>Silent, for church</small><b>Follow along at Mass</b><em>Part by part: what's happening and what to look for.</em></span></button>
@@ -2493,17 +2636,16 @@ body:not(.hm-new) .home>#fpToday,body:not(.hm-new) .home>#lambTile,body:not(.hm-
       <button type="button" class="cmp-t" data-practice="exam"><img loading="lazy" decoding="async" src="assets/img/confession.jpg" data-art="exam_hero" alt=""><span><small>Before confession</small><b>Examine your conscience</b><em>Questions that grow with you. Private: nothing is saved.</em></span></button>
       <button type="button" class="cmp-t" data-practice="path"><img loading="lazy" decoding="async" src="assets/img/candle.jpg" data-art="adv_hero" alt=""><span><small>The Church year</small><b>Advent and Lent paths</b><em>One small step a day for the whole family.</em></span></button>
     </div>
-    <h3 class="pp-h" id="studioH">Prayers</h3>
-    <div class="pgrid big pray4" id="studioGrid">
+    <h3 class="pp-h" id="studioH" data-subin="prayers">The prayers to start with</h3>
+    <div class="pgrid big pray4" id="studioGrid" data-subin="prayers">
       <button type="button" class="ptile" data-practice="ourfather" data-learn="ourfather"><img loading="lazy" decoding="async" class="ph" src="assets/img/pray_ourfather.jpg" alt=""><b>Our Father</b><small>The prayer Jesus taught us.</small><i class="go">Start &rsaquo;</i></button>
       <button type="button" class="ptile" data-practice="hailmary" data-learn="hailmary"><img loading="lazy" decoding="async" class="ph" src="assets/img/pray_hailmary.jpg" alt=""><b>Hail Mary</b><small>The angel's greeting to Mary.</small><i class="go">Start &rsaquo;</i></button>
       <button type="button" class="ptile" data-practice="glorybe" data-learn="glorybe"><img loading="lazy" decoding="async" class="ph" src="assets/img/pray_glorybe.jpg" alt=""><b>Glory Be</b><small>Praise to the Holy Trinity.</small><i class="go">Start &rsaquo;</i></button>
       <button type="button" class="ptile" data-practice="prayer" data-learn="contrition"><img loading="lazy" decoding="async" class="ph" src="assets/img/confession.jpg" alt=""><b>Act of Contrition</b><small>The prayer we say in confession.</small><i class="go">Start &rsaquo;</i></button>
     </div>
-    <h3 class="pp-h">Prayers for every age</h3>
-    <div class="fp-pray" id="fpPray"></div>
-    <h3 class="pp-h fp-games">Games</h3>
-    <div class="pgrid big">
+    <h3 class="pp-h" data-subin="prayers">Prayers for every age</h3>
+    <div class="fp-pray" id="fpPray" data-subin="prayers"></div>
+    <div class="pgrid big" data-subin="games">
       <button type="button" class="ptile review" data-practice="review"><img loading="lazy" decoding="async" src="assets/g/star.webp" alt=""><b>Review game</b><small id="revSub">A quick quiz from your lessons.</small><i class="go">Play &rsaquo;</i></button>
       <button type="button" class="ptile" data-practice="steps"><img loading="lazy" decoding="async" src="assets/g/door.webp" alt=""><b>Reconciliation practice</b><small>Put the six parts in order and role-play the whole script.</small><i class="go">Play &rsaquo;</i></button>
       <button type="button" class="ptile" data-practice="massPose"><img loading="lazy" decoding="async" src="assets/g/ic_kneel.webp" alt=""><b>Stand, sit, or kneel?</b><small>Know what to do at each part of Mass.</small><i class="go">Play &rsaquo;</i></button>
@@ -2512,21 +2654,26 @@ body:not(.hm-new) .home>#fpToday,body:not(.hm-new) .home>#lambTile,body:not(.hm-
   </div>
 </section>
 
+<nav class="subnav" data-view="mass" aria-label="Mass pages"><div class="wrap sn-in"><a class="sn-t" href="#/mass">Mass</a><div class="sn-links"><a href="#/mass" data-sub="">Overview</a><a href="#/mass/walk" data-sub="walk">Walk through it</a></div><button type="button" class="btn btn-go sn-go" data-practice="massGo">At Mass now</button></div></nav>
 <section class="masspage2" id="mass" data-view="mass">
-  <div class="mhero" id="mHero">
+  <div class="mhero" id="mHero" data-subin="_">
     <div class="mhero-sticky">
       <div class="mhero-media"><img class="mvid" src="assets/img/mass_church.jpg" alt="" draggable="false"></div>
       <div class="mhero-copy">
         <p class="mh-eyebrow">Every Sunday</p>
         <h2>Come to Mass.</h2>
-        <p class="mh-sub">Jesus' whole family gathers to listen to God, give thanks, and receive Jesus. Scroll to walk through it, part by part.</p>
+        <p class="mh-sub">Jesus' whole family gathers to listen to God, give thanks, and receive Jesus. Pick a part below to walk through it, step by step.</p>
         <span class="mh-cue" aria-hidden="true"></span>
       </div>
     </div>
   </div>
-  <button type="button" class="mg-cta" data-practice="massGo"><img loading="lazy" decoding="async" src="assets/g/ic_kneel.webp" alt=""><span><b>At Mass right now?</b><small>Follow along quietly: no sounds, one part at a time, with what to look for.</small></span></button>
-  <div class="mstory" id="mStory"></div>
-  <div class="mplay">
+  <button type="button" class="mg-cta" data-subin="_" data-practice="massGo"><img loading="lazy" decoding="async" src="assets/g/ic_kneel.webp" alt=""><span><b>At Mass right now?</b><small>Follow along quietly: no sounds, one part at a time, with what to look for.</small></span></button>
+  <div class="mx-wrap" data-subin="_"><h3 class="nv-h">Walk through the Mass, part by part.</h3></div>
+  <div class="mx-chs" id="mxChs" data-subin="_"></div>
+  <div class="mx-step" id="mxStep" data-subin="walk"></div>
+  <div class="mstory" id="mStory" data-subin="walk"></div>
+  <div class="mx-next" id="mxNext" data-subin="walk"></div>
+  <div class="mplay" data-subin="_">
     <h3>Ready for Sunday?</h3>
     <p>Play a quick game to practice.</p>
     <div class="mplay-row">
@@ -2536,38 +2683,45 @@ body:not(.hm-new) .home>#fpToday,body:not(.hm-new) .home>#lambTile,body:not(.hm-
   </div>
 </section>
 
+<nav class="subnav" data-view="grownups" aria-label="Grown-ups pages"><div class="wrap sn-in"><a class="sn-t" href="#/grownups">Grown-ups</a><div class="sn-links"><a href="#/grownups" data-sub="">Overview</a><a href="#/grownups/asks" data-sub="asks">When your child asks</a><a href="#/grownups/reconciliation" data-sub="reconciliation">Reconciliation guide</a><a href="#/grownups/settings" data-sub="settings">Settings</a></div></div></nav>
 <section class="grown" id="grownups" data-view="grownups">
   <div class="wrap sec">
-    <div class="sec-head">
+    <div class="sec-head" data-subin="_">
       <h2>For grown-ups.</h2>
-      <p>Found grows with your child, from age 3 to Confirmation: wonder moments for little ones, the First Reconciliation lessons, First Communion, the Big Story of the Bible, and Confirmation preparation, with prayers, the Rosary, a Bible guide, the Mass (plus a silent follow-along for church) and a bedtime talk with God for every age. Below is guidance for the child playing now, then details about the First Reconciliation lessons.</p>
+      <p>Found grows with your child, from age 3 to Confirmation: wonder moments for little ones, the First Reconciliation lessons, First Communion, the Big Story of the Bible, and Confirmation preparation, with prayers, the Rosary, a Bible guide, the Mass (plus a silent follow-along for church) and a bedtime talk with God for every age. Start with guidance for the child playing now, then open answers to kids' big questions, the First Reconciliation guide, or Settings.</p>
     </div>
 
-    <div class="gsec fp-gband" id="gBand"></div>
-    <div class="gsec fp-asks">
+    <div class="gsec fp-gband" id="gBand" data-subin="_"></div>
+    <div class="nv-doors" data-subin="_">
+      <a class="cmp-t" href="#/grownups/asks"><img loading="lazy" decoding="async" src="assets/img/night_sky.jpg" alt=""><span><small>Big questions</small><b>When your child asks</b><em id="guAskN">Honest, simple answers, with words to try.</em></span></a>
+      <a class="cmp-t" href="#/grownups/reconciliation"><img loading="lazy" decoding="async" src="assets/img/confession.jpg" alt=""><span><small>First Reconciliation</small><b>The lesson guide</b><em>A 15-minute lesson plan, off-screen missions, lesson-by-lesson notes, and tips for the big day.</em></span></a>
+      <a class="cmp-t" href="#/grownups/settings"><img loading="lazy" decoding="async" src="assets/img/lamb_free.jpg" alt=""><span><small>Settings</small><b>Players and this device</b><em>Grades, your parish's sacrament years, sounds, and a backup of every child's progress.</em></span></a>
+    </div>
+    <div class="sec-head" data-subin="reconciliation"><h2>First Reconciliation guide.</h2><p>Everything for the grown-up who sits beside a child preparing for their first confession.</p></div>
+    <div class="gsec fp-asks" data-subin="asks">
       <h3>When your child asks.</h3>
       <p class="gsub">Honest, simple answers to the big questions kids ask, with words to try and where to read more.</p>
       <div id="gAsks"></div>
     </div>
-    <div class="gsec fp-frg">
+    <div class="gsec fp-frg" data-subin="reconciliation">
       <h3>A 15-minute lesson.</h3>
       <div class="session" id="session"></div>
       <p class="session-note">Follow your parish's schedule, or do about one lesson a week, so all 13 are done before First Reconciliation. Your child can stop partway through a lesson and pick up there next time. Stop while your child still wants more. If attention drops, switch to the off-screen mission instead of pushing through.</p>
     </div>
 
-    <div class="gsec">
+    <div class="gsec" data-subin="reconciliation">
       <h3>Off-screen missions.</h3>
       <p class="gsub">One small thing to do together after each lesson.</p>
       <ol class="missions" id="missions"></ol>
     </div>
 
-    <div class="gsec">
+    <div class="gsec" data-subin="reconciliation">
       <h3>Lesson by lesson.</h3>
       <p class="gsub">What each lesson covers, so you can follow along with your parish program.</p>
       <div class="maptable-wrap"><table class="maptable" id="maptable"></table></div>
     </div>
 
-    <div class="gsec">
+    <div class="gsec" data-subin="reconciliation">
       <h3>Act of Contrition.</h3>
       <div class="prayerbox">
         <div class="tabs" role="group" aria-label="Prayer version">
@@ -2579,7 +2733,7 @@ body:not(.hm-new) .home>#fpToday,body:not(.hm-new) .home>#lambTile,body:not(.hm-
       </div>
     </div>
 
-    <div class="gsec">
+    <div class="gsec" data-subin="reconciliation">
       <h3>Tips for the big day.</h3>
       <div class="tips">
         <div><span class="tn">1</span><b>Call it a celebration.</b><p>Confession is not getting in trouble. Plan a family treat afterward, as a party and not as a prize.</p></div>
@@ -2588,7 +2742,7 @@ body:not(.hm-new) .home>#fpToday,body:not(.hm-new) .home>#lambTile,body:not(.hm-
       </div>
     </div>
 
-    <div class="gsec">
+    <div class="gsec" data-subin="settings">
       <h3>Settings.</h3>
       <p class="tgroup">Players</p>
       <div class="tools" id="plSettings"></div>
@@ -2613,7 +2767,7 @@ body:not(.hm-new) .home>#fpToday,body:not(.hm-new) .home>#lambTile,body:not(.hm-
 
 <div class="quest" id="quest" role="dialog" aria-modal="true" aria-labelledby="qTitle" hidden>
   <div class="qbar">
-    <button class="iconbtn" id="qClose" type="button" aria-label="Back to the map"><img class="gl" src="assets/g/gl_close.webp" alt="" draggable="false"></button>
+    <button class="iconbtn" id="qClose" type="button" aria-label="Close"><img class="gl" src="assets/g/gl_close.webp" alt="" draggable="false"></button>
     <div class="qtitle" id="qTitle"></div>
     <button class="iconbtn qread" id="qRead" type="button" aria-label="Read to me" aria-pressed="false" hidden><img class="gl" src="assets/g/gl_speaker.webp" alt="" draggable="false"></button>
   </div>
@@ -2895,7 +3049,7 @@ function renderAlbum() {
     ? `<button type="button" class="slot-btn" data-i="${i}" aria-label="Open ${esc(SAINTS[i].name)} card">${cardHTML(i, "mini")}</button>`
     : `<div class="slot-btn locked-slot" aria-label="Locked card ${i + 1}">${lockedCardHTML(i)}</div>`).join("");
   $("#albumGrid").querySelectorAll("button.slot-btn").forEach(b => b.onclick = () => openCard(+b.dataset.i));
-  const badge = $("#albumBadge"); if (badge) { badge.textContent = n; badge.classList.toggle("new", n > pget("seen", 0)); }
+  const badge = $("#albumBadge"); if (badge) { badge.textContent = n; badge.style.display = n ? "" : "none"; badge.classList.toggle("new", n > pget("seen", 0)); }
 }
 function markSeen() { const n = SAINTS.filter((_, i) => isCollected(i)).length; if (n > pget("seen", 0)) { pset("seen", n); $("#albumBadge").classList.remove("new"); } }
 
@@ -3740,7 +3894,7 @@ function finishQuest() {
   if (Q && Q.practice) { closeQuest(); const a = awards(); a.length ? setTimeout(() => celebrate(a), 350) : toast(Q.course === "lambs" ? "Wonderful!" : Q.course === "conf" ? "Session complete" : Q.course === "grow" ? "Chapter complete!" : Q.course === "fc" ? "Lesson complete!" : "Great practice!"); return; }
   const first = !isDone(qi), from = current();
   if (first) { mergeSaved("done"); if (!S.done.includes(qi)) S.done.push(qi); pset("done", S.done); }
-  if (location.hash !== "#/quests") goView("quests");
+  if (location.hash !== "#/quests/reconciliation") goView("quests/reconciliation");
   pset("pos", null);
   closeQuest();
   const to = current();
@@ -3748,7 +3902,7 @@ function finishQuest() {
   renderAlbum();
   const a = awards();
   if (first && to !== from) walkToken(from, to, () => { burstAt($("#token"), 70, true); sfx.sparkle(); sfx.win(); toast(`New card in ${whose()} Saint Album!`); setTimeout(() => celebrate(a), 1600); });
-  else { goView("quests"); setTimeout(() => celebrate(a), 500); }
+  else { goView("quests/reconciliation"); setTimeout(() => celebrate(a), 500); }
 }
 function toast(msg) { document.querySelectorAll(".toast").forEach(x => x.remove()); const t = document.createElement("div"); t.className = "toast"; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), Math.min(6000, 2200 + 40 * String(msg).length)); }
 
@@ -5705,6 +5859,7 @@ const AVC = ["#1F6FC4", "#C2532B", "#25804B", "#6A55D6", "#C23F5B", "#8F6A00"];
 const avatar = (pl, k) => `<span class="av" style="--c:${AVC[k % AVC.length]}" aria-hidden="true">${esc((firstChar(pl.name) || "?").toUpperCase())}</span>`;
 const savePlayers = () => store.set("players", PL);
 function refreshPlayer() {
+  if (NAV_OK) { renderLessonsHub(); PATHS.forEach(renderCourse); }
   renderPlayers(); renderSeason(); renderSide(); renderAlbum(); if (doneEl) refreshMap(true); if (typeof renderLearned === "function") renderLearned(); renderGame();
   dayIn.value = S.bigDay || "";
 }
@@ -5756,7 +5911,7 @@ function hmGradeList(k) {
 }
 function hmTo(id, off = 64) { const t = document.getElementById(id); if (t) scrollTo({ top: Math.max(0, t.getBoundingClientRect().top + scrollY - off), behavior: reduce ? "auto" : "smooth" }); }
 function hmPath(k, title) {
-  if (S.pid && band() === k) { goView("quests"); return; }
+  if (S.pid && band() === k) { goView("quests/" + PATH_OF[k]); return; }
   if (S.pid && gradeOf() == null) {
     const s = $("#fpAskG"); hmTo("fpToday");
     if (s) { s.innerHTML = `<option value="">Choose a grade</option>${bandGrades(k).map(([v, n]) => `<option value="${v}">${esc(n)}</option>`).join("")}<option value="all">Show all grades</option>`; setTimeout(() => s.focus({ preventScroll: true }), 300); }
@@ -5826,6 +5981,7 @@ function addPlayer(name) {
   PL.push(pl); savePlayers(); keepData(); renderPlayers.adding = false; loadPlayer(pl.id); refreshPlayer(); sfx.yes(); toast(`Welcome, ${name}!`); return true;
 }
 function askPlayer() {
+  askPlayer.ret = /^#\/quests\/\w/.test(location.hash) ? location.hash : "";
   if (location.hash && location.hash !== "#/home") goView("home");
   setTimeout(() => {
     scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
@@ -5843,7 +5999,7 @@ function askPlayer() {
 })();
 $("#plGrade").innerHTML = `<option value="">Grade or age</option>${gradeOpts(null)}`;
 $("#plGrade").addEventListener("change", e => { if (e.target.value === "all") { hmGradeList(null); e.target.focus(); } });
-$("#plAdd").addEventListener("submit", e => { e.preventDefault(); const gs = $("#plGrade"), g = gs.value; if (gs.dataset.hband && g === "" && $("#plName").value.trim()) { toast("Choose a grade first."); gs.focus(); return; } if (addPlayer($("#plName").value)) { $("#plName").value = ""; hmGradeList(null); if (g !== "") { setGrade(+g); refreshPlayer(); } } });
+$("#plAdd").addEventListener("submit", e => { e.preventDefault(); const gs = $("#plGrade"), g = gs.value; if (gs.dataset.hband && g === "" && $("#plName").value.trim()) { toast("Choose a grade first."); gs.focus(); return; } if (addPlayer($("#plName").value)) { $("#plName").value = ""; hmGradeList(null); if (g !== "") { setGrade(+g); refreshPlayer(); } if (askPlayer.ret) { const r = askPlayer.ret; askPlayer.ret = ""; setTimeout(() => { location.hash = r; }, 700); } } });
 const whoBtn = $("#whoBtn"), whoMenu = $("#whoMenu");
 const menuOpen = on => { whoMenu.hidden = !on; whoBtn.setAttribute("aria-expanded", on); };
 whoBtn.onclick = e => { e.stopPropagation(); sfx.tap(); menuOpen(whoMenu.hidden); };
@@ -5852,7 +6008,7 @@ whoMenu.addEventListener("click", e => {
   const b = e.target.closest("button"); if (!b) return; menuOpen(false);
   if (b.dataset.id) { sfx.select(); switchPlayer(b.dataset.id); }
   else if (b.dataset.act === "add") { goView("home"); renderPlayers.adding = true; renderPlayers(); hmGradeList(null); setTimeout(() => { scrollTo({ top: 0 }); $("#plName").focus(); }, 80); }
-  else goView("grownups");
+  else goView("grownups/settings");
 });
 $("#plSettings").addEventListener("click", e => {
   const b = e.target.closest("button"); if (!b) return;
@@ -5896,8 +6052,6 @@ $("#confSponsor").oninput = e => pset("conf.sponsor", e.target.value.slice(0, 60
 const confHrs = n => { const v = Math.max(0, Math.min(999, pget("conf.service", 0) + n)); pset("conf.service", v); $("#confHrs").textContent = v; sfx.tap(); };
 $("#confDone").onchange = e => { pset("conf.confirmed", e.target.checked); sfx.tap(); renderConf(); };
 $("#confPlus").onclick = () => confHrs(1); $("#confMinus").onclick = () => confHrs(-1);
-$("#growReview").onclick = () => $("#confReview").onclick();
-$("#confReview").onclick = () => { sfx.tap(); document.body.dataset.showmap = document.body.dataset.showmap ? "" : "1"; $("#confReview").textContent = document.body.dataset.showmap ? "Hide the First Reconciliation lessons" : "Review the First Reconciliation lessons"; $("#confReview").setAttribute("aria-expanded", !!document.body.dataset.showmap); $("#growReview").textContent = $("#confReview").textContent; $("#growReview").setAttribute("aria-expanded", !!document.body.dataset.showmap); if (document.body.dataset.showmap) setTimeout(() => $("#map").scrollIntoView({ behavior: reduce ? "auto" : "smooth" }), 60); };
 (function parishSettings() {
   const P = PARISH(), fc = $("#fpFc"), cf = $("#fpConf"); fc.value = P.fc; cf.value = P.conf;
   const save = () => { store.set("parish", { fc: +fc.value, conf: +cf.value }); PL.forEach(pl => { if (store.get(`p.${pl.id}.missionDone`, "") !== today()) store.set(`p.${pl.id}.mtoday`, null); }); sfx.tap(); toast("Parish settings saved"); refreshPlayer(); };
@@ -5995,9 +6149,9 @@ const MASS_CH = { "Before Mass": "We come into God's house and remember our Bapt
   const last = [...document.querySelectorAll(".mbeat")].pop();
   if (last && "IntersectionObserver" in window) {
     const read = new Set(), tm = new Map(), beats = [...document.querySelectorAll(".mbeat")];
-    const seen = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) tm.set(e.target, setTimeout(() => read.add(e.target), 1200)); else clearTimeout(tm.get(e.target)); }), { rootMargin: "-30% 0px -30% 0px" });
+    const seen = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) tm.set(e.target, setTimeout(() => { if (S.pid) pset("mass.read", [...new Set([...pget("mass.read", []), beats.indexOf(e.target)])]); }, 1200)); else clearTimeout(tm.get(e.target)); }), { rootMargin: "-30% 0px -30% 0px" });
     beats.forEach(b => seen.observe(b));
-    const fin = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && S.pid && read.size >= Math.min(14, beats.length - 1)) { fin.disconnect(); seen.disconnect(); const items = activityDone("mass"); if (items.length) setTimeout(() => celebrate(items), 600); } }), { rootMargin: "-45% 0px -45% 0px" }); fin.observe(last); }
+    const fin = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && S.pid && !read.has(S.pid) && pget("mass.read", []).length >= Math.min(14, beats.length - 1)) { read.add(S.pid); const items = activityDone("mass"); if (items.length) setTimeout(() => celebrate(items), 600); } }), { rootMargin: "-45% 0px -45% 0px" }); fin.observe(last); }
 })();
 function renderLearned() {
   const L = pget("learned", []);
@@ -6012,6 +6166,95 @@ $("#albumOpen").onclick = () => goView("cards");
 /* ---------- pages ---------- */
 const VIEWS = ["home", "quests", "cards", "practice", "mass", "grownups"];
 const goView = v => { if (location.hash === "#/" + v) { scrollTo(0, 0); return; } location.hash = "#/" + v; };
+/* ---------- site map: every area has an overview, a section menu, and pages of its own ---------- */
+const NAV_TITLE = document.title;
+addEventListener("resize", () => { const sn = document.querySelector(".subnav.on"); document.documentElement.style.setProperty("--snh", (sn ? sn.offsetHeight : 0) + "px"); });
+const SUBS = { home: [""], quests: ["", "lambs", "reconciliation", "communion", "story", "confirmation"], cards: ["", "feasts"], practice: ["", "prayers", "ways", "games"], mass: ["", "walk"], grownups: ["", "asks", "reconciliation", "settings"] };
+const PATH_OF = { lambs: "lambs", first: "reconciliation", grow: "story", confirm: "confirmation" };
+const PATHS = [
+  { k: "lambs", band: "lambs", title: "Little Lambs", photo: "lamb_free", eb: "Ages 3 to 5", what: "Wonder moments with Jesus, the Good Shepherd, with a grown-up close by.", unit: ["wonder moment", "wonder moments"], list: () => LAMBS, done: () => pget("lambs.done", []).length, next: () => { const id = nextLamb(); return id ? { t: LAMBS.find(x => x.id === id).title, go: () => openLamb(id) } : null; } },
+  { k: "reconciliation", band: "first", title: "First Reconciliation", photo: "confession", eb: "Getting ready for a sacrament", what: "Thirteen lessons with Pip the lamb, to get ready for a first confession.", unit: ["lesson", "lessons"], list: () => QUESTS, done: () => QUESTS.filter((_, i) => isDone(i)).length, next: () => { const i = current(); return i < QUESTS.length ? { t: QUESTS[i].title, go: () => openQuest(i) } : null; } },
+  { k: "communion", band: "first", title: "First Communion", photo: "mass_altar", eb: "The next sacrament", what: "Eight lessons about Jesus in the Eucharist and how to receive Him.", unit: ["lesson", "lessons"], list: () => FC, done: () => pget("fc.done", []).length, next: () => { const id = nextFc(); return id ? { t: FC.find(x => x.id === id).title, go: () => openFc(id) } : null; } },
+  { k: "story", band: "grow", title: "The Big Story", photo: "grow_david", eb: "Growing Disciples", what: "The whole Bible in ten chapters, from Creation to Jesus to you.", unit: ["chapter", "chapters"], list: () => GROW, done: () => pget("grow.done", []).length, next: () => { const id = nextGrow(); return id ? { t: GROW.find(x => x.id === id).title, go: () => openGrow(id) } : null; } },
+  { k: "confirmation", band: "confirm", title: "Confirmation", photo: "conf_pentecost", eb: "Confirmation years", what: "Ten sessions on the Holy Spirit, your saint, your sponsor, and the rite.", unit: ["session", "sessions"], list: () => CONF, done: () => pget("conf.done", []).length, next: () => { const id = nextConf(); return id ? { t: CONF.find(x => x.id === id).title, go: () => openConf(id) } : null; } },
+];
+const pathByK = k => PATHS.find(p => p.k === k);
+const GUIDE_FC = { h: "First Communion: Jesus gives us Himself.", p: ["Read the Last Supper together, and Jesus' words: “This is my body, which will be given for you” (Luke 22:19).", "At Mass, point out when the priest raises the Host and then the chalice. Whisper, “That's Jesus.”", "Practice the walk up at home: a bow of the head, then “Amen” to “The Body of Christ,” receiving on an open hand (one hand resting on the other, like a throne) or on the tongue.", "Explain the Communion fast: nothing to eat or drink for one hour before Communion, except water and medicine.", "After the big day, keep the Sunday habit, and keep going to confession, so their heart stays ready for Jesus."], t: "Try asking: “What will you say to Jesus right after you receive Him?”" };
+// the path this child is on now: in grades 1 to 3, First Communion follows once Reconciliation is done
+function myPath() { const b = band(); if (!S.pid || !b) return null; if (b === "first") return pathByK(pathByK("reconciliation").next() ? "reconciliation" : "communion"); return pathByK(PATH_OF[b]); }
+const plural = (n, u) => `${n} ${n === 1 ? u[0] : u[1]}`;
+function renderLessonsHub() {
+  const c = $("#lxCont"), g = $("#lxPaths"); if (!c || !g) return;
+  const me = myPath();
+  if (me) {
+    const n = me.list().length, d = me.done(), nx = me.next();
+    c.innerHTML = `<div class="lx-cont"><img src="assets/img/${me.photo}.jpg" alt="" loading="lazy"><div class="lx-cb"><small>${esc(named())}'s path</small><h3>${esc(me.title)}</h3><p>${nx ? `Next: ${esc(nx.t)}` : `Every one of these ${me.unit[1]} is done. Well done!`}</p>
+      <span class="cx-bar" aria-hidden="true"><i style="width:${Math.round(d / n * 100)}%"></i></span><p>${d} of ${plural(n, me.unit)}</p>
+      <div class="ctas">${nx ? `<button type="button" class="btn btn-go" id="lxGo">Continue</button>` : ""}<a class="btn btn-soft" href="#/quests/${me.k}">See the whole path</a></div></div></div>`;
+    const b = $("#lxGo"); if (b) b.onclick = () => { sfx.tap(); me.next()?.go(); };
+  } else c.innerHTML = `<p class="lx-none">${S.pid ? `Set ${esc(named())}'s grade on <a href="#/home">Home</a> and Found! will show the path for this stage.` : `Choose any path below, or <a href="#/home">add your child on Home</a> so Found! can suggest the right one.`}</p>`;
+  g.innerHTML = PATHS.map(p => { const n = p.list().length, d = S.pid ? p.done() : 0;
+    return `<a class="cmp-t" href="#/quests/${p.k}"><img loading="lazy" decoding="async" src="assets/img/${p.photo}.jpg" alt="">${me && me.k === p.k ? `<i class="nv-tag">${esc(named())}'s path</i>` : ""}<span><small>${esc(p.k === "lambs" ? "Ages 3 to 5" : bandAges(p.band) || p.eb)}</small><b>${esc(p.title)}</b><em>${esc(p.what)}</em>${d ? `<i class="nv-bar" aria-hidden="true"><i style="width:${Math.round(d / n * 100)}%"></i></i><em class="nv-count">${d} of ${plural(n, p.unit)} done</em>` : `<em class="nv-count">${plural(n, p.unit)}</em>`}</span></a>`; }).join("");
+}
+function renderCourse(p) {
+  const el = document.querySelector(`.cx[data-path="${p.k}"]`); if (!el) return;
+  const n = p.list().length, d = S.pid ? p.done() : 0, nx = S.pid ? p.next() : null, first = !d;
+  const label = !S.pid ? "Start" : nx ? (first ? "Start: " : "Continue: ") + nx.t : "Start again from the beginning";
+  const tab = el.dataset.tab || "lessons";
+  el.innerHTML = `<div class="cx-row"><div class="cx-prog"><span class="cx-bar" aria-hidden="true"><i style="width:${Math.round(d / n * 100)}%"></i></span><span>${d} of ${plural(n, p.unit)} done</span></div>
+    <button type="button" class="btn btn-go cx-go">${esc(label)}</button></div>
+    <div class="cx-tabs" role="tablist" aria-label="${esc(p.title)}"><button type="button" role="tab" id="tl_${p.k}" data-t="lessons" aria-selected="${tab === "lessons"}" aria-controls="lp_${p.k}" tabindex="${tab === "lessons" ? 0 : -1}">${p.unit[1][0].toUpperCase() + p.unit[1].slice(1)}</button><button type="button" role="tab" id="tg_${p.k}" data-t="guide" aria-selected="${tab === "guide"}" aria-controls="gp_${p.k}" tabindex="${tab === "guide" ? 0 : -1}">For grown-ups</button></div>`;
+  el.querySelector(".cx-go").onclick = () => { sfx.tap(); if (!S.pid) { askPlayer(); return; } const x = p.next(); if (x) x.go(); else ({ lambs: () => openLamb(LAMBS[0].id), reconciliation: () => openQuest(0), communion: () => openFc(FC[0].id), story: () => openGrow(GROW[0].id), confirmation: () => openConf(CONF[0].id) })[p.k](); };
+  el.querySelectorAll(".cx-tabs button").forEach(b => b.onclick = () => { sfx.tap(); el.dataset.tab = b.dataset.t; renderCourse(p); el.querySelector(`[data-t="${b.dataset.t}"]`).focus(); });
+  const sec = el.closest("section"), gp = sec.querySelector(".cx-gpane"); gp.id = "gp_" + p.k; gp.setAttribute("role", "tabpanel");
+  const lp = sec.querySelector({ lambs: "#lambsGrid", reconciliation: ".mapgrid", communion: "#fcGrid", story: "#growGrid", confirmation: "#confGrid" }[p.k]); if (lp) { lp.id = lp.id || "lp_" + p.k; lp.setAttribute("role", "tabpanel"); lp.setAttribute("aria-labelledby", "tl_" + p.k); el.querySelector(`#tl_${p.k}`).setAttribute("aria-controls", lp.id); } gp.setAttribute("aria-labelledby", "tg_" + p.k);
+  el.querySelector(".cx-tabs").onkeydown = e => { if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return; e.preventDefault(); el.dataset.tab = tab === "lessons" ? "guide" : "lessons"; renderCourse(p); el.querySelector(`[data-t="${el.dataset.tab}"]`).focus(); };
+  sec.classList.toggle("cx-gmode", tab === "guide"); gp.hidden = tab !== "guide";
+  if (tab === "guide") { const G = p.k === "communion" ? GUIDE_FC : GUIDE[p.band];
+    gp.innerHTML = `${G ? `<p class="t-eyebrow dark">${esc(BANDS[p.band].name)} · ${esc(p.k === "lambs" ? "Ages 3 to 5" : bandAges(p.band))}</p><h3>${esc(G.h)}</h3><ul class="fp-glist">${G.p.map(x => `<li>${esc(x)}</li>`).join("")}</ul><p class="fp-gtry">${esc(G.t)}</p>` : ""}
+      <div class="nv-links">${p.k === "reconciliation" ? `<a class="btn btn-go" href="#/grownups/reconciliation">The full lesson guide</a>` : ""}<a class="btn btn-soft" href="#/grownups/asks">When your child asks</a></div>`; }
+}
+function renderFeasts() {
+  const el = $("#fdList"); if (!el) return;
+  const now = new Date(), M = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], FULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const months = [now.getMonth() + 1, (now.getMonth() + 1) % 12 + 1];
+  el.innerHTML = months.map(m => { const days = Object.keys(SAINT_DAY).filter(k => +k.split("-")[0] === m && (m !== now.getMonth() + 1 || +k.split("-")[1] >= now.getDate())).map(k => +k.split("-")[1]).sort((a, b) => a - b);
+    if (!days.length) return "";
+    return `<h3 class="nv-h">${FULL[m - 1]}</h3><ul class="fd-list">${days.map(d => { const [n, l] = SAINT_DAY[`${m}-${d}`], t = m === now.getMonth() + 1 && d === now.getDate();
+      return `<li${t ? ' class="today"' : ""}><span class="fd-d"><small>${M[m - 1]}</small><b>${d}</b></span><div><h4>${esc(n)}</h4><p>${esc(l[0].toUpperCase() + l.slice(1))}.</p></div></li>`; }).join("")}</ul>`; }).join("");
+}
+function renderMassNav() {
+  const groups = [...new Set(MASS.map(m => m.g))], first = g => MASS.findIndex(m => m.g === g);
+  const ch = $("#mxChs"); if (ch) ch.innerHTML = groups.map((g, i) => { const n = MASS.filter(m => m.g === g).length;
+    return `<a class="cmp-t" href="#/mass/walk/${i + 1}"><img loading="lazy" decoding="async" src="assets/img/${MASS_MEDIA[first(g)]}.jpg" alt=""><span><small>Part ${i + 1} of ${groups.length}</small><b>${esc(g)}</b><em>${esc(MASS_CH[g] || "")}</em><em class="nv-count">${plural(n, ["step", "steps"])}</em></span></a>`; }).join("");
+}
+function navRoute(v, sb, sb2) {
+  document.querySelectorAll(".subnav").forEach(n => { if (n.dataset.view !== v) return;
+    n.querySelectorAll(".sn-links a").forEach(a => { const on = a.dataset.sub === sb; a.toggleAttribute("aria-current", on); if (on) a.setAttribute("aria-current", "page");
+      if (on) { const L = a.parentElement; L.scrollLeft = Math.max(0, a.offsetLeft - (L.clientWidth - a.offsetWidth) / 2); } }); });
+  if (v === "quests") { document.querySelectorAll(".cx").forEach(c => delete c.dataset.tab); renderLessonsHub(); PATHS.forEach(renderCourse);
+    const sg = $("#snLessonGo"), pp = (sb && pathByK(sb)) || myPath(), nx = S.pid && pp && pp.next();
+    sg.hidden = !nx; sg.textContent = sb ? (pp.done() ? "Continue" : "Start") : `Continue ${named()}'s path`; sg.onclick = () => { sfx.tap(); pp.next()?.go(); }; }
+  if (v === "cards" && sb === "feasts") renderFeasts();
+  if (v === "mass" && sb === "walk") {
+    const groups = [...new Set(MASS.map(m => m.g))], k = Math.min(Math.max(parseInt(sb2) || 1, 1), groups.length);
+    document.querySelectorAll("#mStory .mch").forEach((c, i) => c.classList.toggle("sub-off", i !== k - 1));
+    $("#mxStep").innerHTML = `<ol aria-label="Parts of the Mass">${groups.map((g, i) => `<li><a href="#/mass/walk/${i + 1}"${i === k - 1 ? ' aria-current="step"' : ""}><b>${i + 1}</b>${esc(g)}</a></li>`).join("")}</ol>`;
+    const cur = $("#mxStep [aria-current]"); if (cur) { const L = cur.closest("ol"); L.scrollLeft = Math.max(0, cur.parentElement.offsetLeft - L.offsetLeft - 8); }
+    $("#mxNext").innerHTML = `${k > 1 ? `<a class="btn btn-soft" href="#/mass/walk/${k - 1}">&lsaquo; ${esc(groups[k - 2])}</a>` : `<a class="btn btn-soft" href="#/mass">&lsaquo; Mass overview</a>`}${k < groups.length ? `<a class="btn btn-go" href="#/mass/walk/${k + 1}">Next: ${esc(groups[k])} &rsaquo;</a>` : `<a class="btn btn-go" href="#/practice/games">Practice for Sunday &rsaquo;</a>`}`;
+  }
+  const sn = document.querySelector(".subnav.on"); document.documentElement.style.setProperty("--snh", (sn ? sn.offsetHeight : 0) + "px");
+  const AREA = { home: "", quests: "Lessons", cards: "Saint Cards", practice: "Prayers", mass: "Mass", grownups: "Grown-ups" }, lk = sn && sn.querySelector(".sn-links a[aria-current]");
+  const mp = v === "mass" && sb === "walk" ? [...new Set(MASS.map(m => m.g))][(parseInt(sb2) || 1) - 1] : "";
+  document.title = v === "home" ? NAV_TITLE : `${mp ? mp + " · " : sb && lk ? lk.textContent + " · " : ""}${AREA[v]} · Found!`;
+  const ae = document.activeElement; if ((Date.now() - NAV_CLICK < 1500 || (ae && ae !== document.body)) && !(ae && ae.closest("#quest,.pstudio,.gshell"))) setTimeout(() => { const h = [...document.querySelectorAll("[data-view].on h2, [data-view].on h3")].find(x => x.offsetParent && !x.closest(".subnav")); if (h) { h.tabIndex = -1; h.focus({ preventScroll: true }); } }, 0);
+  const an = $("#guAskN"); if (an) an.textContent = `${ASKS.length} honest, simple answers to the big questions, with words to try.`;
+}
+renderMassNav();
+$("#toBadges").onclick = () => { sfx.tap(); hmTo("badgeGrid", (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--snh")) || 0) + ($(".top").offsetHeight || 0) + 70); const h = document.querySelector(".badges-head h3"); if (h) { h.tabIndex = -1; h.focus({ preventScroll: true }); } };
+let NAV_CLICK = 0; document.addEventListener("click", e => { if (e.target.closest && e.target.closest('a[href^="#/"]')) NAV_CLICK = Date.now(); }, true);
+var NAV_OK = true;
+
 /* ---------- Church-year banner: feasts and seasons worked out from the device's date, so it never goes stale ---------- */
 function easterSunday(y) {
   // Gregorian computus (Meeus/Jones/Butcher)
@@ -6220,13 +6463,13 @@ const FAMILY = {
 const GUIDE = {
   lambs: { h: "Ages 3 to 5: wonder before words.", p: ["Keep it short and full of the senses: candles, holy water, a crucifix to kiss, songs. A few minutes is plenty.", "Pray with them, not at them: the Sign of the Cross, grace before meals, and the Angel of God at bedtime.", "Tell the Good Shepherd story again and again. Little ones need to know they are loved before they learn rules.", "Bring them to Mass even when it's hard. Sit where they can see the altar, and whisper what's happening."], t: "Try asking: “What do you think Jesus is doing right now?” Then wonder about it together." },
   first: { h: "Grades 1 to 3: stories and first sacraments.", p: ["Holy Family prepares over two years: a year of faith formation, then First Reconciliation and First Communion in 2nd grade, with a parent session and a Teaching Mass.", "Practice the confession steps at home, and go to Reconciliation yourself, so they see it's for everyone.", "Read Bible stories together, and let them retell the story to you.", "Pray a short bedtime Heart Check together most nights."], t: "Try asking: “When did you feel close to Jesus today?” Then share your own answer." },
-  grow: { h: "Grades 4 to 6: reasons and the big story.", p: ["They can follow the whole story of salvation now. Read a Gospel together, a little each night.", "Give them real roles: leading grace, reading at family prayer, serving at Mass.", "Welcome hard questions. “I don't know, let's find out together” is a great answer.", "These are the years before 13: in one national study, among young people who had left the Church, the median age at which they stopped identifying as Catholic was 13 (Saint Mary's Press and CARA, Going, Going, Gone, 2018). Your own faith, shared out loud, matters most."], t: "Try sharing first: “Here's something I'm praying about this week.” Then ask about theirs." },
+  grow: { h: "The middle grades: reasons and the big story.", p: ["They can follow the whole story of salvation now. Read a Gospel together, a little each night.", "Give them real roles: leading grace, reading at family prayer, serving at Mass.", "Welcome hard questions. “I don't know, let's find out together” is a great answer.", "These are the years before 13: in one national study, among young people who had left the Church, the median age at which they stopped identifying as Catholic was 13 (Saint Mary's Press and CARA, Going, Going, Gone, 2018). Your own faith, shared out loud, matters most."], t: "Try sharing first: “Here's something I'm praying about this week.” Then ask about theirs." },
   confirm: { h: "Confirmation years: ownership and honest questions.", p: ["Holy Family: Pre-Confirmation in 6th grade, then Confirmation (“Purpose”) in 7th, with a retreat and a sponsor form. Check your own parish's timeline.", "Help them choose a sponsor who really lives the faith. It can't be a parent, but you can help them think it through.", "Doubt is normal. Silence is the real danger: talk about your own questions and how you pray.", "Serve together: a food pantry, visiting someone lonely. Faith grows when it's lived.", "Let them see you choose Mass and Reconciliation, not just require it."], t: "Try asking: “What's one question about faith you'd want answered?” Listen more than you talk." },
 };
 function renderGuide() {
   const el = $("#gBand"); if (!el) return;
   const b = band(), G = GUIDE[b];
-  if (!G) { el.innerHTML = `<h3>Guidance for every age.</h3><p class="gsub">Set ${named() ? esc(named()) + "'s" : "your child's"} grade (in Settings below, or on Home) to see what this stage needs, from age 3 to Confirmation.</p>`; return; }
+  if (!G) { el.innerHTML = `<h3>Guidance for every age.</h3><p class="gsub">Set ${named() ? esc(named()) + "'s" : "your child's"} grade (in Grown-ups, Settings, or on Home) to see what this stage needs, from age 3 to Confirmation.</p>`; return; }
   el.innerHTML = `<p class="t-eyebrow dark">For ${esc(named() || "your child")} · ${esc(BANDS[b].name)}</p><h3>${esc(G.h)}</h3><ul class="fp-glist">${G.p.map(x => `<li>${esc(x)}</li>`).join("")}</ul><p class="fp-gtry">${esc(G.t)}</p>
     <p class="fp-gnote">Research on families finds that parents' own lived faith is the strongest influence on whether children keep the faith (Smith and Adamczyk, <i>Handing Down the Faith</i>, 2021).</p>`;
 }
@@ -6308,7 +6551,7 @@ function renderSeason() {
     if (c.lesson === "album") { goView("cards"); return; }
     const i = c.lesson - 1;
     if (canOpen(i)) openQuest(i);
-    else { goView("quests"); toast(`Lesson ${c.lesson} opens after you finish Lesson ${current() + 1}.`); }
+    else { goView("quests/reconciliation"); toast(`Lesson ${c.lesson} opens after you finish Lesson ${current() + 1}.`); }
   };
   el.onclick = open; el.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } };
 }
@@ -6332,11 +6575,17 @@ renderSeason();
   const tabs = [...document.querySelectorAll(".tabnav a")];
   tabs.forEach(t => t.addEventListener("click", () => sfx.tap()));
   const route = () => {
-    let v = (location.hash.match(/^#\/(\w+)/) || [])[1];
+    const hm = location.hash.match(/^#\/(\w+)(?:\/([\w-]+))?(?:\/([\w-]+))?/) || [];
+    let v = hm[1], sb = (hm[2] || "").toLowerCase(), sb2 = hm[3] || "";
     const AKA = { prayers: "practice", pray: "practice", lessons: "quests", saints: "cards", album: "cards", parents: "grownups", grownup: "grownups" };
-    if (v && AKA[v.toLowerCase()]) { history.replaceState(null, "", "#/" + AKA[v.toLowerCase()]); v = AKA[v.toLowerCase()]; }
+    if (v && AKA[v.toLowerCase()]) { v = AKA[v.toLowerCase()]; history.replaceState(null, "", "#/" + v + (sb ? "/" + sb + (sb2 ? "/" + sb2 : "") : "")); }
     if (!VIEWS.includes(v)) v = "home";
-    document.querySelectorAll("[data-view]").forEach(sec => sec.classList.toggle("on", sec.dataset.view === v));
+    if (!(SUBS[v] || [""]).includes(sb)) { if (sb) history.replaceState(null, "", "#/" + v); sb = ""; sb2 = ""; }
+    if (v === "mass" && sb === "walk") { const k = Math.min(Math.max(parseInt(sb2) || 1, 1), new Set(MASS.map(m => m.g)).size); if (String(k) !== sb2) { sb2 = String(k); history.replaceState(null, "", "#/mass/walk/" + k); } }
+    document.body.dataset.sub = sb;
+    document.querySelectorAll("[data-view]").forEach(sec => sec.classList.toggle("on", sec.dataset.view === v && (sec.dataset.sub == null || sec.dataset.sub === sb)));
+    document.querySelectorAll(`[data-view="${v}"] [data-subin]`).forEach(x => x.classList.toggle("sub-off", !x.dataset.subin.split(" ").includes(sb || "_")));
+    navRoute(v, sb, sb2);
     tabs.forEach(t => t.toggleAttribute("aria-current", t.dataset.tab === v));
     document.body.dataset.page = v;
     scrollTo({ top: 0, behavior: "instant" });
@@ -6344,7 +6593,7 @@ renderSeason();
     // heavy pictures for a page load only when that page opens
     if (v === "mass") document.querySelectorAll("#mass video[data-poster]").forEach(x => { x.poster = x.dataset.poster; x.removeAttribute("data-poster"); });
     if (v === "quests") document.querySelectorAll("image[data-href]").forEach(x => { x.setAttribute("href", x.dataset.href); x.removeAttribute("data-href"); });
-    if (v === "quests" && doneEl) { fitSide(); refreshMap(true); }
+    if (v === "quests" && sb === "reconciliation" && doneEl) { fitSide(); refreshMap(true); }
     document.querySelectorAll(`[data-view="${v}"] .rv:not(.in)`).forEach(e => { if (e.getBoundingClientRect().top < innerHeight) e.classList.add("in"); });
   };
   const hdr = () => document.documentElement.style.setProperty("--hdr", $(".top").offsetHeight + "px");
