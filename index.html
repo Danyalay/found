@@ -285,7 +285,7 @@ img.flip{transform:scaleX(-1)}
 .tc-top{display:flex;align-items:center;gap:2.4cqw;padding:1.6cqw 1.8cqw 0}
 .tc-no{flex:none;width:10.5cqw;height:10.5cqw;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:5.6cqw;color:#5A3A08;background:radial-gradient(circle at 35% 30%,#FFF6CF,#E7B33C 62%,#A97515);box-shadow:0 .7cqw 0 rgba(0,0,0,.22)}
 .tc-series{font-weight:700;font-size:4.4cqw;color:#fff;text-shadow:0 .4cqw 0 rgba(0,0,0,.25)}
-.tc-sym{margin-left:auto;width:11.5cqw;flex:none}
+.tc-sym{margin-left:auto;width:11.5cqw;flex:none;background:#fff;border-radius:50%;padding:1.2cqw;box-shadow:0 .5cqw 1.4cqw rgba(0,0,0,.25)}
 .tc-sym img{display:block;width:100%;height:auto;filter:drop-shadow(0 .8cqw .8cqw rgba(0,0,0,.25))}
 .tc-window{flex:1;min-height:0;margin:0 1.8cqw;position:relative;overflow:hidden;border-radius:40cqw 40cqw 4cqw 4cqw;background:radial-gradient(circle at 50% 36%,#FFF8DC,color-mix(in srgb,var(--c2) 60%,#fff) 42%,var(--c1) 100%);box-shadow:inset 0 0 0 1.1cqw rgba(255,255,255,.6),inset 0 -3cqw 5cqw rgba(0,0,0,.2)}
 .tc-burst{position:absolute;left:50%;top:40%;width:190%;aspect-ratio:1;translate:-50% -50%;background:repeating-conic-gradient(rgba(255,255,255,.3) 0 6deg,transparent 6deg 18deg);-webkit-mask:radial-gradient(circle,#000 18%,transparent 62%);mask:radial-gradient(circle,#000 18%,transparent 62%);animation:spin 50s linear infinite}
@@ -735,7 +735,7 @@ footer{background:var(--bg);font-size:13px;line-height:1.5}
   .tabnav a img{width:30px}
   .tabnav a[aria-current]{background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent);box-shadow:none}
   .cardcount{position:absolute;top:2px;left:calc(50% + 6px);min-width:20px;height:20px;font-size:12px;padding:0 5px;box-shadow:0 0 0 2px var(--hero-bg)}
-  .cardcount.new::after{top:-3px;right:-3px}
+  .cardcount.new::after{top:-6px;right:-11px;width:10px;height:10px}
   .top #navGo{margin-left:auto}
   body{padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))}
   .toast{bottom:calc(100px + env(safe-area-inset-bottom,0px))}
@@ -872,9 +872,9 @@ h1,h2,h3{font-family:var(--sf);font-weight:600;letter-spacing:-.015em}
 @media (max-width:760px){.tile-grid{grid-template-columns:1fr}}
 .t-media{margin-top:auto;padding-top:36px;width:100%;display:flex;justify-content:center;align-items:flex-end}
 .t-media.wide img{width:min(100%,980px);aspect-ratio:16/9;object-fit:cover;border-radius:18px 18px 0 0;display:block}
-.t-media.card{padding-bottom:0}
-.t-media.card a{display:block;width:min(64vw,250px);transform:translateY(18%);transition:transform .5s cubic-bezier(0,0,.5,1)}
-.t-media.card a:hover{transform:translateY(10%)}
+.t-media.card{padding-bottom:34px;padding-top:24px}
+.t-media.card a{display:block;width:min(60vw,240px);transform:none;transition:transform .5s cubic-bezier(0,0,.5,1)}
+.t-media.card a:hover{transform:translateY(-4px)}
 .t-media.card .tcard{width:100%}
 .t-media.icons{gap:6%;padding-bottom:44px}
 .t-media.icons img{width:24%;max-width:120px;filter:drop-shadow(0 12px 16px rgba(0,0,0,.12))}
@@ -1238,7 +1238,7 @@ a.ptile{text-decoration:none;color:inherit}
 .mhero-sticky{position:sticky;top:var(--hdr,62px);height:calc(100svh - var(--hdr,62px));overflow:hidden;display:grid;place-items:center;--p:0}
 .mhero{--p:0}
 .mhero-media{position:absolute;inset:0;overflow:hidden}
-.mhero-media video{width:100%;height:100%;object-fit:cover;display:block}
+.mhero-media video,.mhero-media img{width:100%;height:100%;object-fit:cover;display:block}
 .mhero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 30%,rgba(0,0,0,.62) 100%)}
 .mhero-copy{position:relative;z-index:2;align-self:end;margin-bottom:max(110px,14svh);padding:0 22px;text-align:center;color:#fff;max-width:640px;opacity:calc(1 - var(--p) * 2.2);transform:translate3d(0,calc(var(--p) * -80px),0);will-change:transform,opacity}
 .mh-eyebrow{margin:0 0 6px;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#FFD66B}
@@ -1258,7 +1258,7 @@ a.ptile{text-decoration:none;color:inherit}
 .mstage{position:absolute;inset:0}
 .mmedia{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease;display:block;will-change:opacity}
 .mmedia.on{opacity:1}
-.mch-beats{position:relative;z-index:1;display:grid;gap:18svh;padding:22svh 0 26svh}
+.mch-beats{position:relative;z-index:1;display:grid;gap:7svh;padding:5svh 0 46svh}
 .mbeat{position:relative;background:var(--card);border-radius:24px;padding:20px 20px 18px;box-shadow:0 10px 30px rgba(0,0,0,.08);transform:translateY(30px) scale(.97);transition:transform .7s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
 .mbeat.in{transform:none}
 .mbeat.now{box-shadow:0 0 0 3px #FFD66B,0 16px 40px rgba(0,0,0,.14)}
@@ -1497,7 +1497,7 @@ a.ptile{text-decoration:none;color:inherit}
 .stage.more{-webkit-mask-image:linear-gradient(#000 calc(100% - 100px),transparent calc(100% - 28px));mask-image:linear-gradient(#000 calc(100% - 100px),transparent calc(100% - 28px))}
 body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0px));bottom:auto;padding:10px 18px;font-size:15px}
 .wd{padding:0 2px;margin:0 -2px}
-.tc-series{text-shadow:0 1px 3px rgba(0,0,0,.6),0 0 1px rgba(0,0,0,.7)}
+.tc-series{text-shadow:none;background:#1E2440;color:#fff;padding:.9cqw 2.6cqw;border-radius:99px;line-height:1.1}
 @media (max-width:600px){.cv-count{margin:56px 0 -6px}}
 @media (max-height:900px) and (max-width:600px){.gs-slots{gap:6px}.gs-slots li{min-height:38px;padding:6px 12px;font-size:15px}.gs-slots li::before{width:22px;height:22px;font-size:12px}.gs-chips button{padding:10px 14px;font-size:15px}}
 :root[data-theme="dark"] .badge.got small{color:#FFD66B}
@@ -1650,7 +1650,7 @@ body:has(#quest:not([hidden])) .toast{top:calc(10px + env(safe-area-inset-top,0p
 
 /* read-aloud buttons */
 .pr-read{min-width:220px;padding:12px 22px;border-radius:999px;background:color-mix(in srgb,#0066CC 12%,var(--card));color:var(--ink);font-weight:700;font-size:15px}
-.night-read{position:absolute;z-index:3;top:calc(14px + env(safe-area-inset-top,0px));right:72px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.14);font-size:20px;line-height:44px;text-align:center}
+.night-read{position:absolute;z-index:3;top:calc(14px + env(safe-area-inset-top,0px));right:72px;width:44px;height:44px;border-radius:50%;background:#F4F1FF;font-size:20px;line-height:44px;text-align:center}
 .fp-read{margin-left:6px;width:34px;height:34px;border-radius:50%;background:var(--card);font-size:16px;line-height:34px;vertical-align:middle;box-shadow:0 2px 6px rgba(0,0,0,.08)}
 
 /* ---------- Little Lambs ---------- */
@@ -1672,9 +1672,16 @@ body[data-band="lambs"] #map{display:none!important}
 @media (hover:hover){.fp-lamb{transition:transform .25s}.fp-lamb:hover{transform:translateY(-3px)}}
 .fp-taps{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;max-width:520px}
 .fp-tap{width:clamp(72px,20vw,96px);aspect-ratio:1;border-radius:50%;background:var(--card);box-shadow:0 6px 16px rgba(0,0,0,.1);display:grid;place-items:center;transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
-.fp-tap img{width:66%;height:auto;opacity:.38;filter:grayscale(.85);transition:opacity .3s,filter .3s}
+.fp-tap img{width:66%;height:auto;opacity:1;filter:none;transition:transform .3s}
+.fp-tap:not(.on){box-shadow:0 0 0 3px color-mix(in srgb,#FFD66B 55%,transparent),0 6px 16px rgba(0,0,0,.12)}
+.fp-tap:not(.on) img{animation:tapbob 2.4s ease-in-out infinite}
+.fp-tap:nth-child(2) img{animation-delay:.4s}.fp-tap:nth-child(3) img{animation-delay:.8s}.fp-tap:nth-child(4) img{animation-delay:1.2s}
+@keyframes tapbob{50%{transform:translateY(-5px)}}
+@media (prefers-reduced-motion:reduce){.fp-tap img{animation:none!important}}
 .fp-tap.on{transform:scale(1.08);background:color-mix(in srgb,#FFD66B 40%,var(--card))}
 .fp-tap.on img{opacity:1;filter:none}
+.fp-tap.on::after{content:"✓";position:absolute;right:4px;bottom:4px;width:24px;height:24px;border-radius:50%;background:#2E7D4F;color:#fff;font-size:15px;font-weight:900;line-height:24px;text-align:center}
+.fp-tap{position:relative}
 .fp-signx{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,auto);gap:10px;width:min(100%,420px)}
 .fp-sx{display:grid;gap:2px;justify-items:center;padding:12px 8px;border-radius:20px;background:var(--card);box-shadow:0 5px 14px rgba(0,0,0,.08);color:var(--ink);text-align:center}
 .fp-sx b{font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft)}
@@ -1824,7 +1831,7 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
 .comp{position:fixed;inset:0;z-index:96;display:flex;flex-direction:column;--cbg:#16123A;--cfoot:#1A1442;--cink:#F6F1FF;--csub:rgba(246,241,255,.78);--ccard:#241E55;--cline:rgba(255,255,255,.14);--cacc:#FFD98A;--cbtn1:#FFE6A6;--cbtn2:#FFC85C;--cbtnink:#2A1E00;background:var(--cbg);color:var(--cink);font-family:var(--round,"Nunito",ui-rounded,system-ui,sans-serif)}
 .comp[hidden]{display:none}
 .comp.rosary{--cbg:linear-gradient(180deg,#1C1446 0%,#2A1650 60%,#3A1A52 100%);--cfoot:#2A1650;--ccard:#2B2160;--cacc:#FFC6D9}
-.comp.massgo{--cbg:#0B0B12;--cfoot:#0B0B12;--cink:#E9E2D0;--csub:rgba(233,226,208,.72);--ccard:#16161F;--cline:rgba(233,226,208,.12);--cacc:#C9B27A;--cbtn1:#3A3424;--cbtn2:#2E291C;--cbtnink:#F1E7C8}
+.comp.massgo{--cbg:#0B0B12;--cfoot:#0B0B12;--cink:#E9E2D0;--csub:rgba(233,226,208,.72);--ccard:#16161F;--cline:rgba(233,226,208,.12);--cacc:#C9B27A;--cbtn1:#7A6531;--cbtn2:#655327;--cbtnink:#FFF6DC}
 .comp.bible{--cbg:#FBF6EC;--cfoot:#FBF6EC;--cink:#2B2218;--csub:#5E5245;--ccard:#FFFFFF;--cline:rgba(43,34,24,.12);--cacc:#8A4F0F;--cbtn1:#93560F;--cbtn2:#7A450B;--cbtnink:#fff}
 .cp-top{flex:none;display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top,0px)) 14px 10px;border-bottom:1px solid var(--cline);background:inherit}
 .comp.bible .cp-top{background:#FBF6EC}
@@ -1858,7 +1865,7 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
 .cp-btn.ghost{background:transparent;color:var(--cink);border:1.5px solid var(--cline);box-shadow:none}
 .cp-btn.sm{min-height:48px;padding:10px 18px;font-size:16px}
 .cp-btn:active{transform:scale(.97)}
-.cp-btn[disabled]{opacity:.35}
+.cp-btn[disabled]{opacity:1;background:var(--ccard);color:var(--csub);box-shadow:none;outline:1.5px dashed var(--cline);outline-offset:-1.5px;cursor:default}
 .cp-nav{position:sticky;bottom:0;z-index:2;display:flex;gap:10px;margin:6px -18px 0;padding:12px 18px calc(10px + env(safe-area-inset-bottom,0px));background:var(--cfoot);border-top:1px solid var(--cline)}.cp-nav .cp-btn{flex:1;min-width:0}.cp-nav .cp-btn.ghost{flex:0 1 auto}
 .cp-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .cp-chips button{min-height:44px;padding:8px 14px;border-radius:999px;background:transparent;border:1.5px solid var(--cline);color:var(--cink);font:inherit;font-weight:700;font-size:15px}
@@ -1958,9 +1965,9 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
 @media (min-width:900px){.cp-body{padding-top:28px}}
 /* entry tiles */
 .cmp-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px;margin:0 0 26px}
-.cmp-t{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:180px;border-radius:24px;overflow:hidden;text-align:left;color:#fff;background:#1C1446;box-shadow:0 14px 30px rgba(20,16,60,.22);border:0;padding:0}
-.cmp-t img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.cmp-t span{position:relative;display:flex;flex-direction:column;gap:2px;margin:12px;padding:12px 14px;border-radius:16px;background:#141032}
+.cmp-t{position:relative;display:flex;flex-direction:column;justify-content:flex-start;min-height:0;border-radius:24px;overflow:hidden;text-align:left;color:#fff;background:#1C1446;box-shadow:0 14px 30px rgba(20,16,60,.22);border:0;padding:0}
+.cmp-t img{position:static;display:block;width:100%;aspect-ratio:16/9;height:auto;object-fit:cover;object-position:50% 30%}
+.cmp-t span{position:relative;display:flex;flex-direction:column;gap:2px;margin:0;padding:14px 16px 16px;border-radius:0;background:#141032;flex:1}
 .cmp-t small{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#FFD98A}
 .cmp-t b{font-size:21px;line-height:1.15}.cmp-t em{font-style:normal;font-size:14px;opacity:.86;line-height:1.35}
 .mg-cta{display:flex;align-items:center;gap:14px;width:min(100% - 32px,680px);margin:0 auto 28px;padding:16px 18px;border-radius:22px;background:#0B0B12;color:#E9E2D0;text-align:left;border:1px solid rgba(233,226,208,.18)}
@@ -1983,10 +1990,10 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
 .st-vr p.r{margin-top:6px;color:var(--cacc)}
 .st-pr p:last-child{font-weight:700}
 .st-fri b{display:block;margin-bottom:4px;color:var(--cacc)}
-.st-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px}
+.st-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:8px;grid-auto-rows:1fr}
 .st-grid button{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-height:76px;padding:10px 12px;border-radius:16px;background:var(--ccard);border:1px solid var(--cline);color:var(--cink);font:inherit;text-align:left}
 .st-grid b{font-size:22px;line-height:1;color:var(--cacc)}
-.st-grid small{font-size:12.5px;line-height:1.25;color:var(--csub);font-weight:700;overflow-wrap:anywhere}
+.st-grid small{font-size:13px;line-height:1.25;color:var(--csub);font-weight:700;overflow-wrap:normal;word-break:normal;hyphens:manual}
 .ex-priv b{display:block;margin-bottom:2px;color:var(--cacc)}
 .ex-c{font-style:normal;font-weight:700}
 .ex-qs{display:grid;gap:10px}
@@ -2057,6 +2064,26 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
 .ask-say{padding:12px 14px;border-radius:14px;background:var(--card)}
 .ask-say b{display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
 .ask-b .ask-ref{font-size:14px;color:var(--ink-soft);margin:0}
+/* text never sits straight on a picture: solid panels (QA sweep 2026-11-04) */
+.ps-hcopy{left:12px;right:12px;bottom:12px;padding:18px 20px 18px;border-radius:22px;background:#15182E;max-width:640px}
+.ps-hero::after{display:none}
+.mhero-copy{background:#101426;border-radius:26px;padding:22px 24px 24px;margin-left:14px;margin-right:14px}
+.mhero-media::after{display:none}
+.nscene{background:#161B4A;border-radius:28px;padding:24px 20px;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.n-h{text-shadow:none}
+/* Home tiles: no tall empty gap above the picture */
+.tile{min-height:0}
+.t-media{padding-top:28px}
+/* tap targets: at least 44px for small fingers */
+.btn,.nextbtn,#qBack,#navGo,.who,.fp-tabs button,.fp-read,.grown .tools button,.grown .tools a{min-height:44px}
+.fp-read{min-width:44px}
+#navGo{padding-inline:20px}
+/* iPad: keep Back and Next close to the lesson instead of the far corners */
+@media (min-width:700px) and (max-width:1100px){.qfoot{max-width:760px;width:100%;margin-inline:auto}}
+/* one look for every disabled Next button, in every theme */
+#quest .nextbtn[disabled]{background:color-mix(in srgb,var(--ink) 12%,var(--card))!important;color:var(--ink-soft)!important;box-shadow:none!important;opacity:1}
+/* grown-ups: line up the 15-minute lesson cards */
+.session div{justify-content:flex-start}
 .cp-body>.cp-nav{margin-top:auto}
 .cp-chips.big button[aria-checked="true"],.cp-chips.big button[aria-pressed="true"]{background:var(--cacc);border-color:var(--cacc);color:#1E1430}
 .pa-hd b{color:var(--cink)}
@@ -2246,7 +2273,7 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
     <p class="t-sub">What it means, and what you do.</p>
     <p class="t-call">Every part of the Mass, from the holy water to “Go in peace.” When to stand, sit, and kneel, and what to say.</p>
     <div class="ctas"><a class="btn btn-go" href="#/mass">Explore the Mass</a><button type="button" class="btn btn-soft" data-practice="massGo">Follow along at Mass</button></div>
-    <div class="t-media wide"><video data-auto src="assets/vid/mass_church.mp4" data-poster="assets/img/mass_church.jpg" muted loop playsinline preload="none" aria-label="Families at Sunday Mass"></video></div>
+    <div class="t-media wide"><img loading="lazy" decoding="async" src="assets/img/mass_church.jpg" alt="Families at Sunday Mass" draggable="false"></div>
   </div>
   <div class="tile tile-night rv">
     <p class="t-eyebrow">Every night</p>
@@ -2396,7 +2423,7 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
 <section class="masspage2" id="mass" data-view="mass">
   <div class="mhero" id="mHero">
     <div class="mhero-sticky">
-      <div class="mhero-media"><video class="mvid" data-auto src="assets/vid/mass_hero.mp4" data-poster="assets/img/mass_church.jpg" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+      <div class="mhero-media"><img class="mvid" src="assets/img/mass_church.jpg" alt="" draggable="false"></div>
       <div class="mhero-copy">
         <p class="mh-eyebrow">Every Sunday</p>
         <h2>Come to Mass.</h2>
@@ -2528,7 +2555,7 @@ body[data-band="lambs"] #fcSec,body[data-band="grow"] #fcSec,body[data-band="con
 (() => {
 /* ---------- art ---------- */
 const INK = "#3B2F45";
-const GEN = { hands: "hands", bubbles: "bubbles", rock: "rock", ewe: "pip", scroll: "tablets", candle: "candle", sparkles: "sparkles", stars: "star", glass: "glass", door: "door", pray: "pray", heartsp: "heart", heart: "heart", heartmend: "heartmend", boat: "canoe", canoe: "canoe", cross: "cross", lily: "lily", fire: "fire", book: "bible", ear: "stole", church: "church", zip: "zipface", trophy: "trophy", sun: "sun", noentry: "noentry", lock: "lock", house: "house", dove: "dove", cloud: "cloud", check: "check", calendar: "calendar", brain: "brain", water: "shell", bread: "chalice", ring: "rings", open: "oil", album: "cards", moon2: "moon", staff: "staff", gift: "gift", quests: "quests", flower: "daisy", herb: "buttercup", island: "island", pipsit: "pipsit", pipjump: "pipjump" };
+const GEN = { hands: "hands", bubbles: "bubbles", rock: "rock", ewe: "pip", scroll: "tablets", candle: "candle", sparkles: "sparkles", stars: "star", glass: "glass", door: "door", pray: "pray", heartsp: "heart", heart: "heart", heartmend: "heartmend", boat: "canoe", canoe: "canoe", cross: "cross", lily: "lily", fire: "fire", book: "bible", ear: "stole", church: "church", zip: "zipface", trophy: "trophy", sun: "sun", noentry: "noentry", lock: "lock", house: "house", dove: "dove", cloud: "cloud", check: "check", calendar: "calendar", brain: "brain", water: "shell", bread: "chalice", ring: "rings", open: "oil", album: "cards", moon2: "moon", staff: "staff", gift: "gift", quests: "quests", flower: "daisy", herb: "buttercup", island: "island", pipsit: "pipsit", pipjump: "pipjump", ic_bread: "ic_bread", rings: "rings", chalice: "chalice", daisy: "daisy", shell: "shell" };
 ["ic_bells","ic_bread","ic_rosary","ic_shamrock","bible","book","brain","buttercup","calendar","candle","canoe","cards","chalice","check","church","cloud","cross","daisy","door","dove","fire","gift","glass","heart","heartmend","house","island","lily","lock","moon","noentry","oil","pip","pipjump","pipsit","pray","quests","rings","shell","sparkles","staff","star","stole","sun","tablets","trophy","zipface"].forEach(n => { if (!(n in GEN)) GEN[n] = n; });
 GEN.book = "book";
 const A = n => GEN[n] ? `assets/g/${GEN[n]}.webp` : `assets/${n}.png`;
@@ -2673,7 +2700,7 @@ const SAINTS = [
    lived: "1474 to 1548", home: "Near Mexico City, Mexico", feast: "December 9", patron: "Indigenous peoples",
    fact: "His cloak, called a tilma, still hangs in the Basilica of Our Lady of Guadalupe in Mexico City, almost 500 years later.",
    story: "In December 1531, on Tepeyac hill, Mary appeared to Juan Diego, dressed like a princess of his own people. She asked him to tell the bishop to build a church there. The bishop wanted a sign, so Mary had Juan Diego gather roses, blooming in winter, in his cloak. When he opened it in front of the bishop, the roses tumbled out, and Mary's picture was on the cloak! We call her Our Lady of Guadalupe." },
- { name: "St. Martin de Porres", lv: "1579–1639", hm: "Lima, Peru", fun: "Even stray cats and dogs came to him.", pic: "saint_martin", vid: 0, c1: "#333B4F", c2: "#C9D0E2", sym: "hands", power: "Kind helper",
+ { name: "St. Martin de Porres", lv: "1579–1639", hm: "Lima, Peru", fun: "Even stray cats and dogs came to him.", pic: "saint_martin", vid: 0, c1: "#333B4F", c2: "#C9D0E2", sym: "heart", power: "Kind helper",
    lived: "1579 to 1639", home: "Lima, Peru", feast: "November 3", patron: "People of mixed race, barbers, and everyone working for justice",
    fact: "He was the first Black saint of the Americas. Pope John XXIII made him a saint in 1962.",
    story: "Martin's father was a Spanish nobleman and his mother was a freed Black woman from Panama. Some people looked down on Martin because of his skin color, but he served everyone. He joined the Dominicans, swept floors, cared for the sick, and fed the poor of Lima. He even took care of stray cats and dogs. His broom became his symbol: no job is too small when you do it for Jesus." },
@@ -3099,7 +3126,7 @@ const MASS = [
   { g: "Jesus in the Eucharist", name: "The Great Amen", icon: "heartsp", pose: "kneel", means: "Everyone answers with a big “Amen!”, which means “Yes, I believe it!”", doo: "Stay kneeling and sing or say Amen with your whole heart." },
   { g: "Communion", name: "Our Father", img: "pray_ourfather", pose: "stand", means: "We pray the prayer Jesus taught us, together as one family.", doo: "Stand and pray the Our Father with everyone." },
   { g: "Communion", name: "Sign of Peace", img: "mass_peace", pose: "stand", means: "We share Jesus' peace with the people around us.", doo: "Shake hands with the people near you and smile.", say: ["Peace be with you.", "Peace be with you."], who: "Your neighbor says" },
-  { g: "Communion", name: "Lamb of God", img: "shepherd_carry", pose: "stand", means: "We sing to Jesus, the Lamb of God who takes away our sins and gives us peace. Then the priest holds up the Host and we tell Jesus we need Him.", doo: "Stand and sing. When the song ends, kneel and answer with everyone.", say: ["Behold the Lamb of God, behold him who takes away the sins of the world. Blessed are those called to the supper of the Lamb.", "Lord, I am not worthy that you should enter under my roof, but only say the word and my soul shall be healed."] },
+  { g: "Communion", name: "Lamb of God", img: "mass_altar", pose: "stand", means: "We sing to Jesus, the Lamb of God who takes away our sins and gives us peace. Then the priest holds up the Host and we tell Jesus we need Him.", doo: "Stand and sing. When the song ends, kneel and answer with everyone.", say: ["Behold the Lamb of God, behold him who takes away the sins of the world. Blessed are those called to the supper of the Lamb.", "Lord, I am not worthy that you should enter under my roof, but only say the word and my soul shall be healed."] },
   { g: "Communion", name: "Holy Communion", img: "mass_blessing", pose: "stand", means: "Jesus comes to us in Holy Communion. After your First Communion, you'll receive Him too!", doo: "Walk up with your family. Before your First Communion, cross your arms over your chest. The priest may bless you, or you can quietly pray: “Jesus, come into my heart.” After your First Communion, you'll bow your head before you receive Jesus.", say: ["The Body of Christ.", "Amen."] },
   { g: "Communion", name: "Quiet thank you", img: "mass_kneel", pose: "kneel", means: "Jesus is very close to us now. It's a special time to talk to Him.", doo: "Kneel or sit quietly. Thank Jesus, and tell Him what's on your heart." },
   { g: "We go out", name: "Go in peace", img: "mass_sent", pose: "stand", means: "The priest blesses us and sends us out to love and serve God all week.", doo: "Make the Sign of the Cross for the blessing. Bend your knee toward the tabernacle on your way out.", say: ["Go in peace.", "Thanks be to God."] },
@@ -3433,17 +3460,20 @@ function burst(x, y, n = 60, big = false) {
   if (!raf) raf = requestAnimationFrame(tick);
 }
 function heartPath(c, r) { c.beginPath(); c.moveTo(0, r * .9); c.bezierCurveTo(-r * 1.6, -r * .2, -r * .6, -r * 1.4, 0, -r * .4); c.bezierCurveTo(r * .6, -r * 1.4, r * 1.6, -r * .2, 0, r * .9); c.fill(); }
-function tick() {
-  const d = devicePixelRatio; ctx.clearRect(0, 0, fx.width, fx.height);
+let fxLast = 0;
+function tick(now) {
+  // time-based, so confetti always fades in about 1.5 s, even when the browser slows its frames down
+  const d = devicePixelRatio, k = fxLast ? Math.min(6, Math.max(.25, (now - fxLast) / 16.7)) : 1; fxLast = now; ctx.clearRect(0, 0, fx.width, fx.height);
   parts = parts.filter(p => p.life > 0);
   parts.forEach(p => {
-    p.vy += .22; p.vx *= .99; p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.life -= .011;
+    p.vy += .22 * k; p.vx *= Math.pow(.99, k); p.x += p.vx * k; p.y += p.vy * k; p.rot += p.vr * k; p.life -= .011 * k;
     ctx.save(); ctx.globalAlpha = Math.max(p.life, 0); ctx.translate(p.x * d, p.y * d); ctx.rotate(p.rot); ctx.fillStyle = p.c;
     if (p.heart) { ctx.fillStyle = "#FF5C7A"; heartPath(ctx, p.r * d * 1.3); } else ctx.fillRect(-p.r * d / 2, -p.r * d / 4, p.r * d, p.r * d / 2);
     ctx.restore();
   });
-  raf = parts.length ? requestAnimationFrame(tick) : 0;
+  raf = parts.length ? requestAnimationFrame(tick) : 0; if (!raf) fxLast = 0;
 }
+const fxClear = () => { parts = []; if (raf) { cancelAnimationFrame(raf); raf = 0; } fxLast = 0; ctx.clearRect(0, 0, fx.width, fx.height); };
 const burstAt = (el, n, big) => { const r = el.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height / 2, n, big); };
 
 /* ---------- map ---------- */
@@ -3542,7 +3572,7 @@ let run = { seen: new Set(), right: 0, total: 0, combo: 0, scored: false };
 const newRun = () => { run = { seen: new Set(), right: 0, total: 0, combo: 0, scored: false }; };
 const stage = $("#stage"), nextBtn = $("#qNext"), hint = $("#hint");
 function openQuest(i) {
-  if (!S.pid) { askPlayer(); return; } $("#quest").classList.remove("teen");
+  if (!S.pid) { askPlayer(); return; } fxClear(); $("#quest").classList.remove("teen");
   Q = QUESTS[i]; qi = i; newRun();
   scenes = [...(Q.remember || []).map((r, k) => ({ t: "quiz", tag: "Remember?", q: r.q, opts: r.opts, yes: "You remembered!" })), ...Q.scenes];
   const pos = pget("pos", null);
@@ -3566,7 +3596,7 @@ function syncInert() {
   if (top && !top.contains(document.activeElement)) { top.tabIndex = -1; setTimeout(() => top.focus({ preventScroll: true }), 60); }
 }
 OVL.forEach(id => { const o = document.getElementById(id); if (o) new MutationObserver(syncInert).observe(o, { attributes: true, attributeFilter: ["hidden"] }); });
-function closeQuest() { hush(); renderLambs(); renderConf(); renderGrow(); renderFc(); setTimeout(() => $("#quest").classList.remove("teen"), 400); sfx.close(); $("#quest").hidden = true; document.body.style.overflow = ""; }
+function closeQuest() { hush(); fxClear(); renderLambs(); renderConf(); renderGrow(); renderFc(); setTimeout(() => $("#quest").classList.remove("teen"), 400); sfx.close(); $("#quest").hidden = true; document.body.style.overflow = ""; }
 function fitScene(el) {
   if (!el || !el.isConnected) return;
   el.style.marginTop = "0px";
@@ -3676,7 +3706,7 @@ R.reflect = (el, s) => {
 };
 function nextConf() { const d = pget("conf.done", []); return (CONF.find(x => !d.includes(x.id)) || null)?.id || null; }
 function openConf(id) {
-  if (!S.pid) { askPlayer(); return; }
+  if (!S.pid) { askPlayer(); return; } fxClear();
   const C = CONF.find(x => x.id === id); if (!C) return;
   const n = CONF.indexOf(C) + 1;
   Q = { title: C.title, bg: "#1C2340", practice: 1, saint: null, key: "conf." + id, course: "conf", cid: id, teen: 1 }; qi = -1; newRun();
@@ -3705,7 +3735,7 @@ function renderConf() {
 const GROW = [{"id": "creation", "title": "In the Beginning", "photo": "night_sky", "era": "Old Testament", "scenes": [{"t": "story", "text": "God made everything out of nothing, out of love: light, sky, sea, land, plants, animals, and finally people, made in His own image.", "sm": 1, "photo": "night_sky", "ref": "Genesis 1; Catechism 296, 355"}, {"t": "story", "text": "God gave Adam and Eve a beautiful garden and His friendship. They could choose to love Him back, because love has to be free.", "sm": 1, "photo": "lamb_free", "ref": "Genesis 2"}, {"t": "story", "text": "But they listened to the tempter and disobeyed God. That first sin, original sin, broke our friendship with God and brought sin and death into the world.", "sm": 1, "photo": "eden", "ref": "Genesis 3; Catechism 397–400"}, {"t": "story", "text": "God didn't give up on us. Right away He promised that someone would one day crush the serpent's head. The whole Bible is the story of God keeping that promise.", "sm": 1, "icon": "star", "ref": "Genesis 3:15; Catechism 410"}, {"t": "quiz", "q": "What is original sin?", "opts": [["The first sin of Adam and Eve, which wounded all of human nature", 1], ["A sin you commit by accident", 0], ["A sin only grown-ups can commit", 0]], "yes": "Right. And Baptism washes original sin away."}, {"t": "done", "practice": 1, "msg": "Chapter 1 of 10 complete!"}]}, {"id": "noah", "title": "Noah and the Rainbow", "photo": "grow_noah", "era": "Old Testament", "scenes": [{"t": "story", "text": "People turned away from God more and more. But Noah walked with God, and God told him to build an ark.", "sm": 1, "photo": "grow_noah", "ref": "Genesis 6–8"}, {"t": "story", "text": "God saved Noah, his family, and the animals through the waters of the flood.", "sm": 1, "photo": "grow_noah"}, {"t": "story", "text": "Afterward God made a covenant, a sacred promise, with Noah and every living creature, and set a rainbow in the sky as its sign.", "sm": 1, "photo": "grow_noah", "ref": "Genesis 9:8–17"}, {"t": "story", "text": "The Church sees the flood as a picture of Baptism: God saves us through water and gives us a brand-new start.", "sm": 1, "icon": "shell", "ref": "1 Peter 3:20–21; Catechism 1219"}, {"t": "quiz", "q": "What was the sign of God's covenant with Noah?", "opts": [["A rainbow", 1], ["A star", 0], ["Tablets of stone", 0]], "yes": "Yes! Every rainbow is a reminder of God's promise."}, {"t": "done", "practice": 1, "msg": "Chapter 2 of 10 complete!"}]}, {"id": "abraham", "title": "Abraham, Father of Faith", "photo": "night_sky", "era": "Old Testament", "scenes": [{"t": "story", "text": "God called Abram to leave his home and travel to a land He would show him. Abram trusted God and went.", "sm": 1, "photo": "night_sky", "ref": "Genesis 12:1–4"}, {"t": "story", "text": "God brought him outside and said: “Look up at the sky and count the stars, if you can. Just so will your descendants be.” Abram believed.", "sm": 1, "photo": "night_sky", "ref": "Genesis 15:5–6"}, {"t": "story", "text": "God changed his name to Abraham, “father of many.” Through his family, every nation on earth would be blessed.", "sm": 1, "icon": "star", "ref": "Genesis 17:5; 22:18"}, {"t": "story", "text": "We call Abraham our father in faith, because he trusted God completely, even when he couldn't see how God would keep His promise.", "sm": 1, "icon": "heart", "ref": "Catechism 145–146"}, {"t": "quiz", "q": "Why is Abraham called our father in faith?", "opts": [["He trusted God completely", 1], ["He built the ark", 0], ["He was the first king", 0]], "yes": "Exactly. Faith means trusting God even before you see."}, {"t": "done", "practice": 1, "msg": "Chapter 3 of 10 complete!"}]}, {"id": "moses", "title": "Moses and the Exodus", "photo": "grow_moses", "era": "Old Testament", "scenes": [{"t": "story", "text": "Abraham's family grew into a whole nation, the Israelites. But in Egypt they were forced to work as slaves.", "sm": 1, "icon": "house", "ref": "Exodus 1"}, {"t": "story", "text": "God spoke to Moses from a burning bush and sent him to lead His people to freedom.", "sm": 1, "icon": "fire", "ref": "Exodus 3"}, {"t": "story", "text": "On the night of the first Passover, each family sacrificed a lamb and marked their door with its blood, and death passed over their homes.", "sm": 1, "icon": "door", "ref": "Exodus 12"}, {"t": "story", "text": "Then God opened a path through the Red Sea, and His people walked out of slavery on dry ground.", "sm": 1, "photo": "grow_moses", "ref": "Exodus 14"}, {"t": "story", "text": "At Mount Sinai God gave the Ten Commandments and made a covenant with them: “You shall be my treasured possession… a kingdom of priests, a holy nation.”", "sm": 1, "photo": "tablets", "ref": "Exodus 19:5–6; 20:1–17"}, {"t": "quiz", "q": "On the first Passover, what saved the Israelites' homes?", "opts": [["The blood of a lamb on the door", 1], ["A rainbow", 0], ["A wall of water", 0]], "yes": "Yes. Remember that lamb: Jesus is the Lamb of God!"}, {"t": "done", "practice": 1, "msg": "Chapter 4 of 10 complete!"}]}, {"id": "david", "title": "David the King", "photo": "grow_david", "era": "Old Testament", "scenes": [{"t": "story", "text": "God chose David, the youngest son of Jesse and a shepherd boy from Bethlehem, to be king. God doesn't look at how big you are; He looks at your heart.", "sm": 1, "photo": "grow_david", "ref": "1 Samuel 16:7, 13"}, {"t": "story", "text": "With faith in God and a single stone from his sling, young David defeated the giant Goliath.", "sm": 1, "icon": "rock", "ref": "1 Samuel 17"}, {"t": "story", "text": "King David wrote many of the Psalms, prayer songs we still pray at every Mass, like “The Lord is my shepherd.”", "sm": 1, "photo": "grow_david", "ref": "Psalm 23"}, {"t": "story", "text": "When David sinned, he was truly sorry, and God forgave him. Psalm 51 is his prayer of sorrow: “Create in me a clean heart, O God.”", "sm": 1, "icon": "heartmend", "ref": "2 Samuel 12; Psalm 51:12"}, {"t": "story", "text": "God promised David that a King from his family would reign forever. That King is Jesus, the Son of David.", "sm": 1, "icon": "star", "ref": "2 Samuel 7:12–16; Luke 1:32–33"}, {"t": "quiz", "q": "What did God promise David?", "opts": [["A King from his family would reign forever", 1], ["He would never make a mistake", 0], ["He would build the ark", 0]], "yes": "Right. And that promise came true in Jesus."}, {"t": "done", "practice": 1, "msg": "Chapter 5 of 10 complete!"}]}, {"id": "prophets", "title": "The Prophets Point to Jesus", "photo": "candle", "era": "Old Testament", "scenes": [{"t": "story", "text": "Again and again God's people forgot Him. So God sent prophets, messengers who called people back to Him and kept hope alive.", "sm": 1, "icon": "fire", "ref": "Catechism 64, 702"}, {"t": "read", "tag": "Promises from the prophet Isaiah", "lines": ["“Behold, the virgin shall be with child and bear a son, and they shall name him Emmanuel,” which means “God is with us.” (Isaiah 7:14, as Matthew 1:23 quotes it)", "“For a child is born to us, a son is given to us… Wonder-Counselor, God-Hero, Father-Forever, Prince of Peace.” (Isaiah 9:5)", "“He was pierced for our sins… by his wounds we were healed.” (Isaiah 53:5)"], "icon": "book"}, {"t": "story", "text": "The last and greatest prophet was John the Baptist. When he saw Jesus, he pointed and said: “Behold, the Lamb of God.”", "sm": 1, "icon": "shell", "ref": "John 1:29"}, {"t": "match", "tag": "Who's who", "prompt": "Match each person to God's promise.", "pairs": [["Noah", "The rainbow covenant with every living thing"], ["Abraham", "Descendants as many as the stars"], ["Moses", "The Law, written on tablets of stone"], ["David", "A King from his family, forever"]]}, {"t": "done", "practice": 1, "msg": "Chapter 6 of 10 complete!"}]}, {"id": "jesus", "title": "Jesus, the Promise Kept", "photo": "lamb_nativity", "era": "New Testament", "scenes": [{"t": "story", "text": "When the time was right, God the Son became man: Jesus, born of the Virgin Mary. He is truly God and truly man.", "sm": 1, "photo": "lamb_nativity", "ref": "Galatians 4:4; Catechism 464"}, {"t": "story", "text": "Jesus taught about the Kingdom of God, healed the sick, forgave sinners, and chose twelve apostles.", "sm": 1, "photo": "shepherd"}, {"t": "story", "text": "He gave His life on the cross as the true Lamb of God, who takes away the sins of the world.", "sm": 1, "photo": "crosshill", "ref": "John 1:29; Catechism 613"}, {"t": "story", "text": "On the third day He rose from the dead. Every promise, from the garden to the prophets, comes true in Jesus.", "sm": 1, "photo": "lamb_tomb", "ref": "Luke 24:44; 2 Corinthians 1:20"}, {"t": "order", "tag": "The Big Story", "prompt": "Put the story in order. Tap the first one!", "steps": ["Creation", "Noah", "Abraham", "Moses", "David", "The prophets", "Jesus"], "done": "That's the story of salvation!"}, {"t": "done", "practice": 1, "msg": "Chapter 7 of 10 complete!"}]}, {"id": "church", "title": "The Church Is Born", "photo": "conf_pentecost", "era": "New Testament", "scenes": [{"t": "story", "text": "Fifty days after Easter, at Pentecost, the Holy Spirit came upon the apostles, and the Church was born.", "sm": 1, "photo": "conf_pentecost", "ref": "Acts 2"}, {"t": "story", "text": "Jesus told Peter: “You are Peter, and upon this rock I will build my church… I will give you the keys to the kingdom of heaven.” The Pope is Peter's successor today.", "sm": 1, "photo": "keys", "ref": "Matthew 16:18–19; Catechism 881–882"}, {"t": "read", "tag": "The Church is…", "lines": ["One: one Lord, one faith, one Baptism.", "Holy: Jesus makes her holy, and calls every one of us to be a saint.", "Catholic: it means “universal,” for every person, everywhere, in every age.", "Apostolic: built on the apostles, and led by their successors, the bishops."], "icon": "church", "ref": "Catechism 811"}, {"t": "quiz", "q": "Who is the successor of St. Peter today?", "opts": [["The Pope", 1], ["Every bishop", 0], ["The oldest priest", 0]], "yes": "Yes. The Pope is the Bishop of Rome, the successor of Peter."}, {"t": "done", "practice": 1, "msg": "Chapter 8 of 10 complete!"}]}, {"id": "mass", "title": "The Mass Connects It All", "photo": "mass_altar", "era": "Today", "scenes": [{"t": "story", "text": "Remember the Passover lamb? At the Last Supper, on Passover, Jesus took bread and wine and said: “This is my body… This is my blood.”", "sm": 1, "photo": "mass_altar", "ref": "Matthew 26:26–28; Luke 22:19–20"}, {"t": "story", "text": "Jesus is the new Passover Lamb. At every Mass His one sacrifice on the cross is made present, and we receive Him in Holy Communion.", "sm": 1, "photo": "mass_altar", "ref": "Catechism 1340, 1366–1367"}, {"t": "read", "tag": "The two main parts of the Mass", "lines": ["Liturgy of the Word: God speaks to us in the readings and the Gospel.", "Liturgy of the Eucharist: the bread and wine become the Body and Blood of Jesus, and we receive Him."], "icon": "chalice", "ref": "Catechism 1346"}, {"t": "story", "text": "That's why we pray at Mass: “Lamb of God, you take away the sins of the world, have mercy on us.” The whole Big Story comes together at the altar.", "sm": 1, "photo": "mass_kneel"}, {"t": "quiz", "q": "What are the two main parts of the Mass?", "opts": [["The Liturgy of the Word and the Liturgy of the Eucharist", 1], ["The songs and the homily", 0], ["Standing and kneeling", 0]], "yes": "Right! God speaks to us, then feeds us."}, {"t": "done", "practice": 1, "msg": "Chapter 9 of 10 complete!"}]}, {"id": "me", "title": "Your Place in the Story", "photo": "hero", "era": "Today", "scenes": [{"t": "story", "text": "The Big Story isn't over. The Church is still writing new chapters, through saints in every age, and through you.", "sm": 1, "photo": "hero", "ref": "Catechism 2013"}, {"t": "read", "tag": "How you live your chapter", "lines": ["Faith, hope and love: the three theological virtues God gives you.", "Prudence, justice, fortitude and temperance: the four cardinal virtues you practice.", "Prayer every day, Mass every Sunday, and Reconciliation when you need it.", "Serving others, especially people who are poor, sick or lonely."], "icon": "heart", "ref": "Catechism 1804–1829"}, {"t": "story", "text": "Someday God will make all things new. The story ends in heaven, with God forever: the happy ending God promised from the very beginning.", "sm": 1, "icon": "sun", "ref": "Revelation 21:1–5"}, {"t": "reflect", "q": "What do you want your chapter of the story to be about?", "tag": "Your chapter"}, {"t": "done", "practice": 1, "msg": "You know the whole Big Story. Now go live your chapter!"}]}];
 function nextGrow() { const d = pget("grow.done", []); return (GROW.find(x => !d.includes(x.id)) || null)?.id || null; }
 function openGrow(id) {
-  if (!S.pid) { askPlayer(); return; }
+  if (!S.pid) { askPlayer(); return; } fxClear();
   const G = GROW.find(x => x.id === id); if (!G) return;
   const n = GROW.indexOf(G) + 1;
   $("#quest").classList.remove("teen");
@@ -3728,7 +3758,7 @@ function renderGrow() {
 const FC = [{"id": "bread", "title": "Jesus Feeds His People", "icon": "gift", "scenes": [{"t": "story", "text": "Long ago, God's people were hungry in the desert. Every morning God sent bread from heaven, called manna.", "icon": "bread", "ref": "Exodus 16:4, 14–15"}, {"t": "story", "text": "One day a huge crowd followed Jesus. A boy shared five loaves and two fish, and Jesus fed about five thousand people!", "icon": "gift", "ref": "John 6:1–14"}, {"t": "story", "text": "Then Jesus said: “I am the bread of life. Whoever comes to me will never hunger.”", "photo": "shepherd", "ref": "John 6:35"}, {"t": "quiz", "q": "What did Jesus call Himself?", "opts": [["The bread of life", 1, "bread"], ["The king of the desert", 0, "sun"]], "yes": "Yes! Jesus is the bread of life."}, {"t": "done", "practice": 1, "msg": "First Communion lesson 1 of 8 done!"}]}, {"id": "supper", "title": "The Last Supper", "icon": "chalice", "scenes": [{"t": "story", "text": "The night before He died, Jesus ate a special meal with His apostles: the Last Supper.", "photo": "mass_altar", "ref": "Luke 22:14"}, {"t": "story", "text": "He took bread and said: “This is my body, which will be given for you.” Then He took the cup and said: “This cup is the new covenant in my blood.”", "photo": "mass_altar", "ref": "Luke 22:19–20"}, {"t": "story", "text": "He told them: “Do this in memory of me.” That's why the priest does what Jesus did, at every Mass.", "photo": "mass_altar", "ref": "Luke 22:19; Catechism 1337, 1341"}, {"t": "quiz", "q": "What did Jesus say about the bread at the Last Supper?", "opts": [["“This is my body”", 1, "bread"], ["“This is just bread”", 0, "cloud"]], "yes": "Yes. Jesus gave us Himself."}, {"t": "done", "practice": 1, "msg": "First Communion lesson 2 of 8 done!"}]}, {"id": "present", "title": "Jesus Is Really Here", "icon": "church", "scenes": [{"t": "story", "text": "At Mass the priest says Jesus' own words over the bread and wine. By the power of the Holy Spirit, they become the Body and Blood of Jesus.", "photo": "mass_altar", "ref": "Catechism 1333, 1353"}, {"t": "story", "text": "They still look and taste like bread and wine. But they are really, truly Jesus. The Church calls this change transubstantiation.", "icon": "chalice", "ref": "Catechism 1376"}, {"t": "story", "text": "After Mass, Jesus stays in the tabernacle. The red candle beside it tells us He's there, so we genuflect when we pass.", "photo": "mass_kneel", "ref": "Catechism 1378, 1418"}, {"t": "quiz", "q": "After the priest says Jesus' words, what is on the altar?", "opts": [["Jesus' Body and Blood", 1, "chalice"], ["Only a picture of Jesus", 0, "cloud"]], "yes": "Yes! Jesus is really there."}, {"t": "done", "practice": 1, "msg": "First Communion lesson 3 of 8 done!"}]}, {"id": "mass", "title": "Two Tables at Mass", "icon": "book", "scenes": [{"t": "story", "text": "The Mass has two main parts, like two tables where God feeds us.", "photo": "mass_church", "ref": "Catechism 1346"}, {"t": "story", "text": "At the table of the Word, God speaks to us in the readings and the Gospel. We listen with our hearts.", "photo": "mass_readings"}, {"t": "story", "text": "At the table of the Eucharist, the bread and wine become Jesus, and He feeds us with Himself in Holy Communion.", "photo": "mass_altar"}, {"t": "order", "tag": "In order", "prompt": "Put these parts of Mass in order. Tap the first one!", "steps": ["The readings and Gospel", "Bringing up the gifts", "The bread and wine become Jesus", "Holy Communion"], "done": "That's the Mass!"}, {"t": "done", "practice": 1, "msg": "First Communion lesson 4 of 8 done!"}]}, {"id": "ready", "title": "Getting Ready for Jesus", "icon": "heart", "scenes": [{"t": "story", "text": "Before your First Communion, you'll make your First Reconciliation, so your heart is clean and ready for Jesus.", "photo": "confession", "ref": "Catechism 1385; Code of Canon Law 914"}, {"t": "story", "text": "We also fast for one hour before Communion: no food or drinks except water or medicine. Our tummies wait so our hearts can get ready.", "icon": "candle", "ref": "Code of Canon Law 919"}, {"t": "story", "text": "Most of all, come with faith and love. Tell Jesus: “I believe you are here. I love you.”", "icon": "heart"}, {"t": "quiz", "q": "How long do we fast before Holy Communion?", "opts": [["One hour", 1, "calendar"], ["All day", 0, "sun"]], "yes": "Right: one hour, with water and medicine allowed."}, {"t": "done", "practice": 1, "msg": "First Communion lesson 5 of 8 done!"}]}, {"id": "receive", "title": "How to Receive Jesus", "icon": "pray", "scenes": [{"t": "story", "text": "Walk up with your hands folded. When it's your turn, bow your head to Jesus.", "photo": "mass_blessing"}, {"t": "story", "text": "The priest or minister holds up the Host and says: “The Body of Christ.” You answer: “Amen.” That means “Yes, I believe!”", "photo": "mass_blessing", "ref": "Catechism 1396"}, {"t": "story", "text": "You may receive on your tongue, or in your hands: left hand on top of your right, like a little throne. Put the Host in your mouth right away, before you walk back.", "icon": "hands"}, {"t": "story", "text": "Sometimes the cup is offered too. Bow, hear “The Blood of Christ,” say “Amen,” and take a small sip. Jesus is fully present in the Host alone, so receiving the cup is your choice.", "icon": "chalice", "ref": "Catechism 1390"}, {"t": "order", "tag": "Your turn", "prompt": "Put the steps in order. Tap the first one!", "steps": ["Walk up with hands folded", "Bow your head", "Hear “The Body of Christ” and say “Amen”", "Receive Jesus", "Go back and pray quietly"], "done": "You're ready!"}, {"t": "done", "practice": 1, "msg": "First Communion lesson 6 of 8 done!"}]}, {"id": "thanks", "title": "Thank You, Jesus", "icon": "sparkles", "scenes": [{"t": "story", "text": "After Communion, Jesus is with you in a special way. Go back to your pew, kneel or sit quietly, and talk to Him.", "photo": "mass_kneel"}, {"t": "story", "text": "Tell Jesus thank you, tell Him what's on your heart, and ask Him to help someone you love.", "icon": "heart"}, {"t": "story", "text": "“Jesus, thank you for coming to me. I love you. Stay close to me always. Amen.”", "icon": "pray", "tag": "Let's pray"}, {"t": "done", "practice": 1, "msg": "First Communion lesson 7 of 8 done!"}]}, {"id": "sunday", "title": "Every Sunday", "icon": "calendar", "scenes": [{"t": "story", "text": "Jesus rose on a Sunday. That's why Sunday is the Lord's Day, and Catholics go to Mass every Sunday.", "photo": "mass_church", "ref": "Catechism 2174, 2180"}, {"t": "story", "text": "Jesus is waiting for you at every Mass, not just on your First Communion day. Each time you receive Him, He helps you grow in love.", "photo": "mass_altar", "ref": "Catechism 1391–1394"}, {"t": "story", "text": "Your First Communion day is a big celebration! Families often wear something special, take pictures, and have a party, because Jesus is coming to you.", "photo": "mass_sent"}, {"t": "quiz", "q": "When do Catholics go to Mass?", "opts": [["Every Sunday", 1, "calendar"], ["Only on Christmas", 0, "star"]], "yes": "Yes! Every Sunday, and on holy days too."}, {"t": "done", "practice": 1, "msg": "You're ready to receive Jesus!"}]}];
 function nextFc() { const d = pget("fc.done", []); return (FC.find(x => !d.includes(x.id)) || null)?.id || null; }
 function openFc(id) {
-  if (!S.pid) { askPlayer(); return; }
+  if (!S.pid) { askPlayer(); return; } fxClear();
   const F = FC.find(x => x.id === id); if (!F) return;
   const n = FC.indexOf(F) + 1;
   $("#quest").classList.remove("teen");
@@ -3750,7 +3780,7 @@ function renderFc() {
 }
 function nextLamb() { const d = pget("lambs.done", []); return (LAMBS.find(x => !d.includes(x.id)) || null)?.id || null; }
 function openLamb(id) {
-  if (!S.pid) { askPlayer(); return; } $("#quest").classList.remove("teen");
+  if (!S.pid) { askPlayer(); return; } fxClear(); $("#quest").classList.remove("teen");
   const L = LAMBS.find(x => x.id === id); if (!L) return;
   Q = { title: L.title, bg: L.bg, practice: 1, saint: null, key: "lamb." + id, course: "lambs", read: 1, lid: id }; qi = -1; newRun();
   scenes = L.scenes; si = 0;
@@ -4028,7 +4058,7 @@ const CMDS = [
   ["You shall not covet your neighbor's wife.", "Keep a pure heart: let your thoughts be good and loving.", "Do I keep my eyes and thoughts on good things?"],
   ["You shall not covet your neighbor's goods.", "Be thankful for what you have, instead of wanting what others have.", "Did I feel jealous of what someone else has?"]];
 // a picture for each prayer motion
-const gIcon = g => /head no/i.test(g) ? "noentry" : /heart/i.test(g) ? "heart" : /heaven/i.test(g) ? "cloud" : /arms (wide|up)|whole world/i.test(g) ? "sun" : /angel|wave/i.test(g) ? "dove" : /baby/i.test(g) ? "star" : /fist/i.test(g) ? "fire" : "pray";
+const gIcon = g => /head no/i.test(g) ? "noentry" : /heart/i.test(g) ? "heart" : /heaven/i.test(g) ? "cloud" : /arms (wide|up)|whole world/i.test(g) ? "sun" : /angel|wave/i.test(g) ? "dove" : /baby/i.test(g) ? "star" : /fist/i.test(g) ? "hands" : "pray";
 const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
 R.cmds = el => {
   const nums = side => [0, 1, 2, 3, 4].map(k => side * 5 + k).map(i => `<b class="tabn" data-i="${i}">${ROMAN[i]}</b>`).join("");
@@ -4243,7 +4273,7 @@ const NIGHT = [
   { k: "feelings", icon: "cloud", name: "Big feelings", qs: ["When I felt angry today, what did I do?", "Did I hit, yell, or slam things?", "Did I stop and take a breath when I was upset?", "Did I hurt someone when I was grumpy?", "Is something worrying me that I can give to Jesus?", "Did I say sorry after I calmed down?"] },
   { k: "god", icon: "pray", name: "God and prayer", qs: ["Did I talk to God today?", "Did I say God's name with love and respect?", "Did I thank God for something good?", "Did I pay attention at prayer time?", "Did I think about Jesus today?", "What would I like to ask Jesus for tonight?"] },
   { k: "thanks", icon: "sun", name: "A thankful heart", qs: ["What made me happy today?", "Who was kind to me today?", "Did I say thank you to the people who helped me?", "What beautiful thing that God made did I see today?", "Did I grumble or complain a lot?", "What am I most thankful for tonight?"] },
-  { k: "help", icon: "flower", name: "Helping hands", qs: ["Did I help someone today?", "Did I clean up my own things?", "Did I do my chores without being asked twice?", "Did I help someone who was sad or hurt?", "Did I say yes when someone needed me?", "How can I help my family tomorrow?"] },
+  { k: "help", icon: "hands", name: "Helping hands", qs: ["Did I help someone today?", "Did I clean up my own things?", "Did I do my chores without being asked twice?", "Did I help someone who was sad or hurt?", "Did I say yes when someone needed me?", "How can I help my family tomorrow?"] },
   { k: "forgive", icon: "heartmend", name: "Forgiving", qs: ["Is there someone I need to forgive?", "Did I stay mad at someone for a long time?", "Did I ask someone to forgive me?", "Was I patient with someone who made a mistake?", "Did I remember that Jesus always forgives me?", "Who can I pray for, even if they were unkind?"] },
   { k: "play", icon: "trophy", name: "Games and screens", qs: ["Did I share games and screen time fairly?", "Did I stop when a grown-up said it was time?", "Did I watch and play only good things?", "Was I a good sport when I lost?", "Did I spend time playing with my family?", "Did I choose people over screens today?"] },
   { k: "brave", icon: "fire", name: "Being brave", qs: ["When did I try to be brave today?", "Did I do the right thing, even when others didn't?", "Did I try something new or hard?", "Did I ask for help when I needed it?", "Did I trust that Jesus is with me?", "What makes me afraid that I can tell Jesus about?"] },
@@ -4373,7 +4403,7 @@ const PRAY = {
   hailmary: { name: "Hail Mary", band: "lambs", icon: "lily", studio: "hailmary", when: "The angel's greeting to Mary. We ask her to pray for us." },
   glorybe: { name: "Glory Be", band: "lambs", icon: "sparkles", studio: "glorybe", when: "A short prayer of praise to the Holy Trinity." },
   contrition: { name: "Act of Contrition", band: "first", icon: "heartmend", studio: "prayer", when: "We say it in confession, and at night to tell God we're sorry." },
-  graceafter: { name: "Grace After Meals", band: "first", icon: "gift", when: "After we eat, to say thank you.", text: ["We give thee thanks, almighty God, for all thy benefits, who livest and reignest for ever and ever. Amen."] },
+  graceafter: { name: "Grace After Meals", band: "first", icon: "ic_bread", when: "After we eat, to say thank you.", text: ["We give thee thanks, almighty God, for all thy benefits, who livest and reignest for ever and ever. Amen."] },
   morning: { name: "Morning Offering", band: "first", icon: "sun", when: "First thing in the morning: we give the whole day to Jesus.", text: ["O Jesus, through the Immaculate Heart of Mary, I offer you my prayers, works, joys, and sufferings of this day for all the intentions of your Sacred Heart, in union with the Holy Sacrifice of the Mass throughout the world, for the salvation of souls, the reparation of sins, the reunion of all Christians, and in particular for the intentions of the Holy Father this month. Amen."] },
   apostles: { name: "Apostles' Creed", band: "first", icon: "church", when: "What we believe, in one prayer. We pray it to begin the Rosary.", text: ["I believe in God, the Father almighty, Creator of heaven and earth, and in Jesus Christ, his only Son, our Lord, who was conceived by the Holy Spirit, born of the Virgin Mary, suffered under Pontius Pilate, was crucified, died and was buried; he descended into hell; on the third day he rose again from the dead; he ascended into heaven, and is seated at the right hand of God the Father almighty; from there he will come to judge the living and the dead.", "I believe in the Holy Spirit, the holy catholic Church, the communion of saints, the forgiveness of sins, the resurrection of the body, and life everlasting. Amen."] },
   rosary: { name: "The Rosary", band: "grow", icon: "ic_rosary", when: "We walk through Jesus' life with Mary, one mystery at a time.", text: ["Begin with the Sign of the Cross and the Apostles' Creed, then one Our Father, three Hail Marys and a Glory Be.", "For each of the five mysteries: think about the mystery, then pray one Our Father, ten Hail Marys and a Glory Be.", "End with the Hail, Holy Queen and the Sign of the Cross.", "Joyful Mysteries (Monday, Saturday): the Annunciation, the Visitation, the Nativity, the Presentation, the Finding of Jesus in the Temple.", "Luminous Mysteries (Thursday): the Baptism of Jesus, the Wedding at Cana, the Proclamation of the Kingdom, the Transfiguration, the Institution of the Eucharist.", "Sorrowful Mysteries (Tuesday, Friday): the Agony in the Garden, the Scourging at the Pillar, the Crowning with Thorns, the Carrying of the Cross, the Crucifixion.", "Glorious Mysteries (Wednesday, Sunday): the Resurrection, the Ascension, the Descent of the Holy Spirit, the Assumption of Mary, the Coronation of Mary."] },
@@ -4439,7 +4469,7 @@ function closePrayer() { hush(); $("#pread").hidden = true; if ($("#quest").hidd
 let CP = null, wakeL = null;
 function cpOpen(kind, title) {
   CP = { kind, from: document.activeElement }; const c = $("#comp"); c.className = "comp " + kind; c.setAttribute("aria-label", title);
-  $("#cpTitle").textContent = title; $("#cpRead").hidden = kind === "massgo" || !canSpeak; $("#cpRead").setAttribute("aria-pressed", "false");
+  $("#cpTitle").textContent = title; $("#cpRead").hidden = true; // the device voice sounded robotic in the prayer companions, so they have no read-aloud $("#cpRead").setAttribute("aria-pressed", "false");
   c.hidden = false; document.body.style.overflow = "hidden";
 }
 function cpShow(html, after, say) {
@@ -4475,8 +4505,8 @@ const cpLink = (ref, url, label = "Read it in the Bible") => url ? `<a class="cp
 // pictures still waiting on Grok Imagine: each new name shows a stand-in from the existing art until its own picture is made.
 // To plug one in: save it as assets/img/<name>.jpg, then delete its entry here.
 const ART_WAIT = {
-  sta_hero: "myst_carrying", sta_01: "myst_thorns", sta_02: "crosshill", sta_03: "crosshill", sta_04: "crosshill", sta_05: "myst_carrying", sta_06: "myst_carrying", sta_07: "crosshill",
-  sta_08: "myst_carrying", sta_09: "crosshill", sta_10: "crosshill", sta_11: "crosshill", sta_12: "crosshill", sta_13: "crosshill", sta_14: "crosshill",
+  sta_hero: "myst_carrying", sta_01: "myst_thorns", sta_02: "myst_carrying", sta_03: "myst_carrying", sta_04: "myst_carrying", sta_05: "myst_carrying", sta_06: "myst_carrying", sta_07: "myst_carrying",
+  sta_08: "myst_carrying", sta_09: "myst_carrying", sta_10: "crosshill", sta_11: "crosshill", sta_12: "crosshill", sta_13: "crosshill", sta_14: "crosshill",
   exam_hero: "confession", adv_hero: "candle", lent_hero: "crosshill",
 };
 const pic = n => `assets/img/${ART_WAIT[n] || n}.jpg`;
@@ -4762,15 +4792,15 @@ const BIBLE = {
     { id: "b-annunciation", t: "The angel visits Mary", ref: "Luke 1", icon: "lily", s: "The angel Gabriel told Mary she would be the mother of God's Son. Mary said yes to God.", w: "How can you say yes to God this week?" },
     { id: "b-temple", t: "Jesus in the Temple", ref: "Luke 2", icon: "church", s: "When Jesus was 12, He stayed behind in the Temple. Mary and Joseph found Him learning about His Father, God.", w: "Where do you learn about God?" },
     { id: "b-baptism", t: "Jesus is baptized", ref: "Matthew 3", icon: "dove", s: "John baptized Jesus in the Jordan River. The Holy Spirit came like a dove, and God the Father said, “This is my beloved Son.”", w: "Do you know the date of your Baptism?" },
-    { id: "b-cana", t: "Water into wine", ref: "John 2", icon: "chalice", s: "At a wedding, the wine ran out. Mary told the servants to do whatever Jesus said, and Jesus turned water into wine. His first miracle!", w: "Mary helps us bring our problems to Jesus." },
-    { id: "b-zacchaeus", t: "Zacchaeus climbs a tree", ref: "Luke 19", icon: "daisy", s: "Short Zacchaeus climbed a tree to see Jesus. Jesus came to his house, and Zacchaeus changed his whole life.", w: "What would you do if Jesus came to your house?" },
+    { id: "b-cana", t: "Water into wine", ref: "John 2", icon: "rings", s: "At a wedding, the wine ran out. Mary told the servants to do whatever Jesus said, and Jesus turned water into wine. His first miracle!", w: "Mary helps us bring our problems to Jesus." },
+    { id: "b-zacchaeus", t: "Zacchaeus climbs a tree", ref: "Luke 19", icon: "house", s: "Short Zacchaeus climbed a tree to see Jesus. Jesus came to his house, and Zacchaeus changed his whole life.", w: "What would you do if Jesus came to your house?" },
     { id: "b-samaritan", t: "The Good Samaritan", ref: "Luke 10", icon: "hands", s: "A man was hurt on the road. Two people walked past, but a Samaritan stopped, helped him, and paid for his care.", w: "Who is your neighbor? (Everyone!)" },
     { id: "b-prodigal", t: "The forgiving father", ref: "Luke 15", icon: "house", s: "A son ran off and wasted everything. When he came home, his father ran to hug him and threw a party.", w: "God runs to us like that in Reconciliation." },
     { id: "b-5000", t: "Bread for 5,000 people", ref: "John 6", icon: "ic_bread", s: "A boy shared five loaves and two fish. Jesus blessed them and fed about 5,000 people, with leftovers!", w: "What small thing can you share?" },
-    { id: "b-water", t: "Jesus walks on water", ref: "Matthew 14", icon: "shell", s: "Jesus walked on the lake. Peter walked toward Him too, until he got scared and began to sink. Jesus caught his hand.", w: "Jesus always catches us when we call Him." },
+    { id: "b-water", t: "Jesus walks on water", ref: "Matthew 14", icon: "canoe", s: "Jesus walked on the lake. Peter walked toward Him too, until he got scared and began to sink. Jesus caught his hand.", w: "Jesus always catches us when we call Him." },
     { id: "b-supper", t: "The Last Supper", ref: "Luke 22", icon: "chalice", s: "The night before He died, Jesus took bread and wine and said, “This is my Body… this is my Blood.” We remember this at every Mass.", w: "What will you say to Jesus at your First Communion?" },
     { id: "b-cross", t: "Jesus dies for us", ref: "Luke 23", icon: "cross", s: "Jesus died on the cross to save us from our sins. Even then, He forgave the people who hurt Him.", w: "Jesus loves you that much." },
-    { id: "b-emmaus", t: "The road to Emmaus", ref: "Luke 24", icon: "sun", s: "Two friends walked with the risen Jesus but didn't know Him, until He broke the bread. Then they ran to tell everyone!", w: "Where do we meet Jesus in the breaking of the bread? (At Mass!)" } ] },
+    { id: "b-emmaus", t: "The road to Emmaus", ref: "Luke 24", icon: "ic_bread", s: "Two friends walked with the risen Jesus but didn't know Him, until He broke the bread. Then they ran to tell everyone!", w: "Where do we meet Jesus in the breaking of the bread? (At Mass!)" } ] },
   grow: { name: "The Big Story", line: "Twelve stops through the whole Bible, from creation to the Church.", list: [
     { id: "b-fall", t: "Creation and the Fall", ref: "Genesis 1-3", icon: "sun", s: "God created everything good and made us in His image. Adam and Eve chose to disobey, and sin entered the world. But God promised to save us.", w: "Why do you think God made us free to choose?" },
     { id: "b-abraham", t: "God's promise to Abraham", ref: "Genesis 12", icon: "star", s: "God called Abraham to a new land and promised him descendants as many as the stars. Through his family, God would bless the whole world.", w: "Abraham trusted without seeing the end. What do you trust God with?" },
@@ -5798,8 +5828,18 @@ const MASS_CH = { "Before Mass": "We come into God's house and remember our Bapt
   // mark each chapter's first picture, but load no video until the Mass page is actually open
   document.querySelectorAll(".mch").forEach(ch => show(ch, ch.querySelector(".mbeat").dataset.k, false));
   if ("IntersectionObserver" in window) {
-    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); const ch = e.target.closest(".mch"); ch.querySelectorAll(".mbeat").forEach(b => b.classList.toggle("now", b === e.target)); show(ch, e.target.dataset.k); } }), { rootMargin: "-45% 0px -45% 0px" });
+    const wideM = () => matchMedia("(min-width:900px)").matches;
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add("in"); if (e.isIntersecting && wideM()) { const ch = e.target.closest(".mch"); ch.querySelectorAll(".mbeat").forEach(b => b.classList.toggle("now", b === e.target)); show(ch, e.target.dataset.k); } }), { rootMargin: "-45% 0px -45% 0px" });
     document.querySelectorAll(".mbeat").forEach(b => io.observe(b));
+    // phones and iPads: the picture sticks to the top, so the current step is the first card whose text sits below it, never one sliding under it
+    let mPick = 0;
+    const pickNow = () => { mPick = 0; if (wideM() || !$("#mass").offsetParent) return;
+      document.querySelectorAll(".mch").forEach(ch => { const r = ch.querySelector(".mch-media").getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
+        const line = r.bottom + 12, bs = [...ch.querySelectorAll(".mbeat")], cur = bs.find(b => b.getBoundingClientRect().bottom > line + 140);
+        if (!cur || cur.getBoundingClientRect().top > innerHeight - 80) return;
+        if (!cur.classList.contains("now")) { bs.forEach(b => b.classList.toggle("now", b === cur)); cur.classList.add("in"); show(ch, cur.dataset.k); } }); };
+    addEventListener("scroll", () => { if (!mPick) mPick = requestAnimationFrame(pickNow); }, { passive: true });
+    addEventListener("resize", pickNow);
     const ratios = new Map();
     const mio = new IntersectionObserver(es => { es.forEach(e => ratios.set(e.target, e.intersectionRatio)); let best = null, b = 0; ratios.forEach((r, m) => { if (r > b) { b = r; best = m; } });
       const v = best && b > .5 && best.querySelector("video.mmedia.on"); if (v && v.paused && !reduce) { document.querySelectorAll("#mass .mch video").forEach(x => { if (x !== v && !x.paused) x.pause(); }); v.play().catch(() => {}); } }, { threshold: [0, .25, .5, .75, 1] });
