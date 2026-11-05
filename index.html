@@ -2147,8 +2147,11 @@ body:not(.hm-new) .home>#fpToday,body:not(.hm-new) .home>#lambTile,body:not(.hm-
 .sn-links::-webkit-scrollbar{display:none}
 .sn-links a{flex:none;display:flex;align-items:center;min-height:36px;padding:0 12px;border-radius:980px;font-family:var(--sf);font-size:14px;color:var(--ink);text-decoration:none;white-space:nowrap}
 .sn-links a:hover{background:color-mix(in srgb,var(--ink) 6%,transparent)}
-.sn-links a[aria-current]{background:var(--ink);color:var(--bg);font-weight:600}
-.sn-go[hidden],.cx-gpane[hidden]{display:none!important}
+.sn-links a{font-weight:500}
+.sn-links a[aria-current]{background:var(--ink);color:var(--bg)}
+.cx-gpane[hidden]{display:none!important}
+.sn-go{min-width:104px;justify-content:center}
+.sn-go.sn-off{visibility:hidden}
 .sn-go{flex:none;min-height:32px!important;padding:0 16px!important;font-size:14px!important}
 @media (max-width:820px){
   .subnav .sn-in{gap:8px;min-height:50px}
@@ -2481,7 +2484,7 @@ body[data-sub="practice"] #mass .mplay>h3,body[data-sub="practice"] #mass .mplay
   </div>
 </section>
 
-<nav class="subnav" data-view="quests" aria-label="Lessons pages"><div class="wrap sn-in"><a class="sn-t" href="#/quests">Lessons</a><div class="sn-links"><a href="#/quests" data-sub="">Overview</a><a href="#/quests/lambs" data-sub="lambs">Little Lambs</a><a href="#/quests/reconciliation" data-sub="reconciliation">First Reconciliation</a><a href="#/quests/communion" data-sub="communion">First Communion</a><a href="#/quests/story" data-sub="story">The Big Story</a><a href="#/quests/confirmation" data-sub="confirmation">Confirmation</a></div><button type="button" class="btn btn-go sn-go" id="snLessonGo" hidden>Continue</button></div></nav>
+<nav class="subnav" data-view="quests" aria-label="Lessons pages"><div class="wrap sn-in"><a class="sn-t" href="#/quests">Lessons</a><div class="sn-links"><a href="#/quests" data-sub="">Overview</a><a href="#/quests/lambs" data-sub="lambs">Little Lambs</a><a href="#/quests/reconciliation" data-sub="reconciliation">First Reconciliation</a><a href="#/quests/communion" data-sub="communion">First Communion</a><a href="#/quests/story" data-sub="story">The Big Story</a><a href="#/quests/confirmation" data-sub="confirmation">Confirmation</a></div><button type="button" class="btn btn-go sn-go sn-off" id="snLessonGo" tabindex="-1" aria-hidden="true">Continue</button></div></nav>
 <section class="sec lx-hub" id="lessonsHub" data-view="quests" data-sub="">
   <div class="wrap">
     <div class="sec-head nv-head">
@@ -6231,16 +6234,16 @@ function renderMassNav() {
 function navRoute(v, sb, sb2) {
   document.querySelectorAll(".subnav").forEach(n => { if (n.dataset.view !== v) return;
     n.querySelectorAll(".sn-links a").forEach(a => { const on = a.dataset.sub === sb; a.toggleAttribute("aria-current", on); if (on) a.setAttribute("aria-current", "page");
-      if (on) { const L = a.parentElement; L.scrollLeft = Math.max(0, a.offsetLeft - (L.clientWidth - a.offsetWidth) / 2); } }); });
+      if (on) { const L = a.parentElement, l = a.offsetLeft - L.offsetLeft, r = l + a.offsetWidth; if (l < L.scrollLeft) L.scrollLeft = Math.max(0, l - 16); else if (r > L.scrollLeft + L.clientWidth) L.scrollLeft = r - L.clientWidth + 16; } }); });
   if (v === "quests") { document.querySelectorAll(".cx").forEach(c => delete c.dataset.tab); renderLessonsHub(); PATHS.forEach(renderCourse);
     const sg = $("#snLessonGo"), pp = (sb && pathByK(sb)) || myPath(), nx = S.pid && pp && pp.next();
-    sg.hidden = !nx; sg.textContent = sb ? (pp.done() ? "Continue" : "Start") : `Continue ${named()}'s path`; sg.onclick = () => { sfx.tap(); pp.next()?.go(); }; }
+    sg.hidden = false; sg.classList.toggle("sn-off", !nx); sg.tabIndex = nx ? 0 : -1; sg.setAttribute("aria-hidden", !nx); sg.textContent = pp && pp.done() ? "Continue" : "Start"; sg.onclick = () => { sfx.tap(); pp.next()?.go(); }; }
   if (v === "cards" && sb === "feasts") renderFeasts();
   if (v === "mass" && sb === "walk") {
     const groups = [...new Set(MASS.map(m => m.g))], k = Math.min(Math.max(parseInt(sb2) || 1, 1), groups.length);
     document.querySelectorAll("#mStory .mch").forEach((c, i) => c.classList.toggle("sub-off", i !== k - 1));
     $("#mxStep").innerHTML = `<ol aria-label="Parts of the Mass">${groups.map((g, i) => `<li><a href="#/mass/walk/${i + 1}"${i === k - 1 ? ' aria-current="step"' : ""}><b>${i + 1}</b>${esc(g)}</a></li>`).join("")}</ol>`;
-    const cur = $("#mxStep [aria-current]"); if (cur) { const L = cur.closest("ol"); L.scrollLeft = Math.max(0, cur.parentElement.offsetLeft - L.offsetLeft - 8); }
+    const cur = $("#mxStep [aria-current]"); if (cur) { const L = cur.closest("ol"), l = cur.parentElement.offsetLeft - L.offsetLeft, r = l + cur.parentElement.offsetWidth; if (l < L.scrollLeft) L.scrollLeft = Math.max(0, l - 8); else if (r > L.scrollLeft + L.clientWidth) L.scrollLeft = r - L.clientWidth + 32; }
     $("#mxNext").innerHTML = `${k > 1 ? `<a class="btn btn-soft" href="#/mass/walk/${k - 1}">&lsaquo; ${esc(groups[k - 2])}</a>` : `<a class="btn btn-soft" href="#/mass">&lsaquo; Mass overview</a>`}${k < groups.length ? `<a class="btn btn-go" href="#/mass/walk/${k + 1}">Next: ${esc(groups[k])} &rsaquo;</a>` : `<a class="btn btn-go" href="#/practice/games">Practice for Sunday &rsaquo;</a>`}`;
   }
   const sn = document.querySelector(".subnav.on"); document.documentElement.style.setProperty("--snh", (sn ? sn.offsetHeight : 0) + "px");
